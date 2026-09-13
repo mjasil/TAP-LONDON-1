@@ -163,13 +163,17 @@ export default function HomePage() {
         <Link href="/trip-builder" style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
           <div style={{
             maxWidth: '1100px', margin: '0 auto', position: 'relative', overflow: 'hidden',
-            background: 'linear-gradient(120deg, #1a1a2e 0%, #241f38 60%, #1a1a2e 100%)',
+            background: 'linear-gradient(135deg, #1a1a2e 0%, #26203d 45%, #1a1a2e 80%, #221c33 100%)',
             borderRadius: '22px', padding: 'clamp(28px, 5vw, 52px)', cursor: 'pointer',
             border: '1px solid rgba(201,168,76,0.25)',
           }}>
             <div style={{
-              position: 'absolute', top: '-40%', right: '-8%', width: '340px', height: '340px', borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(201,168,76,0.16), transparent 70%)',
+              position: 'absolute', top: '-50%', right: '-12%', width: '480px', height: '480px', borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(201,168,76,0.22), transparent 65%)',
+            }} />
+            <div style={{
+              position: 'absolute', bottom: '-45%', left: '-6%', width: '320px', height: '320px', borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%)',
             }} />
             <div className="itinerary-entry-inner" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' as const, gap: '20px' }}>
               <div className="itinerary-entry-text" style={{ textAlign: 'left' as const }}>
