@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Keys split into parts to avoid secret scanners - reassembled at runtime
-const G1 = "gsk_A7un31wPsXoHU7syhMH2WGdyb3FYbgly2e5hzMazO";
-const G2 = "6eXwNOfKhNL";
-
 const PROJECT_ID = "tap-london";
 
 // Site facts NOVA should always know, regardless of what's in Firestore.
@@ -110,9 +106,13 @@ function detectsSocialQuestion(message: string): boolean {
 export async function POST(req: NextRequest) {
   try {
     const { message, history = [] } = await req.json();
-    if (!message) return NextResponse.json({ reply: "Please send a message!" });
-
-    const GROQ_KEY = G1 + G2;
+    if (typeof message !== 'string' || !message.trim() || message.length > 600 || !Array.isArray(history)) {
+      return NextResponse.json({ reply: "Please send a question under 600 characters." }, { status: 400 });
+    }
+    const GROQ_KEY = process.env.GROQ_API_KEY;
+    if (!GROQ_KEY) {
+      return NextResponse.json({ reply: "NOVA is temporarily unavailable. Please try again later." }, { status: 503 });
+    }
 
     // ── Ground NOVA in real site data before answering ──
     let contextBlock = "";
@@ -157,9 +157,9 @@ Rules:
 
     const messages = [
       { role: "system", content: SYSTEM },
-      ...history.slice(-6).map((m: any) => ({
+      ...history.slice(-6).filter((m: any) => typeof m?.content === 'string').map((m: any) => ({
         role: m.role === "user" ? "user" : "assistant",
-        content: m.content,
+        content: m.content.slice(0, 600),
       })),
       { role: "user", content: message },
     ];

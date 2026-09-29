@@ -1,6 +1,6 @@
 # TAP LONDON
 
-Production-ready Next.js 14 website for `taplondon.co.uk`, built for smart NFC tourism souvenirs.
+Next.js website for `londontap.co.uk`, built for smart NFC tourism souvenirs.
 
 ## Tech Stack
 
@@ -79,6 +79,7 @@ Copy `.env.example` to `.env.local` for local development.
 - `NEXT_PUBLIC_SITE_URL`: production site URL
 - `NEXT_PUBLIC_WHATSAPP_NUMBER`: WhatsApp support number without `+`
 - `NEXT_PUBLIC_GA_ID`: future GA4 measurement ID
+- `GROQ_API_KEY`: server-side key for NOVA. Set this in the hosting environment; never place a key in source code.
 
 ## Deployment
 

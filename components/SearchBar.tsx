@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fetchCollection } from '@/lib/firestore';
+import { listingRoute } from '@/lib/listingRoute';
 
 type Result = {
   id: string;
@@ -75,13 +76,13 @@ async function buildIndex() {
             description: item.description || '',
             cuisine: item.cuisine || '',
             tags: Array.isArray(item.tags) ? item.tags.join(' ') : '',
-            halal: item.halal || item.verifiedHalal ? 'halal' : '',
+            halal: item.halal === true || item.halal === 'halal' || item.verifiedHalal === true ? 'halal' : '',
             priceType: item.priceType || '',
             priceRangeLevel: (priceStr.match(/£/g) || []).length,
             rating: parseFloat(item.rating) || 0,
             familyFriendly: !!item.familyFriendly,
             type: cfg.type,
-            href: `${cfg.hrefBase}/${item.id}`,
+            href: listingRoute(cfg.hrefBase, item.id),
             image: item.image,
             color: cfg.color,
             label: cfg.label,
@@ -143,17 +144,15 @@ export default function SearchBar() {
   const router = useRouter();
 
   useEffect(() => {
-    buildIndex();
-  }, []);
-
-  useEffect(() => {
     const q = query.trim();
     if (q.length < 2) { setResults([]); setOpen(false); return; }
 
+    let cancelled = false;
     const run = async () => {
       if (!indexLoaded) {
         setLoading(true);
         await buildIndex();
+        if (cancelled) return;
         setLoading(false);
       }
       const scored = SEARCH_INDEX
@@ -161,10 +160,13 @@ export default function SearchBar() {
         .filter(item => item.score > 0)
         .sort((a, b) => b.score - a.score)
         .slice(0, 8);
-      setResults(scored);
-      setOpen(scored.length > 0);
+      if (!cancelled) {
+        setResults(scored);
+        setOpen(scored.length > 0);
+      }
     };
-    run();
+    const timer = setTimeout(run, 180);
+    return () => { cancelled = true; clearTimeout(timer); };
   }, [query]);
 
   useEffect(() => {
