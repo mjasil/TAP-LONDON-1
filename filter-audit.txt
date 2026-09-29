@@ -1,0 +1,48 @@
+
+### places (77 total)
+categories in data: {"Photo Spots":8,"Hidden Gems":14,"Top Attractions":43,"Free Things":12}
+  Top Attractions: 43 | Open Now=40 | Open Late=5 | Free=13 | Near Station=0 | Special Offer=0
+  Hidden Gems: 14 | Open Now=11 | Open Late=1 | Free=11 | Near Station=0 | Special Offer=0
+  Photo Spots: 8 | Open Now=8 | Open Late=2 | Free=5 | Near Station=0 | Special Offer=0
+  Free Things: 12 | Open Now=12 | Open Late=5 | Free=6 | Near Station=0 | Special Offer=0
+
+### food (113 total)
+categories in data: {"Restaurants":69,"Local Spots":10,"Coffee Shops":22,"Halal Food":11,"🏷️ Offers":1}
+  Restaurants: 69 | Open Now=2 | Open Late=4 | Free=0 | Near Station=0 | Halal=2 | Cheap Eats=10 | Date Night=23 | Family=15 | Viral=5 | Hidden Gem=9
+  Halal Food: 11 | Open Now=3 | Open Late=3 | Free=0 | Near Station=0 | Halal=9 | Cheap Eats=4 | Date Night=3 | Family=3 | Viral=2 | Hidden Gem=2
+  Coffee Shops: 22 | Open Now=0 | Open Late=0 | Free=0 | Near Station=0 | Halal=0 | Cheap Eats=7 | Date Night=1 | Family=2 | Viral=3 | Hidden Gem=7
+  Local Spots: 10 | Open Now=0 | Open Late=0 | Free=0 | Near Station=0 | Halal=2 | Cheap Eats=3 | Date Night=0 | Family=0 | Viral=5 | Hidden Gem=5
+
+### shopping (43 total)
+categories in data: {"Souvenir Shops":12,"Markets":12,"Shopping Areas":14,"Speciality Shops":2,"🏷️ Offers":3}
+  Shopping Areas: 14 | Open Now=13 | Open Late=0 | Free=0 | Near Station=9
+  Markets: 12 | Open Now=5 | Open Late=0 | Free=0 | Near Station=1
+  Souvenir Shops: 12 | Open Now=12 | Open Late=1 | Free=0 | Near Station=0
+
+### nightlife (68 total)
+categories in data: {"Live Music":10,"Clubs":33,"Bars":13,"Rooftop Bars":12}
+  Bars: 13 | Open Now=13 | Open Late=8 | Free=0 | Near Station=0 | Rooftop=0 | Free Entry=0
+  Clubs: 33 | Open Now=1 | Open Late=8 | Free=0 | Near Station=0 | Rooftop=0 | Free Entry=1
+  Live Music: 10 | Open Now=2 | Open Late=3 | Free=0 | Near Station=0 | Rooftop=0 | Free Entry=0
+  Rooftop Bars: 12 | Open Now=10 | Open Late=6 | Free=2 | Near Station=0 | Rooftop=12 | Free Entry=2
+
+### kids (51 total)
+categories in data: {"Activities":19,"Parks":5,"Parks & Playgrounds":7,"Clubs & Classes":5,"Entertainment":7,"Museums":8}
+  Parks: 5 | Open Now=5 | Open Late=0 | Free=3 | Near Station=0 | Indoor=0 | Outdoor=5
+  Museums: 8 | Open Now=8 | Open Late=0 | Free=7 | Near Station=0 | Indoor=8 | Outdoor=0
+  Activities: 19 | Open Now=17 | Open Late=0 | Free=1 | Near Station=0 | Indoor=0 | Outdoor=0
+  Entertainment: 7 | Open Now=5 | Open Late=2 | Free=1 | Near Station=0 | Indoor=0 | Outdoor=0
+
+### muslim (11 total)
+categories in data: {"Mosques":4,"Halal Food":5,"Prayer Rooms":2}
+  Mosques: 4 | Open Now=4 | Open Late=1 | Free=3 | Near Station=0 | Halal=0
+  Halal Food: 5 | Open Now=5 | Open Late=3 | Free=2 | Near Station=0 | Halal=0
+  Prayer Rooms: 2 | Open Now=2 | Open Late=1 | Free=1 | Near Station=0 | Halal=0
+  Islamic Sites: 0 | Open Now=0 | Open Late=0 | Free=0 | Near Station=0 | Halal=0
+
+### emergency (15 total)
+categories in data: {"Police":4,"Helplines":4,"Scam Alerts":4,"Hospitals":3}
+  Hospitals: 3 | Open Now=0 | Open Late=0 | Free=0 | Near Station=0
+  Police: 4 | Open Now=0 | Open Late=0 | Free=0 | Near Station=0
+  Scam Alerts: 4 | Open Now=0 | Open Late=0 | Free=0 | Near Station=0
+  Helplines: 4 | Open Now=0 | Open Late=0 | Free=0 | Near Station=0
