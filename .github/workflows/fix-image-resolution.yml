@@ -13,16 +13,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Install firebase-admin
-        run: npm install firebase-admin
-      - name: Add q_auto
+      - run: npm install firebase-admin
+      - name: Audit filters
         env:
           FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
-        run: node scripts/add-qauto.js
-      - name: Commit results
-        run: |
+        run: node scripts/audit-filters.js
+      - run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add qauto-results.txt
-          git commit -m "qauto results" || echo "nothing"
+          git add filter-audit.txt
+          git commit -m "filter audit" || echo nothing
           git push
