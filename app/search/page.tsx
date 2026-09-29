@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { fetchCollection } from '@/lib/firestore';
+import { listingRoute } from '@/lib/listingRoute';
 
 const SECTION_CONFIG: { collection: string; type: string; hrefBase: string; label: string; color: string }[] = [
   { collection: 'places',      type: 'place',      hrefBase: '/places',      label: 'Place',      color: '#c9a84c' },
@@ -93,13 +94,13 @@ function SearchResults() {
               description: item.description || '',
               cuisine: item.cuisine || '',
               tags: Array.isArray(item.tags) ? item.tags.join(' ') : '',
-              halal: item.halal || item.verifiedHalal ? 'halal' : '',
+              halal: item.halal === true || item.halal === 'halal' || item.verifiedHalal === true ? 'halal' : '',
               priceType: item.priceType || '',
               priceRangeLevel: (priceStr.match(/£/g) || []).length,
               rating: parseFloat(item.rating) || 0,
               familyFriendly: !!item.familyFriendly,
               type: cfg.type,
-              href: `${cfg.hrefBase}/${item.id}`,
+              href: listingRoute(cfg.hrefBase, item.id),
               image: item.image,
               label: cfg.label,
               color: cfg.color,

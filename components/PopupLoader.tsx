@@ -49,6 +49,10 @@ export default function PopupLoader() {
   const pathname = usePathname();
 
   useEffect(() => {
+    let cancelled = false;
+    let showTimer: ReturnType<typeof setTimeout> | undefined;
+    setShow(false);
+    setPopup(null);
     const load = async () => {
       try {
         const section = pathname.split('/')[1] || 'global';
@@ -59,17 +63,22 @@ export default function PopupLoader() {
           cfg = section === 'global' ? cfg : await fetchPopup('global');
         }
 
-        if (!cfg?.enabled) return;
+        if (cancelled || !cfg?.enabled) return;
         if (cfg.expiresAt && new Date(cfg.expiresAt) < new Date()) return;
 
         const storageKey = 'tap-popup-' + section;
         if (cfg.showOnce && sessionStorage.getItem(storageKey)) return;
 
         setPopup(cfg);
-        setTimeout(() => setShow(true), (cfg.delaySeconds ?? 3) * 1000);
+        showTimer = setTimeout(() => { if (!cancelled) setShow(true); }, (cfg.delaySeconds ?? 3) * 1000);
       } catch {}
     };
-    load();
+    const loadTimer = setTimeout(load, 1000);
+    return () => {
+      cancelled = true;
+      clearTimeout(loadTimer);
+      if (showTimer) clearTimeout(showTimer);
+    };
   }, [pathname]);
 
   const handleClose = () => {

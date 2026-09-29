@@ -1,4 +1,7 @@
 const PROJECT_ID = 'tap-london';
+const CACHE_MS = 60_000;
+const collectionCache = new Map<string, { expires: number; request: Promise<any[] | null> }>();
+const documentCache = new Map<string, { expires: number; request: Promise<any | null> }>();
 
 // Recursively convert a single Firestore field value to a plain JS value
 function parseFieldValue(field: any): any {
@@ -35,6 +38,18 @@ function applyImageFallback(item: any): any {
 }
 
 export async function fetchCollection(collection: string): Promise<any[] | null> {
+  const cached = collectionCache.get(collection);
+  if (cached && cached.expires > Date.now()) return cached.request;
+
+  const request = loadCollection(collection);
+  collectionCache.set(collection, { expires: Date.now() + CACHE_MS, request });
+  request.then(result => {
+    if (!result && collectionCache.get(collection)?.request === request) collectionCache.delete(collection);
+  });
+  return request;
+}
+
+async function loadCollection(collection: string): Promise<any[] | null> {
   try {
     const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${collection}?pageSize=200`;
     const res = await fetch(url, { cache: 'no-store' });
@@ -57,6 +72,19 @@ export async function fetchCollection(collection: string): Promise<any[] | null>
 }
 
 export async function fetchDocument(collection: string, id: string, retries = 2): Promise<any | null> {
+  const key = `${collection}/${id}`;
+  const cached = documentCache.get(key);
+  if (cached && cached.expires > Date.now()) return cached.request;
+
+  const request = loadDocument(collection, id, retries);
+  documentCache.set(key, { expires: Date.now() + CACHE_MS, request });
+  request.then(result => {
+    if (!result && documentCache.get(key)?.request === request) documentCache.delete(key);
+  });
+  return request;
+}
+
+async function loadDocument(collection: string, id: string, retries: number): Promise<any | null> {
   const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${collection}/${id}`;
 
   for (let attempt = 0; attempt <= retries; attempt++) {

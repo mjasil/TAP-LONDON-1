@@ -8,7 +8,7 @@ import { FadeUp, SlideLeft, SlideRight } from '@/components/ScrollAnimation';
 import SearchBar from '@/components/SearchBar';
 import NearMe from '@/components/NearMe';
 import LondonQuiz from '@/components/LondonQuiz';
-import { fetchDocument, fetchCollection } from '@/lib/firestore';
+import { fetchCollection } from '@/lib/firestore';
 
 const DEFAULT_HERO = 'https://images.pexels.com/photos/672532/pexels-photo-672532.jpeg?auto=compress&cs=tinysrgb&w=1920';
 
@@ -18,19 +18,19 @@ const MAIN_CARDS = [
   { id: 'shopping',     label: 'Shopping',        sub: 'Luxury streets, markets & boutiques',   href: '/shopping',     image: 'https://images.pexels.com/photos/3965548/pexels-photo-3965548.jpeg?auto=compress&cs=tinysrgb&w=800',   tag: 'Shopping' },
   { id: 'nightlife',    label: 'Nightlife',       sub: 'Rooftop bars, clubs & live music',      href: '/nightlife',    image: 'https://images.pexels.com/photos/2034851/pexels-photo-2034851.jpeg?auto=compress&cs=tinysrgb&w=800',   tag: 'Nightlife' },
   { id: 'hotels',       label: 'Hotels',          sub: 'Budget to luxury, find your stay',     href: '/hotels',       image: 'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800',    tag: 'Hotels' },
-  { id: 'transport',    label: 'Transport',       sub: 'Tube, bus, taxi & travel tips',         href: '/transport',    image: 'https://images.pexels.com/photos/5765/london-street-landmark-double-decker.jpg?auto=compress&cs=tinysrgb&w=800', tag: 'Places' },
-  { id: 'kids',         label: 'Kids & Family',   sub: 'Attractions, parks & family fun',       href: '/kids',         image: 'https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=800',   tag: 'Places' },
-  { id: 'muslim',       label: 'Muslim Guide',    sub: 'Halal food, mosques & prayer rooms',    href: '/muslim',       image: 'https://images.pexels.com/photos/3874832/pexels-photo-3874832.jpeg?auto=compress&cs=tinysrgb&w=800',   tag: 'Food' },
-  { id: 'emergency',    label: 'Emergency Help',  sub: 'Safety tips, scam alerts & numbers',   href: '/emergency',    image: 'https://images.pexels.com/photos/63901/pexels-photo-63901.jpeg?auto=compress&cs=tinysrgb&w=800',      tag: 'Places' },
+  { id: 'transport',    label: 'Transport',       sub: 'Tube, bus, taxi & travel tips',         href: '/transport',    image: 'https://images.pexels.com/photos/5765/london-street-landmark-double-decker.jpg?auto=compress&cs=tinysrgb&w=800', tag: 'Transport' },
+  { id: 'kids',         label: 'Kids & Family',   sub: 'Attractions, parks & family fun',       href: '/kids',         image: 'https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=800',   tag: 'Family' },
+  { id: 'muslim',       label: 'Muslim Guide',    sub: 'Halal food, mosques & prayer rooms',    href: '/muslim',       image: 'https://images.pexels.com/photos/3874832/pexels-photo-3874832.jpeg?auto=compress&cs=tinysrgb&w=800',   tag: 'Guide' },
+  { id: 'emergency',    label: 'Emergency Help',  sub: 'Safety tips, scam alerts & numbers',   href: '/emergency',    image: 'https://images.pexels.com/photos/63901/pexels-photo-63901.jpeg?auto=compress&cs=tinysrgb&w=800',      tag: 'Help' },
 ];
 
 const DISCOVER_CARDS = [
-  { label: 'Offers & Deals',  sub: 'Best London deals right now',     href: '/offers',       icon: '🏷️',  color: '#e8a020' },
-  { label: 'Sports',          sub: 'Football, cricket, boxing & more', href: '/sports',       icon: '⚽',  color: '#2d9e4f' },
-  { label: 'Hidden Gems',     sub: 'Secret spots only locals know',   href: '/hidden-gems',  icon: '💎',  color: '#7c5cbf' },
-  { label: 'Trending Now',    sub: 'Viral restaurants & hotspots',    href: '/trending',     icon: '🔥',  color: '#e55' },
-  { label: 'Guides',          sub: 'Curated themed London lists',     href: '/guides',       icon: '📖',  color: '#5ab0e5' },
-  { label: 'Happening Today', sub: 'Live events and markets now',     href: '/events',       icon: '📅',  color: '#7ac9a0' },
+  { label: 'Offers & Deals',  sub: 'Best London deals right now',     href: '/offers',       number: '01' },
+  { label: 'Sports',          sub: 'Football, cricket, boxing & more', href: '/sports',       number: '02' },
+  { label: 'Hidden Gems',     sub: 'Secret spots only locals know',   href: '/hidden-gems',  number: '03' },
+  { label: 'Trending Now',    sub: 'Popular restaurants & hotspots',  href: '/trending',     number: '04' },
+  { label: 'Guides',          sub: 'Curated themed London lists',     href: '/guides',       number: '05' },
+  { label: 'Happening Today', sub: 'Live events and markets now',     href: '/events',       number: '06' },
 ];
 
 const TABS = ['All', 'Places', 'Food', 'Shopping', 'Nightlife', 'Hotels'];
@@ -40,18 +40,10 @@ const HOW_IT_WORKS = [
   { title: 'Choose a section', desc: 'Find places, food, shopping, hotels in seconds.',  step: '03' },
   { title: 'Enjoy London',     desc: 'Real directions, trusted tips, halal guides.',      step: '04' },
 ];
-const STATS = [
-  { number: '300+', label: 'Curated Places' },
-  { number: '200+', label: 'Restaurants' },
-  { number: '12',   label: 'Languages' },
-  { number: '24/7', label: 'AI Guide' },
-];
-
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('All');
-  const [heroImage, setHeroImage] = useState<string | null>(null);
+  const [heroImage, setHeroImage] = useState(DEFAULT_HERO);
   const [cards, setCards] = useState(MAIN_CARDS);
-  const [heroReady, setHeroReady] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '25%']);
@@ -60,21 +52,11 @@ export default function HomePage() {
 
   useEffect(() => {
     const loadImages = async () => {
-      // FIX: this used to fire ~10 separate Firestore document requests at
-      // once (1 hero + 1 per card in MAIN_CARDS via Promise.all), all hitting
-      // the API in the same instant on every homepage load. That request
-      // burst was very likely a real contributor to the 429 "Too Many
-      // Requests" errors seen in the browser console. Fetching the whole
-      // siteImages collection in ONE request and picking out what's needed
-      // client-side avoids that burst entirely.
       const allImages = await fetchCollection('siteImages');
       const imageMap = new Map((allImages || []).map((doc: any) => [doc.id, doc.url]));
 
       const url = imageMap.get('hero') || DEFAULT_HERO;
-      const img = new Image();
-      img.onload = () => { setHeroImage(url); setHeroReady(true); };
-      img.onerror = () => { setHeroImage(DEFAULT_HERO); setHeroReady(true); };
-      img.src = url;
+      setHeroImage(url);
 
       const updatedCards = MAIN_CARDS.map((card) => {
         const cardUrl = imageMap.get('card-' + card.id);
@@ -96,27 +78,23 @@ export default function HomePage() {
 
       {/* HERO */}
       <section ref={heroRef} style={{ position: 'relative', height: '92vh', minHeight: '560px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: '#0d0d1a' }}>
-        {heroImage && (
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: heroReady ? 1 : 0 }} transition={{ duration: 0.6 }}
-            style={{ position: 'absolute', inset: '-10%', y: heroY, scale: heroScale, backgroundImage: `url('${heroImage}')`, backgroundSize: 'cover', backgroundPosition: 'center 30%', zIndex: 0 }}
-          />
-        )}
+        <motion.div
+          style={{ position: 'absolute', inset: '-10%', y: heroY, scale: heroScale, backgroundImage: `url('${heroImage}')`, backgroundSize: 'cover', backgroundPosition: 'center 30%', zIndex: 0 }}
+        />
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to bottom, rgba(10,10,24,0.45) 0%, rgba(10,10,24,0.3) 40%, rgba(10,10,24,0.82) 100%)' }} />
 
         <motion.div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: '860px', padding: '0 20px', boxSizing: 'border-box' as const, textAlign: 'center', opacity: heroOpacity }}
           initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}>
 
           <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(201,168,76,0.13)', border: '1px solid rgba(201,168,76,0.35)', color: '#c9a84c', borderRadius: '40px', padding: '6px 18px', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '2px', marginBottom: '24px', textTransform: 'uppercase' as const, backdropFilter: 'blur(10px)', fontFamily: "'DM Sans', sans-serif" }}>
-            <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#c9a84c', boxShadow: '0 0 8px #c9a84c' }} />
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#f2d283', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '2px', marginBottom: '24px', textTransform: 'uppercase' as const, fontFamily: "'DM Sans', sans-serif" }}>
             London's Smart Travel Guide
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32, duration: 0.9 }}
             style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(2.8rem, 9vw, 6.2rem)', fontWeight: 700, lineHeight: 1, margin: '0 0 20px', letterSpacing: '-1px' }}>
             <span style={{ color: '#ffffff' }}>Discover </span>
-            <span style={{ background: 'linear-gradient(130deg, #c9a84c 0%, #f5d97a 50%, #b8882e 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>London</span>
+            <span style={{ color: '#f2d283' }}>London</span>
           </motion.h1>
 
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.8 }}
@@ -145,43 +123,22 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* STATS */}
-      <section style={{ background: '#1a1a2e', borderBottom: '1px solid rgba(201,168,76,0.1)', width: '100%' }}>
-        <div style={{ maxWidth: '860px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
-          {STATS.map((s, i) => (
-            <motion.div key={s.label} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07, duration: 0.45 }}
-              style={{ textAlign: 'center', padding: '26px 8px', borderRight: i < 3 ? '1px solid rgba(201,168,76,0.08)' : 'none' }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.4rem, 4vw, 2.4rem)', fontWeight: 700, color: '#c9a84c', lineHeight: 1 }}>{s.number}</div>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(0.55rem, 1.3vw, 0.65rem)', color: 'rgba(249,247,242,0.35)', marginTop: '4px', letterSpacing: '1.2px', textTransform: 'uppercase' as const }}>{s.label}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
       {/* AI ITINERARY BUILDER - entry card */}
-      <section style={{ padding: '48px 20px', width: '100%', boxSizing: 'border-box' as const }}>
+      <section style={{ padding: '64px 20px 48px', width: '100%', boxSizing: 'border-box' as const }}>
         <Link href="/trip-builder" style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
           <div style={{
             maxWidth: '1100px', margin: '0 auto', position: 'relative', overflow: 'hidden',
-            background: 'linear-gradient(135deg, #1a1a2e 0%, #26203d 45%, #1a1a2e 80%, #221c33 100%)',
-            borderRadius: '22px', padding: 'clamp(28px, 5vw, 52px)', cursor: 'pointer',
-            border: '1px solid rgba(201,168,76,0.25)',
+            background: '#1a1a2e',
+            borderRadius: '12px', padding: 'clamp(28px, 5vw, 52px)', cursor: 'pointer',
+            border: '1px solid rgba(201,168,76,0.18)',
           }}>
-            <div style={{
-              position: 'absolute', top: '-50%', right: '-12%', width: '480px', height: '480px', borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(201,168,76,0.22), transparent 65%)',
-            }} />
-            <div style={{
-              position: 'absolute', bottom: '-45%', left: '-6%', width: '320px', height: '320px', borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%)',
-            }} />
             <div className="itinerary-entry-inner" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' as const, gap: '20px' }}>
               <div className="itinerary-entry-text" style={{ textAlign: 'left' as const }}>
                 <div style={{
                   display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: "'DM Sans', sans-serif",
                   fontSize: '0.68rem', color: '#c9a84c', letterSpacing: '2.5px', textTransform: 'uppercase' as const,
-                  border: '1px solid rgba(201,168,76,0.3)', borderRadius: '40px', padding: '5px 14px', marginBottom: '16px',
-                }}>✦ AI Itinerary Builder</div>
+                  marginBottom: '16px',
+                }}>Plan your visit</div>
                 <h2 style={{
                   fontFamily: "'Cormorant Garamond', serif", fontWeight: 700, color: '#fff',
                   fontSize: 'clamp(1.6rem, 4vw, 2.6rem)', margin: '0 0 10px', lineHeight: 1.1,
@@ -191,9 +148,9 @@ export default function HomePage() {
                 </p>
               </div>
               <div style={{
-                background: 'linear-gradient(135deg,#c9a84c,#e8c46f)', color: '#1a1a2e', padding: '15px 30px',
-                borderRadius: '12px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', fontWeight: 700,
-                whiteSpace: 'nowrap' as const, boxShadow: '0 8px 24px rgba(201,168,76,0.25)',
+                  background: '#c9a84c', color: '#1a1a2e', padding: '15px 30px',
+                  borderRadius: '6px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', fontWeight: 700,
+                  whiteSpace: 'nowrap' as const,
               }}>Plan My Trip →</div>
             </div>
             <style>{`
@@ -288,14 +245,14 @@ export default function HomePage() {
           </FadeUp>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '12px', marginBottom: '48px' }}>
             {DISCOVER_CARDS.map((card, i) => (
-              <motion.div key={card.href} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}>
+              <motion.div key={card.href} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }}>
                 <Link href={card.href} style={{ textDecoration: 'none', display: 'block' }}>
-                  <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }} className="bg-white dark:bg-[#1a1a2e]"
-                    style={{ borderRadius: '14px', padding: '20px', border: '1px solid rgba(201,168,76,0.12)', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', cursor: 'pointer' }}>
-                    <div style={{ fontSize: '2rem', marginBottom: '10px' }}>{card.icon}</div>
+                  <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }} className="bg-white dark:bg-[#1a1a2e]"
+                    style={{ borderRadius: '8px', padding: '20px', border: '1px solid rgba(26,26,46,0.12)', cursor: 'pointer', minHeight: '160px' }}>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', letterSpacing: '0.1em', color: '#a58a46', marginBottom: '18px' }}>{card.number}</div>
                     <div className="text-navy dark:text-[#f9f7f2]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem', fontWeight: 700, marginBottom: '4px' }}>{card.label}</div>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: '#888' }}>{card.sub}</div>
-                    <div style={{ marginTop: '12px', color: card.color, fontFamily: "'DM Sans', sans-serif", fontSize: '0.76rem', fontWeight: 700 }}>Explore →</div>
+                    <div style={{ marginTop: '12px', color: '#a58a46', fontFamily: "'DM Sans', sans-serif", fontSize: '0.76rem', fontWeight: 700 }}>Explore →</div>
                   </motion.div>
                 </Link>
               </motion.div>

@@ -10,13 +10,14 @@
   --ink: #1a1a1e;
 }
 
-* { box-sizing: border-box; font-family: 'Poppins', sans-serif !important; }
+* { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
   min-height: 100vh;
   background: var(--cream);
   color: var(--ink);
+  font-family: var(--font-poppins), Arial, sans-serif;
 }
 
 ::selection { background: var(--gold); color: var(--navy); }
@@ -82,20 +83,7 @@ html.dark textarea::placeholder { color: #555 !important; }
    FIX 1 — CARD CATEGORY BADGE
    Target ALL possible rgba(255 variations
    ============================================ */
-html.dark [style*="rgba(255"],
-html.dark [style*="rgba(255,"] {
-  background: rgba(20,20,40,0.9) !important;
-  color: #c9a84c !important;
-}
-
-/* More specific — only badge-like elements (small, positioned) */
-/* removed - was causing card overlay issues */
-html.dark span[style*="background-DISABLED"],
-html.dark div[style*="position: absolute-DISABLED"][style*="top"],
-html.dark div[style*="position: absolute-DISABLED"][style*="left"] {
-  background: rgba(20,20,40,0.88) !important;
-  color: #c9a84c !important;
-}
+/* Keep translucent photo overlays and hero controls intact in dark mode. */
 
 /* ============================================
    FIX 2 — FILTER TAB BUTTONS DARK MODE
