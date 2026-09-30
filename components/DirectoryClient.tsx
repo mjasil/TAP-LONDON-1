@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import PlaceCard, { type CardItem } from "./PlaceCard";
+import { availableCategories, MIN_FILTER_RESULTS } from "@/lib/filterAvailability";
 
 type DirectoryClientProps = {
   items: CardItem[];
@@ -111,7 +112,41 @@ export default function DirectoryClient({
   const [query, setQuery] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
-  const smartFilters = useMemo(() => getSmartFilters(mode), [mode]);
+  // Emergency information must remain easy to browse without speculative hours filters.
+  const smartFilters = useMemo(() => mode === 'emergency' ? [] : getSmartFilters(mode), [mode]);
+  const availableTabs = useMemo(() => {
+    if (mode === 'emergency') return tabs;
+    const eligible = availableCategories(items, tabs, (item: any, category) =>
+      (item.category ?? item.section ?? item.sport) === category
+    );
+    return tabs.includes('All') ? eligible : ['All', ...eligible];
+  }, [items, tabs, mode]);
+  const selectedTab = availableTabs.includes(active) ? active : availableTabs[0];
+
+  const queryMatches = (item: any) => {
+    const needle = query.trim().toLowerCase();
+    if (!needle) return true;
+    const text = [
+      item.name, item.category, item.section, item.area,
+      item.location, item.cuisine, item.type, item.description,
+      item.vibe, item.opinion, item.mustTry, item.nearestStation,
+    ].filter(Boolean).join(' ').toLowerCase();
+    return text.includes(needle);
+  };
+
+  const baseItems = items.filter((item: any) =>
+    (selectedTab === 'All' || (item.category ?? item.section ?? item.sport) === selectedTab)
+    && queryMatches(item)
+  );
+
+  const availableFilters = smartFilters.filter(filter => {
+    const otherFilters = activeFilters.filter(value => value !== filter.value);
+    const matches = baseItems.filter(item =>
+      otherFilters.every(value => smartFilters.find(f => f.value === value)?.test(item) ?? true)
+      && filter.test(item)
+    ).length;
+    return activeFilters.includes(filter.value) || matches >= MIN_FILTER_RESULTS;
+  });
 
   function toggleFilter(value: string) {
     setActiveFilters(prev =>
@@ -120,34 +155,10 @@ export default function DirectoryClient({
   }
 
   const filtered = useMemo(() => {
-    let source = active === "All"
-      ? items
-      : items.filter((item: any) => (item.category ?? item.section ?? item.sport) === active);
-
-    if (activeFilters.length > 0) {
-      source = source.filter((item: any) =>
-        activeFilters.every(fVal => {
-          const filterDef = smartFilters.find(f => f.value === fVal);
-          return filterDef ? filterDef.test(item) : true;
-        })
-      );
-    }
-
-    const needle = query.trim().toLowerCase();
-    if (!needle) return source;
-
-    return source.filter((item: any) => {
-      const text = [
-        item.name, item.category, item.section, item.area,
-        item.location, item.cuisine, item.type, item.description,
-        item.vibe, item.opinion, item.mustTry, item.nearestStation,
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
-      return text.includes(needle);
-    });
-  }, [active, items, query, activeFilters, smartFilters]);
+    return baseItems.filter(item => activeFilters.every(value =>
+      smartFilters.find(filter => filter.value === value)?.test(item) ?? true
+    ));
+  }, [baseItems, activeFilters, smartFilters]);
 
   return (
     <div className="space-y-6">
@@ -172,13 +183,13 @@ export default function DirectoryClient({
           <div />
         )}
         <div className="flex gap-2 overflow-x-auto pb-1">
-          {tabs.map((tab) => (
+          {availableTabs.map((tab) => (
             <button
               key={tab}
               type="button"
-              onClick={() => { setActive(tab); }}
+              onClick={() => { setActive(tab); setActiveFilters([]); }}
               className={`min-h-12 shrink-0 rounded-full px-5 text-sm font-bold transition ${
-                active === tab
+                selectedTab === tab
                   ? "bg-navy text-white shadow-premium dark:bg-gold dark:text-navy"
                   : "bg-white text-navy hover:bg-gold/20 dark:bg-white/10 dark:text-cream dark:hover:bg-gold/20"
               }`}
@@ -190,9 +201,9 @@ export default function DirectoryClient({
       </div>
 
       {/* Smart filter chips — works for every section */}
-      {smartFilters.length > 0 && (
+      {availableFilters.length > 0 && (
         <div style={{ display: "flex", gap: "8px", overflowX: "auto", paddingBottom: "4px" }}>
-          {smartFilters.map((f) => (
+          {availableFilters.map((f) => (
             <button
               key={f.value}
               onClick={() => toggleFilter(f.value)}

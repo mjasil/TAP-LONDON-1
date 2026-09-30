@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { fetchCollection } from '@/lib/firestore';
+import { availableCategories } from '@/lib/filterAvailability';
 
 const CATEGORIES = ['All', 'Live Music', 'Concert Hall'];
 
@@ -43,7 +44,7 @@ export default function MusicPage() {
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 20px 80px' }}>
         <div style={{ display: 'flex', gap: '8px', marginBottom: '28px', flexWrap: 'wrap' }}>
-          {CATEGORIES.map(cat => (
+          {availableCategories(items, CATEGORIES, (item: any, cat) => item.category === cat).map(cat => (
             <button key={cat} onClick={() => setActiveCategory(cat)} style={{ padding: '8px 20px', borderRadius: '40px', border: 'none', cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', fontWeight: 600, background: activeCategory === cat ? '#c9a84c' : 'rgba(26,26,46,0.08)', color: activeCategory === cat ? '#1a1a2e' : '#666' }}>{cat}</button>
           ))}
         </div>
