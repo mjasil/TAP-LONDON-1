@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { fetchCollection } from '@/lib/firestore';
+import { availableCategories, MIN_FILTER_RESULTS } from '@/lib/filterAvailability';
 
 const CATEGORIES = ['All', 'Free Events', 'Food Markets', 'Markets', 'Live Music', 'Nightlife'];
 
@@ -78,9 +79,13 @@ export default function EventsPage() {
     load();
   }, []);
 
-  const timeFilterFn = TIME_FILTERS.find(t => t.value === activeTime)?.test ?? isHappeningNow;
+  const availableTimes = TIME_FILTERS.filter(t => items.filter(t.test).length >= MIN_FILTER_RESULTS);
+  const selectedTime = availableTimes.some(t => t.value === activeTime) ? activeTime : (availableTimes[0]?.value ?? 'today');
+  const timeFilterFn = TIME_FILTERS.find(t => t.value === selectedTime)?.test ?? isHappeningNow;
   const inTimeWindow = items.filter(timeFilterFn);
-  const filtered = activeCategory === 'All' ? inTimeWindow : inTimeWindow.filter((e: any) => e.category === activeCategory);
+  const availableEventCategories = availableCategories(inTimeWindow, CATEGORIES, (e: any, cat) => e.category === cat);
+  const selectedCategory = availableEventCategories.includes(activeCategory) ? activeCategory : 'All';
+  const filtered = selectedCategory === 'All' ? inTimeWindow : inTimeWindow.filter((e: any) => e.category === selectedCategory);
 
   const todayLabel = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
 
@@ -92,8 +97,8 @@ export default function EventsPage() {
           <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 700, color: '#ffffff', margin: '0 0 14px' }}>What's Happening in London</h1>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: 'rgba(255,255,255,0.55)', marginBottom: '20px' }}>{todayLabel} — events, markets and things to do in London.</p>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' as const }}>
-            {TIME_FILTERS.map(t => (
-              <button key={t.value} onClick={() => setActiveTime(t.value)} style={{ padding: '8px 18px', borderRadius: '40px', border: 'none', cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 700, background: activeTime === t.value ? '#c9a84c' : 'rgba(255,255,255,0.1)', color: activeTime === t.value ? '#1a1a2e' : '#fff' }}>{t.label}</button>
+            {availableTimes.map(t => (
+              <button key={t.value} onClick={() => { setActiveTime(t.value); setActiveCategory('All'); }} style={{ padding: '8px 18px', borderRadius: '40px', border: 'none', cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 700, background: selectedTime === t.value ? '#c9a84c' : 'rgba(255,255,255,0.1)', color: selectedTime === t.value ? '#1a1a2e' : '#fff' }}>{t.label}</button>
             ))}
           </div>
         </div>
@@ -101,8 +106,8 @@ export default function EventsPage() {
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 20px 80px' }}>
         <div style={{ display: 'flex', gap: '8px', marginBottom: '24px', flexWrap: 'wrap' }}>
-          {CATEGORIES.map(cat => (
-            <button key={cat} onClick={() => setActiveCategory(cat)} style={{ padding: '8px 16px', borderRadius: '40px', border: 'none', cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", fontSize: '0.78rem', fontWeight: 600, background: activeCategory === cat ? '#c9a84c' : 'rgba(26,26,46,0.08)', color: activeCategory === cat ? '#1a1a2e' : '#666', transition: 'all 0.2s' }}>{cat}</button>
+          {availableEventCategories.map(cat => (
+            <button key={cat} onClick={() => setActiveCategory(cat)} style={{ padding: '8px 16px', borderRadius: '40px', border: 'none', cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", fontSize: '0.78rem', fontWeight: 600, background: selectedCategory === cat ? '#c9a84c' : 'rgba(26,26,46,0.08)', color: selectedCategory === cat ? '#1a1a2e' : '#666', transition: 'all 0.2s' }}>{cat}</button>
           ))}
         </div>
 

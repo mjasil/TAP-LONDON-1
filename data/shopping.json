@@ -1106,6 +1106,76 @@
       "highlights": "Avant-garde fashion, art installations, rotating exhibits",
       "image": "https://images.pexels.com/photos/2703202/pexels-photo-2703202.jpeg?auto=compress&cs=tinysrgb&w=1920",
       "order": 47
+    },
+    {
+      "id": "seven-dials-market",
+      "name": "Seven Dials Market",
+      "section": "Markets",
+      "type": "Food hall and independent traders",
+      "location": "Earlham Street, Covent Garden, WC2H 9LX",
+      "openingHours": "Mon-Tue 12:00-22:00, Wed-Sat 11:00-23:00, Sun 11:00-21:00",
+      "openLate": true,
+      "description": "KERB's food hall in Seven Dials brings independent kitchens, bars and dessert traders together in a former banana warehouse. Open until 23:00 Wednesday to Saturday; individual traders may vary.",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Seven+Dials+Market+London",
+      "officialUrl": "https://www.sevendialsmarket.com/visit-us/",
+      "image": "https://images.pexels.com/photos/2641886/pexels-photo-2641886.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      "order": 48
+    },
+    {
+      "id": "mercato-metropolitano-elephant-castle",
+      "name": "Mercato Metropolitano Elephant & Castle",
+      "section": "Markets",
+      "type": "Community food market",
+      "location": "42 Newington Causeway, SE1 6DR",
+      "openingHours": "Mon-Wed 12:00-23:00, Thu 12:00-00:00, Fri 12:00-01:00, Sat 11:00-01:00, Sun 11:00-22:00",
+      "openLate": true,
+      "description": "A large community food market with independent kitchens, bars and indoor and outdoor seating. Open until 23:00 or later Monday to Saturday; traders may keep different hours.",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mercato+Metropolitano+Elephant+Castle",
+      "officialUrl": "https://mercatometropolitano.com/locations/elephant-and-castle/",
+      "image": "https://images.pexels.com/photos/5779787/pexels-photo-5779787.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      "order": 49
+    },
+    {
+      "id": "mercato-mayfair",
+      "name": "Mercato Mayfair",
+      "section": "Markets",
+      "type": "Food hall in a former church",
+      "location": "St Mark's Church, North Audley Street, W1K 6ZA",
+      "openingHours": "Mon-Thu 09:00-23:00, Fri-Sat 09:00-00:00, Sun 09:00-22:30",
+      "openLate": true,
+      "description": "International food traders and bars across three floors of St Mark's Church in Mayfair. The venue stays open until 23:00 or midnight Monday to Saturday; trader hours may vary.",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mercato+Mayfair+London",
+      "officialUrl": "https://mercatometropolitano.com/locations/mayfair/",
+      "image": "https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      "order": 50
+    },
+    {
+      "id": "mercato-wood-wharf",
+      "name": "Mercato Metropolitano Wood Wharf",
+      "section": "Markets",
+      "type": "Riverside food market",
+      "location": "6 George Street, Canary Wharf, E14 9QG",
+      "openingHours": "Sun-Wed 11:00-23:00, Thu-Sat 11:00-00:00",
+      "openLate": true,
+      "description": "A riverside food market with independent international kitchens, indoor seating and outdoor spaces. Open until 23:00 or midnight every day; individual trader hours may vary.",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mercato+Metropolitano+Wood+Wharf",
+      "officialUrl": "https://mercatometropolitano.com/locations/wood-wharf/",
+      "image": "https://images.pexels.com/photos/5779787/pexels-photo-5779787.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      "order": 51
+    },
+    {
+      "id": "market-halls-victoria",
+      "name": "Market Halls Victoria",
+      "section": "Markets",
+      "type": "Food hall and rooftop bar",
+      "location": "191 Victoria Street, SW1E 5NE",
+      "openingHours": "Mon-Tue 08:00-22:00, Wed-Sat 08:00-23:00, Sun 08:00-21:00",
+      "openLate": true,
+      "description": "An Edwardian food hall with independent kitchens, bars and a rooftop terrace near Victoria station. The venue closes at 23:00 Wednesday to Saturday; kitchens close earlier.",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Market+Halls+Victoria+London",
+      "officialUrl": "https://markethalls.co.uk/venue/victoria/",
+      "image": "https://images.pexels.com/photos/2641886/pexels-photo-2641886.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      "order": 52
     }
   ]
 }

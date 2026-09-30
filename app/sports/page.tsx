@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import sportsData from '@/data/sports.json';
+import { availableCategories } from '@/lib/filterAvailability';
 
 const SPORTS = ['All', 'Football', 'Cricket', 'Tennis', 'Boxing & Events'];
 
@@ -25,7 +26,7 @@ export default function SportsPage() {
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 20px 80px' }}>
         {/* Sport filters */}
         <div style={{ display: 'flex', gap: '8px', marginBottom: '32px', flexWrap: 'wrap' }}>
-          {SPORTS.map(sport => (
+          {availableCategories([...venues, ...leagues], SPORTS, (item: any, sport) => item.sport === sport).map(sport => (
             <button key={sport} onClick={() => setActiveSport(sport)} style={{ padding: '8px 18px', borderRadius: '40px', border: 'none', cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', fontWeight: 600, background: activeSport === sport ? '#c9a84c' : 'rgba(26,26,46,0.08)', color: activeSport === sport ? '#1a1a2e' : '#666', transition: 'all 0.2s' }}>{sport}</button>
           ))}
         </div>
