@@ -54,8 +54,16 @@ async function searchCollection(collection: string, query: string, limit = 5): P
     const today = londonToday();
     const weekday = new Date(`${today}T12:00:00Z`).getUTCDay();
     const saturday = addCalendarDays(today, (6 - weekday + 7) % 7);
+    const namedAreas = ['covent garden', 'soho', 'camden', 'shoreditch', 'whitechapel', 'westminster', 'mayfair', 'notting hill', 'south bank', 'borough', 'greenwich', 'kensington', 'chelsea', 'walthamstow', 'brixton', 'stratford', 'canary wharf', 'paddington', 'bloomsbury', 'islington'];
+    const namedArea = namedAreas.find(area => q.includes(area));
+    const centralAreas = /central london|central/.test(q)
+      ? /central|covent garden|soho|westminster|mayfair|leicester square|chinatown|holborn|bloomsbury|fitzrovia|south bank|borough|city of london|piccadilly|st james/i
+      : null;
     const scored = items
       .filter((item: any) => {
+        const area = String(item.area || item.location || '');
+        if (namedArea && !area.toLowerCase().includes(namedArea)) return false;
+        if (centralAreas && !centralAreas.test(area)) return false;
         if (collection === 'events') {
           if (!occursInWindow(item, today, '9999-12-31')) return false;
           if (/\btoday\b/.test(q) && !occursInWindow(item, today, today)) return false;
