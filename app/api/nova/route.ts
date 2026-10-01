@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { londonToday } from "@/lib/eventDates";
+import { addCalendarDays, londonToday, occursInWindow } from "@/lib/eventDates";
+import { isOpenAt } from '@/lib/openingHours';
 
 const PROJECT_ID = "tap-london";
 
@@ -50,8 +51,21 @@ async function searchCollection(collection: string, query: string, limit = 5): P
 
     const q = query.toLowerCase();
     const words = q.split(/[^a-z0-9]+/).filter(w => w.length > 2 && !/^(the|and|for|near|best|good|london|today|this|with|what|where|can|you|any|some)$/.test(w));
+    const today = londonToday();
+    const weekday = new Date(`${today}T12:00:00Z`).getUTCDay();
+    const saturday = addCalendarDays(today, (6 - weekday + 7) % 7);
     const scored = items
-      .filter((item: any) => collection !== 'events' || (item.startDate && (item.endDate || item.startDate) >= londonToday()))
+      .filter((item: any) => {
+        if (collection === 'events') {
+          if (!occursInWindow(item, today, '9999-12-31')) return false;
+          if (/\btoday\b/.test(q) && !occursInWindow(item, today, today)) return false;
+          if (/weekend/.test(q) && !occursInWindow(item, saturday, addCalendarDays(saturday, 1))) return false;
+        }
+        if (/\bhalal\b/.test(q) && ['food', 'muslim'].includes(collection))
+          return item.halal === true || item.verifiedHalal === true || (item.tags || []).includes('halal');
+        if (/open now/.test(q)) return isOpenAt(item.openingHours);
+        return true;
+      })
       .map((item: any) => {
         const haystack = `${item.name} ${item.category} ${item.area} ${item.description} ${item.cuisine} ${(item.tags || []).join(' ')}`.toLowerCase();
         let score = 0;
@@ -105,6 +119,37 @@ function detectsSocialQuestion(message: string): boolean {
   return /instagram|social media|threads|tiktok|follow you|your (page|account)/.test(m);
 }
 
+function listingUrl(collection: string, item: any): string {
+  const section = collection === 'hiddenGems' ? 'hidden-gems' : collection;
+  const hasDetail = ['places', 'food', 'shopping', 'nightlife', 'kids', 'muslim'].includes(section);
+  return `https://www.londontap.co.uk/${section}${hasDetail ? `/${encodeURIComponent(item.id)}` : ''}`;
+}
+
+function directoryReply(message: string, matches: { col: string; items: any[] }[]): string {
+  const lower = message.toLowerCase();
+  const preface = 'NOVA AI is being connected. I can still help with TAP LONDON listings.';
+  if (/^(hi|hello|hey|good morning|good evening)[!.\s]*$/i.test(message.trim()))
+    return `${preface} What part of London or type of place are you interested in?`;
+  if (detectsSocialQuestion(message))
+    return `Follow TAP LONDON: Instagram ${SITE_FACTS.socials.instagram}\nTikTok ${SITE_FACTS.socials.tiktok}\nThreads ${SITE_FACTS.socials.threads}`;
+  if (/near me|nearby|closest/.test(lower))
+    return `${preface} Tell me your area, or use the Near Me button on the home page for location-based suggestions.`;
+  if (/emergency|ambulance|police|fire brigade/.test(lower))
+    return `For an emergency in the UK, call 999. For non-emergency NHS help, call 111. More information: https://www.londontap.co.uk/emergency`;
+  if (/tube|underground|bus|train|oyster|transport/.test(lower))
+    return `${preface} Start with our transport guide: https://www.londontap.co.uk/transport. Check TfL for current routes and fares before travelling.`;
+
+  const unique = new Map<string, { col: string; item: any }>();
+  matches.forEach(({ col, items }) => items.forEach(item => unique.set(`${col}:${item.id}`, { col, item })));
+  if (unique.size) {
+    const suggestions = Array.from(unique.values()).slice(0, 5).map(({ col, item }) =>
+      `• ${item.name}${item.area ? ` — ${item.area}` : ''}\n  ${listingUrl(col, item)}`
+    ).join('\n');
+    return `${preface}\n\n${suggestions}\n\nCheck opening hours and availability with the venue before visiting.`;
+  }
+  return `${preface} I don't have a matching listing for that request yet. Browse places at https://www.londontap.co.uk/places or tell me a category and area.`;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { message, history = [] } = await req.json();
@@ -112,9 +157,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ reply: "Please send a question under 600 characters." }, { status: 400 });
     }
     const GROQ_KEY = process.env.GROQ_API_KEY;
-    if (!GROQ_KEY) {
-      return NextResponse.json({ reply: "NOVA is temporarily unavailable. Please try again later." }, { status: 503 });
-    }
 
     // ── Ground NOVA in real site data before answering ──
     let contextBlock = "";
@@ -124,6 +166,7 @@ export async function POST(req: NextRequest) {
     }
 
     const relevantCollections = detectRelevantCollections(message);
+    let recommendations: { col: string; items: any[] }[] = [];
     if (relevantCollections.length > 0) {
       const results = await Promise.all(
         relevantCollections.slice(0, 3).map(async (col) => {
@@ -132,20 +175,21 @@ export async function POST(req: NextRequest) {
         })
       );
       const usable = results.filter((r) => r.items.length > 0);
+      recommendations = usable;
       if (usable.length > 0) {
         contextBlock += "\n\nReal current listings from TAP LONDON's database (use these facts, don't invent your own):\n";
         usable.forEach(({ col, items }) => {
           contextBlock += `\n${col}:\n`;
           items.forEach((it: any) => {
-            const path = col === 'hiddenGems' ? 'hidden-gems' : col;
-            const detail = ['places', 'food', 'shopping', 'nightlife', 'kids', 'muslim'].includes(path);
-            const url = `https://www.londontap.co.uk/${path}${detail ? `/${encodeURIComponent(it.id)}` : ''}`;
+            const url = listingUrl(col, it);
             const bits = [it.name, it.area, it.priceRange || it.entryFee || it.priceType, it.category, it.openingHours, url].filter(Boolean).join(" — ");
             contextBlock += `- ${bits}\n`;
           });
         });
       }
     }
+
+    if (!GROQ_KEY) return NextResponse.json({ reply: directoryReply(message, recommendations), mode: 'directory' });
 
     const SYSTEM = `You are NOVA, a friendly AI guide for TAP LONDON. Today in London is ${londonToday()}. You talk like a knowledgeable local friend, not a travel brochure.
 

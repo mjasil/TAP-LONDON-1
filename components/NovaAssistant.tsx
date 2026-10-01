@@ -174,7 +174,9 @@ export default function NovaAssistant() {
           <div className="nova-messages">
             {messages.map((m, i) => (
               <div key={i} className={m.role === "user" ? "nova-msg-user" : "nova-msg-ai"}>
-                {m.content}
+                {m.content.split(/(https?:\/\/[^\s]+)/g).map((part, j) =>
+                  part.startsWith('https://') ? <a key={j} href={part} target="_blank" rel="noopener noreferrer" style={{ color: '#a8842f', textDecoration: 'underline', overflowWrap: 'anywhere' }}>{part}</a> : part
+                )}
               </div>
             ))}
             {loading && (
