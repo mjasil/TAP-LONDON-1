@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { fetchDocument } from "@/lib/firestore";
+import ListingStructuredData from '@/components/ListingStructuredData';
 
 const PLACE_HISTORY: Record<string, { founded: string; history: string; facts: string[] }> = {
   "tower-of-london": { founded: "Founded 1066 by William the Conqueror", history: "The Tower of London was built in the 1070s by William the Conqueror following his victory at the Battle of Hastings. Built from limestone imported from Caen in Normandy, it took nearly 20 years to complete. The Tower has served as a royal palace, political prison, place of execution, royal mint, menagerie, and arsenal.", facts: ["Built in the 1070s by William the Conqueror", "Only 7 people were ever executed inside the Tower walls", "At least 6 ravens must live here by royal decree", "The Crown Jewels have been stored here since the 17th century"] },
@@ -109,6 +110,7 @@ export default function PlaceDetailPage() {
 
   return (
     <main className="bg-[#f9f7f2] dark:bg-[#0d0d1a]" style={{ minHeight: "100vh" }}>
+      <ListingStructuredData item={place} type="TouristAttraction" section="places" />
       <div style={{ position: "relative", width: "100%", maxWidth: "1400px", margin: "0 auto", height: "44vh", minHeight: "300px", maxHeight: "500px", overflow: "hidden" }}>
         <Image src={place.image} alt={place.name} fill priority sizes="(max-width: 1400px) 100vw, 1400px" style={{ objectFit: "cover", objectPosition: "center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(26,26,46,0.88) 100%)" }} />

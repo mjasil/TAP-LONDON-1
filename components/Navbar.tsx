@@ -14,6 +14,7 @@ const navLinks = [
   { href: "/kids",        label: "Kids & Family",color: null },
   { href: "/theatre",     label: "Theatre",   color: null },
   { href: "/trip-builder",label: "Trip Builder", color: null },
+  { href: "/saved",       label: "Saved Places", color: null },
   { href: "/areas",       label: "Explore by Area", color: null },
   { href: "/universities",label: "Universities", color: null },
   { href: "/daytrips",    label: "Day Trips",    color: null },
@@ -53,7 +54,7 @@ const navGroups: { title: string; links: typeof navLinks }[] = [
   },
   {
     title: "Plan Your Trip",
-    links: navLinks.filter(l => ["/trip-builder", "/events", "/offers"].includes(l.href)),
+    links: navLinks.filter(l => ["/trip-builder", "/saved", "/events", "/offers"].includes(l.href)),
   },
   {
     title: "Practical",

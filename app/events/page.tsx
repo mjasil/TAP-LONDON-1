@@ -3,48 +3,33 @@
 import { useEffect, useState } from 'react';
 import { fetchCollection } from '@/lib/firestore';
 import { availableCategories, MIN_FILTER_RESULTS } from '@/lib/filterAvailability';
+import { addCalendarDays, londonToday, occursInWindow } from '@/lib/eventDates';
+import ListingStructuredData from '@/components/ListingStructuredData';
 
 const CATEGORIES = ['All', 'Free Events', 'Food Markets', 'Markets', 'Live Music', 'Nightlife'];
 
 function isHappeningNow(item: any): boolean {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const start = item.startDate ? new Date(item.startDate) : null;
-  const end = item.endDate ? new Date(item.endDate) : null;
-  if (!start) return true;
-  if (end) return today >= start && today <= end;
-  return today >= start;
+  const today = londonToday();
+  return occursInWindow(item, today, today);
 }
 
 // Time window filters: does the event fall within today / this weekend / this month?
 function isThisWeek(item: any): boolean {
-  const start = item.startDate ? new Date(item.startDate) : null;
-  if (!start) return true;
-  const today = new Date();
-  const weekEnd = new Date(today);
-  weekEnd.setDate(today.getDate() + 7);
-  return start <= weekEnd;
+  const today = londonToday();
+  return occursInWindow(item, today, addCalendarDays(today, 6));
 }
 
 function isThisWeekend(item: any): boolean {
-  const start = item.startDate ? new Date(item.startDate) : null;
-  if (!start) return true;
-  const today = new Date();
-  const day = today.getDay();
-  const daysUntilSat = (6 - day + 7) % 7;
-  const saturday = new Date(today);
-  saturday.setDate(today.getDate() + daysUntilSat);
-  const sunday = new Date(saturday);
-  sunday.setDate(saturday.getDate() + 1);
-  sunday.setHours(23, 59, 59, 999);
-  return start >= today && start <= sunday;
+  const today = londonToday();
+  const weekday = new Date(`${today}T12:00:00Z`).getUTCDay();
+  const saturday = addCalendarDays(today, (6 - weekday + 7) % 7);
+  return occursInWindow(item, saturday, addCalendarDays(saturday, 1));
 }
 
 function isThisMonth(item: any): boolean {
-  const start = item.startDate ? new Date(item.startDate) : null;
-  if (!start) return true;
-  const today = new Date();
-  return start.getMonth() === today.getMonth() && start.getFullYear() === today.getFullYear();
+  const today = londonToday();
+  const end = new Date(Date.UTC(Number(today.slice(0, 4)), Number(today.slice(5, 7)), 0)).toISOString().slice(0, 10);
+  return occursInWindow(item, today, end);
 }
 
 const TIME_FILTERS = [
@@ -79,15 +64,17 @@ export default function EventsPage() {
     load();
   }, []);
 
-  const availableTimes = TIME_FILTERS.filter(t => items.filter(t.test).length >= MIN_FILTER_RESULTS);
-  const selectedTime = availableTimes.some(t => t.value === activeTime) ? activeTime : (availableTimes[0]?.value ?? 'today');
+  // A thin events feed may have fewer than five confirmed listings. Show the
+  // honest count and keep Today available rather than implying old events recur.
+  const availableTimes = TIME_FILTERS.filter(t => t.value === 'today' || items.some(t.test));
+  const selectedTime = availableTimes.some(t => t.value === activeTime) ? activeTime : 'today';
   const timeFilterFn = TIME_FILTERS.find(t => t.value === selectedTime)?.test ?? isHappeningNow;
   const inTimeWindow = items.filter(timeFilterFn);
   const availableEventCategories = availableCategories(inTimeWindow, CATEGORIES, (e: any, cat) => e.category === cat);
   const selectedCategory = availableEventCategories.includes(activeCategory) ? activeCategory : 'All';
   const filtered = selectedCategory === 'All' ? inTimeWindow : inTimeWindow.filter((e: any) => e.category === selectedCategory);
 
-  const todayLabel = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  const todayLabel = new Date(`${londonToday()}T12:00:00Z`).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' });
 
   return (
     <main className="bg-[#f9f7f2] dark:bg-[#0d0d1a]" style={{ minHeight: '100vh' }}>
@@ -116,15 +103,16 @@ export default function EventsPage() {
         ) : filtered.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '60px', color: 'rgba(26,26,46,0.4)', fontFamily: "'DM Sans', sans-serif" }}>
             <div style={{ fontSize: '2rem', marginBottom: '12px' }}>📅</div>
-            Nothing happening in this category today — check back soon!
+            {loadFailed ? 'Events could not be loaded. Please try again later.' : `No confirmed events for ${selectedTime === 'today' ? 'today' : 'this period'} yet — check back soon.`}
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
             {filtered.map((event: any) => (
               <div key={event.id} className="bg-white dark:bg-[#1a1a2e]" style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid rgba(201,168,76,0.12)' }}>
+                <ListingStructuredData item={event} type="Event" section="events" />
                 <div style={{ position: 'relative', height: '170px' }}>
                   <img src={event.image} alt={event.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(122,201,160,0.95)', color: '#1a1a2e', padding: '4px 12px', borderRadius: '20px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.66rem', fontWeight: 700 }}>● LIVE TODAY</div>
+                  {isHappeningNow(event) && <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(122,201,160,0.95)', color: '#1a1a2e', padding: '4px 12px', borderRadius: '20px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.66rem', fontWeight: 700 }}>● ON TODAY</div>}
                   <div style={{ position: 'absolute', top: '12px', right: '12px', background: 'rgba(0,0,0,0.55)', color: '#fff', padding: '4px 10px', borderRadius: '20px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.64rem', fontWeight: 600 }}>{event.category}</div>
                 </div>
                 <div style={{ padding: '16px' }}>

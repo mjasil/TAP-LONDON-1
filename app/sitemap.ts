@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "", "/places", "/food", "/shopping", "/nightlife", "/hotels", "/kids",
     "/muslim", "/emergency", "/offers", "/hidden-gems", "/trending", "/sports",
     "/guides", "/events", "/theatre", "/areas", "/universities", "/daytrips",
-    "/music", "/trip-builder", "/transport", "/services", "/parks", "/budget",
+    "/music", "/trip-builder", "/saved", "/transport", "/services", "/parks", "/budget",
     "/search",
   ];
 
