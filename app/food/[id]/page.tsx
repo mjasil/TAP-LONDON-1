@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { fetchDocument } from "@/lib/firestore";
+import ListingStructuredData from '@/components/ListingStructuredData';
 import foodJson from "@/data/food.json";
 
 function PhotoGallery({ photos, name }: { photos: string[]; name: string }) {
@@ -43,6 +44,7 @@ export default function FoodDetailPage() {
 
   return (
     <main className="bg-[#f9f7f2] dark:bg-[#0d0d1a]" style={{ minHeight: "100vh" }}>
+      <ListingStructuredData item={item} type="Restaurant" section="food" />
       <div style={{ position: "relative", height: "44vh", minHeight: "250px", overflow: "hidden" }}>
         <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(26,26,46,0.88) 100%)" }} />

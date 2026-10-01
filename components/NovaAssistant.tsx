@@ -6,7 +6,7 @@ interface Message {
   content: string;
 }
 
-async function callGemini(userMessage: string, history: Message[]): Promise<string> {
+async function callNova(userMessage: string, history: Message[]): Promise<string> {
   try {
     const res = await fetch("/api/nova", {
       method: "POST",
@@ -24,7 +24,7 @@ async function callGemini(userMessage: string, history: Message[]): Promise<stri
 export default function NovaAssistant() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Hi! I\'m NOVA 🗺️ your TAP LONDON AI guide. Ask me anything about London — places, halal food, transport, hidden gems, or any question!" },
+    { role: "assistant", content: "Hi! I'm NOVA 🗺️ Ask me about places, food or plans in London. Tell me your area and interests for better suggestions." },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -46,7 +46,7 @@ export default function NovaAssistant() {
     setInput("");
     setLoading(true);
     try {
-      const reply = await callGemini(userMsg.content, messages);
+      const reply = await callNova(userMsg.content, messages);
       setMessages(prev => [...prev, { role: "assistant", content: reply }]);
     } catch {
       setMessages(prev => [...prev, { role: "assistant", content: "Connection issue. Try again! 🗺️" }]);
@@ -56,10 +56,10 @@ export default function NovaAssistant() {
   }
 
   const quickQuestions = [
-    "Best halal food near me?",
+    "Halal food in central London?",
     "How do I use the Tube?",
     "Hidden gems in London?",
-    "Best things to do this weekend?",
+    "What events are confirmed this weekend?",
   ];
 
   return (

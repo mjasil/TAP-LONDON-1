@@ -1,8 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Link from 'next/link';
 import PlaceCard, { type CardItem } from "./PlaceCard";
+import { readSavedPlaces, toggleSavedPlace } from '@/lib/savedPlaces';
 import { availableCategories, MIN_FILTER_RESULTS } from "@/lib/filterAvailability";
+import { isOpenAt } from "@/lib/openingHours";
 
 type DirectoryClientProps = {
   items: CardItem[];
@@ -20,17 +23,7 @@ type SmartFilter = {
 };
 
 function isOpenNow(item: any): boolean {
-  if (!item.openingHours) return false;
-  const hours = item.openingHours.toLowerCase();
-  if (hours.includes("24")) return true;
-  // Best-effort: if it doesn't explicitly say closed, treat as a soft match
-  const now = new Date();
-  const hour = now.getHours();
-  // crude heuristic: most places open 9am-6pm / restaurants stay open later
-  if (hours.includes("daily") || hours.includes("mon") || hours.includes("open")) {
-    return hour >= 8 && hour <= 22;
-  }
-  return false;
+  return isOpenAt(item.openingHours);
 }
 
 function isOpenLate(item: any): boolean {
@@ -111,6 +104,16 @@ export default function DirectoryClient({
   const [active, setActive] = useState(tabs[0] ?? "All");
   const [query, setQuery] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [savedKeys, setSavedKeys] = useState<string[]>([]);
+
+  useEffect(() => {
+    const refresh = () => setSavedKeys(readSavedPlaces().map(p => p.key));
+    refresh();
+    const search = new URLSearchParams(window.location.search).get('search');
+    if (search) setQuery(search.slice(0, 100));
+    window.addEventListener('tap-saved-places', refresh);
+    return () => window.removeEventListener('tap-saved-places', refresh);
+  }, []);
 
   // Emergency information must remain easy to browse without speculative hours filters.
   const smartFilters = useMemo(() => mode === 'emergency' ? [] : getSmartFilters(mode), [mode]);
@@ -233,10 +236,24 @@ export default function DirectoryClient({
           </button>
         )}
       </p>
+      <Link href="/saved" className="text-sm font-semibold text-gold">View saved places ({savedKeys.length}) →</Link>
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((item) => (
-          <PlaceCard key={item.id} item={item} mode={mode as any} />
+          <div key={item.id} className="relative flex flex-col">
+            <PlaceCard item={item} mode={mode as any} />
+            <div className="flex items-center justify-between gap-3 px-2 py-2 text-xs font-semibold">
+              <button type="button" onClick={() => {
+                const section = mode === 'place' ? 'places' : mode;
+                const hasDetail = ['places', 'food', 'shopping', 'kids', 'nightlife', 'muslim'].includes(section);
+                const href = hasDetail ? `/${section}/${encodeURIComponent(item.id)}` : `/${section}?search=${encodeURIComponent(item.name)}`;
+                toggleSavedPlace({ key: `${mode}:${item.id}`, name: item.name, area: item.area, href });
+              }} className="text-gold" aria-label={`${savedKeys.includes(`${mode}:${item.id}`) ? 'Remove' : 'Save'} ${item.name}`}>
+                {savedKeys.includes(`${mode}:${item.id}`) ? '♥ Saved' : '♡ Save place'}
+              </button>
+              <a href={`mailto:taplondonofficial@gmail.com?subject=${encodeURIComponent(`Listing correction: ${item.name}`)}&body=${encodeURIComponent(`Please check this listing: ${item.name}\nSection: ${mode}\nListing ID: ${item.id}\nCorrection: `)}`} className="text-ink/50 dark:text-cream/60">Report wrong info</a>
+            </div>
+          </div>
         ))}
       </div>
 

@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { fetchCollection } from '@/lib/firestore';
+import { addCalendarDays, londonToday } from '@/lib/eventDates';
+import { openingStatusAt } from '@/lib/openingHours';
 
 const INTEREST_OPTIONS = [
   { key: 'football', label: 'Football', icon: '⚽', collections: ['sports'] },
@@ -37,17 +39,29 @@ function shuffle<T>(arr: T[]): T[] {
 // always the first n in the array - without this, every visitor with the
 // same interests got the identical itinerary, and items later in a
 // collection never had a chance to be picked.
-function pickN(arr: any[], n: number, exclude: Set<string>) {
-  const filtered = shuffle(arr.filter(x => x?.id && x?.name && !exclude.has(x.id)));
+function pickN(arr: any[], n: number, exclude: Set<string>, area?: string, date?: Date) {
+  const candidates = arr.filter(x => x?.id && x?.name && !exclude.has(x.id));
+  // Do not schedule a venue whose published hours say it is closed at this
+  // slot. Listings without parseable hours remain suggestions to verify.
+  const open = date ? candidates.filter(x => openingStatusAt(x.openingHours, date) !== false) : candidates;
+  const usable = open.length ? open : candidates.filter(x => openingStatusAt(x.openingHours, date) === null);
+  const filtered = shuffle(usable).sort((a, b) =>
+    Number((b.area || '').toLowerCase() === (area || '').toLowerCase()) -
+    Number((a.area || '').toLowerCase() === (area || '').toLowerCase())
+  );
   const chosen = filtered.slice(0, n);
   chosen.forEach(c => exclude.add(c.id));
   return chosen;
 }
 
-function formatDayDate(dayOffset: number): string {
-  const d = new Date();
-  d.setDate(d.getDate() + dayOffset);
-  return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+function londonSlot(day: string, hour: number, minute = 0): Date {
+  const utc = new Date(`${day}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00Z`);
+  const londonHour = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', hour: '2-digit', hourCycle: 'h23' }).format(utc));
+  return new Date(utc.getTime() - (londonHour - hour) * 3600000);
+}
+
+function formatDayDate(start: string, dayOffset: number): string {
+  return new Date(`${addCalendarDays(start, dayOffset)}T12:00:00Z`).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' });
 }
 
 const FONT_IMPORT = "@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');";
@@ -55,6 +69,7 @@ const FONT_IMPORT = "@import url('https://fonts.googleapis.com/css2?family=Cormo
 export default function TripBuilderPage() {
   const [step, setStep] = useState<'form' | 'loading' | 'result' | 'error'>('form');
   const [days, setDays] = useState(3);
+  const [startDate, setStartDate] = useState(() => londonToday());
   const [budget, setBudget] = useState(500);
   const [interests, setInterests] = useState<string[]>([]);
   const [travelWith, setTravelWith] = useState('Friends');
@@ -62,6 +77,51 @@ export default function TripBuilderPage() {
   const [itinerary, setItinerary] = useState<DayPlan[]>([]);
   const [hotelPicks, setHotelPicks] = useState<any[]>([]);
   const [tripCode] = useState(() => 'LDN-' + Math.random().toString(36).slice(2, 7).toUpperCase());
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    try {
+      const encoded = new URLSearchParams(window.location.search).get('plan');
+      if (!encoded || encoded.length > 10000) return;
+      const plan = JSON.parse(decodeURIComponent(escape(atob(encoded.replace(/-/g, '+').replace(/_/g, '/')))));
+      if (!Array.isArray(plan.itinerary) || plan.itinerary.length > 7 || typeof plan.startDate !== 'string') return;
+      setItinerary(plan.itinerary);
+      setStartDate(plan.startDate);
+      setDays(plan.itinerary.length);
+      setHotelPicks(Array.isArray(plan.hotels) ? plan.hotels.slice(0, 3) : []);
+      setStep('result');
+    } catch { /* Ignore invalid shared links. */ }
+  }, []);
+
+  const saveTrip = () => {
+    const plan = { itinerary, hotels: hotelPicks, startDate };
+    localStorage.setItem('tap_saved_trip', JSON.stringify(plan));
+    setSaved(true);
+  };
+
+  const shareTrip = async () => {
+    const payload = unescape(encodeURIComponent(JSON.stringify({ itinerary, hotels: hotelPicks, startDate })));
+    const encoded = btoa(payload).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    const url = `${window.location.origin}/trip-builder?plan=${encoded}`;
+    if (navigator.share) {
+      try { await navigator.share({ title: 'My London trip', url }); } catch { /* Share dismissed. */ }
+    } else {
+      await navigator.clipboard.writeText(url);
+      setSaved(true);
+    }
+  };
+
+  const loadSaved = () => {
+    try {
+      const plan = JSON.parse(localStorage.getItem('tap_saved_trip') || 'null');
+      if (!Array.isArray(plan?.itinerary) || plan.itinerary.length > 7) return;
+      setItinerary(plan.itinerary);
+      setHotelPicks(Array.isArray(plan.hotels) ? plan.hotels : []);
+      setStartDate(plan.startDate || londonToday());
+      setDays(plan.itinerary.length);
+      setStep('result');
+    } catch { /* Ignore stale local storage. */ }
+  };
 
   const toggleInterest = (key: string) => {
     setInterests(prev => prev.includes(key) ? prev.filter(i => i !== key) : [...prev, key]);
@@ -117,6 +177,7 @@ export default function TripBuilderPage() {
 
       for (let d = 1; d <= days; d++) {
         const dayItems: DayPlan['items'] = [];
+        const dayDate = addCalendarDays(startDate, d - 1);
 
         // Morning: interest-matched first, with layered fallbacks so this
         // slot is never left empty even if the preferred pool has nothing.
@@ -126,8 +187,8 @@ export default function TripBuilderPage() {
           ? dataCache.hiddenGems
           : (dataCache.places || []).filter((p: any) => p.category?.includes('Top') || p.category?.includes('Attraction'));
         if (!morningPool?.length) morningPool = dataCache.places || [];
-        const morning = pickN(morningPool, 1, usedIds);
-        morning.forEach(p => dayItems.push({ time: '10:00', name: p.name, area: p.area, href: p.type === 'sports' ? '/sports' : (dataCache.hiddenGems?.includes(p) ? '/hidden-gems' : '/places/' + p.id), slot: 'Morning' }));
+        const morning = pickN(morningPool, 1, usedIds, undefined, londonSlot(dayDate, 10));
+        morning.forEach(p => dayItems.push({ time: '10:00', name: p.name, area: p.area, href: dataCache.sports?.includes(p) ? (p.mapsUrl || '/sports') : (dataCache.hiddenGems?.includes(p) ? (p.mapsUrl || '/hidden-gems') : '/places/' + p.id), slot: 'Morning' }));
 
         // Lunch: budget-filtered, avoiding an area used earlier the same
         // day where possible for a bit more variety across the trip.
@@ -139,34 +200,36 @@ export default function TripBuilderPage() {
           return true;
         });
         if (!foodPool.length) foodPool = dataCache.food || [];
-        const lunch = pickN(foodPool, 1, usedIds);
+        const lunch = pickN(foodPool, 1, usedIds, morning[0]?.area, londonSlot(dayDate, 13));
         lunch.forEach(f => { usedFoodAreas.add(f.area); dayItems.push({ time: '13:00', name: f.name, area: f.area, href: `/food/${f.id}`, slot: 'Lunch' }); });
 
         // Afternoon: rotate through matched interests across days instead
         // of always favouring the same one, so a multi-day trip doesn't
         // repeat "shopping" every single afternoon when shopping + theatre
         // are both selected.
-        const afternoonOptions: { pool: any[]; base: string }[] = [];
-        if (interests.includes('shopping') && dataCache.shopping?.length) afternoonOptions.push({ pool: dataCache.shopping, base: '/shopping/' });
-        if (interests.includes('theatre') && dataCache.theatre?.length) afternoonOptions.push({ pool: dataCache.theatre, base: '/theatre/' });
-        if (interests.includes('music') && dataCache.music?.length) afternoonOptions.push({ pool: dataCache.music, base: '/music/' });
+        const afternoonOptions: { pool: any[]; base: string; detail: boolean }[] = [];
+        if (interests.includes('shopping') && dataCache.shopping?.length) afternoonOptions.push({ pool: dataCache.shopping, base: '/shopping/', detail: true });
+        if (interests.includes('theatre') && dataCache.theatre?.length) afternoonOptions.push({ pool: dataCache.theatre, base: '/theatre', detail: false });
+        if (interests.includes('music') && dataCache.music?.length) afternoonOptions.push({ pool: dataCache.music, base: '/music', detail: false });
         let afternoonPool = dataCache.places || [];
         let afternoonBase = '/places/';
+        let afternoonHasDetail = true;
         if (afternoonOptions.length) {
           const pick = afternoonOptions[(d - 1) % afternoonOptions.length];
           afternoonPool = pick.pool;
           afternoonBase = pick.base;
+          afternoonHasDetail = pick.detail;
         }
         if (!afternoonPool?.length) { afternoonPool = dataCache.places || []; afternoonBase = '/places/'; }
-        const afternoon = pickN(afternoonPool, 1, usedIds);
-        afternoon.forEach(p => dayItems.push({ time: '15:00', name: p.name, area: p.area, href: afternoonBase + p.id, slot: 'Afternoon' }));
+        const afternoon = pickN(afternoonPool, 1, usedIds, lunch[0]?.area || morning[0]?.area, londonSlot(dayDate, 15));
+        afternoon.forEach(p => dayItems.push({ time: '15:00', name: p.name, area: p.area, href: afternoonHasDetail ? afternoonBase + p.id : (p.mapsUrl || afternoonBase), slot: 'Afternoon' }));
 
         // Evening: nightlife if selected, otherwise a second food pick from
         // a different area than lunch where possible for real variety.
         let eveningPool = interests.includes('nightlife') && dataCache.nightlife?.length ? dataCache.nightlife : dataCache.food || [];
         const varied = eveningPool.filter((x: any) => !usedFoodAreas.has(x.area));
         if (varied.length) eveningPool = varied;
-        const evening = pickN(eveningPool, 1, usedIds);
+        const evening = pickN(eveningPool, 1, usedIds, afternoon[0]?.area || lunch[0]?.area, londonSlot(dayDate, 19, 30));
         evening.forEach(p => dayItems.push({
           time: '19:30', name: p.name, area: p.area,
           href: dataCache.nightlife?.includes(p) ? `/nightlife/${p.id}` : `/food/${p.id}`,
@@ -177,6 +240,7 @@ export default function TripBuilderPage() {
       }
 
       setItinerary(plan);
+      setSaved(false);
       setStep('result');
     } catch {
       setStep('error');
@@ -204,7 +268,7 @@ export default function TripBuilderPage() {
             fontSize: '0.68rem', color: '#c9a84c', letterSpacing: '3px', textTransform: 'uppercase' as const,
             border: '1px solid rgba(201,168,76,0.3)', borderRadius: '40px', padding: '6px 16px', marginBottom: '22px',
           }}>
-            ✦ AI Itinerary Builder
+            ✦ London Itinerary Builder
           </div>
           <h1 style={{
             fontFamily: "'Cormorant Garamond', serif", fontWeight: 700, color: '#fff',
@@ -213,7 +277,7 @@ export default function TripBuilderPage() {
             Build My<br /><span style={{ color: '#c9a84c', fontStyle: 'italic' }}>London Trip</span>
           </h1>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1.05rem', color: 'rgba(255,255,255,0.5)', maxWidth: '480px', margin: '0 auto' }}>
-            Tell us your days, budget and interests — we'll draft a full schedule from what's actually happening in London right now.
+            Tell us your dates, budget and interests — we'll suggest places from the TAP LONDON directory.
           </p>
         </div>
       </div>
@@ -224,6 +288,9 @@ export default function TripBuilderPage() {
             background: 'linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))',
             border: '1px solid rgba(201,168,76,0.18)', borderRadius: '22px', padding: 'clamp(24px, 5vw, 46px)',
           }}>
+            <FormField label="First day in London">
+              <input type="date" min={londonToday()} value={startDate} onChange={e => setStartDate(e.target.value)} style={{ padding: '10px 14px', borderRadius: '10px', color: '#1a1a2e' }} />
+            </FormField>
             <FormField label="Trip Length">
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '14px', marginBottom: '14px' }}>
                 <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '2.6rem', fontWeight: 700, color: '#c9a84c', lineHeight: 1 }}>{days}</span>
@@ -280,6 +347,7 @@ export default function TripBuilderPage() {
               fontFamily: "'DM Sans', sans-serif", fontSize: '1.02rem', fontWeight: 700,
               boxShadow: '0 8px 30px rgba(201,168,76,0.25)', letterSpacing: '0.2px',
             }}>Generate my trip →</button>
+            <button onClick={loadSaved} style={{ display: 'block', margin: '18px auto 0', color: '#c9a84c', background: 'none', border: 'none', cursor: 'pointer' }}>Open my saved trip</button>
           </div>
         )}
 
@@ -316,6 +384,11 @@ export default function TripBuilderPage() {
               borderRadius: '10px', padding: '9px 18px', fontFamily: "'DM Sans', sans-serif",
               fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', marginBottom: '28px',
             }}>← Build another trip</button>
+            <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
+              <button onClick={saveTrip} style={{ padding: '9px 16px', borderRadius: '10px', background: '#c9a84c', color: '#1a1a2e', border: 0, cursor: 'pointer' }}>{saved ? 'Saved on this device ✓' : 'Save trip'}</button>
+              <button onClick={shareTrip} style={{ padding: '9px 16px', borderRadius: '10px', background: 'rgba(255,255,255,0.1)', color: '#fff', border: 0, cursor: 'pointer' }}>Share trip</button>
+            </div>
+            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.72rem', marginBottom: '20px' }}>Suggested route based on areas and published hours. Check venue hours and travel times before you go.</p>
 
             {/* TRIP SUMMARY STRIP */}
             <div style={{
@@ -339,7 +412,7 @@ export default function TripBuilderPage() {
                 <SectionLabel>🏨 Suggested Stay — {hotelArea}</SectionLabel>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px,1fr))', gap: '10px', marginTop: '14px' }}>
                   {hotelPicks.map(h => (
-                    <Link key={h.id} href={`/hotels/${h.id}`} style={{ textDecoration: 'none' }}>
+                    <Link key={h.id} href={h.mapsUrl || '/hotels'} style={{ textDecoration: 'none' }}>
                       <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '14px 16px' }}>
                         <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.05rem', fontWeight: 700, color: '#fff' }}>{h.name}</div>
                         <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', color: '#c9a84c', marginTop: '2px' }}>{h.priceRange}</div>
@@ -366,7 +439,7 @@ export default function TripBuilderPage() {
                     }}>
                       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', color: 'rgba(26,26,46,0.6)', letterSpacing: '1px' }}>DAY</div>
                       <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '2.4rem', fontWeight: 700, color: '#1a1a2e', lineHeight: 1 }}>{day.day}</div>
-                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.56rem', color: 'rgba(26,26,46,0.55)', marginTop: '4px', textAlign: 'center' as const }}>{formatDayDate(day.day - 1)}</div>
+                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.56rem', color: 'rgba(26,26,46,0.55)', marginTop: '4px', textAlign: 'center' as const }}>{formatDayDate(startDate, day.day - 1)}</div>
                     </div>
 
                     <div style={{ padding: '20px clamp(16px,3vw,26px)', flex: 1 }}>

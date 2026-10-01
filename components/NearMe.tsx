@@ -110,9 +110,12 @@ export default function NearMe() {
       // Now unmatched items are still shown, just sorted after matched ones,
       // so Near Me never comes back empty just because of a naming mismatch.
       const withDist = items.map((item: any) => {
-        const coords = getAreaCoords(item.area || item.location || '');
+        const latitude = Number(item.latitude ?? item.lat);
+        const longitude = Number(item.longitude ?? item.lng);
+        const exact = Number.isFinite(latitude) && Number.isFinite(longitude) && latitude > 50 && latitude < 52 && longitude > -1 && longitude < 1;
+        const coords: [number, number] | null = exact ? [latitude, longitude] : getAreaCoords(item.area || item.location || '');
         const dist = coords ? Math.round(distKm(pos.lat, pos.lng, coords[0], coords[1]) * 10) / 10 : null;
-        return { ...item, dist };
+        return { ...item, dist, approximateDistance: !exact || isApproxLocation };
       });
 
       const matched = withDist.filter((i: any) => i.dist !== null).sort((a: any, b: any) => a.dist - b.dist);
@@ -124,7 +127,7 @@ export default function NearMe() {
       setErrorMsg('Could not load places. Please try again.');
       setStatus('error');
     }
-  }, []);
+  }, [isApproxLocation]);
 
   const requestLocation = useCallback((collection: string) => {
     setActiveCategory(collection);
@@ -361,8 +364,8 @@ export default function NearMe() {
                     {item.category && <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.66rem', color: '#c9a84c', fontWeight: 600, marginTop: '2px' }}>{item.category}</div>}
                   </div>
                   <div style={{ flexShrink: 0, textAlign: 'center' as const, background: 'rgba(201,168,76,0.1)', borderRadius: '10px', padding: '6px 10px', minWidth: '50px' }}>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: item.dist !== null ? '1.1rem' : '0.75rem', fontWeight: 700, color: '#c9a84c' }}>{item.dist !== null ? `${item.dist}km` : 'London'}</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.58rem', color: '#888' }}>away</div>
+                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: item.dist !== null ? '1.1rem' : '0.75rem', fontWeight: 700, color: '#c9a84c' }}>{item.dist !== null ? `${item.approximateDistance || isApproxLocation ? '~' : ''}${item.dist}km` : 'London'}</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.58rem', color: '#888' }}>{item.dist !== null && (item.approximateDistance || isApproxLocation) ? 'approx.' : 'away'}</div>
                   </div>
                 </a>
               ))}
