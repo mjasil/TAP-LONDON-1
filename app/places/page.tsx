@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import PlacesPageClient from './PlacesPageClient';
+import { fetchCollection } from '@/lib/firestore';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Best Places to Visit in London — Attractions, Hidden Gems & Photo Spots',
@@ -13,6 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PlacesPage() {
-  return <PlacesPageClient />;
+export default async function PlacesPage() {
+  const items = await fetchCollection('places');
+  return <PlacesPageClient initialItems={items || []} />;
 }

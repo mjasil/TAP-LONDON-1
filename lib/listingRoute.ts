@@ -3,5 +3,6 @@
 const detailSections = new Set(['places', 'food', 'shopping', 'nightlife', 'kids', 'muslim']);
 
 export function listingRoute(section: string, id: string): string {
-  return detailSections.has(section) ? `${section}/${encodeURIComponent(id)}` : section;
+  const path = `/${section.replace(/^\/+|\/+$/g, '')}`;
+  return detailSections.has(path.slice(1)) && id ? `${path}/${encodeURIComponent(id)}` : path;
 }

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Clock, MapPin, Navigation, Tag } from "lucide-react";
 import { useState } from "react";
+import { isFullyFree } from '@/lib/entryFee';
 
 export type CardItem = {
   id: string;
@@ -32,6 +33,7 @@ export type CardItem = {
   opinion?: string;
   tags?: string[];
   nearestStation?: string;
+  phone?: string;
   recommended?: boolean;
   familyFriendlyBadge?: boolean;
 };
@@ -46,7 +48,7 @@ const VIBE_COLORS: Record<string, { bg: string; text: string }> = {
 
 type PlaceCardProps = {
   item: CardItem;
-  mode?: "place" | "food" | "shopping" | "kids" | "nightlife";
+  mode?: "place" | "food" | "shopping" | "kids" | "nightlife" | "muslim" | "emergency";
 };
 
 export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
@@ -64,10 +66,9 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
   // missing or wrong in Firestore). Fall back to reading entryFee text properly —
   // e.g. "Exterior free; exhibition adult £14.50" mentions "free" but also has a
   // real price, so it must NOT be treated as fully free.
-  const feeText = (item.entryFee || "").toLowerCase();
-  const hasPriceNumber = /£\s?\d/.test(feeText);
-  const saysFree = /\bfree\b/.test(feeText);
-  const paid = item.priceType === "Paid" || (item.priceType !== "Free" && hasPriceNumber) || (!item.priceType && hasPriceNumber) || (saysFree && hasPriceNumber);
+  const paid = !isFullyFree(item);
+  const callNumber = mode === 'emergency' && item.phone && /^[+\d\s()-]+$/.test(item.phone)
+    ? item.phone.replace(/[^+\d]/g, '') : null;
   const fallbackIcon = mode === "food" ? "🍽️" : mode === "shopping" ? "🛍️" : "📍";
   const icon = item.icon ?? fallbackIcon;
   const vibeStyle = item.vibe ? VIBE_COLORS[item.vibe] : null;
@@ -223,6 +224,11 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
         </div>
 
         <div className="mt-auto pt-5">
+          {callNumber && (
+            <a href={`tel:${callNumber}`} className="mb-2 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-red-700 px-5 text-sm font-bold text-white">
+              Call {item.phone}
+            </a>
+          )}
           {item.mapsUrl && (
             <a
               href={item.mapsUrl}
@@ -284,11 +290,7 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
     );
   }
   if (mode === "emergency") {
-    return (
-      <Link href={`/emergency/${item.id}`} style={{ textDecoration: "none", display: "block", height: "100%" }}>
-        {card}
-      </Link>
-    );
+    return card;
   }
   return card;
 }

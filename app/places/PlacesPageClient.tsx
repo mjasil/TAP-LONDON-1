@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import DirectoryClient from '@/components/DirectoryClient';
 import { fetchCollection } from '@/lib/firestore';
 
-export default function PlacesPageClient() {
-  const [items, setItems] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+export default function PlacesPageClient({ initialItems }: { initialItems: any[] }) {
+  const [items, setItems] = useState<any[]>(initialItems);
+  const [loading, setLoading] = useState(false);
 
-  const [loadFailed, setLoadFailed] = useState(false);
+  const [loadFailed, setLoadFailed] = useState(initialItems.length === 0);
 
   const load = async () => {
     setLoading(true);
@@ -27,10 +27,6 @@ export default function PlacesPageClient() {
     }
     setLoading(false);
   };
-
-  useEffect(() => {
-    load();
-  }, []);
 
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-8">

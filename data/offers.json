@@ -144,20 +144,6 @@
       "order": 8
     },
     {
-      "id": "shopping-selfridges-offer",
-      "name": "Selfridges \u2014 Tax Free Shopping",
-      "category": "Shopping Offers",
-      "area": "Oxford Street, W1A",
-      "description": "International visitors can claim tax-free shopping on purchases over \u00a330 at Selfridges \u2014 ask at the tax-free desk with your passport.",
-      "discount": "Up to 20% back",
-      "validUntil": "2026-12-31",
-      "image": "https://images.unsplash.com/photo-3965548?w=1920&q=80",
-      "tags": [
-        "shopping"
-      ],
-      "order": 9
-    },
-    {
       "id": "hotel-city-break-offer",
       "name": "City Break Hotel Package",
       "category": "Hotel Offers",
