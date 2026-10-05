@@ -35,6 +35,32 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
+const AREA_GROUPS: [string, RegExp][] = [
+  ['central', /westminster|soho|covent garden|piccadilly|mayfair|marylebone|fitzrovia|holborn|bloomsbury|strand|trafalgar|charing cross|king'?s cross|st james/i],
+  ['river', /london bridge|borough|bankside|south bank|waterloo|tower bridge|tower hill|city of london/i],
+  ['east', /shoreditch|bethnal green|whitechapel|hackney|spitalfields|liverpool street|stratford/i],
+  ['west', /kensington|chelsea|hyde park|notting hill|richmond|hammersmith/i],
+  ['greenwich', /greenwich|cutty sark/i],
+  ['north', /camden|islington|hampstead|regent'?s park/i],
+];
+
+function areaGroup(area: string): string {
+  return AREA_GROUPS.find(([, pattern]) => pattern.test(area))?.[0] || area.toLowerCase().trim();
+}
+
+function matchesHotelArea(area: string, chosen: string): boolean {
+  if (chosen === "Doesn't matter") return true;
+  const group = chosen.split(' ')[0].toLowerCase();
+  if (group === 'south') return /south bank|waterloo|borough|london bridge|greenwich|brixton|clapham/i.test(area);
+  return areaGroup(area) === group;
+}
+
+function hotelMaxNightlyPrice(priceRange: unknown): number | null {
+  if (typeof priceRange !== 'string') return null;
+  const prices = Array.from(priceRange.matchAll(/£\s?([\d,]+)/g), m => Number(m[1].replace(/,/g, '')));
+  return prices.length ? Math.max(...prices) : null;
+}
+
 // Picks n items the trip hasn't used yet, in random order rather than
 // always the first n in the array - without this, every visitor with the
 // same interests got the identical itinerary, and items later in a
@@ -45,10 +71,12 @@ function pickN(arr: any[], n: number, exclude: Set<string>, area?: string, date?
   // slot. Listings without parseable hours remain suggestions to verify.
   const open = date ? candidates.filter(x => openingStatusAt(x.openingHours, date) !== false) : candidates;
   const usable = open.length ? open : candidates.filter(x => openingStatusAt(x.openingHours, date) === null);
-  const filtered = shuffle(usable).sort((a, b) =>
-    Number((b.area || '').toLowerCase() === (area || '').toLowerCase()) -
-    Number((a.area || '').toLowerCase() === (area || '').toLowerCase())
-  );
+  const filtered = shuffle(usable).sort((a, b) => {
+    const score = (item: any) => !area ? 0
+      : (item.area || '').toLowerCase() === area.toLowerCase() ? 2
+      : areaGroup(item.area || '') === areaGroup(area) ? 1 : 0;
+    return score(b) - score(a);
+  });
   const chosen = filtered.slice(0, n);
   chosen.forEach(c => exclude.add(c.id));
   return chosen;
@@ -69,7 +97,8 @@ const FONT_IMPORT = "@import url('https://fonts.googleapis.com/css2?family=Cormo
 export default function TripBuilderPage() {
   const [step, setStep] = useState<'form' | 'loading' | 'result' | 'error'>('form');
   const [days, setDays] = useState(3);
-  const [startDate, setStartDate] = useState(() => londonToday());
+  const [minDate, setMinDate] = useState('');
+  const [startDate, setStartDate] = useState('');
   const [budget, setBudget] = useState(500);
   const [interests, setInterests] = useState<string[]>([]);
   const [travelWith, setTravelWith] = useState('Friends');
@@ -80,6 +109,9 @@ export default function TripBuilderPage() {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
+    const today = londonToday();
+    setMinDate(today);
+    setStartDate(today);
     try {
       const encoded = new URLSearchParams(window.location.search).get('plan');
       if (!encoded || encoded.length > 10000) return;
@@ -156,14 +188,17 @@ export default function TripBuilderPage() {
         return;
       }
 
-      const hotels = shuffle((dataCache.hotels || []).filter((h: any) => {
-        const areaMatch = hotelArea === "Doesn't matter" || (h.area || '').toLowerCase().includes(hotelArea.replace(' London', '').toLowerCase());
-        if (budgetLevel === 'low') return areaMatch && (h.category === '3-star' || h.category === '4-star');
-        if (budgetLevel === 'mid') return areaMatch && h.category !== '5-star';
-        return areaMatch;
-      }));
-      // Fall back to any hotel in budget if the area filter left nothing
-      const hotelResults = hotels.length > 0 ? hotels : shuffle(dataCache.hotels || []);
+      // Reserve at most 60% of the total budget for accommodation. A hotel
+      // whose published upper nightly price exceeds that cap is not a safe
+      // recommendation, even when its category says "Budget".
+      const nights = Math.max(1, days - 1);
+      const nightlyCap = Math.floor(budget * 0.6 / nights);
+      const affordableHotels = (dataCache.hotels || []).filter((h: any) => {
+        const max = hotelMaxNightlyPrice(h.priceRange);
+        return max !== null && max <= nightlyCap;
+      });
+      const nearbyHotels = affordableHotels.filter((h: any) => matchesHotelArea(h.area || '', hotelArea));
+      const hotelResults = shuffle(nearbyHotels.length ? nearbyHotels : affordableHotels);
       setHotelPicks(hotelResults.slice(0, 3));
 
       const interestCollections = interests
@@ -172,7 +207,6 @@ export default function TripBuilderPage() {
         .flatMap(o => o!.collections);
 
       const usedIds = new Set<string>();
-      const usedFoodAreas = new Set<string>();
       const plan: DayPlan[] = [];
 
       for (let d = 1; d <= days; d++) {
@@ -201,7 +235,7 @@ export default function TripBuilderPage() {
         });
         if (!foodPool.length) foodPool = dataCache.food || [];
         const lunch = pickN(foodPool, 1, usedIds, morning[0]?.area, londonSlot(dayDate, 13));
-        lunch.forEach(f => { usedFoodAreas.add(f.area); dayItems.push({ time: '13:00', name: f.name, area: f.area, href: `/food/${f.id}`, slot: 'Lunch' }); });
+        lunch.forEach(f => dayItems.push({ time: '13:00', name: f.name, area: f.area, href: `/food/${f.id}`, slot: 'Lunch' }));
 
         // Afternoon: rotate through matched interests across days instead
         // of always favouring the same one, so a multi-day trip doesn't
@@ -224,11 +258,8 @@ export default function TripBuilderPage() {
         const afternoon = pickN(afternoonPool, 1, usedIds, lunch[0]?.area || morning[0]?.area, londonSlot(dayDate, 15));
         afternoon.forEach(p => dayItems.push({ time: '15:00', name: p.name, area: p.area, href: afternoonHasDetail ? afternoonBase + p.id : (p.mapsUrl || afternoonBase), slot: 'Afternoon' }));
 
-        // Evening: nightlife if selected, otherwise a second food pick from
-        // a different area than lunch where possible for real variety.
+        // Evening: stay near the afternoon stop when a suitable venue exists.
         let eveningPool = interests.includes('nightlife') && dataCache.nightlife?.length ? dataCache.nightlife : dataCache.food || [];
-        const varied = eveningPool.filter((x: any) => !usedFoodAreas.has(x.area));
-        if (varied.length) eveningPool = varied;
         const evening = pickN(eveningPool, 1, usedIds, afternoon[0]?.area || lunch[0]?.area, londonSlot(dayDate, 19, 30));
         evening.forEach(p => dayItems.push({
           time: '19:30', name: p.name, area: p.area,
@@ -289,7 +320,7 @@ export default function TripBuilderPage() {
             border: '1px solid rgba(201,168,76,0.18)', borderRadius: '22px', padding: 'clamp(24px, 5vw, 46px)',
           }}>
             <FormField label="First day in London">
-              <input type="date" min={londonToday()} value={startDate} onChange={e => setStartDate(e.target.value)} style={{ padding: '10px 14px', borderRadius: '10px', color: '#1a1a2e' }} />
+              <input type="date" min={minDate || undefined} value={startDate} onChange={e => setStartDate(e.target.value)} style={{ padding: '10px 14px', borderRadius: '10px', color: '#1a1a2e' }} />
             </FormField>
             <FormField label="Trip Length">
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '14px', marginBottom: '14px' }}>
@@ -341,7 +372,7 @@ export default function TripBuilderPage() {
               </div>
             </FormField>
 
-            <button onClick={generate} style={{
+            <button onClick={generate} disabled={!startDate} style={{
               width: '100%', marginTop: '36px', padding: '18px', borderRadius: '14px', border: 'none', cursor: 'pointer',
               background: 'linear-gradient(135deg,#c9a84c,#e8c46f)', color: '#1a1a2e',
               fontFamily: "'DM Sans', sans-serif", fontSize: '1.02rem', fontWeight: 700,
@@ -421,6 +452,11 @@ export default function TripBuilderPage() {
                   ))}
                 </div>
               </div>
+            )}
+            {hotelPicks.length === 0 && (
+              <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '32px' }}>
+                No hotel in our directory fits the accommodation share of this total budget. Check live room rates before booking.
+              </p>
             )}
 
             {/* DAY TICKETS */}

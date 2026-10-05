@@ -6,6 +6,7 @@ import PlaceCard, { type CardItem } from "./PlaceCard";
 import { readSavedPlaces, toggleSavedPlace } from '@/lib/savedPlaces';
 import { availableCategories, MIN_FILTER_RESULTS } from "@/lib/filterAvailability";
 import { isOpenAt } from "@/lib/openingHours";
+import { isFullyFree } from '@/lib/entryFee';
 
 type DirectoryClientProps = {
   items: CardItem[];
@@ -88,7 +89,7 @@ function getSmartFilters(mode: string): SmartFilter[] {
       { label: "Open Late", value: "open-late", test: isOpenLate },
     ],
     place: [
-      { label: "Free", value: "free", test: (i) => i.priceType === "Free" },
+      { label: "Free", value: "free", test: isFullyFree },
       { label: "Special Offer", value: "offer", test: (i) => !!i.offerTag || !!i.offer },
     ],
   };

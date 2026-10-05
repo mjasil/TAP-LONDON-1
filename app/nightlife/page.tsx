@@ -27,7 +27,6 @@ export default function NightlifePage() {
   }, []);
 
   const tonightPicks = items.filter((i: any) => i.openLate === true).slice(0, 4);
-  const today = new Date().toLocaleDateString('en-GB', { weekday: 'long' });
 
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-8">
@@ -45,12 +44,12 @@ export default function NightlifePage() {
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
               <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#7ac9a0', boxShadow: '0 0 8px #7ac9a0' }} />
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', fontWeight: 700, color: '#7ac9a0', letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>Open Late — {today}</span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', fontWeight: 700, color: '#7ac9a0', letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>Late-night venues — check opening hours</span>
             </div>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.6rem', fontWeight: 700, color: '#fff', marginBottom: '16px' }}>Tonight in London 🌙</h2>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.6rem', fontWeight: 700, color: '#fff', marginBottom: '16px' }}>London after dark 🌙</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
               {tonightPicks.map((venue: any) => (
-                <a key={venue.id} href={venue.mapsUrl || '#'} target="_blank" rel="noreferrer" style={{
+                <a key={venue.id} href={venue.mapsUrl || `/nightlife/${venue.id}`} target="_blank" rel="noreferrer" style={{
                   display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none',
                   background: 'rgba(255,255,255,0.06)', borderRadius: '12px', padding: '10px',
                   border: '1px solid rgba(255,255,255,0.1)'
