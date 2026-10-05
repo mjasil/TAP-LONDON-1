@@ -182,7 +182,6 @@ export default function Navbar() {
   return (
     <>
       <div id="google_translate_element" style={{ display: "none" }} />
-      <style>{`.goog-te-banner-frame, .skiptranslate { display: none !important; } body { top: 0 !important; } .goog-te-gadget { display: none !important; } #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }`}</style>
 
       <header className="sticky top-0 z-50 border-b border-white/35 bg-cream/95 shadow-sm backdrop-blur-sm dark:bg-[#0d0d1a]/97 dark:border-white/10" style={{ transform: "translateZ(0)", willChange: "transform" }}>
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
