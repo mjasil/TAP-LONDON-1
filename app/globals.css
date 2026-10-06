@@ -13,6 +13,35 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
+/* Native scrolling keeps cards responsive on touch screens and trackpads. */
+.featured-places-scroll {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(250px, 280px);
+  gap: 16px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 4px;
+  padding: 4px 4px 16px;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.featured-place-card {
+  display: block;
+  overflow: hidden;
+  scroll-snap-align: start;
+  border: 1px solid rgba(26, 26, 46, .1);
+  border-radius: 14px;
+  background: #fff;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.featured-place-card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0, 0, 0, .1); }
+html.dark .featured-place-card { background: #1a1a2e; border-color: rgba(201, 168, 76, .2); }
+@media (max-width: 640px) { .featured-places-scroll { grid-auto-columns: minmax(240px, 78vw); } }
+
 body {
   min-height: 100vh;
   background: var(--cream);
@@ -466,4 +495,3 @@ html.dark [style*="height:200px"] img {
           cursor: pointer; white-space: nowrap;
         }
         .nova-quick-btn:hover { background: rgba(201,168,76,0.2); }
-

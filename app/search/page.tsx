@@ -74,11 +74,13 @@ function SearchResults() {
   const q = params.get('q') || '';
   const [results, setResults] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(18);
 
   useEffect(() => {
     let cancelled = false;
     async function run() {
       setLoading(true);
+      setVisibleCount(18);
       const all: any[] = [];
       await Promise.all(
         SECTION_CONFIG.map(async (cfg) => {
@@ -140,33 +142,48 @@ function SearchResults() {
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 20px 80px' }}>
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '60px', color: 'rgba(26,26,46,0.3)', fontFamily: "'DM Sans', sans-serif" }}>Searching...</div>
+          <div role="status" aria-label="Finding London listings">
+            <p className="mb-5 text-sm text-ink/70 dark:text-cream/70">Finding places that match your search…</p>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {Array.from({ length: 6 }, (_, i) => (
+                <div key={i} className="overflow-hidden rounded-xl border border-navy/10 bg-white dark:bg-navy" aria-hidden="true">
+                  <div className="h-36 animate-pulse bg-navy/10 dark:bg-white/10" />
+                  <div className="space-y-3 p-4"><div className="h-4 w-2/3 animate-pulse rounded bg-navy/10 dark:bg-white/10" /><div className="h-3 w-1/2 animate-pulse rounded bg-navy/10 dark:bg-white/10" /></div>
+                </div>
+              ))}
+            </div>
+          </div>
         ) : results.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '60px', color: 'rgba(26,26,46,0.4)', fontFamily: "'DM Sans', sans-serif" }}>
             {q ? `No results for "${q}". Try a different search.` : 'Type something to search.'}
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '18px' }}>
-            {results.map((r, i) => (
+          <div>
+            <p className="mb-4 text-sm font-semibold text-ink/70 dark:text-cream/70">Showing {Math.min(visibleCount, results.length)} of {results.length} results</p>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {results.slice(0, visibleCount).map((r, i) => (
               <Link key={r.type + r.id + i} href={r.href} style={{ textDecoration: 'none' }}>
-                <div className="bg-white dark:bg-[#1a1a2e]" style={{ borderRadius: '14px', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid rgba(201,168,76,0.1)', cursor: 'pointer' }}>
+                <div className="flex h-full flex-col bg-white transition-shadow hover:shadow-lg dark:bg-[#1a1a2e]" style={{ borderRadius: '14px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid rgba(201,168,76,0.1)', cursor: 'pointer' }}>
                   {r.image && (
                     <div style={{ height: '150px', overflow: 'hidden' }}>
                       <img src={r.image} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
                   )}
-                  <div style={{ padding: '14px' }}>
+                  <div className="flex flex-1 flex-col" style={{ padding: '14px' }}>
                     <div style={{
                       display: 'inline-block', fontFamily: "'DM Sans', sans-serif", fontSize: '0.62rem', fontWeight: 700,
                       letterSpacing: '0.8px', textTransform: 'uppercase' as const, color: r.color,
                       background: `${r.color}18`, padding: '3px 8px', borderRadius: '20px', marginBottom: '8px',
                     }}>{r.label}</div>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.15rem', fontWeight: 700, color: '#1a1a2e' }} className="dark:text-white">{r.name}</div>
+                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.3rem', fontWeight: 700, color: '#1a1a2e' }} className="dark:text-white">{r.name}</div>
                     {r.area && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: '#888', marginTop: '4px' }}>📍 {r.area}</p>}
+                    {r.description && <p className="mt-2 line-clamp-2 text-sm leading-5 text-ink/70 dark:text-cream/70">{r.description}</p>}
                   </div>
                 </div>
               </Link>
             ))}
+            </div>
+            {visibleCount < results.length && <button type="button" onClick={() => setVisibleCount(count => count + 18)} className="mx-auto mt-8 block rounded-full border border-navy/25 px-6 py-3 text-sm font-bold text-navy transition-colors hover:bg-navy hover:text-white dark:border-gold/50 dark:text-cream">Show more results</button>}
           </div>
         )}
       </div>

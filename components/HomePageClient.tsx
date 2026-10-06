@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import NextImage from 'next/image';
-import { useEffect, useState, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { FadeUp, SlideLeft, SlideRight } from '@/components/ScrollAnimation';
 import SearchBar from '@/components/SearchBar';
 import NearMe from '@/components/NearMe';
 import LondonQuiz from '@/components/LondonQuiz';
 import { fetchCollection } from '@/lib/firestore';
+type FeaturedPlace = { id: string; name: string; area: string; description: string; entryFee: string; image: string };
 
 const MAIN_CARDS = [
   { id: 'places',       label: 'Best Places',    sub: 'Attractions, hidden gems & photo spots', href: '/places',       image: 'https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=800',    tag: 'Places' },
@@ -38,14 +39,9 @@ const HOW_IT_WORKS = [
   { title: 'Choose a section', desc: 'Find places, food, shopping, hotels in seconds.',  step: '03' },
   { title: 'Enjoy London',     desc: 'Real directions, trusted tips, halal guides.',      step: '04' },
 ];
-export default function HomePageClient({ heroImage }: { heroImage: string }) {
+export default function HomePageClient({ heroImage, featuredPlaces }: { heroImage: string; featuredPlaces: FeaturedPlace[] }) {
   const [activeTab, setActiveTab] = useState('All');
   const [cards, setCards] = useState(MAIN_CARDS);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '25%']);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
 
   useEffect(() => {
     const loadImages = async () => {
@@ -71,52 +67,74 @@ export default function HomePageClient({ heroImage }: { heroImage: string }) {
     <main style={{ overflowX: 'hidden', width: '100%' }}>
 
       {/* HERO */}
-      <section ref={heroRef} style={{ position: 'relative', height: '92vh', minHeight: '560px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: '#0d0d1a' }}>
-        <motion.div
-          style={{ position: 'absolute', inset: '-10%', y: heroY, scale: heroScale, zIndex: 0 }}
-        >
+      <section style={{ position: 'relative', minHeight: 'min(690px, 85svh)', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: '#0d0d1a', padding: '80px 0', boxSizing: 'border-box' }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <NextImage src={heroImage} alt="London skyline" fill priority unoptimized sizes="100vw" style={{ objectFit: 'cover', objectPosition: 'center 30%' }} />
-        </motion.div>
+        </div>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to bottom, rgba(10,10,24,0.45) 0%, rgba(10,10,24,0.3) 40%, rgba(10,10,24,0.82) 100%)' }} />
 
-        <motion.div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: '860px', padding: '0 20px', boxSizing: 'border-box' as const, textAlign: 'center', opacity: heroOpacity }}
-          initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}>
+        <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: '860px', padding: '0 20px', boxSizing: 'border-box' as const, textAlign: 'center' }}>
 
-          <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}
+          <div
             style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#f2d283', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '2px', marginBottom: '24px', textTransform: 'uppercase' as const, fontFamily: "'DM Sans', sans-serif" }}>
             London's Smart Travel Guide
-          </motion.div>
+          </div>
 
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32, duration: 0.9 }}
+          <h1
             style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(2.8rem, 9vw, 6.2rem)', fontWeight: 700, lineHeight: 1, margin: '0 0 20px', letterSpacing: '-1px' }}>
             <span style={{ color: '#ffffff' }}>Discover </span>
             <span style={{ color: '#f2d283' }}>London</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.8 }}
+          <p
             style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(0.9rem, 2vw, 1.08rem)', color: 'rgba(255,255,255,0.62)', marginBottom: '36px', lineHeight: 1.6 }}>
-            Food, hotels, nightlife, sports, hidden gems, everything London in one place.
-          </motion.p>
+            Find places to visit, good food and practical tips for your day in London.
+          </p>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.7 }} style={{ marginBottom: '20px', width: '100%' }}>
+          <div style={{ marginBottom: '20px', width: '100%' }}>
             <SearchBar />
-          </motion.div>
+          </div>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.72, duration: 0.6 }} style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '20px' }}>
+          <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '20px' }}>
             {[{ label: 'Clubs', href: '/nightlife' }, { label: 'Kids Entertainment', href: '/kids' }, { label: 'Rooftop Bar', href: '/nightlife' }, { label: 'Hidden Gems', href: '/hidden-gems' }].map(item => (
               <Link key={item.label} href={item.href} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: 'rgba(255,255,255,0.55)', textDecoration: 'none', background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '40px', padding: '5px 14px' }}>{item.label}</Link>
             ))}
-          </motion.div>
+          </div>
 
           {/* Near Me button */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.85, duration: 0.6 }} style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <NearMe />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
+      </section>
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4, duration: 1 }} style={{ position: 'absolute', bottom: '28px', left: '50%', transform: 'translateX(-50%)', zIndex: 2 }}>
-          <motion.div animate={{ scaleY: [1, 0.2, 1] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }} style={{ width: '1px', height: '36px', background: 'linear-gradient(to bottom, rgba(201,168,76,0.7), transparent)' }} />
-        </motion.div>
+      {/* Put useful, clickable listings directly after the search. */}
+      <section className="bg-[#f9f7f2] px-5 py-12 dark:bg-[#0d0d1a]" aria-labelledby="featured-places-title">
+        <div className="mx-auto max-w-[1100px]">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="mb-1 text-xs font-bold uppercase tracking-[0.15em] text-gold">Explore London</p>
+              <h2 id="featured-places-title" className="font-heading text-3xl font-bold text-navy dark:text-cream">Places to start with</h2>
+              <p className="mt-1 text-sm text-ink/70 dark:text-cream/70">A few London favourites, from free museums to famous landmarks.</p>
+            </div>
+            <Link href="/places" className="text-sm font-bold text-gold hover:underline">See all places →</Link>
+          </div>
+          <div className="featured-places-scroll" aria-label="Places to explore">
+            {featuredPlaces.map(place => (
+              <Link key={place.id} href={`/places/${place.id}`} className="featured-place-card group">
+                <div className="relative h-44 overflow-hidden bg-navy">
+                  <NextImage src={place.image} alt={place.name} fill sizes="(max-width: 640px) 78vw, 280px" className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
+                </div>
+                <div className="flex min-h-[155px] flex-col p-4">
+                  <span className="text-xs font-semibold text-ink/60 dark:text-cream/65">{place.area}</span>
+                  <h3 className="mt-1 font-heading text-xl font-bold leading-tight text-navy dark:text-cream">{place.name}</h3>
+                  <p className="mt-2 line-clamp-2 text-sm leading-5 text-ink/70 dark:text-cream/70">{place.description}</p>
+                  <span className="mt-auto pt-3 text-xs font-bold text-gold">{place.entryFee}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* AI ITINERARY BUILDER - entry card */}
