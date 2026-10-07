@@ -104,6 +104,7 @@ function SearchResults() {
               type: cfg.type,
               href: listingRoute(cfg.hrefBase, item.id),
               image: item.image,
+              imageIsIllustrative: item.imageIsIllustrative,
               label: cfg.label,
               color: cfg.color,
             });
@@ -164,8 +165,9 @@ function SearchResults() {
               <Link key={r.type + r.id + i} href={r.href} style={{ textDecoration: 'none' }}>
                 <div className="flex h-full flex-col bg-white transition-shadow hover:shadow-lg dark:bg-[#1a1a2e]" style={{ borderRadius: '14px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid rgba(201,168,76,0.1)', cursor: 'pointer' }}>
                   {r.image && (
-                    <div style={{ height: '150px', overflow: 'hidden' }}>
-                      <img src={r.image} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <div style={{ height: '150px', overflow: 'hidden', position: 'relative' }}>
+                      <img src={r.image} alt={r.imageIsIllustrative ? 'Illustrative nightlife scene' : r.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      {r.imageIsIllustrative && <span style={{ position: 'absolute', right: '8px', bottom: '8px', padding: '3px 8px', borderRadius: '20px', color: '#fff', background: 'rgba(26,26,46,0.85)', fontSize: '0.65rem' }}>Illustrative photo</span>}
                     </div>
                   )}
                   <div className="flex flex-1 flex-col" style={{ padding: '14px' }}>

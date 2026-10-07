@@ -30,6 +30,25 @@ EXCLUDE = re.compile(
     r'limited|ltd|f\.c|caff[eé])\b', re.I,
 )
 
+# Stock nightlife scenes already used by TAP. These are illustrative only:
+# FSA records do not provide photographs of the individual venues.
+ILLUSTRATIVE_IMAGES = (
+    'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    'https://images.pexels.com/photos/1183434/pexels-photo-1183434.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    'https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    'https://images.pexels.com/photos/1749900/pexels-photo-1749900.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    'https://images.pexels.com/photos/1449791/pexels-photo-1449791.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    'https://images.pexels.com/photos/1540338/pexels-photo-1540338.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    'https://images.pexels.com/photos/1666816/pexels-photo-1666816.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    'https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg?auto=compress&cs=tinysrgb&w=1200',
+)
+
+
+def illustrative_image(fhrs_id):
+    return ILLUSTRATIVE_IMAGES[int(fhrs_id) % len(ILLUSTRATIVE_IMAGES)]
+
 
 def normalized(name):
     return re.sub(r'[^a-z0-9]', '', name.lower())
@@ -70,6 +89,8 @@ def make_listing(row, accessed):
         'sourceName': 'Food Standards Agency',
         'sourceUrl': f"https://ratings.food.gov.uk/business/{row['FHRSID']}",
         'sourceAccessed': accessed,
+        'image': illustrative_image(row['FHRSID']),
+        'imageIsIllustrative': True,
     }
 
 
