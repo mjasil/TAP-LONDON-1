@@ -51,13 +51,24 @@ export async function fetchCollection(collection: string): Promise<any[] | null>
 
 async function loadCollection(collection: string): Promise<any[] | null> {
   try {
-    const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${collection}?pageSize=200`;
-    const res = await fetch(url, { cache: 'no-store' });
-    if (!res.ok) return null;
-    const json = await res.json();
-    if (!json.documents || json.documents.length === 0) return null;
+    const documents: any[] = [];
+    let pageToken = '';
+    // Firestore list responses are paginated. The old one-page request hid
+    // everything after the first 200 items, including new nightlife venues.
+    do {
+      const params = new URLSearchParams({ pageSize: '500' });
+      if (pageToken) params.set('pageToken', pageToken);
+      const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${encodeURIComponent(collection)}?${params}`;
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) return null;
+      const json = await res.json();
+      documents.push(...(json.documents || []));
+      pageToken = json.nextPageToken || '';
+    } while (pageToken && documents.length < 10000);
 
-    const items = json.documents.map((doc: any) => {
+    if (documents.length === 0) return null;
+
+    const items = documents.map((doc: any) => {
       const item = parseFields(doc.fields || {});
       const parts = doc.name.split('/');
       item.id = parts[parts.length - 1];

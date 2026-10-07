@@ -106,6 +106,7 @@ export default function DirectoryClient({
   const [query, setQuery] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [savedKeys, setSavedKeys] = useState<string[]>([]);
+  const [visibleCount, setVisibleCount] = useState(24);
 
   useEffect(() => {
     const refresh = () => setSavedKeys(readSavedPlaces().map(p => p.key));
@@ -163,6 +164,10 @@ export default function DirectoryClient({
       smartFilters.find(filter => filter.value === value)?.test(item) ?? true
     ));
   }, [baseItems, activeFilters, smartFilters]);
+
+  useEffect(() => {
+    setVisibleCount(24);
+  }, [selectedTab, query, activeFilters]);
 
   return (
     <div className="space-y-6">
@@ -240,7 +245,7 @@ export default function DirectoryClient({
       <Link href="/saved" className="text-sm font-semibold text-gold">View saved places ({savedKeys.length}) →</Link>
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((item) => (
+        {filtered.slice(0, visibleCount).map((item) => (
           <div key={item.id} className="relative flex flex-col">
             <PlaceCard item={item} mode={mode as any} />
             <div className="flex items-center justify-between gap-3 px-2 py-2 text-xs font-semibold">
@@ -257,6 +262,15 @@ export default function DirectoryClient({
           </div>
         ))}
       </div>
+
+      {filtered.length > visibleCount && (
+        <div className="flex flex-col items-center gap-2 py-4">
+          <p className="text-sm text-ink/60 dark:text-cream/60">Showing {visibleCount} of {filtered.length} places</p>
+          <button type="button" onClick={() => setVisibleCount(count => count + 24)} className="min-h-12 rounded-full bg-navy px-7 text-sm font-bold text-white dark:bg-gold dark:text-navy">
+            Show more results
+          </button>
+        </div>
+      )}
 
       {filtered.length === 0 && (
         <div style={{ textAlign: 'center', padding: '48px 20px', color: 'rgba(26,26,46,0.4)' }}>

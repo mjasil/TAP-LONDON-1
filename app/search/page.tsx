@@ -114,8 +114,7 @@ function SearchResults() {
       const scored = all
         .map(item => ({ ...item, score: scoreMatch(item, q) }))
         .filter(item => item.score > 0)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 60);
+        .sort((a, b) => b.score - a.score);
       setResults(scored);
       setLoading(false);
     }

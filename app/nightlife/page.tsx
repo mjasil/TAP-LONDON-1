@@ -34,7 +34,7 @@ export default function NightlifePage() {
         <div className="mb-9 max-w-3xl">
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-gold">Nightlife</p>
           <h1 className="mt-3 font-heading text-5xl font-bold text-navy dark:text-cream">London Nightlife</h1>
-          <p className="mt-5 text-lg leading-8 text-ink/70 dark:text-cream/70">Rooftop bars, underground clubs, live music venues and more.</p>
+          <p className="mt-5 text-lg leading-8 text-ink/70 dark:text-cream/70">Explore bars, pubs, clubs and live music across London. {items.length > 0 ? `${items.length} places to browse.` : ''}</p>
         </div>
 
         {!loading && tonightPicks.length > 0 && (
@@ -72,7 +72,16 @@ export default function NightlifePage() {
         {loading ? (
           <div style={{ textAlign: 'center', padding: '60px', color: 'rgba(26,26,46,0.3)', fontFamily: "'DM Sans', sans-serif" }}>Loading...</div>
         ) : (
-          <DirectoryClient items={items} tabs={["Bars", "Clubs", "Live Music", "Rooftop Bars"]} mode="nightlife" searchPlaceholder="Search venues or areas" />
+          <>
+            <DirectoryClient items={items} tabs={["Bars", "Clubs", "Live Music", "Rooftop Bars", "Pubs, Bars & Clubs"]} mode="nightlife" searchPlaceholder="Search venues or areas" />
+            {items.some(item => item.sourceName === 'Food Standards Agency') && (
+              <p className="mt-10 text-xs leading-6 text-ink/60 dark:text-cream/60">
+                Some listed venues use Food Standards Agency register data under the{' '}
+                <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank" rel="noreferrer" className="underline">Open Government Licence</a>.
+                Opening hours, events and availability can change; check with the venue before visiting.
+              </p>
+            )}
+          </>
         )}
       </div>
     </section>
