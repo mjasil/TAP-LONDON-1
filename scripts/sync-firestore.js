@@ -54,7 +54,8 @@ async function syncSection(sectionFile) {
   const colRef = db.collection(collectionName);
 
   const existingSnap = await colRef.get();
-  const existingIds = new Set(existingSnap.docs.map(d => d.id));
+  const existingById = new Map(existingSnap.docs.map(d => [d.id, d.data()]));
+  const existingIds = new Set(existingById.keys());
 
   // Load tombstones for this collection - items deliberately deleted in
   // admin that must NOT be re-added just because they're still present in
@@ -84,6 +85,13 @@ async function syncSection(sectionFile) {
 
     if (existingIds.has(id)) {
       PROTECTED_FIELDS.forEach(f => delete item[f]);
+      // Fill only missing photographs on imported public records. An image
+      // chosen later in the admin panel always wins over the stock scene.
+      if (id.startsWith('fsa-') && item.imageIsIllustrative) {
+        const existing = existingById.get(id);
+        if (!existing.image && !(existing.gallery || []).length) item.image = items[i].image;
+        else if (existing.image !== items[i].image) item.imageIsIllustrative = false;
+      }
       if (Object.keys(item).length === 0) continue;
       batch.set(ref, item, { merge: true });
       updated++;

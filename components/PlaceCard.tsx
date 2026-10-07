@@ -19,6 +19,7 @@ export type CardItem = {
   priceRange?: string;
   icon?: string;
   image?: string;
+  imageIsIllustrative?: boolean;
   halal?: boolean;
   verifiedHalal?: boolean;
   description: string;
@@ -86,7 +87,7 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
         {item.image && !imageFailed ? (
           <Image
             src={item.image}
-            alt={`${item.name} in London`}
+            alt={item.imageIsIllustrative ? 'Illustrative nightlife scene' : `${item.name} in London`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             loading="lazy"
@@ -97,6 +98,12 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
           <div className="absolute inset-0 rounded-t-lg bg-[linear-gradient(135deg,#1a1a2e_0%,#26345f_48%,#c9a84c_100%)]" />
         )}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.48))]" />
+
+        {item.imageIsIllustrative && item.image && !imageFailed && (
+          <span className="absolute bottom-3 right-3 rounded-full bg-navy/80 px-2.5 py-1 text-[10px] font-semibold text-white">
+            Illustrative photo
+          </span>
+        )}
 
         <div className="absolute left-4 top-4 rounded-full bg-white/92 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-navy shadow-sm dark:bg-navy dark:text-gold dark:border dark:border-gold/30">
           {category}

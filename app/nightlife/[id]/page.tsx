@@ -41,8 +41,11 @@ export default function NightlifeDetailPage() {
   return (
     <main style={{ minHeight: "100vh" }} className="bg-[#f9f7f2] dark:bg-[#0d0d1a]">
       <div style={{ position: "relative", height: "44vh", minHeight: "250px", overflow: "hidden", background: "#1a1a2e" }}>
-        {item.image && <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
+        {item.image && <img src={item.image} alt={item.imageIsIllustrative ? 'Illustrative nightlife scene' : item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(26,26,46,0.9) 100%)" }} />
+        {item.imageIsIllustrative && item.image && (
+          <span style={{ position: "absolute", top: "16px", right: "16px", color: "#fff", background: "rgba(26,26,46,0.85)", borderRadius: "20px", padding: "5px 11px", fontSize: "0.72rem" }}>Illustrative photo</span>
+        )}
         <Link href="/nightlife" style={{ position: "absolute", top: "16px", left: "16px", background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.3)", color: "#fff", borderRadius: "50px", padding: "7px 16px", fontFamily: "'DM Sans',sans-serif", fontSize: "0.8rem", fontWeight: 600, textDecoration: "none" }}>← Back</Link>
         {item.openLate && (
           <div style={{ position: "absolute", top: "16px", right: "16px", background: "rgba(122,201,160,0.95)", color: "#1a1a2e", padding: "4px 12px", borderRadius: "20px", fontFamily: "'DM Sans',sans-serif", fontSize: "0.68rem", fontWeight: 700 }}>🌙 OPEN LATE</div>
