@@ -37,13 +37,21 @@ function parseFields(fields: Record<string, any>): any {
 
 async function searchCollection(collection: string, query: string, limit = 5): Promise<any[]> {
   try {
-    const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${collection}?pageSize=200`;
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) return [];
-    const json = await res.json();
-    if (!json.documents) return [];
+    const documents: any[] = [];
+    let pageToken = '';
+    do {
+      const params = new URLSearchParams({ pageSize: '500' });
+      if (pageToken) params.set('pageToken', pageToken);
+      const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${encodeURIComponent(collection)}?${params}`;
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) return [];
+      const json = await res.json();
+      documents.push(...(json.documents || []));
+      pageToken = json.nextPageToken || '';
+    } while (pageToken && documents.length < 10000);
+    if (documents.length === 0) return [];
 
-    const items = json.documents.map((doc: any) => {
+    const items = documents.map((doc: any) => {
       const item = parseFields(doc.fields || {});
       item.id = doc.name.split("/").pop();
       return item;
