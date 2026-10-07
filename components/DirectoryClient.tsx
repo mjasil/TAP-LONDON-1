@@ -102,7 +102,7 @@ function getSmartFilters(mode: string): SmartFilter[] {
 export default function DirectoryClient({
   items, tabs, mode = "place", searchPlaceholder = "Search...", showSearch = true
 }: DirectoryClientProps) {
-  const [active, setActive] = useState(tabs[0] ?? "All");
+  const [active, setActive] = useState(mode === 'nightlife' ? 'All' : tabs[0] ?? 'All');
   const [query, setQuery] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [savedKeys, setSavedKeys] = useState<string[]>([]);
