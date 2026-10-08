@@ -2,8 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { fetchDocument } from "@/lib/firestore";
+import PhotoCredit from "@/components/PhotoCredit";
+import { safeExternalUrl } from "@/lib/nightlifeListing";
 
 export default function KidsDetailPage() {
   const params = useParams();
@@ -41,7 +44,7 @@ export default function KidsDetailPage() {
   return (
     <main style={{ minHeight: "100vh" }} className="bg-[#f9f7f2] dark:bg-[#0d0d1a]">
       <div style={{ position: "relative", height: "44vh", minHeight: "250px", overflow: "hidden" }}>
-        <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        {item.image && <Image src={item.image} alt={item.name} fill priority sizes="100vw" style={{ objectFit: "cover" }} />}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(26,26,46,0.88) 100%)" }} />
         <Link href="/kids" style={{ position: "absolute", top: "16px", left: "16px", background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.3)", color: "#fff", borderRadius: "50px", padding: "7px 16px", fontFamily: "'DM Sans',sans-serif", fontSize: "0.8rem", fontWeight: 600, textDecoration: "none" }}>← Back</Link>
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "16px 20px 20px" }}>
@@ -52,6 +55,7 @@ export default function KidsDetailPage() {
       </div>
 
       <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px 16px 60px" }}>
+        <PhotoCredit item={item} />
         <div className="bg-white dark:bg-[#1a1a2e]" style={{ borderRadius: "16px", padding: "18px 20px", marginBottom: "18px", border: "1px solid rgba(26,26,46,0.08)", display: "flex", flexDirection: "column", gap: "12px" }}>
           {[
             { icon: "📍", label: "Location", value: item.area },
@@ -74,6 +78,9 @@ export default function KidsDetailPage() {
           <p className="text-[#555] dark:text-[#bbb]" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem", lineHeight: 1.8, margin: 0 }}>{item.description}</p>
         </div>
 
+        {safeExternalUrl(item.websiteUrl) && (
+          <a href={safeExternalUrl(item.websiteUrl)!} target="_blank" rel="noopener noreferrer" className="mb-3 flex justify-center rounded-full bg-gold px-5 py-3 font-bold text-navy">Official visitor information ↗</a>
+        )}
         {item.mapsUrl && (
           <a href={item.mapsUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", width: "100%", background: "#1a1a2e", color: "#c9a84c", padding: "15px", borderRadius: "50px", fontFamily: "'DM Sans',sans-serif", fontSize: "0.95rem", fontWeight: 700, textDecoration: "none", marginBottom: "12px", boxSizing: "border-box" as const }}>
             📍 Get Directions on Google Maps

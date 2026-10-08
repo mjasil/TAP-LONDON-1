@@ -73,7 +73,7 @@ export default function NightlifePage() {
           <div style={{ textAlign: 'center', padding: '60px', color: 'rgba(26,26,46,0.3)', fontFamily: "'DM Sans', sans-serif" }}>Loading...</div>
         ) : (
           <>
-            <DirectoryClient items={items} tabs={["Bars", "Clubs", "Live Music", "Rooftop Bars", "Pubs, Bars & Clubs"]} mode="nightlife" searchPlaceholder="Search venues or areas" />
+            <DirectoryClient items={items} tabs={["Pubs", "Bars", "Clubs", "Live Music", "Rooftop Bars"]} mode="nightlife" searchPlaceholder="Search venues or areas" />
             {items.some(item => item.sourceName === 'Food Standards Agency') && (
               <p className="mt-10 text-xs leading-6 text-ink/60 dark:text-cream/60">
                 Some listed venues use Food Standards Agency register data under the{' '}

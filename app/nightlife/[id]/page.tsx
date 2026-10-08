@@ -2,9 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { fetchDocument } from "@/lib/firestore";
 import { currentOffer, publicListingStatus, safeExternalUrl, tonightEvent } from "@/lib/nightlifeListing";
+import PhotoCredit from "@/components/PhotoCredit";
 
 export default function NightlifeDetailPage() {
   const params = useParams();
@@ -54,7 +56,7 @@ export default function NightlifeDetailPage() {
   return (
     <main style={{ minHeight: "100vh" }} className="bg-[#f9f7f2] dark:bg-[#0d0d1a]">
       <div style={{ position: "relative", height: "44vh", minHeight: "250px", overflow: "hidden", background: "#1a1a2e" }}>
-        {item.image && <img src={item.image} alt={item.imageIsIllustrative ? 'Illustrative nightlife scene' : item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
+        {item.image && <Image src={item.image} alt={item.imageIsIllustrative ? 'Illustrative nightlife scene' : item.name} fill priority sizes="100vw" style={{ objectFit: "cover" }} />}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(26,26,46,0.9) 100%)" }} />
         {item.imageIsIllustrative && item.image && (
           <span style={{ position: "absolute", top: "16px", right: "16px", color: "#fff", background: "rgba(26,26,46,0.85)", borderRadius: "20px", padding: "5px 11px", fontSize: "0.72rem" }}>Illustrative photo</span>
@@ -71,6 +73,7 @@ export default function NightlifeDetailPage() {
       </div>
 
       <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px 16px 60px" }}>
+        <PhotoCredit item={item} />
         <div className="mb-4 flex flex-wrap items-center gap-2">
           <span className={`rounded-full px-3 py-1 text-xs font-bold ${status === 'Listed' ? 'bg-navy/10 text-navy dark:bg-white/10 dark:text-white' : 'bg-gold text-navy'}`}>
             {status === 'Listed' ? 'Listed venue' : `✓ ${status}`}
@@ -126,7 +129,6 @@ export default function NightlifeDetailPage() {
         <div className="bg-white dark:bg-[#1a1a2e]" style={{ borderRadius: "16px", padding: "20px", marginBottom: "18px", border: "1px solid rgba(26,26,46,0.08)" }}>
           <h2 className="text-navy dark:text-[#f9f7f2]" style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 700, marginBottom: "10px" }}>About</h2>
           <p className="text-[#555] dark:text-[#bbb]" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem", lineHeight: 1.8, margin: 0 }}>{item.description}</p>
-          {item.imageCredit && <p className="mt-3 text-xs text-[#777] dark:text-[#bbb]">Photo: {item.imageCredit}</p>}
           {item.sourceName === 'Food Standards Agency' && item.sourceUrl && (
             <p className="mt-4 text-xs leading-6 text-[#777] dark:text-[#bbb]">
               Listed venue, not a TAP partner. Information from the{' '}

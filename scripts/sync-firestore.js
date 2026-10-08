@@ -19,7 +19,7 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-const PROTECTED_FIELDS = ['image', 'gallery', 'description'];
+const PROTECTED_FIELDS = ['image', 'gallery', 'description', 'imageCredit', 'imageSourceUrl', 'imageLicense', 'imageLicenseUrl'];
 // Nightlife enrichment and partnership details are maintained in admin. The
 // scheduled seed sync must not roll them back on an existing listing.
 const NIGHTLIFE_ADMIN_FIELDS = [
