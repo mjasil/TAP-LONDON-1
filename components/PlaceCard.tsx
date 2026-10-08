@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Clock, MapPin, Navigation, Tag } from "lucide-react";
 import { useState } from "react";
 import { isFullyFree } from '@/lib/entryFee';
+import { publicListingStatus } from '@/lib/nightlifeListing';
 
 export type CardItem = {
   id: string;
@@ -37,6 +38,9 @@ export type CardItem = {
   phone?: string;
   recommended?: boolean;
   familyFriendlyBadge?: boolean;
+  listingStatus?: string;
+  partnerConfirmed?: boolean;
+  musicType?: string;
 };
 
 const VIBE_COLORS: Record<string, { bg: string; text: string }> = {
@@ -73,6 +77,7 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
   const fallbackIcon = mode === "food" ? "🍽️" : mode === "shopping" ? "🛍️" : "📍";
   const icon = item.icon ?? fallbackIcon;
   const vibeStyle = item.vibe ? VIBE_COLORS[item.vibe] : null;
+  const nightlifeStatus = mode === 'nightlife' ? publicListingStatus(item) : 'Listed';
 
   const card = (
     <motion.article
@@ -123,6 +128,10 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
           </div>
         )}
 
+        {nightlifeStatus !== 'Listed' && (
+          <span className="absolute right-3 top-12 rounded-full bg-gold px-2.5 py-1 text-[10px] font-bold text-navy">✓ {nightlifeStatus}</span>
+        )}
+
         {item.familyFriendlyBadge && (
           <div style={{
             position: "absolute", right: "12px", top: item.recommended ? "42px" : "12px",
@@ -162,6 +171,9 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
             <span className="rounded-full bg-navy px-3 py-1 text-xs font-bold text-white dark:bg-gold dark:text-navy">
               {item.priceRange}
             </span>
+          )}
+          {mode === 'nightlife' && item.musicType && (
+            <span className="rounded-full bg-gold/15 px-3 py-1 text-xs font-bold text-navy dark:text-cream">🎵 {item.musicType}</span>
           )}
           {mode === "place" && (
             <span className={`rounded-full px-3 py-1 text-xs font-bold ${paid ? "bg-navy text-white dark:bg-white/20 dark:text-cream" : "bg-gold text-navy"}`}>

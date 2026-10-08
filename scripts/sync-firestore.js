@@ -20,6 +20,15 @@ admin.initializeApp({
 const db = admin.firestore();
 
 const PROTECTED_FIELDS = ['image', 'gallery', 'description'];
+// Nightlife enrichment and partnership details are maintained in admin. The
+// scheduled seed sync must not roll them back on an existing listing.
+const NIGHTLIFE_ADMIN_FIELDS = [
+  'listingStatus', 'partnerConfirmed', 'contactStatus', 'tapRating', 'tapReview',
+  'tapOfferText', 'tapOfferUrl', 'tapOfferExpires', 'tonightEventName',
+  'tonightEventDate', 'eventUrl', 'musicType', 'priceRange', 'openingNights',
+  'websiteUrl', 'bookingUrl', 'instagramUrl', 'tiktokUrl', 'nearestStation',
+  'vibe', 'audience', 'agePolicy', 'imageCredit', 'imageIsIllustrative',
+];
 
 // Maps a data/<file>.json name to its actual Firestore collection name.
 // Mirrors getCollectionName() in the admin panel.
@@ -102,6 +111,7 @@ async function syncSection(sectionFile) {
 
     if (existingIds.has(id)) {
       PROTECTED_FIELDS.forEach(f => delete item[f]);
+      if (sectionFile === 'nightlife') NIGHTLIFE_ADMIN_FIELDS.forEach(f => delete item[f]);
       if (Object.keys(item).length === 0) continue;
       batch.set(ref, item, { merge: true });
       updated++;
