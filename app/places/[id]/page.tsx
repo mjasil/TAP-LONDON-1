@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { fetchDocument } from "@/lib/firestore";
 import ListingStructuredData from '@/components/ListingStructuredData';
+import PhotoCredit from '@/components/PhotoCredit';
+import { safeExternalUrl } from '@/lib/nightlifeListing';
 
 const PLACE_HISTORY: Record<string, { founded: string; history: string; facts: string[] }> = {
   "tower-of-london": { founded: "Founded 1066 by William the Conqueror", history: "The Tower of London was built in the 1070s by William the Conqueror following his victory at the Battle of Hastings. Built from limestone imported from Caen in Normandy, it took nearly 20 years to complete. The Tower has served as a royal palace, political prison, place of execution, royal mint, menagerie, and arsenal.", facts: ["Built in the 1070s by William the Conqueror", "Only 7 people were ever executed inside the Tower walls", "At least 6 ravens must live here by royal decree", "The Crown Jewels have been stored here since the 17th century"] },
@@ -104,9 +106,9 @@ export default function PlaceDetailPage() {
   // own testing: pages with only one photo (no duplication possible) never
   // showed the flash, pages with a gallery always did. Now the gallery
   // only shows genuinely ADDITIONAL photos, not a repeat of the hero.
-  const photos = (place.gallery && place.gallery.length > 0)
-    ? place.gallery.filter(Boolean)
-    : [place.image].filter(Boolean);
+  const photos = Array.isArray(place.gallery)
+    ? place.gallery.filter((photo: string) => photo && photo !== place.image)
+    : [];
 
   return (
     <main className="bg-[#f9f7f2] dark:bg-[#0d0d1a]" style={{ minHeight: "100vh" }}>
@@ -123,6 +125,7 @@ export default function PlaceDetailPage() {
       </div>
 
       <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px 16px 60px" }}>
+        <PhotoCredit item={place} />
         <PhotoGallery photos={photos} name={place.name} />
 
         <div className="bg-white dark:bg-[#1a1a2e] border border-navy/10 dark:border-gold/20" style={{ borderRadius: "16px", padding: "18px 20px", marginBottom: "18px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -167,6 +170,7 @@ export default function PlaceDetailPage() {
           ))}
         </div>
 
+        {safeExternalUrl(place.websiteUrl) && <a href={safeExternalUrl(place.websiteUrl)!} target="_blank" rel="noopener noreferrer" className="mb-3 flex justify-center rounded-full bg-gold px-5 py-3 font-bold text-navy">Official visitor information ↗</a>}
         {place.mapsUrl && <a href={place.mapsUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", width: "100%", background: "#1a1a2e", color: "#c9a84c", padding: "15px", borderRadius: "50px", fontFamily: "'DM Sans',sans-serif", fontSize: "0.95rem", fontWeight: 700, textDecoration: "none", marginBottom: "12px", boxSizing: "border-box" as const }}>📍 Get Directions on Google Maps</a>}
         <Link href="/places" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", background: "transparent", padding: "13px", borderRadius: "50px", fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem", fontWeight: 600, textDecoration: "none", boxSizing: "border-box" as const, border: "2px solid" }} className="text-navy dark:text-[#f9f7f2] border-navy dark:border-[#f9f7f2]">← Back to All Places</Link>
       </div>

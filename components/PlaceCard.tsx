@@ -21,6 +21,8 @@ export type CardItem = {
   icon?: string;
   image?: string;
   imageIsIllustrative?: boolean;
+  imageCredit?: string;
+  imageLicense?: string;
   halal?: boolean;
   verifiedHalal?: boolean;
   description: string;
@@ -107,6 +109,11 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
         {item.imageIsIllustrative && item.image && !imageFailed && (
           <span className="absolute bottom-3 right-3 rounded-full bg-navy/80 px-2.5 py-1 text-[10px] font-semibold text-white">
             Illustrative photo
+          </span>
+        )}
+        {item.imageCredit && item.image && !imageFailed && (
+          <span className="absolute bottom-3 right-3 max-w-[65%] truncate rounded bg-navy/75 px-2 py-1 text-[10px] text-white" title={`Photo: ${item.imageCredit} · ${item.imageLicense || 'see details'}`}>
+            Photo: {item.imageCredit}{item.imageLicense ? ` · ${item.imageLicense}` : ''}
           </span>
         )}
 
