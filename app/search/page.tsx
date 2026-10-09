@@ -4,7 +4,7 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-type Item = { id: string; name: string; category: string; area: string; description: string; image: string; href: string; section: string };
+type Item = { id: string; name: string; category: string; area: string; description: string; image: string; imageCredit: string; imageLicense: string; imageIsIllustrative: boolean; href: string; section: string };
 type Page = { items: Item[]; total: number; nextCursor: string | null };
 const EMPTY: Page = { items: [], total: 0, nextCursor: null };
 
@@ -89,8 +89,14 @@ function Results() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {page.items.map((item, index) => <Link key={`${item.section}:${item.id}:${index}`} href={item.href}
               className="overflow-hidden rounded-2xl border border-navy/10 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-cream/10 dark:bg-navy">
-              {item.image ? <img src={item.image} alt={item.name} loading="lazy" decoding="async" className="h-44 w-full object-cover" />
-                : <div className="flex h-44 items-center justify-center bg-navy/10 text-3xl" aria-hidden="true">📍</div>}
+              <div className="relative">
+                {item.image ? <img src={item.image} alt={item.imageIsIllustrative ? 'Illustrative London scene' : item.name} loading="lazy" decoding="async" className="h-44 w-full object-cover" />
+                  : <div className="flex h-44 items-center justify-center bg-navy/10 text-3xl" aria-hidden="true">📍</div>}
+                {item.imageIsIllustrative && <span className="absolute left-2 top-2 rounded bg-navy/75 px-2 py-1 text-[10px] text-white">Illustrative photo</span>}
+                {item.image && item.imageCredit && <span className="absolute bottom-2 right-2 max-w-[85%] truncate rounded bg-navy/75 px-2 py-1 text-[10px] text-white" title={`Photo: ${item.imageCredit} · ${item.imageLicense}`}>
+                  Photo: {item.imageCredit}{item.imageLicense ? ` · ${item.imageLicense}` : ''}
+                </span>}
+              </div>
               <div className="p-5">
                 <p className="text-xs font-bold uppercase tracking-wide text-gold">{item.section.replace('-', ' ')} · {item.category}</p>
                 <h2 className="mt-2 font-heading text-xl font-bold text-navy dark:text-cream">{item.name}</h2>

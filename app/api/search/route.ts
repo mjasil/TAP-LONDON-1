@@ -27,14 +27,19 @@ function decodeCursor(value: string | null): CursorState {
 
 function searchOptions(section: string, q: string) {
   const intent: Record<string, string[]> = {
-    places: ['places', 'attractions', 'visit london'],
-    food: ['food', 'restaurants', 'eat'],
+    places: ['places', 'visit london'],
+    food: ['food', 'eat'],
     shopping: ['shopping', 'shops'],
-    nightlife: ['nightlife', 'pubs', 'clubs', 'bars'],
+    nightlife: ['nightlife'],
     kids: ['kids', 'family', 'children'],
     hotels: ['hotels', 'stay', 'accommodation'],
   };
   if (intent[section]?.includes(q)) return { search: '' };
+  if (section === 'nightlife' && q === 'pubs') return { category: 'Pubs' };
+  if (section === 'nightlife' && q === 'clubs') return { category: 'Clubs' };
+  if (section === 'nightlife' && q === 'bars') return { category: 'Bars' };
+  if (section === 'food' && q === 'restaurants') return { category: 'Restaurants' };
+  if (section === 'places' && q === 'attractions') return { category: 'Top Attractions' };
   if (q === 'free' && (section === 'places' || section === 'kids')) return { filter: 'free' };
   if (q === 'halal' && section === 'food') return { filter: 'halal' };
   if (q === 'rooftop' && section === 'nightlife') return { filter: 'rooftop' };
@@ -60,7 +65,9 @@ export async function GET(request: NextRequest) {
           items: page.items.map(item => ({
             id: item.id, name: item.name, category: item.category || section,
             area: item.area || item.location || '', description: item.description || '',
-            image: item.image || '', href: listingRoute(section, item.id), section,
+            image: item.image || '', imageCredit: item.imageCredit || '',
+            imageLicense: item.imageLicense || '', imageIsIllustrative: item.imageIsIllustrative === true,
+            href: listingRoute(section, item.id), section,
           })),
         };
       }),
@@ -79,12 +86,14 @@ export async function GET(request: NextRequest) {
           items: selected.map(item => ({
             id: item.id, name: item.name, category: item.category || config.label,
             area: item.area || item.location || '', description: item.description || '',
-            image: item.image || '', href: listingRoute(config.path, item.id), section: config.path,
+            image: item.image || '', imageCredit: item.imageCredit || '',
+            imageLicense: item.imageLicense || '', imageIsIllustrative: item.imageIsIllustrative === true,
+            href: listingRoute(config.path, item.id), section: config.path,
           })),
         };
       }),
     ]);
-    const items = results.reduce<Array<{ id: string; name: string; category: string; area: string; description: string; image: string; href: string; section: string }>>(
+    const items = results.reduce<Array<{ id: string; name: string; category: string; area: string; description: string; image: string; imageCredit: string; imageLicense: string; imageIsIllustrative: boolean; href: string; section: string }>>(
       (all, result) => { all.push(...result.items); return all; }, [],
     );
     const total = typeof state.__total === 'number' && state.__total >= 0
