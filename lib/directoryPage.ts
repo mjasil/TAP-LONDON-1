@@ -73,10 +73,13 @@ async function firestorePost(endpoint: string, body: object) {
 
 export async function fetchDirectoryPage(
   section: string,
-  { category = 'All', search = '', filter = '', cursor = '' }:
-    { category?: string; search?: string; filter?: string; cursor?: string } = {},
+  { category = 'All', search = '', filter = '', cursor = '', pageSize = DIRECTORY_PAGE_SIZE }:
+    { category?: string; search?: string; filter?: string; cursor?: string; pageSize?: number } = {},
 ): Promise<DirectoryPage> {
   if (!SECTIONS.has(section)) throw new Error('Unknown directory section');
+  if (!Number.isInteger(pageSize) || pageSize < 1 || pageSize > DIRECTORY_PAGE_SIZE) {
+    throw new Error('Invalid directory page size');
+  }
   const base = queryFor(section, category, search, filter);
   const page = queryFor(section, category, search, filter, cursor);
   const [pageRows, countRows] = await Promise.all([
@@ -84,7 +87,7 @@ export async function fetchDirectoryPage(
       structuredQuery: {
         ...page,
         select: { fields: CARD_FIELDS.map(fieldPath => ({ fieldPath })) },
-        limit: DIRECTORY_PAGE_SIZE + 1,
+        limit: pageSize + 1,
       },
     }),
     firestorePost('runAggregationQuery', {
@@ -95,13 +98,13 @@ export async function fetchDirectoryPage(
     }),
   ]);
   const docs = pageRows.filter((row: any) => row.document).map((row: any) => row.document);
-  const visible = docs.slice(0, DIRECTORY_PAGE_SIZE);
+  const visible = docs.slice(0, pageSize);
   return {
     items: visible.map((doc: any) => ({
       ...parseFields(doc.fields || {}),
       id: doc.name.split('/').at(-1),
     })),
     total: Number(countRows[0]?.result?.aggregateFields?.total?.integerValue || 0),
-    nextCursor: docs.length > DIRECTORY_PAGE_SIZE ? visible.at(-1)?.name.split('/').at(-1) || null : null,
+    nextCursor: docs.length > pageSize ? visible.at(-1)?.name.split('/').at(-1) || null : null,
   };
 }

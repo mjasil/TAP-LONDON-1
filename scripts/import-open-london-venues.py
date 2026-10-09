@@ -197,7 +197,8 @@ def commons_metadata(files):
         batch = files[offset:offset + 30]
         params = urllib.parse.urlencode({
             "action": "query", "format": "json", "prop": "imageinfo",
-            "iiprop": "url|extmetadata", "titles": "|".join("File:" + file for file in batch),
+            "iiprop": "url|extmetadata", "iiurlwidth": "900",
+            "titles": "|".join("File:" + file for file in batch),
         })
         pages = request_json("https://commons.wikimedia.org/w/api.php?" + params)["query"]["pages"]
         for page in pages.values():
@@ -215,7 +216,7 @@ def commons_metadata(files):
             if len(artist) < 2 or "unknown" in artist.lower():
                 continue
             result[page["title"].removeprefix("File:").replace("_", " ")] = {
-                "image": info["url"].split("?", 1)[0].replace("http://", "https://"),
+                "image": (info.get("thumburl") or info["url"]).split("?", 1)[0].replace("http://", "https://"),
                 "imageSourceUrl": info["descriptionurl"],
                 "imageLicense": license_name,
                 "imageLicenseUrl": metadata.get("LicenseUrl", "https://creativecommons.org/publicdomain/zero/1.0/"),

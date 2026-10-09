@@ -1,201 +1,118 @@
 'use client';
 
-import { useEffect, useState, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { fetchCollection } from '@/lib/firestore';
-import { listingRoute } from '@/lib/listingRoute';
 
-const SECTION_CONFIG: { collection: string; type: string; hrefBase: string; label: string; color: string }[] = [
-  { collection: 'places',      type: 'place',      hrefBase: '/places',      label: 'Place',      color: '#c9a84c' },
-  { collection: 'food',        type: 'food',        hrefBase: '/food',        label: 'Food',        color: '#d4956a' },
-  { collection: 'shopping',    type: 'shopping',    hrefBase: '/shopping',    label: 'Shopping',    color: '#9ab8d4' },
-  { collection: 'nightlife',   type: 'nightlife',   hrefBase: '/nightlife',   label: 'Nightlife',   color: '#b18ad4' },
-  { collection: 'kids',        type: 'kids',        hrefBase: '/kids',        label: 'Kids',        color: '#7ac9a0' },
-  { collection: 'muslim',      type: 'muslim',      hrefBase: '/muslim',      label: 'Muslim Guide', color: '#6abf8f' },
-  { collection: 'hotels',      type: 'hotels',      hrefBase: '/hotels',      label: 'Hotel',       color: '#d4a574' },
-  { collection: 'offers',      type: 'offers',      hrefBase: '/offers',      label: 'Offer',       color: '#e8b020' },
-  { collection: 'hiddenGems',  type: 'hidden-gems', hrefBase: '/hidden-gems', label: 'Hidden Gem',  color: '#9d7ad4' },
-  { collection: 'trending',    type: 'trending',    hrefBase: '/trending',    label: 'Trending',    color: '#e55a5a' },
-  { collection: 'sports',      type: 'sports',      hrefBase: '/sports',      label: 'Sports',      color: '#5ab0e5' },
-];
+type Item = { id: string; name: string; category: string; area: string; description: string; image: string; href: string; section: string };
+type Page = { items: Item[]; total: number; nextCursor: string | null };
+const EMPTY: Page = { items: [], total: 0, nextCursor: null };
 
-type IntentRule = { keywords: string[]; test: (item: any) => boolean; boost: number };
+async function getPage(q: string, cursor = '', signal?: AbortSignal): Promise<Page> {
+  const params = new URLSearchParams({ q });
+  if (cursor) params.set('cursor', cursor);
+  const response = await fetch(`/api/search?${params}`, { signal, cache: 'no-store' });
+  if (!response.ok) throw new Error('Search failed');
+  return response.json();
+}
 
-const INTENT_RULES: IntentRule[] = [
-  { keywords: ['halal'], test: (i) => i.halal === 'halal', boost: 40 },
-  { keywords: ['cheap', 'budget', 'affordable', 'low cost', 'inexpensive'],
-    test: (i) => (i.priceType || '').toLowerCase() === 'free' || (i.priceRangeLevel ?? 9) <= 1, boost: 35 },
-  { keywords: ['free'], test: (i) => (i.priceType || '').toLowerCase() === 'free', boost: 45 },
-  { keywords: ['luxury', 'expensive', 'high end', 'premium', '5 star', 'five star'],
-    test: (i) => (i.priceRangeLevel ?? 0) >= 3 || (i.category || '').toLowerCase().includes('5-star'), boost: 35 },
-  { keywords: ['family', 'kids', 'children'], test: (i) => i.type === 'kids' || i.familyFriendly, boost: 30 },
-  { keywords: ['rooftop'], test: (i) => /rooftop/i.test(i.name + ' ' + i.description + ' ' + i.tags), boost: 30 },
-  { keywords: ['late night', 'late', 'midnight', 'after hours'],
-    test: (i) => /late|midnight|24[- ]?hour/i.test(i.description + ' ' + i.tags), boost: 25 },
-  { keywords: ['hidden gem', 'hidden gems', 'secret', 'unusual', 'off the beaten path'],
-    test: (i) => i.type === 'hidden-gems', boost: 40 },
-  { keywords: ['best', 'top', 'top rated', 'must see', 'must-see'],
-    test: (i) => (i.rating ?? 0) >= 4 || (i.category || '').toLowerCase().includes('top'), boost: 20 },
-  { keywords: ['hotel', 'hotels', 'stay', 'accommodation'], test: (i) => i.type === 'hotels', boost: 25 },
-];
+function Results() {
+  const router = useRouter();
+  const q = (useSearchParams().get('q') || '').trim().slice(0, 60);
+  const [draft, setDraft] = useState(q);
+  const [page, setPage] = useState<Page>(EMPTY);
+  const [loading, setLoading] = useState(false);
+  const [moreLoading, setMoreLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const generation = useRef(0);
 
-function scoreMatch(item: any, query: string): number {
-  const q = query.toLowerCase();
-  const name = (item.name || '').toLowerCase();
-  const haystack = [item.category, item.area, item.description, item.cuisine, item.tags, item.halal, item.priceType]
-    .join(' ')
-    .toLowerCase();
+  useEffect(() => {
+    setDraft(q);
+    const current = ++generation.current;
+    if (q.length < 2) { setPage(EMPTY); setLoading(false); setError(false); return; }
+    const controller = new AbortController();
+    setLoading(true);
+    setError(false);
+    getPage(q, '', controller.signal)
+      .then(result => { if (generation.current === current) setPage(result); })
+      .catch(() => { if (!controller.signal.aborted) setError(true); })
+      .finally(() => { if (generation.current === current) setLoading(false); });
+    return () => controller.abort();
+  }, [q]);
 
-  let score = 0;
-  if (name === q) score += 100;
-  else if (name.startsWith(q)) score += 60;
-  else if (name.includes(q)) score += 35;
-
-  const words = q.split(/\s+/).filter(Boolean);
-  words.forEach(w => {
-    if (name.includes(w)) score += 12;
-    if (haystack.includes(w)) score += 6;
-  });
-
-  for (const rule of INTENT_RULES) {
-    const matchedKeyword = rule.keywords.some(kw => q.includes(kw));
-    if (matchedKeyword && rule.test(item)) {
-      score += rule.boost;
+  async function showMore() {
+    if (!page.nextCursor || moreLoading) return;
+    const current = generation.current;
+    setMoreLoading(true);
+    setError(false);
+    try {
+      const next = await getPage(q, page.nextCursor);
+      if (generation.current === current) setPage(previous => ({ ...next, items: [...previous.items, ...next.items] }));
+    } catch {
+      if (generation.current === current) setError(true);
+    } finally {
+      setMoreLoading(false);
     }
   }
 
-  return score;
-}
-
-function SearchResults() {
-  const params = useSearchParams();
-  const router = useRouter();
-  const q = params.get('q') || '';
-  const [results, setResults] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(18);
-
-  useEffect(() => {
-    let cancelled = false;
-    async function run() {
-      setLoading(true);
-      setVisibleCount(18);
-      const all: any[] = [];
-      await Promise.all(
-        SECTION_CONFIG.map(async (cfg) => {
-          const items = await fetchCollection(cfg.collection);
-          if (!items) return;
-          items.forEach((item: any) => {
-            const priceStr = (item.priceRange || '').toString();
-            all.push({
-              id: item.id,
-              name: item.name,
-              category: item.category || item.section || item.sport || cfg.label,
-              area: item.area || item.location || '',
-              description: item.description || '',
-              cuisine: item.cuisine || '',
-              tags: Array.isArray(item.tags) ? item.tags.join(' ') : '',
-              halal: item.halal === true || item.halal === 'halal' || item.verifiedHalal === true ? 'halal' : '',
-              priceType: item.priceType || '',
-              priceRangeLevel: (priceStr.match(/£/g) || []).length,
-              rating: parseFloat(item.rating) || 0,
-              familyFriendly: !!item.familyFriendly,
-              type: cfg.type,
-              href: listingRoute(cfg.hrefBase, item.id),
-              image: item.image,
-              imageIsIllustrative: item.imageIsIllustrative,
-              label: cfg.label,
-              color: cfg.color,
-            });
-          });
-        })
-      );
-      if (cancelled) return;
-      const scored = all
-        .map(item => ({ ...item, score: scoreMatch(item, q) }))
-        .filter(item => item.score > 0)
-        .sort((a, b) => b.score - a.score);
-      setResults(scored);
-      setLoading(false);
-    }
-    if (q.trim().length >= 2) run();
-    else { setResults([]); setLoading(false); }
-    return () => { cancelled = true; };
-  }, [q]);
-
   return (
-    <main className="bg-[#f9f7f2] dark:bg-[#0d0d1a]" style={{ minHeight: '100vh' }}>
-      <div style={{ background: '#1a1a2e', padding: '50px 20px 34px' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', color: '#c9a84c', fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase' as const, marginBottom: '10px' }}>Search</p>
-          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.6rem, 4vw, 2.6rem)', fontWeight: 700, color: '#ffffff', margin: '0 0 8px' }}>
-            {q ? `Results for "${q}"` : 'Search TAP LONDON'}
-          </h1>
-          {!loading && q && (
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>
-              {results.length} {results.length === 1 ? 'result' : 'results'} found
-            </p>
-          )}
+    <main className="min-h-screen bg-[#f9f7f2] dark:bg-[#0d0d1a]">
+      <div className="bg-navy px-5 py-12 text-white">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Search</p>
+          <h1 className="mt-3 font-heading text-3xl font-bold sm:text-5xl">Explore London</h1>
+          <form onSubmit={event => {
+            event.preventDefault();
+            router.push(draft.trim().length >= 2 ? `/search?q=${encodeURIComponent(draft.trim())}` : '/search');
+          }} className="mt-6 flex max-w-2xl gap-2">
+            <input type="search" value={draft} onChange={event => setDraft(event.target.value)}
+              aria-label="Search TAP London" placeholder="Search places, food, pubs or areas"
+              className="min-h-12 min-w-0 flex-1 rounded-full bg-white px-5 text-sm text-navy outline-none focus:ring-2 focus:ring-gold" />
+            <button className="min-h-12 rounded-full bg-gold px-6 text-sm font-bold text-navy">Search</button>
+          </form>
+          {q.length >= 2 && !loading && !error && <p className="mt-4 text-sm text-white/75" aria-live="polite">
+            {page.total.toLocaleString()} {page.total === 1 ? 'result' : 'results'} for “{q}”
+          </p>}
         </div>
       </div>
-
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 20px 80px' }}>
-        {loading ? (
-          <div role="status" aria-label="Finding London listings">
-            <p className="mb-5 text-sm text-ink/70 dark:text-cream/70">Finding places that match your search…</p>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {Array.from({ length: 6 }, (_, i) => (
-                <div key={i} className="overflow-hidden rounded-xl border border-navy/10 bg-white dark:bg-navy" aria-hidden="true">
-                  <div className="h-36 animate-pulse bg-navy/10 dark:bg-white/10" />
-                  <div className="space-y-3 p-4"><div className="h-4 w-2/3 animate-pulse rounded bg-navy/10 dark:bg-white/10" /><div className="h-3 w-1/2 animate-pulse rounded bg-navy/10 dark:bg-white/10" /></div>
-                </div>
-              ))}
-            </div>
+      <div className="mx-auto max-w-6xl px-5 py-10">
+        {q.length < 2 && <div>
+          <p className="text-sm text-ink/70 dark:text-cream/70">Search by venue name or area, or browse a section.</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {['places', 'food', 'kids', 'nightlife', 'shopping', 'hotels'].map(section =>
+              <Link key={section} href={`/${section}`} className="rounded-full bg-white px-5 py-3 text-sm font-bold capitalize text-navy shadow-sm dark:bg-navy dark:text-cream">{section}</Link>)}
           </div>
-        ) : results.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '60px', color: 'rgba(26,26,46,0.4)', fontFamily: "'DM Sans', sans-serif" }}>
-            {q ? `No results for "${q}". Try a different search.` : 'Type something to search.'}
+        </div>}
+        {loading && <p role="status" className="py-12 text-center text-sm text-ink/70 dark:text-cream/70">Finding London listings…</p>}
+        {error && <p role="alert" className="py-6 text-sm text-red-700">Search could not be loaded. Please try again.</p>}
+        {!loading && q.length >= 2 && !error && <>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {page.items.map((item, index) => <Link key={`${item.section}:${item.id}:${index}`} href={item.href}
+              className="overflow-hidden rounded-2xl border border-navy/10 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-cream/10 dark:bg-navy">
+              {item.image ? <img src={item.image} alt={item.name} loading="lazy" decoding="async" className="h-44 w-full object-cover" />
+                : <div className="flex h-44 items-center justify-center bg-navy/10 text-3xl" aria-hidden="true">📍</div>}
+              <div className="p-5">
+                <p className="text-xs font-bold uppercase tracking-wide text-gold">{item.section.replace('-', ' ')} · {item.category}</p>
+                <h2 className="mt-2 font-heading text-xl font-bold text-navy dark:text-cream">{item.name}</h2>
+                {item.area && <p className="mt-2 text-sm font-semibold text-ink/65 dark:text-cream/70">📍 {item.area}</p>}
+                {item.description && <p className="mt-3 line-clamp-2 text-sm leading-6 text-ink/70 dark:text-cream/70">{item.description}</p>}
+              </div>
+            </Link>)}
           </div>
-        ) : (
-          <div>
-            <p className="mb-4 text-sm font-semibold text-ink/70 dark:text-cream/70">Showing {Math.min(visibleCount, results.length)} of {results.length} results</p>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {results.slice(0, visibleCount).map((r, i) => (
-              <Link key={r.type + r.id + i} href={r.href} style={{ textDecoration: 'none' }}>
-                <div className="flex h-full flex-col bg-white transition-shadow hover:shadow-lg dark:bg-[#1a1a2e]" style={{ borderRadius: '14px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid rgba(201,168,76,0.1)', cursor: 'pointer' }}>
-                  {r.image && (
-                    <div style={{ height: '150px', overflow: 'hidden', position: 'relative' }}>
-                      <img src={r.image} alt={r.imageIsIllustrative ? 'Illustrative nightlife scene' : r.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                      {r.imageIsIllustrative && <span style={{ position: 'absolute', right: '8px', bottom: '8px', padding: '3px 8px', borderRadius: '20px', color: '#fff', background: 'rgba(26,26,46,0.85)', fontSize: '0.65rem' }}>Illustrative photo</span>}
-                    </div>
-                  )}
-                  <div className="flex flex-1 flex-col" style={{ padding: '14px' }}>
-                    <div style={{
-                      display: 'inline-block', fontFamily: "'DM Sans', sans-serif", fontSize: '0.62rem', fontWeight: 700,
-                      letterSpacing: '0.8px', textTransform: 'uppercase' as const, color: r.color,
-                      background: `${r.color}18`, padding: '3px 8px', borderRadius: '20px', marginBottom: '8px',
-                    }}>{r.label}</div>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.3rem', fontWeight: 700, color: '#1a1a2e' }} className="dark:text-white">{r.name}</div>
-                    {r.area && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: '#888', marginTop: '4px' }}>📍 {r.area}</p>}
-                    {r.description && <p className="mt-2 line-clamp-2 text-sm leading-5 text-ink/70 dark:text-cream/70">{r.description}</p>}
-                  </div>
-                </div>
-              </Link>
-            ))}
-            </div>
-            {visibleCount < results.length && <button type="button" onClick={() => setVisibleCount(count => count + 18)} className="mx-auto mt-8 block rounded-full border border-navy/25 px-6 py-3 text-sm font-bold text-navy transition-colors hover:bg-navy hover:text-white dark:border-gold/50 dark:text-cream">Show more results</button>}
-          </div>
-        )}
+          {page.items.length === 0 && <p className="py-12 text-center text-sm text-ink/65 dark:text-cream/65">No matches yet. Try a venue name, area or another keyword.</p>}
+          {page.nextCursor && <div className="mt-10 text-center">
+            <p className="mb-3 text-sm text-ink/65 dark:text-cream/65">Showing {page.items.length.toLocaleString()} of {page.total.toLocaleString()}</p>
+            <button type="button" onClick={showMore} disabled={moreLoading}
+              className="min-h-12 rounded-full bg-navy px-7 text-sm font-bold text-white disabled:opacity-50 dark:bg-gold dark:text-navy">
+              {moreLoading ? 'Loading…' : 'Show more results'}
+            </button>
+          </div>}
+        </>}
       </div>
     </main>
   );
 }
 
 export default function SearchPage() {
-  return (
-    <Suspense fallback={<div style={{ minHeight: '100vh', background: '#0d0d1a' }} />}>
-      <SearchResults />
-    </Suspense>
-  );
+  return <Suspense fallback={<main className="min-h-screen bg-[#f9f7f2] p-8 dark:bg-[#0d0d1a]">Loading search…</main>}><Results /></Suspense>;
 }
