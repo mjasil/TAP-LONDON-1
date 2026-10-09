@@ -11,7 +11,7 @@ export default function PlacesPageClient({ initialPage }: { initialPage: Directo
           <p className="mt-5 text-base leading-7 text-ink/70 dark:text-cream/70 sm:text-lg sm:leading-8"><strong className="font-bold text-navy dark:text-cream">Explore the city</strong> through attractions, museums, parks and local landmarks.</p>
         </div>
         <PagedDirectoryClient section="places" mode="place" initialPage={initialPage}
-          tabs={['Top Attractions', 'Hidden Gems', 'Photo Spots', 'Free Things']}
+          tabs={['Top Attractions', 'Museums & Galleries', 'Parks & Gardens', 'Hidden Gems', 'Photo Spots', 'Free Things']}
           filters={[{ label: 'Free', value: 'free' }]}
           searchPlaceholder="Search places, areas, or attractions" />
       </div>
