@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { fetchDocument } from "@/lib/firestore";
 import { currentOffer, publicListingStatus, safeExternalUrl, tonightEvent } from "@/lib/nightlifeListing";
 import PhotoCredit from "@/components/PhotoCredit";
+import ListingSource from "@/components/ListingSource";
 
 export default function NightlifeDetailPage() {
   const params = useParams();
@@ -129,6 +130,7 @@ export default function NightlifeDetailPage() {
         <div className="bg-white dark:bg-[#1a1a2e]" style={{ borderRadius: "16px", padding: "20px", marginBottom: "18px", border: "1px solid rgba(26,26,46,0.08)" }}>
           <h2 className="text-navy dark:text-[#f9f7f2]" style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 700, marginBottom: "10px" }}>About</h2>
           <p className="text-[#555] dark:text-[#bbb]" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem", lineHeight: 1.8, margin: 0 }}>{item.description}</p>
+          <ListingSource item={item} />
           {item.sourceName === 'Food Standards Agency' && item.sourceUrl && (
             <p className="mt-4 text-xs leading-6 text-[#777] dark:text-[#bbb]">
               Listed venue, not a TAP partner. Information from the{' '}

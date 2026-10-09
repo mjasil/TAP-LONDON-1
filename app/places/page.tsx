@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import PlacesPageClient from './PlacesPageClient';
-import { fetchCollection } from '@/lib/firestore';
+import { fetchDirectoryPage } from '@/lib/directoryPage';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,6 +17,6 @@ export const metadata: Metadata = {
 };
 
 export default async function PlacesPage() {
-  const items = await fetchCollection('places');
-  return <PlacesPageClient initialItems={items || []} />;
+  const initialPage = await fetchDirectoryPage('places');
+  return <PlacesPageClient initialPage={initialPage} />;
 }

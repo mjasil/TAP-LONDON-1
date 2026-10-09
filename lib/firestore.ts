@@ -21,7 +21,7 @@ function parseFieldValue(field: any): any {
   return undefined;
 }
 
-function parseFields(fields: Record<string, any>): any {
+export function parseFields(fields: Record<string, any>): any {
   const obj: any = {};
   Object.keys(fields).forEach(key => {
     obj[key] = parseFieldValue(fields[key]);

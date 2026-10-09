@@ -182,7 +182,7 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
           {mode === 'nightlife' && item.musicType && (
             <span className="rounded-full bg-gold/15 px-3 py-1 text-xs font-bold text-navy dark:text-cream">🎵 {item.musicType}</span>
           )}
-          {mode === "place" && (
+          {mode === "place" && item.priceType !== 'Check venue' && (
             <span className={`rounded-full px-3 py-1 text-xs font-bold ${paid ? "bg-navy text-white dark:bg-white/20 dark:text-cream" : "bg-gold text-navy"}`}>
               {paid ? "Paid" : "Free"}
             </span>
@@ -199,7 +199,7 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
           )}
         </div>
 
-        <h2 className="mt-4 font-heading text-2xl font-bold leading-tight text-navy dark:text-cream">
+        <h2 className="mt-4 font-heading text-2xl font-bold leading-tight text-navy dark:text-cream sm:text-[1.65rem]">
           {item.name}
         </h2>
 
