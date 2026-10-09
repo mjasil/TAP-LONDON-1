@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { fetchDocument } from "@/lib/firestore";
 import ListingStructuredData from '@/components/ListingStructuredData';
 import PhotoCredit from '@/components/PhotoCredit';
+import ListingSource from '@/components/ListingSource';
 import { safeExternalUrl } from '@/lib/nightlifeListing';
 
 const PLACE_HISTORY: Record<string, { founded: string; history: string; facts: string[] }> = {
@@ -138,6 +139,7 @@ export default function PlaceDetailPage() {
         <div className="bg-white dark:bg-[#1a1a2e] border border-navy/10 dark:border-gold/20" style={{ borderRadius: "16px", padding: "20px", marginBottom: "18px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}>
           <h2 className="text-navy dark:text-[#f9f7f2]" style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 700, marginBottom: "10px", marginTop: 0 }}>About {place.name}</h2>
           <p className="text-[#444] dark:text-[#ccc]" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem", lineHeight: 1.8, margin: 0 }}>{place.description}</p>
+          <ListingSource item={place} />
         </div>
 
         {history && (

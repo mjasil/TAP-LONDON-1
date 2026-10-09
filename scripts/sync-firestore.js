@@ -10,6 +10,8 @@
 const admin = require('firebase-admin');
 const fs = require('fs');
 const path = require('path');
+const { isDeepStrictEqual } = require('node:util');
+const { directoryKeys } = require('./directory-keys');
 
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 
@@ -63,7 +65,8 @@ async function syncSection(sectionFile) {
   const colRef = db.collection(collectionName);
 
   const existingSnap = await colRef.get();
-  const existingIds = new Set(existingSnap.docs.map(d => d.id));
+  const existingById = new Map(existingSnap.docs.map(d => [d.id, d.data()]));
+  const existingIds = new Set(existingById.keys());
 
   // The broad FSA nightlife import was withdrawn. Remove only its previously
   // synced documents that are no longer in the JSON, leaving curated and
@@ -97,10 +100,14 @@ async function syncSection(sectionFile) {
   let added = 0;
   let updated = 0;
   let skippedDeleted = 0;
+  let unchanged = 0;
 
   for (let i = 0; i < items.length; i++) {
     const item = { ...items[i] };
     const id = item.id || slugify(item.name || `item-${i}`);
+    if (['places', 'food', 'nightlife', 'kids', 'hotels', 'shopping'].includes(sectionFile)) {
+      item.directoryKeys = directoryKeys(item, sectionFile);
+    }
 
     if (!existingIds.has(id) && deletedIds.has(id)) {
       skippedDeleted++;
@@ -112,8 +119,15 @@ async function syncSection(sectionFile) {
     if (existingIds.has(id)) {
       PROTECTED_FIELDS.forEach(f => delete item[f]);
       if (sectionFile === 'nightlife') NIGHTLIFE_ADMIN_FIELDS.forEach(f => delete item[f]);
-      if (Object.keys(item).length === 0) continue;
-      batch.set(ref, item, { merge: true });
+      const existing = existingById.get(id);
+      const changes = Object.fromEntries(Object.entries(item).filter(([key, value]) =>
+        !isDeepStrictEqual(value, existing[key])
+      ));
+      if (Object.keys(changes).length === 0) {
+        unchanged++;
+        continue;
+      }
+      batch.set(ref, changes, { merge: true });
       updated++;
     } else {
       batch.set(ref, { ...item, order: i }, { merge: true });
@@ -129,7 +143,7 @@ async function syncSection(sectionFile) {
   }
 
   if (count > 0) await batch.commit();
-  console.log(`${sectionFile}: ${added} new, ${updated} updated, ${skippedDeleted} skipped (previously deleted)`);
+  console.log(`${sectionFile}: ${added} new, ${updated} changed, ${unchanged} unchanged, ${skippedDeleted} skipped (previously deleted)`);
 }
 
 const SECTIONS = [
@@ -141,15 +155,17 @@ const SECTIONS = [
 
 async function main() {
   console.log('Starting scheduled Firestore sync...');
+  let failures = 0;
   for (const section of SECTIONS) {
     try {
       await syncSection(section);
     } catch (e) {
       console.error(`Error syncing ${section}:`, e.message);
+      failures++;
     }
   }
-  console.log('Sync complete.');
-  process.exit(0);
+  console.log(`Sync complete with ${failures} failed sections.`);
+  process.exitCode = failures ? 1 : 0;
 }
 
 main();

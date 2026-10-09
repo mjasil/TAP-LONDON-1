@@ -102,7 +102,7 @@ function getSmartFilters(mode: string): SmartFilter[] {
 export default function DirectoryClient({
   items, tabs, mode = "place", searchPlaceholder = "Search...", showSearch = true
 }: DirectoryClientProps) {
-  const [active, setActive] = useState(mode === 'nightlife' ? 'All' : tabs[0] ?? 'All');
+  const [active, setActive] = useState('All');
   const [query, setQuery] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [savedKeys, setSavedKeys] = useState<string[]>([]);
@@ -231,18 +231,25 @@ export default function DirectoryClient({
         </div>
       )}
 
-      <p className="text-sm font-semibold text-ink/62 dark:text-cream/60">
-        {filtered.length} results
-        {activeFilters.length > 0 && (
-          <button
-            onClick={() => setActiveFilters([])}
-            style={{ marginLeft: "8px", color: "#c9a84c", fontSize: "0.75rem", fontWeight: 700, background: "none", border: "none", cursor: "pointer" }}
-          >
-            ✕ Clear {activeFilters.length} filter{activeFilters.length > 1 ? 's' : ''}
-          </button>
-        )}
-      </p>
-      <Link href="/saved" className="text-sm font-semibold text-gold">View saved places ({savedKeys.length}) →</Link>
+      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 border-b border-navy/10 pb-4 dark:border-cream/15" aria-live="polite">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <p className="font-heading text-3xl font-bold leading-none text-navy dark:text-cream sm:text-4xl">
+            {filtered.length.toLocaleString()}
+          </p>
+          <span className="text-sm font-bold text-ink/65 dark:text-cream/70">
+            {filtered.length === 1 ? 'result' : 'results'}
+          </span>
+          {activeFilters.length > 0 && (
+            <button
+              onClick={() => setActiveFilters([])}
+              className="min-h-11 rounded-full px-3 text-xs font-bold text-gold hover:bg-gold/10"
+            >
+              ✕ Clear {activeFilters.length} filter{activeFilters.length > 1 ? 's' : ''}
+            </button>
+          )}
+        </div>
+        <Link href="/saved" className="inline-flex min-h-11 items-center text-sm font-bold text-gold">View saved places ({savedKeys.length}) →</Link>
+      </div>
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.slice(0, visibleCount).map((item) => (

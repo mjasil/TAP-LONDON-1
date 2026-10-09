@@ -1,14 +1,13 @@
 name: Sync Content to Firestore
 
 on:
-  schedule:
-    # Runs every 30 minutes
-    - cron: '*/30 * * * *'
   workflow_dispatch: {}  # allows manual trigger from the Actions tab too
   push:
     branches: [main]
     paths:
       - 'data/**.json'  # also runs automatically whenever data files change
+      - 'scripts/sync-firestore.js'
+      - 'scripts/directory-keys.js'
 
 jobs:
   sync:
