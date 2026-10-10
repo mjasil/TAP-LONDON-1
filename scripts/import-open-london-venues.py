@@ -228,7 +228,7 @@ def commons_metadata(files):
             if len(artist) < 2 or "unknown" in artist.lower():
                 continue
             result[page["title"].removeprefix("File:").replace("_", " ")] = {
-                "image": info["url"].split("?", 1)[0].replace("http://", "https://"),
+                "image": (info.get("thumburl") or info["url"]).split("?", 1)[0].replace("http://", "https://"),
                 "imageSourceUrl": info["descriptionurl"],
                 "imageLicense": license_name,
                 "imageLicenseUrl": metadata.get("LicenseUrl", "https://creativecommons.org/publicdomain/zero/1.0/"),
