@@ -6,7 +6,9 @@ factual names/locations and Wikimedia Commons photo references. A currently
 mapped OpenStreetMap feature near the coordinates can corroborate the venue.
 Only Commons files with a reusable license and recorded credit are selected.
 Run with --section nightlife|food|places|kids|hotels and inspect --output JSON
-before merging it into the curated data file.
+before merging it into the curated data file. For a focused bar review, pass
+--section nightlife --category Bars --existing data/nightlife.json. Candidates
+still require editorial checks of current operation and photo identity.
 """
 
 import argparse
@@ -25,7 +27,12 @@ CENTER = "Point(-0.1278 51.5074)"
 RADIUS_KM = 15
 
 TYPES = {
-    "nightlife": {"Q212198": ("Pubs", 'amenity', 'pub'), "Q622425": ("Clubs", 'amenity', 'nightclub')},
+    "nightlife": {
+        "Q212198": ("Pubs", "amenity", "pub"),
+        "Q622425": ("Clubs", "amenity", "nightclub"),
+        "Q187456": ("Bars", "amenity", "bar"),
+        "Q1922416": ("Bars", "amenity", "bar"),
+    },
     "food": {"Q11707": ("Restaurants", 'amenity', 'restaurant')},
     "places": {
         "Q33506": ("Museums & Galleries", 'tourism', 'museum'),
@@ -49,8 +56,11 @@ def request_json(url, data=None, timeout=100):
         return json.load(response)
 
 
-def get_candidates(section):
-    types = " ".join("wd:" + qid for qid in TYPES[section])
+def get_candidates(section, category=None):
+    types = " ".join(
+        "wd:" + qid for qid, (label, _, _) in TYPES[section].items()
+        if category is None or label == category
+    )
     query = f'''SELECT DISTINCT ?item ?itemLabel ?type ?image ?coordinate ?districtLabel ?website WHERE {{
       SERVICE wikibase:around {{
         ?item wdt:P625 ?coordinate.
@@ -99,8 +109,9 @@ def get_candidates(section):
     return list(candidates.values())
 
 
-def get_osm_features(section):
-    checks = sorted({(kind, value) for _, kind, value in TYPES[section].values()})
+def get_osm_features(section, category=None):
+    checks = sorted({(kind, value) for label, kind, value in TYPES[section].values()
+                     if category is None or label == category})
     # A single Greater London query regularly times out on public Overpass.
     # Small, adjacent bounding boxes keep request cost modest for volunteers.
     features = {}
@@ -129,13 +140,14 @@ def get_osm_features(section):
     return list(features.values())
 
 
-def get_osm_features_from_pbf(section, filename):
+def get_osm_features_from_pbf(section, filename, category=None):
     try:
         import osmium
     except ImportError as exc:
         raise RuntimeError("Install pyosmium (pip install osmium) to read a PBF extract") from exc
 
-    checks = {(kind, value) for _, kind, value in TYPES[section].values()}
+    checks = {(kind, value) for label, kind, value in TYPES[section].values()
+              if category is None or label == category}
     features = []
 
     class VenueHandler(osmium.SimpleHandler):
@@ -216,7 +228,7 @@ def commons_metadata(files):
             if len(artist) < 2 or "unknown" in artist.lower():
                 continue
             result[page["title"].removeprefix("File:").replace("_", " ")] = {
-                "image": (info.get("thumburl") or info["url"]).split("?", 1)[0].replace("http://", "https://"),
+                "image": info["url"].split("?", 1)[0].replace("http://", "https://"),
                 "imageSourceUrl": info["descriptionurl"],
                 "imageLicense": license_name,
                 "imageLicenseUrl": metadata.get("LicenseUrl", "https://creativecommons.org/publicdomain/zero/1.0/"),
@@ -230,7 +242,7 @@ def make_listing(section, item, photo, osm=None):
     qid = item["qid"]
     area = item["area"]
     category = item["category"]
-    noun = {"Pubs": "pub", "Clubs": "club", "Restaurants": "restaurant",
+    noun = {"Pubs": "pub", "Clubs": "club", "Bars": "bar", "Restaurants": "restaurant",
             "Museums & Galleries": "museum or gallery", "Parks & Gardens": "public park",
             "Top Attractions": "visitor attraction", "Museums": "museum",
             "Parks": "park", "Activities": "family attraction", "Hotels": "hotel"}[category]
@@ -269,27 +281,33 @@ def make_listing(section, item, photo, osm=None):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--section", required=True, choices=TYPES)
+    parser.add_argument("--category", help="Limit output to one directory filter, e.g. Bars")
+    parser.add_argument("--existing", type=Path, help="Existing curated JSON to exclude duplicate IDs and names")
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--limit", type=int, default=600)
     parser.add_argument("--skip-osm", action="store_true", help="Skip an unavailable map endpoint; opening status remains unverified")
     parser.add_argument("--osm-extract", type=Path, help="Local London .osm.pbf (ODbL) for offline map checks")
     parser.add_argument("--cache-dir", type=Path, help="Store source snapshots locally to avoid repeated public API calls")
     args = parser.parse_args()
-    cache = args.cache_dir / f"{args.section}-wikidata.json" if args.cache_dir else None
+    valid_categories = {row[0] for row in TYPES[args.section].values()}
+    if args.category and args.category not in valid_categories:
+        parser.error(f"--category must be one of: {', '.join(sorted(valid_categories))}")
+    suffix = "-" + args.category.lower().replace(" ", "-") if args.category else ""
+    cache = args.cache_dir / f"{args.section}{suffix}-wikidata.json" if args.cache_dir else None
     if cache and cache.exists():
         candidates = json.loads(cache.read_text())
     else:
-        candidates = get_candidates(args.section)
+        candidates = get_candidates(args.section, args.category)
         if cache:
             cache.parent.mkdir(parents=True, exist_ok=True)
             cache.write_text(json.dumps(candidates))
     print(f"{args.section}: {len(candidates)} image-backed Wikidata candidates", flush=True)
     if args.osm_extract:
-        map_cache = args.cache_dir / f"{args.section}-osm.json" if args.cache_dir else None
+        map_cache = args.cache_dir / f"{args.section}{suffix}-osm.json" if args.cache_dir else None
         if map_cache and map_cache.exists():
             features = json.loads(map_cache.read_text())
         else:
-            features = get_osm_features_from_pbf(args.section, args.osm_extract)
+            features = get_osm_features_from_pbf(args.section, args.osm_extract, args.category)
             if map_cache:
                 map_cache.write_text(json.dumps(features))
         print(f"{len(features)} mapped features in extract", flush=True)
@@ -298,10 +316,21 @@ def main():
     elif args.skip_osm:
         matches = [(item, None) for item in candidates]
     else:
-        features = get_osm_features(args.section)
+        features = get_osm_features(args.section, args.category)
         print(f"{len(features)} currently mapped features", flush=True)
         matches = [(item, osm) for item in candidates if (osm := matched_osm(item, features))]
         print(f"{len(matches)} corroborated names/locations", flush=True)
+    existing_ids = set()
+    existing_names = set()
+    if args.existing:
+        for row in json.loads(args.existing.read_text())["items"]:
+            existing_ids.add(row["id"])
+            existing_names.add(normalize(row["name"]))
+    unmatched_count = len(matches)
+    matches = [(item, osm) for item, osm in matches
+               if f"wd-{item['qid'].lower()}" not in existing_ids
+               and normalize(item["name"]) not in existing_names]
+    skipped_existing = unmatched_count - len(matches)
     # Keep nearest central venues first; IDs and photos remain stable.
     matches.sort(key=lambda pair: distance_m(pair[0], {"lat": 51.5074, "lon": -0.1278}))
     photos = commons_metadata(list(dict.fromkeys(item["file"] for item, _ in matches[:args.limit + 100])))
@@ -314,7 +343,8 @@ def main():
             break
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps({"items": listings}, ensure_ascii=False, indent=2) + "\n")
-    print(f"{len(listings)} licensed-photo candidates written to {args.output}", flush=True)
+    print(f"{len(listings)} licensed-photo candidates written to {args.output}; "
+          f"{skipped_existing} existing IDs/names skipped", flush=True)
 
 
 if __name__ == "__main__":
