@@ -10,6 +10,16 @@ type ListingSourceProps = {
 };
 
 export default function ListingSource({ item }: ListingSourceProps) {
+  if (item.sourceName === 'Official venue website') {
+    const source = safeExternalUrl(item.sourceUrl);
+    if (!source) return null;
+    return (
+      <p className="mt-4 text-xs leading-6 text-ink/60 dark:text-cream/65">
+        Venue information: <a href={source} target="_blank" rel="noopener noreferrer" className="underline">Official website ↗</a>.
+        Check current details with the venue before visiting.
+      </p>
+    );
+  }
   if (item.sourceName !== 'Wikidata and OpenStreetMap' && item.sourceName !== 'Wikidata') return null;
 
   return (
