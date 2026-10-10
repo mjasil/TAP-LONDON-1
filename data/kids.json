@@ -3342,6 +3342,30 @@
       "ageRange": "All ages",
       "listingStatus": "Listed",
       "partnerConfirmed": false
+    },
+    {
+      "id": "dulwich-picture-gallery",
+      "name": "Dulwich Picture Gallery",
+      "category": "Museums",
+      "area": "Dulwich, SE21",
+      "description": "Explore art together at Dulwich Picture Gallery. The gallery has family visit information; check its current programme and tickets before you go.",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Dulwich%20Picture%20Gallery%20Dulwich%2C%20SE21",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Dulwich_Picture_Gallery_-_geograph.org.uk_-_8213102.jpg/960px-Dulwich_Picture_Gallery_-_geograph.org.uk_-_8213102.jpg",
+      "imageCredit": "David Kemp",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Dulwich_Picture_Gallery_-_geograph.org.uk_-_8213102.jpg",
+      "imageLicense": "CC BY-SA 2.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "websiteUrl": "https://www.dulwichpicturegallery.org.uk/visit-us/family-visits/",
+      "sourceName": "Official venue website",
+      "sourceUrl": "https://www.dulwichpicturegallery.org.uk/visit-us/family-visits/",
+      "sourceCheckedAt": "2026-10-10",
+      "openingStatusVerified": false,
+      "listingStatus": "Listed",
+      "partnerConfirmed": false,
+      "priceType": "Check venue",
+      "entryFee": "Check official website",
+      "openingHours": "Check official website",
+      "ageRange": "Check venue guidance"
     }
   ]
 }
