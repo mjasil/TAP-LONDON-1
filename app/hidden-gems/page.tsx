@@ -84,6 +84,7 @@ export default function HiddenGemsPage() {
                     <span style={{ background: 'rgba(201,168,76,0.1)', color: '#c9a84c', borderRadius: '20px', padding: '2px 10px', fontSize: '0.64rem', fontWeight: 600, fontFamily: "'DM Sans', sans-serif" }}>{gem.vibe}</span>
                   </div>
                   {gem.bestTime && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: '#888' }}>⏰ Best time: {gem.bestTime}</p>}
+                  <Link href={`/hidden-gems/${encodeURIComponent(gem.id)}`} style={{ display: 'inline-block', marginTop: '10px', marginRight: '18px', color: '#9b762a', fontFamily: "'DM Sans', sans-serif", fontSize: '0.76rem', fontWeight: 700 }}>View details →</Link>
                   {gem.mapsUrl && <a href={gem.mapsUrl} target="_blank" rel="noreferrer" style={{ display: 'inline-block', marginTop: '10px', color: '#c9a84c', fontFamily: "'DM Sans', sans-serif", fontSize: '0.76rem', fontWeight: 600, textDecoration: 'none' }}>📍 Get Directions →</a>}
                 </div>
               </div>
