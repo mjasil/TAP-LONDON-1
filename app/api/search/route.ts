@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { fetchDirectoryPage, normalizeDirectoryQuery } from '@/lib/directoryPage';
 import { fetchCollection } from '@/lib/firestore';
 import { listingRoute } from '@/lib/listingRoute';
+import { verifiedOffer } from '@/lib/verifiedOffer';
 
 export const dynamic = 'force-dynamic';
 
@@ -76,7 +77,8 @@ export async function GET(request: NextRequest) {
         if (state[key] === null) { next[key] = null; return { items: [], total: 0 }; }
         const offset = typeof state[key] === 'number' && state[key] >= 0 && state[key] < 10000 ? state[key] : 0;
         const rows = await fetchCollection(config.collection) || [];
-        const matches = rows.filter(item => normalizeDirectoryQuery([
+        const visible = config.collection === 'offers' ? rows.map(item => verifiedOffer(item)).filter(Boolean) : rows;
+        const matches = visible.filter(item => normalizeDirectoryQuery([
           item.name, item.category, item.area, item.location, item.description,
         ].filter(Boolean).join(' ')).includes(q));
         const selected = matches.slice(offset, offset + 2);
@@ -86,7 +88,7 @@ export async function GET(request: NextRequest) {
           items: selected.map(item => ({
             id: item.id, name: item.name, category: item.category || config.label,
             area: item.area || item.location || '', description: item.description || '',
-            image: item.image || '', imageCredit: item.imageCredit || '',
+            image: config.collection === 'offers' && item.imageRightsConfirmed !== true ? '' : item.image || '', imageCredit: item.imageCredit || '',
             imageLicense: item.imageLicense || '', imageIsIllustrative: item.imageIsIllustrative === true,
             href: listingRoute(config.path, item.id), section: config.path,
           })),
