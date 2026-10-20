@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { addCalendarDays, londonToday, occursInWindow } from "@/lib/eventDates";
 import { isOpenAt } from '@/lib/openingHours';
+import { isPublishedEvent } from '@/lib/verifiedEvent';
+import { verifiedOffer } from '@/lib/verifiedOffer';
 
 const PROJECT_ID = "tap-london";
 
@@ -54,8 +56,8 @@ async function searchCollection(collection: string, query: string, limit = 5): P
     const items = documents.map((doc: any) => {
       const item = parseFields(doc.fields || {});
       item.id = doc.name.split("/").pop();
-      return item;
-    });
+      return collection === 'offers' ? verifiedOffer(item) : item;
+    }).filter(Boolean);
 
     const q = query.toLowerCase();
     const words = q.split(/[^a-z0-9]+/).filter(w => w.length > 2 && !/^(the|and|for|near|best|good|london|today|this|with|what|where|can|you|any|some)$/.test(w));
@@ -69,10 +71,12 @@ async function searchCollection(collection: string, query: string, limit = 5): P
       : null;
     const scored = items
       .filter((item: any) => {
+        if (collection === 'offers' && !verifiedOffer(item)) return false;
         const area = String(item.area || item.location || '');
         if (namedArea && !area.toLowerCase().includes(namedArea)) return false;
         if (centralAreas && !centralAreas.test(area)) return false;
         if (collection === 'events') {
+          if (!isPublishedEvent(item)) return false;
           if (!occursInWindow(item, today, '9999-12-31')) return false;
           if (/\btoday\b/.test(q) && !occursInWindow(item, today, today)) return false;
           if (/weekend/.test(q) && !occursInWindow(item, saturday, addCalendarDays(saturday, 1))) return false;
@@ -137,7 +141,7 @@ function detectsSocialQuestion(message: string): boolean {
 
 function listingUrl(collection: string, item: any): string {
   const section = collection === 'hiddenGems' ? 'hidden-gems' : collection;
-  const hasDetail = ['places', 'food', 'shopping', 'nightlife', 'kids', 'muslim'].includes(section);
+  const hasDetail = ['places', 'food', 'shopping', 'nightlife', 'kids', 'muslim', 'hotels', 'hidden-gems', 'events', 'offers'].includes(section);
   return `https://www.londontap.co.uk/${section}${hasDetail ? `/${encodeURIComponent(item.id)}` : ''}`;
 }
 
