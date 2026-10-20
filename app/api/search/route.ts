@@ -78,9 +78,13 @@ export async function GET(request: NextRequest) {
         const offset = typeof state[key] === 'number' && state[key] >= 0 && state[key] < 10000 ? state[key] : 0;
         const rows = await fetchCollection(config.collection) || [];
         const visible = config.collection === 'offers' ? rows.map(item => verifiedOffer(item)).filter(Boolean) : rows;
-        const matches = visible.filter(item => normalizeDirectoryQuery([
-          item.name, item.category, item.area, item.location, item.description,
-        ].filter(Boolean).join(' ')).includes(q));
+        const terms = q.split(' ').filter(Boolean);
+        const matches = visible.filter(item => {
+          const text = normalizeDirectoryQuery([
+            item.name, item.category, item.area, item.location, item.description,
+          ].filter(Boolean).join(' '));
+          return terms.every(term => text.includes(term));
+        });
         const selected = matches.slice(offset, offset + 2);
         next[key] = offset + selected.length < matches.length ? offset + selected.length : null;
         return {
