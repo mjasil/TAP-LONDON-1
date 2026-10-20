@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { fetchCollection } from '@/lib/firestore';
+import { addCalendarDays, londonToday, occursInWindow } from '@/lib/eventDates';
+import { isPublishedEvent } from '@/lib/verifiedEvent';
 
 const CATEGORIES = [
   { label: 'Food', icon: '🍽️', collection: 'food' },
@@ -12,12 +14,29 @@ const CATEGORIES = [
   { label: 'Kids', icon: '👨\u200d👩\u200d👧', collection: 'kids' },
   { label: 'Hidden Gems', icon: '💎', collection: 'hiddenGems' },
   { label: 'Shopping', icon: '🛍️', collection: 'shopping' },
+  { label: 'Events', icon: '📅', collection: 'events' },
 ];
 
 const DETAIL_PATHS: Record<string, string> = {
   food: 'food', places: 'places', nightlife: 'nightlife', hotels: 'hotels',
   kids: 'kids', hiddenGems: 'hidden-gems', shopping: 'shopping',
+  events: 'events',
 };
+
+type EventWindow = 'today' | 'tomorrow' | 'weekend';
+function eventDates(window: EventWindow): [string, string] {
+  const today = londonToday();
+  if (window === 'tomorrow') {
+    const tomorrow = addCalendarDays(today, 1);
+    return [tomorrow, tomorrow];
+  }
+  if (window === 'weekend') {
+    const day = new Date(`${today}T12:00:00Z`).getUTCDay();
+    const saturday = addCalendarDays(today, day === 0 ? 0 : (6 - day + 7) % 7);
+    return [saturday, day === 0 ? saturday : addCalendarDays(saturday, 1)];
+  }
+  return [today, today];
+}
 
 const AREA_COORDS: Record<string, [number, number]> = {
   'soho': [51.5130, -0.1310], 'covent garden': [51.5117, -0.1240],
@@ -84,20 +103,44 @@ export default function NearMe() {
   const [userPos, setUserPos] = useState<{lat:number;lng:number}|null>(null);
   const [isApproxLocation, setIsApproxLocation] = useState(false);
   const [manualArea, setManualArea] = useState('');
+  const [eventWindow, setEventWindow] = useState<EventWindow>('today');
+  const requestId = useRef(0);
 
-  const findNearby = useCallback(async (collection: string, pos: {lat:number;lng:number}, approximate = false) => {
+  const findNearby = useCallback(async (collection: string, pos: {lat:number;lng:number}, approximate = false, window: EventWindow = 'today') => {
+    const currentRequest = ++requestId.current;
     setStatus('loading');
     setResults([]);
     try {
-      const items = await fetchCollection(collection);
-      if (!items) throw new Error('Listings unavailable');
-      // Items whose area couldn't be matched to a known London area used to be
-      // silently dropped entirely (marked as 999km and filtered out) - meaning
-      // any item with an area name not in the ~40-entry AREA_COORDS list never
-      // showed up in Near Me at all, even though it's a real London location.
-      // Now unmatched items are still shown, just sorted after matched ones,
-      // so Near Me never comes back empty just because of a naming mismatch.
-      const withDist = items.map((item: any) => {
+      // Directory pages are bounded. Do not download hundreds of venue records
+      // (and their large descriptions) to the browser for a twelve-card panel.
+      const nearbyAreas = Object.entries(AREA_COORDS)
+        .map(([area, coords]) => ({ area, km: distKm(pos.lat, pos.lng, coords[0], coords[1]) }))
+        .sort((a, b) => a.km - b.km);
+      let items: any[];
+      if (collection === 'events' || collection === 'hiddenGems') {
+        const rows = await fetchCollection(collection);
+        if (!rows) throw new Error('Listings unavailable');
+        const [start, end] = eventDates(window);
+        items = collection === 'events'
+          ? rows.filter(item => isPublishedEvent(item) && occursInWindow(item, start, end))
+          : rows;
+      } else {
+        const loadAreas = async (areas: typeof nearbyAreas) => (await Promise.all(areas.map(async ({ area }) => {
+            const response = await fetch(`/api/directory/${collection}?q=${encodeURIComponent(area)}`, { cache: 'no-store' });
+            if (!response.ok) throw new Error('Listings unavailable');
+            const page = await response.json();
+            return (page.items || []).filter((item: any) =>
+              String(item.area || item.location || '').toLowerCase().includes(area));
+          }))).flat();
+        items = await loadAreas(nearbyAreas.slice(0, 4));
+        // Thin sections (especially Kids and Shopping) may have no listings
+        // in the four closest neighbourhoods. Expand the area search before
+        // showing an empty state; never invent venues to fill the panel.
+        if (items.length < 5) items.push(...await loadAreas(nearbyAreas.slice(4, 12)));
+      }
+      if (currentRequest !== requestId.current) return;
+      const unique = Array.from(new Map(items.map(item => [item.id, item])).values());
+      const withDist = unique.map((item: any) => {
         const latitude = Number(item.latitude ?? item.lat);
         const longitude = Number(item.longitude ?? item.lng);
         const exact = Number.isFinite(latitude) && Number.isFinite(longitude) && latitude > 50 && latitude < 52 && longitude > -1 && longitude < 1;
@@ -110,11 +153,10 @@ export default function NearMe() {
       });
 
       const matched = withDist.filter((i: any) => i.sortDistance !== null).sort((a: any, b: any) => a.sortDistance - b.sortDistance);
-      const unmatched = withDist.filter((i: any) => i.sortDistance === null);
-
-      setResults([...matched, ...unmatched].slice(0, 12));
+      setResults(matched.slice(0, 12));
       setStatus('done');
     } catch {
+      if (currentRequest !== requestId.current) return;
       setErrorMsg('Could not load places. Please try again.');
       setStatus('error');
     }
@@ -126,7 +168,7 @@ export default function NearMe() {
     setUserPos({ lat: coords[0], lng: coords[1] });
     setIsApproxLocation(true);
     setErrorMsg('');
-    findNearby(activeCategory, { lat: coords[0], lng: coords[1] }, true);
+    findNearby(activeCategory, { lat: coords[0], lng: coords[1] }, true, eventWindow);
   };
 
   const requestLocation = useCallback((collection: string) => {
@@ -145,7 +187,7 @@ export default function NearMe() {
         const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
         setIsApproxLocation(false);
         setUserPos(p);
-        findNearby(collection, p);
+        findNearby(collection, p, false, eventWindow);
       },
       (err) => {
         if (err.code === 1) {
@@ -159,7 +201,7 @@ export default function NearMe() {
       },
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 60000 }
     );
-  }, [findNearby]);
+  }, [findNearby, eventWindow]);
 
   const handleOpen = () => {
     if (!navigator.geolocation) {
@@ -210,7 +252,7 @@ export default function NearMe() {
   const handleCategoryChange = (col: string) => {
     if (userPos) {
       setActiveCategory(col);
-      findNearby(col, userPos);
+      findNearby(col, userPos, isApproxLocation, eventWindow);
       return;
     }
     // No position yet - same fix as handleOpen: call getCurrentPosition first,
@@ -227,7 +269,7 @@ export default function NearMe() {
         setActiveCategory(col);
         setIsApproxLocation(false);
         setUserPos(p);
-        findNearby(col, p);
+        findNearby(col, p, false, eventWindow);
       },
       () => {
         setActiveCategory(col);
@@ -262,7 +304,7 @@ export default function NearMe() {
 
   return (
     <div
-      onClick={() => setOpen(false)}
+      onClick={() => { requestId.current++; setOpen(false); }}
       style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', zIndex: 9998, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}
     >
       <div onClick={e => e.stopPropagation()} style={{ background: '#f9f7f2', borderRadius: '20px 20px 0 0', width: '100%', maxWidth: '620px', maxHeight: '88vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -274,12 +316,12 @@ export default function NearMe() {
             <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: 'rgba(255,255,255,0.45)', marginTop: '2px' }}>
               {status === 'requesting' && 'Allow location access to continue...'}
               {status === 'loading' && 'Finding nearest places...'}
-              {status === 'done' && userPos && (isApproxLocation ? `Showing areas around ${manualArea} (approximate)` : 'Location found — showing closest results')}
+              {status === 'done' && userPos && (isApproxLocation ? `Showing areas around ${manualArea} (approximate)` : 'London listings ordered by area')}
               {status === 'error' && 'Location error'}
               {status === 'idle' && 'Finding your location...'}
             </div>
           </div>
-          <button onClick={() => setOpen(false)} style={{ background: 'rgba(255,255,255,0.12)', border: 'none', color: '#fff', width: '34px', height: '34px', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem' }}>✕</button>
+          <button onClick={() => { requestId.current++; setOpen(false); }} aria-label="Close Near Me" style={{ background: 'rgba(255,255,255,0.12)', border: 'none', color: '#fff', width: '34px', height: '34px', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem' }}>✕</button>
         </div>
 
         {/* Category tabs */}
@@ -291,6 +333,18 @@ export default function NearMe() {
             </button>
           ))}
         </div>
+
+        {activeCategory === 'events' && (
+          <div role="group" aria-label="Event date" style={{ display: 'flex', gap: '8px', background: '#fff', padding: '10px 16px', flexShrink: 0 }}>
+            {(['today', 'tomorrow', 'weekend'] as const).map(window => (
+              <button key={window} type="button" aria-pressed={eventWindow === window}
+                onClick={() => { setEventWindow(window); if (userPos) findNearby('events', userPos, isApproxLocation, window); }}
+                style={{ border: 'none', borderRadius: '20px', padding: '8px 12px', fontWeight: 700, background: eventWindow === window ? '#c9a84c' : '#f1f1f1', color: '#1a1a2e' }}>
+                {window === 'weekend' ? 'This weekend' : window[0].toUpperCase() + window.slice(1)}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center', padding: '10px 16px', background: '#fff', flexShrink: 0 }}>
           <label htmlFor="near-me-area" style={{ fontSize: '0.75rem', fontWeight: 700, color: '#1a1a2e', whiteSpace: 'nowrap' }}>Or choose an area</label>
@@ -342,7 +396,8 @@ export default function NearMe() {
           {/* Results */}
           {status === 'done' && results.length === 0 && (
             <div style={{ textAlign: 'center', padding: '40px 20px', fontFamily: "'DM Sans', sans-serif", color: '#888' }}>
-              No nearby results found. Try a different category.
+              {activeCategory === 'events' ? 'No recently verified events in these areas for this date. Check the full events page for updates.' : 'No area matches found. Try another category or London area.'}
+              {activeCategory === 'events' && <p><Link href="/events" style={{ color: '#9b762a', fontWeight: 700 }}>View all events →</Link></p>}
             </div>
           )}
 
@@ -360,7 +415,7 @@ export default function NearMe() {
                     {item.category && <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.66rem', color: '#c9a84c', fontWeight: 600, marginTop: '2px' }}>{item.category}</div>}
                   </div>
                   <div style={{ flexShrink: 0, textAlign: 'center' as const, background: 'rgba(201,168,76,0.1)', borderRadius: '10px', padding: '6px 10px', minWidth: '50px' }}>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: item.dist !== null ? '1.1rem' : '0.75rem', fontWeight: 700, color: '#c9a84c' }}>{item.dist !== null ? `${item.dist}km` : 'Area'}</div>
+                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: item.dist !== null ? '1.1rem' : '0.75rem', fontWeight: 700, color: '#c9a84c' }}>{item.dist !== null ? `~${item.dist}km` : 'Area'}</div>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.58rem', color: '#888' }}>{item.dist !== null ? 'away' : 'match'}</div>
                   </div>
                 </Link>

@@ -11,6 +11,7 @@ const CARD_FIELDS = [
   'verifiedHalal', 'mustTry', 'vibe', 'opinion', 'tags', 'nearestStation', 'phone',
   'recommended', 'familyFriendlyBadge', 'listingStatus', 'partnerConfirmed',
   'musicType', 'openLate', 'offer', 'offerText',
+  'latitude', 'longitude', 'lat', 'lng',
 ];
 export const DIRECTORY_PAGE_SIZE = 24;
 
