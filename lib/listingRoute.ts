@@ -1,6 +1,6 @@
 // Only these sections have an individual listing page. Other search results
 // should open their section rather than linking to a nonexistent route.
-const detailSections = new Set(['places', 'food', 'shopping', 'nightlife', 'kids', 'muslim']);
+const detailSections = new Set(['places', 'food', 'shopping', 'nightlife', 'kids', 'muslim', 'hotels', 'hidden-gems', 'events']);
 
 export function listingRoute(section: string, id: string): string {
   const path = `/${section.replace(/^\/+|\/+$/g, '')}`;
