@@ -95,6 +95,7 @@ export default function HotelsPageClient({ initialItems }: { initialItems: any[]
                     </div>
                     <a href={hotel.bookingUrl || hotel.mapsUrl} target="_blank" rel="noreferrer" style={{ background: '#1a1a2e', color: '#c9a84c', padding: '9px 18px', borderRadius: '8px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.78rem', fontWeight: 700, textDecoration: 'none' }}>Book Now</a>
                   </div>
+                  <Link href={`/hotels/${encodeURIComponent(hotel.id)}`} style={{ display: 'inline-block', marginTop: '12px', color: '#9b762a', fontFamily: "'DM Sans', sans-serif", fontSize: '0.78rem', fontWeight: 700 }}>View details →</Link>
                 </div>
               </div>
             ))}
