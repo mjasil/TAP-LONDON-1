@@ -7,10 +7,8 @@ import nightlifeData from "@/data/nightlife.json";
 import hotelsData from "@/data/hotels.json";
 import kidsData from "@/data/kids.json";
 import hiddenGemsData from "@/data/hidden-gems.json";
-import theatreData from "@/data/theatre.json";
 import universitiesData from "@/data/universities.json";
 import daytripsData from "@/data/daytrips.json";
-import musicData from "@/data/music.json";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://londontap.co.uk";
 
@@ -40,8 +38,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...idsFrom(nightlifeData).map((id) => `/nightlife/${id}`),
     ...idsFrom(hotelsData).map((id) => `/hotels/${id}`),
     ...idsFrom(kidsData).map((id) => `/kids/${id}`),
-    ...idsFrom(theatreData).map((id) => `/theatre/${id}`),
-    ...idsFrom(musicData).map((id) => `/music/${id}`),
+    ...idsFrom(hiddenGemsData).map((id) => `/hidden-gems/${id}`),
+    "/offers/family-travelcard", "/offers/activities-theatre-offer",
   ];
 
   const nfcRoutes = Object.keys(products).filter((key) => key !== "__comment").map((key) => `/nfc/${key}`);

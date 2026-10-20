@@ -255,7 +255,7 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
               Call {item.phone}
             </a>
           )}
-          {item.mapsUrl && (
+          {item.mapsUrl && mode === 'emergency' && (
             <a
               href={item.mapsUrl}
               target="_blank"
@@ -263,8 +263,13 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
               onClick={(e) => e.stopPropagation()}
               className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-navy px-5 text-sm font-bold text-white transition hover:bg-gold hover:text-navy dark:bg-gold/20 dark:text-cream dark:hover:bg-gold dark:hover:text-navy"
             >
-              {mode === "place" ? "Get Directions" : "Find on Google Maps"} <Navigation size={16} />
+              Get Directions <Navigation size={16} />
             </a>
+          )}
+          {mode !== 'emergency' && (
+            <span className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-navy px-5 text-sm font-bold text-white transition group-hover:bg-gold group-hover:text-navy dark:bg-gold/20 dark:text-cream">
+              View details →
+            </span>
           )}
         </div>
       </div>

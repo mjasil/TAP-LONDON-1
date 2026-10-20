@@ -31,6 +31,11 @@ const NIGHTLIFE_ADMIN_FIELDS = [
   'websiteUrl', 'bookingUrl', 'instagramUrl', 'tiktokUrl', 'nearestStation',
   'vibe', 'audience', 'agePolicy', 'imageCredit', 'imageIsIllustrative',
 ];
+const REVIEW_FIELDS = [
+  'publishStatus', 'verifiedAt', 'sourceUrl', 'ticketUrl', 'cancelled',
+  'imageRightsConfirmed', 'partnerConfirmed', 'partnerAgreementRef',
+  'terms', 'redemptionInstructions', 'validFrom', 'validUntil',
+];
 
 // Maps a data/<file>.json name to its actual Firestore collection name.
 // Mirrors getCollectionName() in the admin panel.
@@ -119,6 +124,7 @@ async function syncSection(sectionFile) {
     if (existingIds.has(id)) {
       PROTECTED_FIELDS.forEach(f => delete item[f]);
       if (sectionFile === 'nightlife') NIGHTLIFE_ADMIN_FIELDS.forEach(f => delete item[f]);
+      if (sectionFile === 'events' || sectionFile === 'offers') REVIEW_FIELDS.forEach(f => delete item[f]);
       const existing = existingById.get(id);
       const changes = Object.fromEntries(Object.entries(item).filter(([key, value]) =>
         !isDeepStrictEqual(value, existing[key])

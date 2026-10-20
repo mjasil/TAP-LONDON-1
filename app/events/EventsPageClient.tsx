@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { fetchCollection } from '@/lib/firestore';
-import { availableCategories, MIN_FILTER_RESULTS } from '@/lib/filterAvailability';
+import { availableCategories } from '@/lib/filterAvailability';
 import { addCalendarDays, londonToday, occursInWindow } from '@/lib/eventDates';
 import ListingStructuredData from '@/components/ListingStructuredData';
+import { isPublishedEvent } from '@/lib/verifiedEvent';
 
 const CATEGORIES = ['All', 'Free Events', 'Food Markets', 'Markets', 'Live Music', 'Nightlife'];
 
@@ -67,10 +69,11 @@ export default function EventsPageClient({ initialItems }: { initialItems: any[]
 
   // A thin events feed may have fewer than five confirmed listings. Show the
   // honest count and keep Today available rather than implying old events recur.
-  const availableTimes = TIME_FILTERS.filter(t => t.value === 'today' || items.some(t.test));
+  const published = items.filter(item => isPublishedEvent(item));
+  const availableTimes = TIME_FILTERS.filter(t => t.value === 'today' || published.some(t.test));
   const selectedTime = availableTimes.some(t => t.value === activeTime) ? activeTime : 'today';
   const timeFilterFn = TIME_FILTERS.find(t => t.value === selectedTime)?.test ?? isHappeningNow;
-  const inTimeWindow = items.filter(timeFilterFn);
+  const inTimeWindow = published.filter(timeFilterFn);
   const availableEventCategories = availableCategories(inTimeWindow, CATEGORIES, (e: any, cat) => e.category === cat);
   const selectedCategory = availableEventCategories.includes(activeCategory) ? activeCategory : 'All';
   const filtered = selectedCategory === 'All' ? inTimeWindow : inTimeWindow.filter((e: any) => e.category === selectedCategory);
@@ -102,15 +105,16 @@ export default function EventsPageClient({ initialItems }: { initialItems: any[]
         ) : filtered.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '60px', color: 'rgba(26,26,46,0.4)', fontFamily: "'DM Sans', sans-serif" }}>
             <div style={{ fontSize: '2rem', marginBottom: '12px' }}>📅</div>
-            {loadFailed ? 'Events could not be loaded. Please try again later.' : `No confirmed events for ${selectedTime === 'today' ? 'today' : 'this period'} yet — check back soon.`}
+            {loadFailed ? 'Events could not be loaded. Please try again later.' : `No recently verified events for ${selectedTime === 'today' ? 'today' : 'this period'} yet — check back soon.`}
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
             {filtered.map((event: any) => (
               <div key={event.id} className="bg-white dark:bg-[#1a1a2e]" style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid rgba(201,168,76,0.12)' }}>
                 <ListingStructuredData item={event} type="Event" section="events" />
-                <div style={{ position: 'relative', height: '170px' }}>
-                  <img src={event.image} alt={event.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Link href={`/events/${encodeURIComponent(event.id)}`} style={{ display: 'block', textDecoration: 'none' }}>
+                <div style={{ position: 'relative', height: '170px', background: '#1a1a2e' }}>
+                  {event.image && event.imageRightsConfirmed === true && <img src={event.image} alt={event.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
                   {isHappeningNow(event) && <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(122,201,160,0.95)', color: '#1a1a2e', padding: '4px 12px', borderRadius: '20px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.66rem', fontWeight: 700 }}>● ON TODAY</div>}
                   <div style={{ position: 'absolute', top: '12px', right: '12px', background: 'rgba(0,0,0,0.55)', color: '#fff', padding: '4px 10px', borderRadius: '20px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.64rem', fontWeight: 600 }}>{event.category}</div>
                 </div>
@@ -134,10 +138,9 @@ export default function EventsPageClient({ initialItems }: { initialItems: any[]
                   {event.recurring && (
                     <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.68rem', color: '#aaa', marginBottom: '10px' }}>🔁 {event.recurring}</p>
                   )}
-                  {event.mapsUrl && (
-                    <a href={event.mapsUrl} target="_blank" rel="noreferrer" style={{ display: 'inline-block', color: '#c9a84c', fontFamily: "'DM Sans', sans-serif", fontSize: '0.76rem', fontWeight: 700, textDecoration: 'none' }}>📍 Get Directions →</a>
-                  )}
+                  <span style={{ color: '#9b762a', fontFamily: "'DM Sans', sans-serif", fontSize: '0.76rem', fontWeight: 700 }}>View event details →</span>
                 </div>
+                </Link>
               </div>
             ))}
           </div>

@@ -75,26 +75,6 @@ function distKm(lat1: number, lon1: number, lat2: number, lon2: number) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 }
 
-// Fallback for when browser geolocation fails or is denied - notably iOS
-// Safari, which can be unreliable about even showing the permission prompt
-// in some cases regardless of the site's own code. This estimates location
-// from the visitor's IP address instead - far less precise (city-level, not
-// street-level) but needs no permission prompt at all, so it works even
-// when GPS geolocation can't. Uses a free, keyless public API.
-async function getLocationFromIP(): Promise<{ lat: number; lng: number } | null> {
-  try {
-    const res = await fetch('https://ipapi.co/json/');
-    if (!res.ok) return null;
-    const data = await res.json();
-    if (typeof data.latitude === 'number' && typeof data.longitude === 'number') {
-      return { lat: data.latitude, lng: data.longitude };
-    }
-    return null;
-  } catch {
-    return null;
-  }
-}
-
 export default function NearMe() {
   const [open, setOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('food');
@@ -103,12 +83,14 @@ export default function NearMe() {
   const [errorMsg, setErrorMsg] = useState('');
   const [userPos, setUserPos] = useState<{lat:number;lng:number}|null>(null);
   const [isApproxLocation, setIsApproxLocation] = useState(false);
+  const [manualArea, setManualArea] = useState('');
 
-  const findNearby = useCallback(async (collection: string, pos: {lat:number;lng:number}) => {
+  const findNearby = useCallback(async (collection: string, pos: {lat:number;lng:number}, approximate = false) => {
     setStatus('loading');
     setResults([]);
     try {
-      const items = await fetchCollection(collection) || [];
+      const items = await fetchCollection(collection);
+      if (!items) throw new Error('Listings unavailable');
       // Items whose area couldn't be matched to a known London area used to be
       // silently dropped entirely (marked as 999km and filtered out) - meaning
       // any item with an area name not in the ~40-entry AREA_COORDS list never
@@ -120,12 +102,15 @@ export default function NearMe() {
         const longitude = Number(item.longitude ?? item.lng);
         const exact = Number.isFinite(latitude) && Number.isFinite(longitude) && latitude > 50 && latitude < 52 && longitude > -1 && longitude < 1;
         const coords: [number, number] | null = exact ? [latitude, longitude] : getAreaCoords(item.area || item.location || '');
-        const dist = coords ? Math.round(distKm(pos.lat, pos.lng, coords[0], coords[1]) * 10) / 10 : null;
-        return { ...item, dist, approximateDistance: !exact || isApproxLocation };
+        const sortDistance = coords ? distKm(pos.lat, pos.lng, coords[0], coords[1]) : null;
+        // Area centroids are useful for sorting, but aren't the venue's
+        // coordinates. Never display them as a measured distance.
+        const dist = exact && !approximate && sortDistance !== null ? Math.round(sortDistance * 10) / 10 : null;
+        return { ...item, dist, sortDistance };
       });
 
-      const matched = withDist.filter((i: any) => i.dist !== null).sort((a: any, b: any) => a.dist - b.dist);
-      const unmatched = withDist.filter((i: any) => i.dist === null);
+      const matched = withDist.filter((i: any) => i.sortDistance !== null).sort((a: any, b: any) => a.sortDistance - b.sortDistance);
+      const unmatched = withDist.filter((i: any) => i.sortDistance === null);
 
       setResults([...matched, ...unmatched].slice(0, 12));
       setStatus('done');
@@ -133,7 +118,16 @@ export default function NearMe() {
       setErrorMsg('Could not load places. Please try again.');
       setStatus('error');
     }
-  }, [isApproxLocation]);
+  }, []);
+
+  const useManualArea = () => {
+    const coords = AREA_COORDS[manualArea];
+    if (!coords) return;
+    setUserPos({ lat: coords[0], lng: coords[1] });
+    setIsApproxLocation(true);
+    setErrorMsg('');
+    findNearby(activeCategory, { lat: coords[0], lng: coords[1] }, true);
+  };
 
   const requestLocation = useCallback((collection: string) => {
     setActiveCategory(collection);
@@ -149,12 +143,13 @@ export default function NearMe() {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        setIsApproxLocation(false);
         setUserPos(p);
         findNearby(collection, p);
       },
       (err) => {
         if (err.code === 1) {
-          setErrorMsg('Location access was denied. Please allow location in your browser settings and try again.');
+          setErrorMsg('Location access was denied. Choose a London area below or try again.');
         } else if (err.code === 2) {
           setErrorMsg('Could not detect your location. Please try again.');
         } else {
@@ -189,27 +184,17 @@ export default function NearMe() {
         const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
         setOpen(true);
         setActiveCategory('food');
+        setIsApproxLocation(false);
         setUserPos(p);
         findNearby('food', p);
       },
-      async (err) => {
+      (err) => {
         setOpen(true);
         setActiveCategory('food');
-        // Precise GPS failed/denied - try the IP-based fallback before
-        // giving up entirely. This is what makes Near Me still work on
-        // iOS Safari sessions where the permission prompt doesn't behave
-        // reliably, without requiring the person to change any settings.
-        const ipPos = await getLocationFromIP();
-        if (ipPos) {
-          setUserPos(ipPos);
-          setIsApproxLocation(true);
-          findNearby('food', ipPos);
-          return;
-        }
         if (err.code === 1) {
-          setErrorMsg('Location access was denied. Please go to your browser Settings → Site permissions → Location → Allow.');
+          setErrorMsg('Location access was denied. Choose a London area below.');
         } else {
-          setErrorMsg('Could not get your location. Please try again.');
+          setErrorMsg('Could not get your location. Choose a London area below or try again.');
         }
         setStatus('error');
       },
@@ -240,19 +225,13 @@ export default function NearMe() {
       (pos) => {
         const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
         setActiveCategory(col);
+        setIsApproxLocation(false);
         setUserPos(p);
         findNearby(col, p);
       },
-      async () => {
+      () => {
         setActiveCategory(col);
-        const ipPos = await getLocationFromIP();
-        if (ipPos) {
-          setUserPos(ipPos);
-          setIsApproxLocation(true);
-          findNearby(col, ipPos);
-          return;
-        }
-        setErrorMsg('Could not get your location. Please allow location access and try again.');
+        setErrorMsg('Could not get your location. Choose a London area below.');
         setStatus('error');
       },
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 }
@@ -295,7 +274,7 @@ export default function NearMe() {
             <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: 'rgba(255,255,255,0.45)', marginTop: '2px' }}>
               {status === 'requesting' && 'Allow location access to continue...'}
               {status === 'loading' && 'Finding nearest places...'}
-              {status === 'done' && userPos && (isApproxLocation ? 'Using approximate location — enable precise location for better results' : 'Location found — showing closest results')}
+              {status === 'done' && userPos && (isApproxLocation ? `Showing areas around ${manualArea} (approximate)` : 'Location found — showing closest results')}
               {status === 'error' && 'Location error'}
               {status === 'idle' && 'Finding your location...'}
             </div>
@@ -311,6 +290,17 @@ export default function NearMe() {
               {cat.icon} {cat.label}
             </button>
           ))}
+        </div>
+
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', padding: '10px 16px', background: '#fff', flexShrink: 0 }}>
+          <label htmlFor="near-me-area" style={{ fontSize: '0.75rem', fontWeight: 700, color: '#1a1a2e', whiteSpace: 'nowrap' }}>Or choose an area</label>
+          <select id="near-me-area" value={manualArea} onChange={e => setManualArea(e.target.value)}
+            style={{ minWidth: 0, flex: 1, padding: '8px', borderRadius: '8px', border: '1px solid #ddd', color: '#1a1a2e', background: '#fff' }}>
+            <option value="">London area</option>
+            {Object.keys(AREA_COORDS).sort().map(area => <option key={area} value={area}>{area.replace(/\b\w/g, c => c.toUpperCase())}</option>)}
+          </select>
+          <button type="button" disabled={!manualArea} onClick={useManualArea}
+            style={{ padding: '9px 12px', border: 0, borderRadius: '8px', background: '#1a1a2e', color: '#c9a84c', fontWeight: 700, opacity: manualArea ? 1 : 0.5 }}>Show</button>
         </div>
 
         {/* Content */}
@@ -370,8 +360,8 @@ export default function NearMe() {
                     {item.category && <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.66rem', color: '#c9a84c', fontWeight: 600, marginTop: '2px' }}>{item.category}</div>}
                   </div>
                   <div style={{ flexShrink: 0, textAlign: 'center' as const, background: 'rgba(201,168,76,0.1)', borderRadius: '10px', padding: '6px 10px', minWidth: '50px' }}>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: item.dist !== null ? '1.1rem' : '0.75rem', fontWeight: 700, color: '#c9a84c' }}>{item.dist !== null ? `${item.approximateDistance || isApproxLocation ? '~' : ''}${item.dist}km` : 'London'}</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.58rem', color: '#888' }}>{item.dist !== null && (item.approximateDistance || isApproxLocation) ? 'approx.' : 'away'}</div>
+                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: item.dist !== null ? '1.1rem' : '0.75rem', fontWeight: 700, color: '#c9a84c' }}>{item.dist !== null ? `${item.dist}km` : 'Area'}</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.58rem', color: '#888' }}>{item.dist !== null ? 'away' : 'match'}</div>
                   </div>
                 </Link>
               ))}

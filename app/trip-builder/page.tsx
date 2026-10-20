@@ -222,7 +222,7 @@ export default function TripBuilderPage() {
           : (dataCache.places || []).filter((p: any) => p.category?.includes('Top') || p.category?.includes('Attraction'));
         if (!morningPool?.length) morningPool = dataCache.places || [];
         const morning = pickN(morningPool, 1, usedIds, undefined, londonSlot(dayDate, 10));
-        morning.forEach(p => dayItems.push({ time: '10:00', name: p.name, area: p.area, href: dataCache.sports?.includes(p) ? (p.mapsUrl || '/sports') : (dataCache.hiddenGems?.includes(p) ? (p.mapsUrl || '/hidden-gems') : '/places/' + p.id), slot: 'Morning' }));
+        morning.forEach(p => dayItems.push({ time: '10:00', name: p.name, area: p.area, href: dataCache.sports?.includes(p) ? '/sports' : (dataCache.hiddenGems?.includes(p) ? '/hidden-gems/' + encodeURIComponent(p.id) : '/places/' + encodeURIComponent(p.id)), slot: 'Morning' }));
 
         // Lunch: budget-filtered, avoiding an area used earlier the same
         // day where possible for a bit more variety across the trip.
@@ -256,7 +256,7 @@ export default function TripBuilderPage() {
         }
         if (!afternoonPool?.length) { afternoonPool = dataCache.places || []; afternoonBase = '/places/'; }
         const afternoon = pickN(afternoonPool, 1, usedIds, lunch[0]?.area || morning[0]?.area, londonSlot(dayDate, 15));
-        afternoon.forEach(p => dayItems.push({ time: '15:00', name: p.name, area: p.area, href: afternoonHasDetail ? afternoonBase + p.id : (p.mapsUrl || afternoonBase), slot: 'Afternoon' }));
+        afternoon.forEach(p => dayItems.push({ time: '15:00', name: p.name, area: p.area, href: afternoonHasDetail ? afternoonBase + encodeURIComponent(p.id) : afternoonBase, slot: 'Afternoon' }));
 
         // Evening: stay near the afternoon stop when a suitable venue exists.
         let eveningPool = interests.includes('nightlife') && dataCache.nightlife?.length ? dataCache.nightlife : dataCache.food || [];
@@ -443,7 +443,7 @@ export default function TripBuilderPage() {
                 <SectionLabel>🏨 Suggested Stay — {hotelArea}</SectionLabel>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px,1fr))', gap: '10px', marginTop: '14px' }}>
                   {hotelPicks.map(h => (
-                    <Link key={h.id} href={h.mapsUrl || '/hotels'} style={{ textDecoration: 'none' }}>
+                    <Link key={h.id} href={`/hotels/${encodeURIComponent(h.id)}`} style={{ textDecoration: 'none' }}>
                       <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '14px 16px' }}>
                         <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.05rem', fontWeight: 700, color: '#fff' }}>{h.name}</div>
                         <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', color: '#c9a84c', marginTop: '2px' }}>{h.priceRange}</div>
