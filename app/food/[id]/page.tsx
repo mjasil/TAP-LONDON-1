@@ -7,7 +7,6 @@ import { fetchDocument } from "@/lib/firestore";
 import ListingStructuredData from '@/components/ListingStructuredData';
 import PhotoCredit from '@/components/PhotoCredit';
 import ListingSource from '@/components/ListingSource';
-import foodJson from "@/data/food.json";
 
 function PhotoGallery({ photos, name }: { photos: string[]; name: string }) {
   const [active, setActive] = useState(0);
@@ -30,13 +29,20 @@ export default function FoodDetailPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const load = async () => {
-      const fbItem = await fetchDocument('food', id);
-      if (fbItem && fbItem.name) { setItem(fbItem); }
-      else { setItem((foodJson.items as any[]).find((f: any) => f.id === id) || null); }
-      setLoading(false);
-    };
-    load();
+    let active = true;
+    setLoading(true);
+    fetchDocument("food", id)
+      .then(result => {
+        if (!active) return;
+        setItem(result?.name ? result : null);
+        setLoading(false);
+      })
+      .catch(() => {
+        if (!active) return;
+        setItem(null);
+        setLoading(false);
+      });
+    return () => { active = false; };
   }, [id]);
 
   if (loading) return <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}><div style={{ fontFamily: "'DM Sans',sans-serif", color: "rgba(26,26,46,0.4)" }}>Loading...</div></div>;
