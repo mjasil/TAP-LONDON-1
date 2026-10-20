@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import Link from 'next/link';
 import { fetchCollection } from '@/lib/firestore';
 
 const CATEGORIES = [
@@ -12,6 +13,11 @@ const CATEGORIES = [
   { label: 'Hidden Gems', icon: '💎', collection: 'hiddenGems' },
   { label: 'Shopping', icon: '🛍️', collection: 'shopping' },
 ];
+
+const DETAIL_PATHS: Record<string, string> = {
+  food: 'food', places: 'places', nightlife: 'nightlife', hotels: 'hotels',
+  kids: 'kids', hiddenGems: 'hidden-gems', shopping: 'shopping',
+};
 
 const AREA_COORDS: Record<string, [number, number]> = {
   'soho': [51.5130, -0.1310], 'covent garden': [51.5117, -0.1240],
@@ -353,7 +359,7 @@ export default function NearMe() {
           {status === 'done' && results.length > 0 && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {results.map((item: any) => (
-                <a key={item.id} href={item.mapsUrl || '#'} target="_blank" rel="noreferrer"
+                <Link key={item.id} href={`/${DETAIL_PATHS[activeCategory]}/${encodeURIComponent(item.id)}`}
                   style={{ textDecoration: 'none', display: 'flex', gap: '12px', background: '#fff', borderRadius: '14px', overflow: 'hidden', boxShadow: '0 2px 10px rgba(0,0,0,0.07)', border: '1px solid rgba(201,168,76,0.12)', padding: '10px', alignItems: 'center' }}>
                   <div style={{ width: '60px', height: '60px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0, background: '#eee' }}>
                     {item.image && <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
@@ -367,7 +373,7 @@ export default function NearMe() {
                     <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: item.dist !== null ? '1.1rem' : '0.75rem', fontWeight: 700, color: '#c9a84c' }}>{item.dist !== null ? `${item.approximateDistance || isApproxLocation ? '~' : ''}${item.dist}km` : 'London'}</div>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.58rem', color: '#888' }}>{item.dist !== null && (item.approximateDistance || isApproxLocation) ? 'approx.' : 'away'}</div>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           )}
