@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { fetchDocument } from "@/lib/firestore";
-import shoppingJson from "@/data/shopping.json";
 
 export default function ShoppingDetailPage() {
   const params = useParams();
@@ -14,25 +13,21 @@ export default function ShoppingDetailPage() {
   const [activePhoto, setActivePhoto] = useState(0);
 
   useEffect(() => {
-    const load = async () => {
-      const jsonItem = (shoppingJson.items as any[]).find((s: any) => s.id === id) || null;
-      const fbItem = await fetchDocument("shopping", id);
-      if (fbItem && fbItem.name) {
-        // Merge: use Firebase data but keep JSON subShops/gallery if Firebase doesn't have them
-        const merged = {
-          ...fbItem,
-          subShops: fbItem.subShops?.length ? fbItem.subShops : (jsonItem?.subShops || []),
-          gallery: fbItem.gallery?.length ? fbItem.gallery : (jsonItem?.gallery || []),
-          nearestStation: fbItem.nearestStation || jsonItem?.nearestStation || '',
-          highlights: fbItem.highlights || jsonItem?.highlights || '',
-        };
-        setItem(merged);
-      } else {
-        setItem(jsonItem);
-      }
-      setLoading(false);
-    };
-    load();
+    let active = true;
+    setLoading(true);
+    setActivePhoto(0);
+    fetchDocument("shopping", id)
+      .then(result => {
+        if (!active) return;
+        setItem(result?.name ? result : null);
+        setLoading(false);
+      })
+      .catch(() => {
+        if (!active) return;
+        setItem(null);
+        setLoading(false);
+      });
+    return () => { active = false; };
   }, [id]);
 
   if (loading) return (
