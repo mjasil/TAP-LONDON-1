@@ -126,6 +126,13 @@ async function syncSection(sectionFile) {
       if (sectionFile === 'nightlife') NIGHTLIFE_ADMIN_FIELDS.forEach(f => delete item[f]);
       if (sectionFile === 'events' || sectionFile === 'offers') REVIEW_FIELDS.forEach(f => delete item[f]);
       const existing = existingById.get(id);
+      // Coordinates corrected by an editor take precedence over source data.
+      // The seed backfill fills only listings with no saved pair.
+      if (Number.isFinite(Number(existing.latitude)) && Number.isFinite(Number(existing.longitude)) &&
+          existing.latitude != null && existing.longitude != null) {
+        delete item.latitude;
+        delete item.longitude;
+      }
       const changes = Object.fromEntries(Object.entries(item).filter(([key, value]) =>
         !isDeepStrictEqual(value, existing[key])
       ));

@@ -1278,7 +1278,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.507312,
+      "longitude": -0.128895
     },
     {
       "id": "wd-q15673036",
@@ -1302,7 +1304,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.50663136,
+      "longitude": -0.12681915
     },
     {
       "id": "wd-q18161687",
@@ -1326,7 +1330,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.506489,
+      "longitude": -0.126911
     },
     {
       "id": "wd-q28026682",
@@ -1350,7 +1356,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.506108078,
+      "longitude": -0.12678802
     },
     {
       "id": "wd-q17021649",
@@ -1374,7 +1382,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5073594,
+      "longitude": -0.1252331
     },
     {
       "id": "wd-q108940306",
@@ -1398,7 +1408,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5096,
+      "longitude": -0.1267
     },
     {
       "id": "wd-q18389799",
@@ -1422,7 +1434,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5096,
+      "longitude": -0.126062
     },
     {
       "id": "wd-q136695724",
@@ -1446,7 +1460,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.508184,
+      "longitude": -0.123742
     },
     {
       "id": "wd-q136733200",
@@ -1470,7 +1486,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.508826,
+      "longitude": -0.123899
     },
     {
       "id": "wd-q88966234",
@@ -1494,7 +1512,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.510358403,
+      "longitude": -0.129432678
     },
     {
       "id": "wd-q136695187",
@@ -1518,7 +1538,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5095922,
+      "longitude": -0.1317508
     },
     {
       "id": "wd-q136705238",
@@ -1542,7 +1564,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.510849,
+      "longitude": -0.128663
     },
     {
       "id": "wd-q15991477",
@@ -1566,7 +1590,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.510911,
+      "longitude": -0.127253
     },
     {
       "id": "wd-q18393967",
@@ -1590,7 +1616,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.511073,
+      "longitude": -0.125619
     },
     {
       "id": "wd-q11667202",
@@ -1614,7 +1642,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5056,
+      "longitude": -0.1222
     },
     {
       "id": "wd-q132732751",
@@ -1638,7 +1668,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.510422,
+      "longitude": -0.123647
     },
     {
       "id": "wd-q18391723",
@@ -1662,7 +1694,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5102,
+      "longitude": -0.122824
     },
     {
       "id": "wd-q137262441",
@@ -1686,7 +1720,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.511784,
+      "longitude": -0.128129
     },
     {
       "id": "wd-q18353351",
@@ -1710,7 +1746,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.511734,
+      "longitude": -0.125686
     },
     {
       "id": "wd-q15991728",
@@ -1734,7 +1772,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5104,
+      "longitude": -0.1213
     },
     {
       "id": "wd-q5244433",
@@ -1758,7 +1798,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512,
+      "longitude": -0.1313
     },
     {
       "id": "wd-q136703533",
@@ -1782,7 +1824,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.510901,
+      "longitude": -0.134116
     },
     {
       "id": "wd-q137771226",
@@ -1806,7 +1850,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5118249,
+      "longitude": -0.1230419
     },
     {
       "id": "wd-q17747095",
@@ -1830,7 +1876,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.50829937,
+      "longitude": -0.13646485
     },
     {
       "id": "wd-q136703529",
@@ -1854,7 +1902,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.511308,
+      "longitude": -0.134365
     },
     {
       "id": "wd-q136703536",
@@ -1878,7 +1928,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.510812,
+      "longitude": -0.135358
     },
     {
       "id": "wd-q132258632",
@@ -1902,7 +1954,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5133,
+      "longitude": -0.1287
     },
     {
       "id": "wd-q23301494",
@@ -1926,7 +1980,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51281,
+      "longitude": -0.12387
     },
     {
       "id": "wd-q28401980",
@@ -1950,7 +2006,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51336,
+      "longitude": -0.12722
     },
     {
       "id": "wd-q5137601",
@@ -1974,7 +2032,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5132,
+      "longitude": -0.130222
     },
     {
       "id": "wd-q5157187",
@@ -1998,7 +2058,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5126,
+      "longitude": -0.1326
     },
     {
       "id": "wd-q27080748",
@@ -2022,7 +2084,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.506286,
+      "longitude": -0.137487
     },
     {
       "id": "wd-q18379002",
@@ -2046,7 +2110,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51297,
+      "longitude": -0.123674
     },
     {
       "id": "wd-q4683676",
@@ -2070,7 +2136,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5129,
+      "longitude": -0.1324
     },
     {
       "id": "wd-q136159807",
@@ -2094,7 +2162,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5134435,
+      "longitude": -0.1303052
     },
     {
       "id": "wd-q124360651",
@@ -2118,7 +2188,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5136,
+      "longitude": -0.1295
     },
     {
       "id": "wd-q27084775",
@@ -2142,7 +2214,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.501208,
+      "longitude": -0.125615
     },
     {
       "id": "wd-q136695339",
@@ -2166,7 +2240,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.511312,
+      "longitude": -0.119724
     },
     {
       "id": "wd-q136634318",
@@ -2190,7 +2266,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5111757,
+      "longitude": -0.1363142
     },
     {
       "id": "wd-q136700480",
@@ -2214,7 +2292,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.511403,
+      "longitude": -0.119538
     },
     {
       "id": "wd-q27084354",
@@ -2238,7 +2318,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513955,
+      "longitude": -0.126887
     },
     {
       "id": "wd-q27082196",
@@ -2262,7 +2344,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513872,
+      "longitude": -0.129722
     },
     {
       "id": "wd-q136703543",
@@ -2286,7 +2370,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.510615,
+      "longitude": -0.137058
     },
     {
       "id": "wd-q136721350",
@@ -2310,7 +2396,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5128467,
+      "longitude": -0.1212167
     },
     {
       "id": "wd-q136721353",
@@ -2334,7 +2422,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512944,
+      "longitude": -0.121303
     },
     {
       "id": "wd-q112779782",
@@ -2358,7 +2448,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512613,
+      "longitude": -0.120593
     },
     {
       "id": "wd-q110192503",
@@ -2382,7 +2474,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.50063414,
+      "longitude": -0.129798134
     },
     {
       "id": "wd-q121745465",
@@ -2406,7 +2500,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51386,
+      "longitude": -0.132421
     },
     {
       "id": "wd-q15978971",
@@ -2430,7 +2526,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513998,
+      "longitude": -0.132022
     },
     {
       "id": "wd-q27080797",
@@ -2454,7 +2552,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.514006,
+      "longitude": -0.122688
     },
     {
       "id": "wd-q17986739",
@@ -2478,7 +2578,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.514504,
+      "longitude": -0.12479
     },
     {
       "id": "wd-q18162102",
@@ -2502,7 +2604,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5127,
+      "longitude": -0.136603
     },
     {
       "id": "wd-q113728208",
@@ -2526,7 +2630,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.514,
+      "longitude": -0.134305555
     },
     {
       "id": "wd-q136705143",
@@ -2550,7 +2656,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513837,
+      "longitude": -0.134979
     },
     {
       "id": "wd-q136705165",
@@ -2574,7 +2682,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51259,
+      "longitude": -0.137394
     },
     {
       "id": "wd-q123244004",
@@ -2598,7 +2708,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513194444,
+      "longitude": -0.136666666
     },
     {
       "id": "wd-q117706199",
@@ -2622,7 +2734,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5155,
+      "longitude": -0.12784
     },
     {
       "id": "wd-q136645236",
@@ -2646,7 +2760,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5145794,
+      "longitude": -0.121732
     },
     {
       "id": "wd-q116921180",
@@ -2670,7 +2786,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.515117,
+      "longitude": -0.133183
     },
     {
       "id": "wd-q132258731",
@@ -2694,7 +2812,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51336,
+      "longitude": -0.138206
     },
     {
       "id": "wd-q27087335",
@@ -2718,7 +2838,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51494,
+      "longitude": -0.135318
     },
     {
       "id": "wd-q137188804",
@@ -2742,7 +2864,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513393,
+      "longitude": -0.138662
     },
     {
       "id": "wd-q16707773",
@@ -2766,7 +2890,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5166,
+      "longitude": -0.130808
     },
     {
       "id": "wd-q27083517",
@@ -2790,7 +2916,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.516852,
+      "longitude": -0.125783
     },
     {
       "id": "wd-q108464970",
@@ -2814,7 +2942,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.504003,
+      "longitude": -0.113305
     },
     {
       "id": "wd-q7761650",
@@ -2838,7 +2968,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5165,
+      "longitude": -0.1331
     },
     {
       "id": "wd-q26314557",
@@ -2862,7 +2994,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51353109,
+      "longitude": -0.140248911
     },
     {
       "id": "wd-q27083993",
@@ -2886,7 +3020,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.515563,
+      "longitude": -0.136757
     },
     {
       "id": "wd-q27087707",
@@ -2910,7 +3046,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512433,
+      "longitude": -0.113197
     },
     {
       "id": "wd-q27084319",
@@ -2934,7 +3072,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.517908,
+      "longitude": -0.125978
     },
     {
       "id": "wd-q136801643",
@@ -2958,7 +3098,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.497468,
+      "longitude": -0.134108
     },
     {
       "id": "wd-q88967138",
@@ -2982,7 +3124,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.516808256,
+      "longitude": -0.119583606
     },
     {
       "id": "wd-q28405379",
@@ -3006,7 +3150,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512706,
+      "longitude": -0.112749
     },
     {
       "id": "wd-q21008630",
@@ -3030,7 +3176,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.49772559,
+      "longitude": -0.135547697
     },
     {
       "id": "wd-q132716823",
@@ -3054,7 +3202,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51766,
+      "longitude": -0.13338
     },
     {
       "id": "wd-q121322839",
@@ -3078,7 +3228,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513243,
+      "longitude": -0.113097
     },
     {
       "id": "wd-q16707752",
@@ -3102,7 +3254,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.518197,
+      "longitude": -0.125841
     },
     {
       "id": "wd-q26319777",
@@ -3126,7 +3280,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51282995,
+      "longitude": -0.11257406
     },
     {
       "id": "wd-q27083432",
@@ -3150,7 +3306,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.516875,
+      "longitude": -0.137325
     },
     {
       "id": "wd-q7497944",
@@ -3174,7 +3332,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5172,
+      "longitude": -0.118889
     },
     {
       "id": "wd-q136700765",
@@ -3198,7 +3358,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4986377,
+      "longitude": -0.139521
     },
     {
       "id": "wd-q15978878",
@@ -3222,7 +3384,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5151,
+      "longitude": -0.14139
     },
     {
       "id": "wd-q20005803",
@@ -3246,7 +3410,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5085,
+      "longitude": -0.14615
     },
     {
       "id": "wd-q18748735",
@@ -3270,7 +3436,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5181,
+      "longitude": -0.13468
     },
     {
       "id": "wd-q15979287",
@@ -3294,7 +3462,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.514959,
+      "longitude": -0.11353
     },
     {
       "id": "wd-q18748737",
@@ -3318,7 +3488,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5181,
+      "longitude": -0.135326
     },
     {
       "id": "wd-q136490657",
@@ -3342,7 +3514,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.518773,
+      "longitude": -0.132168
     },
     {
       "id": "wd-q5455720",
@@ -3366,7 +3540,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5186,
+      "longitude": -0.1347
     },
     {
       "id": "wd-q26318092",
@@ -3390,7 +3566,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.50440417,
+      "longitude": -0.10907179
     },
     {
       "id": "wd-q26487354",
@@ -3414,7 +3592,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513932,
+      "longitude": -0.111488
     },
     {
       "id": "wd-q136994958",
@@ -3438,7 +3618,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.495177,
+      "longitude": -0.127175
     },
     {
       "id": "wd-q18708780",
@@ -3462,7 +3644,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.519199,
+      "longitude": -0.133338
     },
     {
       "id": "wd-q18748734",
@@ -3486,7 +3670,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5187,
+      "longitude": -0.135944
     },
     {
       "id": "wd-q136700756",
@@ -3510,7 +3696,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.498727,
+      "longitude": -0.142044
     },
     {
       "id": "wd-q7725384",
@@ -3534,7 +3722,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5137,
+      "longitude": -0.110556
     },
     {
       "id": "wd-q136621722",
@@ -3558,7 +3748,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.495076,
+      "longitude": -0.131688
     },
     {
       "id": "wd-q132732809",
@@ -3582,7 +3774,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.516774,
+      "longitude": -0.141448
     },
     {
       "id": "wd-q106214237",
@@ -3606,7 +3800,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5198,
+      "longitude": -0.1321
     },
     {
       "id": "wd-q136704261",
@@ -3630,7 +3826,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.501114,
+      "longitude": -0.110048
     },
     {
       "id": "wd-q132732920",
@@ -3654,7 +3852,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.518962337,
+      "longitude": -0.136821175
     },
     {
       "id": "wd-q88973882",
@@ -3678,7 +3878,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.517969934,
+      "longitude": -0.115485191
     },
     {
       "id": "wd-q136700522",
@@ -3702,7 +3904,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4982379,
+      "longitude": -0.1124955
     },
     {
       "id": "wd-q135206501",
@@ -3726,7 +3930,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51987,
+      "longitude": -0.134835
     },
     {
       "id": "wd-q136721116",
@@ -3750,7 +3956,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4971851,
+      "longitude": -0.1138818
     },
     {
       "id": "wd-q136645362",
@@ -3774,7 +3982,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.518512,
+      "longitude": -0.140293
     },
     {
       "id": "wd-q7758738",
@@ -3798,7 +4008,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.509104,
+      "longitude": -0.149458
     },
     {
       "id": "wd-q136645353",
@@ -3822,7 +4034,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.518936,
+      "longitude": -0.13947
     },
     {
       "id": "wd-q27080711",
@@ -3846,7 +4060,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.49803,
+      "longitude": -0.14412
     },
     {
       "id": "wd-q137293974",
@@ -3870,7 +4086,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.505681,
+      "longitude": -0.105738
     },
     {
       "id": "wd-q136704366",
@@ -3894,7 +4112,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.519968,
+      "longitude": -0.117691
     },
     {
       "id": "wd-q27084619",
@@ -3918,7 +4138,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513207,
+      "longitude": -0.148441
     },
     {
       "id": "wd-q136704262",
@@ -3942,7 +4164,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5012622,
+      "longitude": -0.1073934
     },
     {
       "id": "wd-q17361872",
@@ -3966,7 +4190,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.514058,
+      "longitude": -0.107621
     },
     {
       "id": "wd-q27083738",
@@ -3990,7 +4216,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51298,
+      "longitude": -0.106784
     },
     {
       "id": "wd-q26432040",
@@ -4014,7 +4242,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.521226,
+      "longitude": -0.122532
     },
     {
       "id": "wd-q18162297",
@@ -4038,7 +4268,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51895278,
+      "longitude": -0.14136389
     },
     {
       "id": "wd-q108464922",
@@ -4062,7 +4294,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.508424671,
+      "longitude": -0.104801501
     },
     {
       "id": "wd-q136733631",
@@ -4086,7 +4320,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.519316,
+      "longitude": -0.140725
     },
     {
       "id": "wd-q136704372",
@@ -4110,7 +4346,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.520253,
+      "longitude": -0.117339
     },
     {
       "id": "wd-q136700516",
@@ -4134,7 +4372,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4966904,
+      "longitude": -0.1112741
     },
     {
       "id": "wd-q136704374",
@@ -4158,7 +4398,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5206791,
+      "longitude": -0.1170161
     },
     {
       "id": "wd-q88965899",
@@ -4182,7 +4424,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.495017973,
+      "longitude": -0.142140984
     },
     {
       "id": "wd-q137262394",
@@ -4206,7 +4450,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.496261,
+      "longitude": -0.144841
     },
     {
       "id": "wd-q136703750",
@@ -4230,7 +4476,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.519868,
+      "longitude": -0.142414
     },
     {
       "id": "wd-q136704277",
@@ -4254,7 +4502,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.501413,
+      "longitude": -0.104928
     },
     {
       "id": "wd-q130866576",
@@ -4278,7 +4528,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.521833,
+      "longitude": -0.136656
     },
     {
       "id": "wd-q26317813",
@@ -4302,7 +4554,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51403397,
+      "longitude": -0.105233448
     },
     {
       "id": "wd-q133805065",
@@ -4326,7 +4580,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.514014,
+      "longitude": -0.105013
     },
     {
       "id": "wd-q15979550",
@@ -4350,7 +4606,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5121,
+      "longitude": -0.103751
     },
     {
       "id": "wd-q17361863",
@@ -4374,7 +4632,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.514045,
+      "longitude": -0.104925
     },
     {
       "id": "wd-q27086674",
@@ -4398,7 +4658,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.522211,
+      "longitude": -0.118877
     },
     {
       "id": "wd-q136440877",
@@ -4422,7 +4684,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.522513,
+      "longitude": -0.135772
     },
     {
       "id": "wd-q27083480",
@@ -4446,7 +4710,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.521951,
+      "longitude": -0.117392
     },
     {
       "id": "wd-q88967136",
@@ -4470,7 +4736,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.495128186,
+      "longitude": -0.144356489
     },
     {
       "id": "wd-q136700537",
@@ -4494,7 +4762,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4953279,
+      "longitude": -0.1106915
     },
     {
       "id": "wd-q18161227",
@@ -4518,7 +4788,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4965,
+      "longitude": -0.147583333
     },
     {
       "id": "wd-q134740650",
@@ -4542,7 +4814,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5049,
+      "longitude": -0.1016
     },
     {
       "id": "wd-q7745280",
@@ -4566,7 +4840,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.523105,
+      "longitude": -0.119017
     },
     {
       "id": "wd-q15979621",
@@ -4590,7 +4866,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51844,
+      "longitude": -0.107454
     },
     {
       "id": "wd-q136721449",
@@ -4614,7 +4892,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52354,
+      "longitude": -0.135597
     },
     {
       "id": "wd-q17747299",
@@ -4638,7 +4918,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5228,
+      "longitude": -0.116499
     },
     {
       "id": "wd-q27082945",
@@ -4662,7 +4944,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512466,
+      "longitude": -0.101546
     },
     {
       "id": "wd-q136629576",
@@ -4686,7 +4970,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.491333,
+      "longitude": -0.118235
     },
     {
       "id": "wd-q26489084",
@@ -4710,7 +4996,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512702,
+      "longitude": -0.101509
     },
     {
       "id": "wd-q136721558",
@@ -4734,7 +5022,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.517165,
+      "longitude": -0.150636
     },
     {
       "id": "wd-q132177380",
@@ -4758,7 +5048,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.514048768,
+      "longitude": -0.102180906
     },
     {
       "id": "wd-q136703507",
@@ -4782,7 +5074,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.491093,
+      "longitude": -0.1373223
     },
     {
       "id": "wd-q26486633",
@@ -4806,7 +5100,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513128,
+      "longitude": -0.101418
     },
     {
       "id": "wd-q136441296",
@@ -4830,7 +5126,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.516155,
+      "longitude": -0.152128
     },
     {
       "id": "wd-q136703492",
@@ -4854,7 +5152,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.491357,
+      "longitude": -0.139201
     },
     {
       "id": "wd-q136721556",
@@ -4878,7 +5178,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.517653,
+      "longitude": -0.150847
     },
     {
       "id": "wd-q136711412",
@@ -4902,7 +5204,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.493198,
+      "longitude": -0.144752
     },
     {
       "id": "wd-q136700536",
@@ -4926,7 +5230,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4931919,
+      "longitude": -0.1105588
     },
     {
       "id": "wd-q27086680",
@@ -4950,7 +5256,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.521254,
+      "longitude": -0.109663
     },
     {
       "id": "wd-q7738264",
@@ -4974,7 +5282,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5014,
+      "longitude": -0.1549
     },
     {
       "id": "wd-q18344137",
@@ -4998,7 +5308,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.523005,
+      "longitude": -0.142022
     },
     {
       "id": "wd-q20878182",
@@ -5022,7 +5334,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.489383,
+      "longitude": -0.128747
     },
     {
       "id": "wd-q136645597",
@@ -5046,7 +5360,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.518058,
+      "longitude": -0.15136
     },
     {
       "id": "wd-q136721527",
@@ -5070,7 +5386,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.522141,
+      "longitude": -0.110655
     },
     {
       "id": "wd-q136705188",
@@ -5094,7 +5412,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.524008,
+      "longitude": -0.115744
     },
     {
       "id": "wd-q88973876",
@@ -5118,7 +5438,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.519855928,
+      "longitude": -0.105990171
     },
     {
       "id": "wd-q17030424",
@@ -5142,7 +5464,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.516304,
+      "longitude": -0.101714
     },
     {
       "id": "wd-q136721560",
@@ -5166,7 +5490,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.519667,
+      "longitude": -0.150214
     },
     {
       "id": "wd-q136721525",
@@ -5190,7 +5516,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5224993,
+      "longitude": -0.1104184
     },
     {
       "id": "wd-q136695342",
@@ -5214,7 +5542,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.526032,
+      "longitude": -0.12592
     },
     {
       "id": "wd-q26407029",
@@ -5238,7 +5568,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.524827,
+      "longitude": -0.116144
     },
     {
       "id": "wd-q76984918",
@@ -5262,7 +5594,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52373,
+      "longitude": -0.14323
     },
     {
       "id": "wd-q17031191",
@@ -5286,7 +5620,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5015,
+      "longitude": -0.1571
     },
     {
       "id": "wd-q125558739",
@@ -5310,7 +5646,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4887,
+      "longitude": -0.12093
     },
     {
       "id": "wd-q136645287",
@@ -5334,7 +5672,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.501121,
+      "longitude": -0.156971
     },
     {
       "id": "wd-q136441120",
@@ -5358,7 +5698,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52664,
+      "longitude": -0.125189
     },
     {
       "id": "wd-q136721531",
@@ -5382,7 +5724,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.523027,
+      "longitude": -0.109289
     },
     {
       "id": "wd-q27080326",
@@ -5406,7 +5750,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52027,
+      "longitude": -0.10422
     },
     {
       "id": "wd-q17021189",
@@ -5430,7 +5776,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.498414,
+      "longitude": -0.15587
     },
     {
       "id": "wd-q136703777",
@@ -5454,7 +5802,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.519231,
+      "longitude": -0.153192
     },
     {
       "id": "wd-q136695402",
@@ -5478,7 +5828,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.493757,
+      "longitude": -0.150759
     },
     {
       "id": "wd-q136695297",
@@ -5502,7 +5854,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.510418,
+      "longitude": -0.096244
     },
     {
       "id": "wd-q136721562",
@@ -5526,7 +5880,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.521395,
+      "longitude": -0.150552
     },
     {
       "id": "wd-q136733032",
@@ -5550,7 +5906,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.523372,
+      "longitude": -0.108071
     },
     {
       "id": "wd-q136440549",
@@ -5574,7 +5932,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.524138,
+      "longitude": -0.109743
     },
     {
       "id": "wd-q16994281",
@@ -5598,7 +5958,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.519786,
+      "longitude": -0.10215
     },
     {
       "id": "wd-q18207855",
@@ -5622,7 +5984,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.526901,
+      "longitude": -0.136987
     },
     {
       "id": "wd-q7719374",
@@ -5646,7 +6010,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5276,
+      "longitude": -0.124016
     },
     {
       "id": "wd-q141180578",
@@ -5670,7 +6036,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5278,
+      "longitude": -0.1276
     },
     {
       "id": "wd-q26673080",
@@ -5694,7 +6062,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.502808,
+      "longitude": -0.09559
     },
     {
       "id": "wd-q136704325",
@@ -5718,7 +6088,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.527798,
+      "longitude": -0.131988
     },
     {
       "id": "wd-q136721440",
@@ -5742,7 +6114,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.521775,
+      "longitude": -0.104037
     },
     {
       "id": "wd-q27081696",
@@ -5766,7 +6140,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.521492,
+      "longitude": -0.152107
     },
     {
       "id": "wd-q133809924",
@@ -5790,7 +6166,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.524269597,
+      "longitude": -0.108273373
     },
     {
       "id": "wd-q88916689",
@@ -5814,7 +6192,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4960199,
+      "longitude": -0.099724531
     },
     {
       "id": "wd-q136704327",
@@ -5838,7 +6218,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5280324,
+      "longitude": -0.1328679
     },
     {
       "id": "wd-q42847513",
@@ -5862,7 +6244,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.518867,
+      "longitude": -0.099658
     },
     {
       "id": "wd-q18390480",
@@ -5886,7 +6270,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52831,
+      "longitude": -0.128914
     },
     {
       "id": "wd-q116171256",
@@ -5910,7 +6296,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4994,
+      "longitude": -0.0967
     },
     {
       "id": "wd-q136698217",
@@ -5934,7 +6322,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.523269,
+      "longitude": -0.105819
     },
     {
       "id": "wd-q136630054",
@@ -5958,7 +6348,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.525797,
+      "longitude": -0.144063
     },
     {
       "id": "wd-q136721459",
@@ -5982,7 +6374,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.523876,
+      "longitude": -0.106779
     },
     {
       "id": "wd-q27084503",
@@ -6006,7 +6400,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.528319,
+      "longitude": -0.131644
     },
     {
       "id": "wd-q26490121",
@@ -6030,7 +6426,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.523243,
+      "longitude": -0.105281
     },
     {
       "id": "wd-q137295500",
@@ -6054,7 +6452,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.527892,
+      "longitude": -0.136682
     },
     {
       "id": "wd-q17031032",
@@ -6078,7 +6478,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.521198,
+      "longitude": -0.101816
     },
     {
       "id": "wd-q17361847",
@@ -6102,7 +6504,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52041808,
+      "longitude": -0.100705994
     },
     {
       "id": "wd-q26319747",
@@ -6126,7 +6530,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.49313972,
+      "longitude": -0.153288093
     },
     {
       "id": "wd-q7374962",
@@ -6150,7 +6556,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4864,
+      "longitude": -0.1219
     },
     {
       "id": "wd-q136697894",
@@ -6174,7 +6582,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.526308,
+      "longitude": -0.111349
     },
     {
       "id": "wd-q136695379",
@@ -6198,7 +6608,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.519467,
+      "longitude": -0.099153
     },
     {
       "id": "wd-q136731545",
@@ -6222,7 +6634,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.525764,
+      "longitude": -0.109665
     },
     {
       "id": "wd-q17361851",
@@ -6246,7 +6660,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.519337,
+      "longitude": -0.098808
     },
     {
       "id": "wd-q4752659",
@@ -6270,7 +6686,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.507262,
+      "longitude": -0.092925
     },
     {
       "id": "wd-q133856754",
@@ -6294,7 +6712,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.494019843,
+      "longitude": -0.155354753
     },
     {
       "id": "wd-q136704335",
@@ -6318,7 +6738,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5289697,
+      "longitude": -0.1323497
     },
     {
       "id": "wd-q136695065",
@@ -6342,7 +6764,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513285,
+      "longitude": -0.094081
     },
     {
       "id": "wd-q137211719",
@@ -6366,7 +6790,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5135985,
+      "longitude": -0.0940496
     },
     {
       "id": "wd-q136817432",
@@ -6390,7 +6816,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51477,
+      "longitude": -0.160943
     },
     {
       "id": "wd-q27081607",
@@ -6414,7 +6842,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.488982,
+      "longitude": -0.146816
     },
     {
       "id": "wd-q136695363",
@@ -6438,7 +6868,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512914,
+      "longitude": -0.093557
     },
     {
       "id": "wd-q137343213",
@@ -6462,7 +6894,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.515183,
+      "longitude": -0.161166
     },
     {
       "id": "wd-q7773713",
@@ -6486,7 +6920,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.529,
+      "longitude": -0.11965
     },
     {
       "id": "wd-q27086020",
@@ -6510,7 +6946,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512294,
+      "longitude": -0.092918
     },
     {
       "id": "wd-q17017445",
@@ -6534,7 +6972,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5015,
+      "longitude": -0.16231
     },
     {
       "id": "wd-q27080346",
@@ -6558,7 +6998,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.524293,
+      "longitude": -0.104471
     },
     {
       "id": "wd-q21008639",
@@ -6582,7 +7024,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.520046,
+      "longitude": -0.157331
     },
     {
       "id": "wd-q136700695",
@@ -6606,7 +7050,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52851,
+      "longitude": -0.115898
     },
     {
       "id": "wd-q137211699",
@@ -6630,7 +7076,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5093933,
+      "longitude": -0.0916244
     },
     {
       "id": "wd-q27084027",
@@ -6654,7 +7102,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52674,
+      "longitude": -0.108983
     },
     {
       "id": "wd-q136694944",
@@ -6678,7 +7128,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.50533,
+      "longitude": -0.091347
     },
     {
       "id": "wd-q17361860",
@@ -6702,7 +7154,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.48945664,
+      "longitude": -0.105159354
     },
     {
       "id": "wd-q136704360",
@@ -6726,7 +7180,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.529947,
+      "longitude": -0.133416
     },
     {
       "id": "wd-q17361880",
@@ -6750,7 +7206,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.505152,
+      "longitude": -0.091064
     },
     {
       "id": "wd-q136633430",
@@ -6774,7 +7232,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.521935,
+      "longitude": -0.157007
     },
     {
       "id": "wd-q26665488",
@@ -6798,7 +7258,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.502907,
+      "longitude": -0.091022
     },
     {
       "id": "wd-q88965897",
@@ -6822,7 +7284,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.522502864,
+      "longitude": -0.156871676
     },
     {
       "id": "wd-q136695714",
@@ -6846,7 +7310,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.485412,
+      "longitude": -0.141621
     },
     {
       "id": "wd-q26657099",
@@ -6870,7 +7336,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.505497,
+      "longitude": -0.089938
     },
     {
       "id": "wd-q136645191",
@@ -6894,7 +7362,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.500122,
+      "longitude": -0.091434
     },
     {
       "id": "wd-q7429657",
@@ -6918,7 +7388,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5308,
+      "longitude": -0.1208
     },
     {
       "id": "wd-q26432011",
@@ -6942,7 +7414,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.531163,
+      "longitude": -0.131334
     },
     {
       "id": "wd-q26407136",
@@ -6966,7 +7440,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.530783,
+      "longitude": -0.119931
     },
     {
       "id": "wd-q88965893",
@@ -6990,7 +7466,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.511274361,
+      "longitude": -0.089854874
     },
     {
       "id": "wd-q136695281",
@@ -7014,7 +7492,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.521725,
+      "longitude": -0.096999
     },
     {
       "id": "wd-q26665410",
@@ -7038,7 +7518,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.504641,
+      "longitude": -0.089504
     },
     {
       "id": "wd-q17361846",
@@ -7062,7 +7544,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.531085,
+      "longitude": -0.120813
     },
     {
       "id": "wd-q26665634",
@@ -7086,7 +7570,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.504992,
+      "longitude": -0.0892
     },
     {
       "id": "wd-q27083820",
@@ -7110,7 +7596,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51101,
+      "longitude": -0.089443
     },
     {
       "id": "wd-q136695710",
@@ -7134,7 +7622,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.506384,
+      "longitude": -0.089034
     },
     {
       "id": "wd-q136704136",
@@ -7158,7 +7648,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.531572,
+      "longitude": -0.122282
     },
     {
       "id": "wd-q136704149",
@@ -7182,7 +7674,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.531562,
+      "longitude": -0.121132
     },
     {
       "id": "wd-q26317783",
@@ -7206,7 +7700,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5156913,
+      "longitude": -0.090321559
     },
     {
       "id": "wd-q18708781",
@@ -7230,7 +7726,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.498117,
+      "longitude": -0.090667
     },
     {
       "id": "wd-q24022951",
@@ -7254,7 +7752,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.510484,
+      "longitude": -0.088053
     },
     {
       "id": "wd-q26511583",
@@ -7278,7 +7778,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.514585,
+      "longitude": -0.166214
     },
     {
       "id": "wd-q27081017",
@@ -7302,7 +7804,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.520044,
+      "longitude": -0.162449
     },
     {
       "id": "wd-q88965895",
@@ -7326,7 +7830,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.532440313,
+      "longitude": -0.12630303
     },
     {
       "id": "wd-q136700786",
@@ -7350,7 +7856,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.53247,
+      "longitude": -0.123836
     },
     {
       "id": "wd-q136695721",
@@ -7374,7 +7882,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.528149,
+      "longitude": -0.104539
     },
     {
       "id": "wd-q26639765",
@@ -7398,7 +7908,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.523925,
+      "longitude": -0.158688
     },
     {
       "id": "wd-q136695425",
@@ -7422,7 +7934,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.529448,
+      "longitude": -0.106789
     },
     {
       "id": "wd-q132775066",
@@ -7446,7 +7960,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.50212,
+      "longitude": -0.08745
     },
     {
       "id": "wd-q27082427",
@@ -7470,7 +7986,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5209,
+      "longitude": -0.0922
     },
     {
       "id": "wd-q137211710",
@@ -7494,7 +8012,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5102919,
+      "longitude": -0.0861975
     },
     {
       "id": "wd-q136695427",
@@ -7518,7 +8038,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.529892,
+      "longitude": -0.106183
     },
     {
       "id": "wd-q27085338",
@@ -7542,7 +8064,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.497492,
+      "longitude": -0.167058
     },
     {
       "id": "wd-q27082408",
@@ -7566,7 +8090,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.517694,
+      "longitude": -0.088782
     },
     {
       "id": "wd-q12404791",
@@ -7590,7 +8116,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51292068,
+      "longitude": -0.085914563
     },
     {
       "id": "wd-q26486682",
@@ -7614,7 +8142,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513022,
+      "longitude": -0.085948
     },
     {
       "id": "wd-q124419797",
@@ -7638,7 +8168,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.511114534,
+      "longitude": -0.085115745
     },
     {
       "id": "wd-q6127350",
@@ -7662,7 +8194,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513,
+      "longitude": -0.085611111
     },
     {
       "id": "wd-q136695270",
@@ -7686,7 +8220,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5095114,
+      "longitude": -0.0842105
     },
     {
       "id": "wd-q27082911",
@@ -7710,7 +8246,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5127,
+      "longitude": -0.0846
     },
     {
       "id": "wd-q136223184",
@@ -7734,7 +8272,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512238,
+      "longitude": -0.084455
     },
     {
       "id": "wd-q27084213",
@@ -7758,7 +8298,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.481411,
+      "longitude": -0.113202
     },
     {
       "id": "wd-q17361868",
@@ -7782,7 +8324,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.504594,
+      "longitude": -0.083558
     },
     {
       "id": "wd-q7084824",
@@ -7806,7 +8350,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.531483,
+      "longitude": -0.105874
     },
     {
       "id": "wd-q17030403",
@@ -7830,7 +8376,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513491,
+      "longitude": -0.171229
     },
     {
       "id": "wd-q116249937",
@@ -7854,7 +8402,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4796373,
+      "longitude": -0.1259622
     },
     {
       "id": "wd-q136703757",
@@ -7878,7 +8428,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.534482,
+      "longitude": -0.137847
     },
     {
       "id": "wd-q136703756",
@@ -7902,7 +8454,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.534818,
+      "longitude": -0.137622
     },
     {
       "id": "wd-q136695348",
@@ -7926,7 +8480,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5128384,
+      "longitude": -0.0832871
     },
     {
       "id": "wd-q136226002",
@@ -7950,7 +8506,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.523409,
+      "longitude": -0.090095
     },
     {
       "id": "wd-q136700575",
@@ -7974,7 +8532,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.53519,
+      "longitude": -0.141702
     },
     {
       "id": "wd-q88973878",
@@ -7998,7 +8558,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.525191367,
+      "longitude": -0.090468227
     },
     {
       "id": "wd-q26665437",
@@ -8022,7 +8584,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.49836,
+      "longitude": -0.082971
     },
     {
       "id": "wd-q136629433",
@@ -8046,7 +8610,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.517509,
+      "longitude": -0.083416
     },
     {
       "id": "wd-q27083485",
@@ -8070,7 +8636,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52043,
+      "longitude": -0.085058
     },
     {
       "id": "wd-q136718981",
@@ -8094,7 +8662,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.516915,
+      "longitude": -0.172957
     },
     {
       "id": "wd-q26502779",
@@ -8118,7 +8688,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.533752,
+      "longitude": -0.104991
     },
     {
       "id": "wd-q26487647",
@@ -8142,7 +8714,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.510896,
+      "longitude": -0.079939
     },
     {
       "id": "wd-q136694696",
@@ -8166,7 +8740,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.515493,
+      "longitude": -0.174601
     },
     {
       "id": "wd-q116305498",
@@ -8190,7 +8766,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.477186,
+      "longitude": -0.1230269
     },
     {
       "id": "wd-q15616526",
@@ -8214,7 +8792,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5123349,
+      "longitude": -0.0792325
     },
     {
       "id": "wd-q26407044",
@@ -8238,7 +8818,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.536065,
+      "longitude": -0.145019
     },
     {
       "id": "wd-q88965892",
@@ -8262,7 +8844,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5096506,
+      "longitude": -0.078588724
     },
     {
       "id": "wd-q88973880",
@@ -8286,7 +8870,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.517429157,
+      "longitude": -0.081077814
     },
     {
       "id": "wd-q7653450",
@@ -8310,7 +8896,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51167312,
+      "longitude": -0.177061136
     },
     {
       "id": "wd-q5025775",
@@ -8334,7 +8922,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5373,
+      "longitude": -0.14112
     },
     {
       "id": "wd-q17361854",
@@ -8358,7 +8948,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.533206,
+      "longitude": -0.098461
     },
     {
       "id": "wd-q136731631",
@@ -8382,7 +8974,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.533854,
+      "longitude": -0.099739
     },
     {
       "id": "wd-q136693987",
@@ -8406,7 +9000,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5160154,
+      "longitude": -0.1769998
     },
     {
       "id": "wd-q19587199",
@@ -8430,7 +9026,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5372,
+      "longitude": -0.145556
     },
     {
       "id": "wd-q88916691",
@@ -8454,7 +9052,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.502408337,
+      "longitude": -0.077234208
     },
     {
       "id": "wd-q136695393",
@@ -8478,7 +9078,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.517967,
+      "longitude": -0.079429
     },
     {
       "id": "wd-q7774242",
@@ -8502,7 +9104,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5314,
+      "longitude": -0.094
     },
     {
       "id": "wd-q16997942",
@@ -8526,7 +9130,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512362,
+      "longitude": -0.178496
     },
     {
       "id": "wd-q136695369",
@@ -8550,7 +9156,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.518247,
+      "longitude": -0.079307
     },
     {
       "id": "wd-q27084299",
@@ -8574,7 +9182,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.53767,
+      "longitude": -0.14488
     },
     {
       "id": "wd-q136645382",
@@ -8598,7 +9208,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.539131,
+      "longitude": -0.135862
     },
     {
       "id": "wd-q26585613",
@@ -8622,7 +9234,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.535642,
+      "longitude": -0.102817
     },
     {
       "id": "wd-q26670161",
@@ -8646,7 +9260,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.503554,
+      "longitude": -0.075964
     },
     {
       "id": "wd-q136695390",
@@ -8670,7 +9286,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.517998,
+      "longitude": -0.077822
     },
     {
       "id": "wd-q26318611",
@@ -8694,7 +9312,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.47669,
+      "longitude": -0.146867514
     },
     {
       "id": "wd-q17020568",
@@ -8718,7 +9338,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5366,
+      "longitude": -0.10316
     },
     {
       "id": "wd-q7775871",
@@ -8742,7 +9364,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5392,
+      "longitude": -0.142222
     },
     {
       "id": "wd-q136459677",
@@ -8766,7 +9390,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.539969,
+      "longitude": -0.137058
     },
     {
       "id": "wd-q137264036",
@@ -8790,7 +9416,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.527458,
+      "longitude": -0.085211
     },
     {
       "id": "wd-q123759829",
@@ -8814,7 +9442,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5403,
+      "longitude": -0.1355
     },
     {
       "id": "wd-q136695314",
@@ -8838,7 +9468,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.539487,
+      "longitude": -0.142192
     },
     {
       "id": "wd-q27086982",
@@ -8862,7 +9494,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.524847,
+      "longitude": -0.082034
     },
     {
       "id": "wd-q5357303",
@@ -8886,7 +9520,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.539722222,
+      "longitude": -0.143055555
     },
     {
       "id": "wd-q136703361",
@@ -8910,7 +9546,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.537413,
+      "longitude": -0.1031553
     },
     {
       "id": "wd-q126190930",
@@ -8934,7 +9572,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.53938,
+      "longitude": -0.109526
     },
     {
       "id": "wd-q136703386",
@@ -8958,7 +9598,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5362508,
+      "longitude": -0.0988191
     },
     {
       "id": "wd-q16707742",
@@ -8982,7 +9624,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5142,
+      "longitude": -0.074177
     },
     {
       "id": "wd-q136718963",
@@ -9006,7 +9650,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.517344,
+      "longitude": -0.180192
     },
     {
       "id": "wd-q137264012",
@@ -9030,7 +9676,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5189211,
+      "longitude": -0.0761157
     },
     {
       "id": "wd-q18346946",
@@ -9054,7 +9702,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5243926,
+      "longitude": -0.08012745
     },
     {
       "id": "wd-q136704242",
@@ -9078,7 +9728,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.540293,
+      "longitude": -0.143436
     },
     {
       "id": "wd-q137264124",
@@ -9102,7 +9754,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.522503,
+      "longitude": -0.078249
     },
     {
       "id": "wd-q7754896",
@@ -9126,7 +9780,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5373,
+      "longitude": -0.100447
     },
     {
       "id": "wd-q88973874",
@@ -9150,7 +9806,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.511450102,
+      "longitude": -0.072757373
     },
     {
       "id": "wd-q26516308",
@@ -9174,7 +9832,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.511606,
+      "longitude": -0.182879
     },
     {
       "id": "wd-q26670342",
@@ -9198,7 +9858,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.537606,
+      "longitude": -0.10052
     },
     {
       "id": "wd-q136704244",
@@ -9222,7 +9884,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5405479,
+      "longitude": -0.1443341
     },
     {
       "id": "wd-q5267845",
@@ -9246,7 +9910,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.541,
+      "longitude": -0.1424
     },
     {
       "id": "wd-q136704239",
@@ -9270,7 +9936,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.54076,
+      "longitude": -0.143839
     },
     {
       "id": "wd-q136704221",
@@ -9294,7 +9962,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.538822,
+      "longitude": -0.152609
     },
     {
       "id": "wd-q27083223",
@@ -9318,7 +9988,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.490094,
+      "longitude": -0.17702
     },
     {
       "id": "wd-q134360893",
@@ -9342,7 +10014,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5408,
+      "longitude": -0.14566
     },
     {
       "id": "wd-q26570177",
@@ -9366,7 +10040,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.540527,
+      "longitude": -0.108483
     },
     {
       "id": "wd-q136733732",
@@ -9390,7 +10066,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4859699,
+      "longitude": -0.1729707
     },
     {
       "id": "wd-q2414574",
@@ -9414,7 +10092,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51936842,
+      "longitude": -0.07429071
     },
     {
       "id": "wd-q27085030",
@@ -9438,7 +10118,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513689,
+      "longitude": -0.071821
     },
     {
       "id": "wd-q26318314",
@@ -9462,7 +10144,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52161263,
+      "longitude": -0.075695176
     },
     {
       "id": "wd-q27084519",
@@ -9486,7 +10170,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.540015,
+      "longitude": -0.150829
     },
     {
       "id": "wd-q21008660",
@@ -9510,7 +10196,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.520149,
+      "longitude": -0.074209
     },
     {
       "id": "wd-q136703420",
@@ -9534,7 +10222,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.538395,
+      "longitude": -0.098952
     },
     {
       "id": "wd-q27084908",
@@ -9558,7 +10248,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.510434,
+      "longitude": -0.070157
     },
     {
       "id": "wd-q27085366",
@@ -9582,7 +10274,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4988,
+      "longitude": -0.184064
     },
     {
       "id": "wd-q110129155",
@@ -9606,7 +10300,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4842914,
+      "longitude": -0.172266407
     },
     {
       "id": "wd-q137262064",
@@ -9630,7 +10326,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.528082,
+      "longitude": -0.080238
     },
     {
       "id": "wd-q134739721",
@@ -9654,7 +10352,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5428,
+      "longitude": -0.139303
     },
     {
       "id": "wd-q118383202",
@@ -9678,7 +10378,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.541944,
+      "longitude": -0.145
     },
     {
       "id": "wd-q136700552",
@@ -9702,7 +10404,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.492928,
+      "longitude": -0.181296
     },
     {
       "id": "wd-q136629004",
@@ -9726,7 +10430,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.515831,
+      "longitude": -0.0708
     },
     {
       "id": "wd-q136732185",
@@ -9750,7 +10456,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.479616,
+      "longitude": -0.165774
     },
     {
       "id": "wd-q136713389",
@@ -9774,7 +10482,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.542873,
+      "longitude": -0.142157
     },
     {
       "id": "wd-q26318188",
@@ -9798,7 +10508,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52429049,
+      "longitude": -0.075506225
     },
     {
       "id": "wd-q136704229",
@@ -9822,7 +10534,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.540391,
+      "longitude": -0.154015
     },
     {
       "id": "wd-q26318258",
@@ -9846,7 +10560,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51142316,
+      "longitude": -0.068529682
     },
     {
       "id": "wd-q15059604",
@@ -9870,7 +10586,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.519025,
+      "longitude": -0.070644
     },
     {
       "id": "wd-q136704226",
@@ -9894,7 +10612,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5414171,
+      "longitude": -0.1533533
     },
     {
       "id": "wd-q23301475",
@@ -9918,7 +10638,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5022,
+      "longitude": -0.1877
     },
     {
       "id": "wd-q137732949",
@@ -9942,7 +10664,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5210275,
+      "longitude": -0.1842132
     },
     {
       "id": "wd-q17041248",
@@ -9966,7 +10690,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.522113,
+      "longitude": -0.183707
     },
     {
       "id": "wd-q136700750",
@@ -9990,7 +10716,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.516181,
+      "longitude": -0.187744
     },
     {
       "id": "wd-q15978976",
@@ -10014,7 +10742,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.490624,
+      "longitude": -0.183337
     },
     {
       "id": "wd-q136695346",
@@ -10038,7 +10768,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.499434,
+      "longitude": -0.188358
     },
     {
       "id": "wd-q27080908",
@@ -10062,7 +10794,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.501093,
+      "longitude": -0.189304
     },
     {
       "id": "wd-q15225054",
@@ -10086,7 +10820,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.543253,
+      "longitude": -0.103568
     },
     {
       "id": "wd-q26501447",
@@ -10110,7 +10846,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.541791,
+      "longitude": -0.097673
     },
     {
       "id": "wd-q17361856",
@@ -10134,7 +10872,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.486747,
+      "longitude": -0.074244
     },
     {
       "id": "wd-q136705260",
@@ -10158,7 +10898,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.545795,
+      "longitude": -0.141383
     },
     {
       "id": "wd-q17018181",
@@ -10182,7 +10924,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52443848,
+      "longitude": -0.184836566
     },
     {
       "id": "wd-q138452492",
@@ -10206,7 +10950,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.537562,
+      "longitude": -0.086928
     },
     {
       "id": "wd-q17062311",
@@ -10230,7 +10976,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52720111,
+      "longitude": -0.183092891
     },
     {
       "id": "wd-q15979009",
@@ -10254,7 +11002,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.486138,
+      "longitude": -0.184034
     },
     {
       "id": "wd-q136732079",
@@ -10278,7 +11028,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.472608,
+      "longitude": -0.162598
     },
     {
       "id": "wd-q137262978",
@@ -10302,7 +11054,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.528318,
+      "longitude": -0.071024
     },
     {
       "id": "wd-q16707776",
@@ -10326,7 +11080,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.50336736,
+      "longitude": -0.062083671
     },
     {
       "id": "wd-q26569367",
@@ -10350,7 +11106,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.543183,
+      "longitude": -0.095351
     },
     {
       "id": "wd-q21008705",
@@ -10374,7 +11132,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.536344,
+      "longitude": -0.080778
     },
     {
       "id": "wd-q88916688",
@@ -10398,7 +11158,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.545764582,
+      "longitude": -0.103425979
     },
     {
       "id": "wd-q27087042",
@@ -10422,7 +11184,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.546079,
+      "longitude": -0.151098
     },
     {
       "id": "wd-q137430194",
@@ -10446,7 +11210,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5460069,
+      "longitude": -0.1035265
     },
     {
       "id": "wd-q6484917",
@@ -10470,7 +11236,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4657,
+      "longitude": -0.1261
     },
     {
       "id": "wd-q137259942",
@@ -10494,7 +11262,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.472972,
+      "longitude": -0.08987
     },
     {
       "id": "wd-q26490080",
@@ -10518,7 +11288,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.544739,
+      "longitude": -0.097579
     },
     {
       "id": "wd-q5712940",
@@ -10542,7 +11314,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.546024,
+      "longitude": -0.101947
     },
     {
       "id": "wd-q27085445",
@@ -10566,7 +11340,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.465798,
+      "longitude": -0.136497
     },
     {
       "id": "wd-q26318148",
@@ -10590,7 +11366,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.46630281,
+      "longitude": -0.142839631
     },
     {
       "id": "wd-q137041740",
@@ -10614,7 +11392,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.472021,
+      "longitude": -0.165441
     },
     {
       "id": "wd-q21008696",
@@ -10638,7 +11418,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.529586,
+      "longitude": -0.06937
     },
     {
       "id": "wd-q112013259",
@@ -10662,7 +11444,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.49179,
+      "longitude": -0.192155
     },
     {
       "id": "wd-q59269847",
@@ -10686,7 +11470,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.49214,
+      "longitude": -0.19272
     },
     {
       "id": "wd-q136700557",
@@ -10710,7 +11496,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.546587,
+      "longitude": -0.098481
     },
     {
       "id": "wd-q132242096",
@@ -10734,7 +11522,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.54867,
+      "longitude": -0.10705
     },
     {
       "id": "wd-q26657127",
@@ -10758,7 +11548,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.500644,
+      "longitude": -0.059086
     },
     {
       "id": "wd-q15979250",
@@ -10782,7 +11574,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4928,
+      "longitude": -0.1938
     },
     {
       "id": "wd-q28433128",
@@ -10806,7 +11600,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.503422,
+      "longitude": -0.057999
     },
     {
       "id": "wd-q5142962",
@@ -10830,7 +11626,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4889,
+      "longitude": -0.1915
     },
     {
       "id": "wd-q137108300",
@@ -10854,7 +11652,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.463957,
+      "longitude": -0.136964
     },
     {
       "id": "wd-q24553438",
@@ -10878,7 +11678,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.54685,
+      "longitude": -0.1589
     },
     {
       "id": "wd-q17030743",
@@ -10902,7 +11704,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.545662,
+      "longitude": -0.16283
     },
     {
       "id": "wd-q15979613",
@@ -10926,7 +11730,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.506263,
+      "longitude": -0.198601
     },
     {
       "id": "wd-q15978885",
@@ -10950,7 +11756,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.55099,
+      "longitude": -0.140301
     },
     {
       "id": "wd-q21008652",
@@ -10974,7 +11782,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.463305,
+      "longitude": -0.120046
     },
     {
       "id": "wd-q88917057",
@@ -10998,7 +11808,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.463703,
+      "longitude": -0.11426
     },
     {
       "id": "wd-q18160134",
@@ -11022,7 +11834,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.496441,
+      "longitude": -0.197253
     },
     {
       "id": "wd-q18159932",
@@ -11046,7 +11860,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4821,
+      "longitude": -0.188
     },
     {
       "id": "wd-q16985641",
@@ -11070,7 +11886,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.551755,
+      "longitude": -0.141613
     },
     {
       "id": "wd-q18161626",
@@ -11094,7 +11912,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4971,
+      "longitude": -0.199042
     },
     {
       "id": "wd-q136721361",
@@ -11118,7 +11938,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4776729,
+      "longitude": -0.1833426
     },
     {
       "id": "wd-q134883438",
@@ -11142,7 +11964,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.468180037,
+      "longitude": -0.089759296
     },
     {
       "id": "wd-q7718589",
@@ -11166,7 +11990,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52,
+      "longitude": -0.0569
     },
     {
       "id": "wd-q133817951",
@@ -11190,7 +12016,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.46181,
+      "longitude": -0.11929
     },
     {
       "id": "wd-q17361862",
@@ -11214,7 +12042,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.552989,
+      "longitude": -0.139702
     },
     {
       "id": "wd-q136634082",
@@ -11238,7 +12068,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.54067,
+      "longitude": -0.076173
     },
     {
       "id": "wd-q88917041",
@@ -11262,7 +12094,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.469904,
+      "longitude": -0.17134
     },
     {
       "id": "wd-q19845020",
@@ -11286,7 +12120,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5321,
+      "longitude": -0.19149
     },
     {
       "id": "wd-q5545090",
@@ -11310,7 +12146,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.514335,
+      "longitude": -0.052915
     },
     {
       "id": "wd-q136712709",
@@ -11334,7 +12172,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.532014,
+      "longitude": -0.063115
     },
     {
       "id": "wd-q136700554",
@@ -11358,7 +12198,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.549134,
+      "longitude": -0.091317
     },
     {
       "id": "wd-q3924088",
@@ -11382,7 +12224,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5071,
+      "longitude": -0.051152777
     },
     {
       "id": "wd-q136225457",
@@ -11406,7 +12250,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.523056,
+      "longitude": -0.200826
     },
     {
       "id": "wd-q136697851",
@@ -11430,7 +12276,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5013181,
+      "longitude": -0.0509211
     },
     {
       "id": "wd-q136225272",
@@ -11454,7 +12302,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.522802,
+      "longitude": -0.201367
     },
     {
       "id": "wd-q97503363",
@@ -11478,7 +12328,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.555091,
+      "longitude": -0.139884
     },
     {
       "id": "wd-q136698082",
@@ -11502,7 +12354,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.495325,
+      "longitude": -0.203086
     },
     {
       "id": "wd-q88917025",
@@ -11526,7 +12380,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.465213934,
+      "longitude": -0.089591145
     },
     {
       "id": "wd-q30780845",
@@ -11550,7 +12406,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5552923,
+      "longitude": -0.1156606
     },
     {
       "id": "wd-q136721375",
@@ -11574,7 +12432,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.476998,
+      "longitude": -0.189301
     },
     {
       "id": "wd-q26318357",
@@ -11598,7 +12458,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52733002,
+      "longitude": -0.055948423
     },
     {
       "id": "wd-q26349999",
@@ -11622,7 +12484,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.534771,
+      "longitude": -0.194067
     },
     {
       "id": "wd-q88917012",
@@ -11646,7 +12510,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.473771,
+      "longitude": -0.069277
     },
     {
       "id": "wd-q136483617",
@@ -11670,7 +12536,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.537048,
+      "longitude": -0.191954
     },
     {
       "id": "wd-q135826723",
@@ -11694,7 +12562,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.480321,
+      "longitude": -0.195278
     },
     {
       "id": "wd-q15978989",
@@ -11718,7 +12588,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4638966,
+      "longitude": -0.168231877
     },
     {
       "id": "wd-q136697974",
@@ -11742,7 +12614,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.553335,
+      "longitude": -0.161619
     },
     {
       "id": "wd-q26528639",
@@ -11766,7 +12640,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.542952,
+      "longitude": -0.069647
     },
     {
       "id": "wd-q136169244",
@@ -11790,7 +12666,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.533438,
+      "longitude": -0.057525
     },
     {
       "id": "wd-q20876293",
@@ -11814,7 +12692,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4871,
+      "longitude": -0.2031
     },
     {
       "id": "wd-q136721137",
@@ -11838,7 +12718,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.516045,
+      "longitude": -0.046738
     },
     {
       "id": "wd-q15978982",
@@ -11862,7 +12744,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.516294,
+      "longitude": -0.208879
     },
     {
       "id": "wd-q136633583",
@@ -11886,7 +12770,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5524009,
+      "longitude": -0.1673616
     },
     {
       "id": "wd-q15979552",
@@ -11910,7 +12796,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.481325,
+      "longitude": -0.19965
     },
     {
       "id": "wd-q136703333",
@@ -11934,7 +12822,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5585343,
+      "longitude": -0.1436626
     },
     {
       "id": "wd-q136700496",
@@ -11958,7 +12848,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.53467,
+      "longitude": -0.055619
     },
     {
       "id": "wd-q88916695",
@@ -11982,7 +12874,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.493040772,
+      "longitude": -0.046498775
     },
     {
       "id": "wd-q26432022",
@@ -12006,7 +12900,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.553853,
+      "longitude": -0.167572
     },
     {
       "id": "wd-q136697984",
@@ -12030,7 +12926,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.554684,
+      "longitude": -0.165581
     },
     {
       "id": "wd-q26585569",
@@ -12054,7 +12952,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.560413,
+      "longitude": -0.12386
     },
     {
       "id": "wd-q133806216",
@@ -12078,7 +12978,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5589,
+      "longitude": -0.1487
     },
     {
       "id": "wd-q88916474",
@@ -12102,7 +13004,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52219,
+      "longitude": -0.045491
     },
     {
       "id": "wd-q21008634",
@@ -12126,7 +13030,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.551688,
+      "longitude": -0.079842
     },
     {
       "id": "wd-q6961420",
@@ -12150,7 +13056,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5608,
+      "longitude": -0.123611
     },
     {
       "id": "wd-q18162256",
@@ -12174,7 +13082,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5556,
+      "longitude": -0.1656
     },
     {
       "id": "wd-q136733403",
@@ -12198,7 +13108,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.558335,
+      "longitude": -0.098764
     },
     {
       "id": "wd-q136733454",
@@ -12222,7 +13134,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.558961,
+      "longitude": -0.098914
     },
     {
       "id": "wd-q136440553",
@@ -12246,7 +13160,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.522213,
+      "longitude": -0.212542
     },
     {
       "id": "wd-q27085020",
@@ -12270,7 +13186,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.513575,
+      "longitude": -0.03996
     },
     {
       "id": "wd-q16954461",
@@ -12294,7 +13212,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5398,
+      "longitude": -0.0562
     },
     {
       "id": "wd-q136733485",
@@ -12318,7 +13238,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.559525,
+      "longitude": -0.098333
     },
     {
       "id": "wd-q133288301",
@@ -12342,7 +13264,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.562472,
+      "longitude": -0.136431
     },
     {
       "id": "wd-q26318301",
@@ -12366,7 +13290,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.51383518,
+      "longitude": -0.038819282
     },
     {
       "id": "wd-q136697991",
@@ -12390,7 +13316,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.556881,
+      "longitude": -0.168968
     },
     {
       "id": "wd-q136703320",
@@ -12414,7 +13342,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5614305,
+      "longitude": -0.1504467
     },
     {
       "id": "wd-q7774508",
@@ -12438,7 +13368,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4744,
+      "longitude": -0.200278
     },
     {
       "id": "wd-q55076555",
@@ -12462,7 +13394,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.45305,
+      "longitude": -0.10268
     },
     {
       "id": "wd-q136733621",
@@ -12486,7 +13420,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.560971,
+      "longitude": -0.098407
     },
     {
       "id": "wd-q15978977",
@@ -12510,7 +13446,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.472428,
+      "longitude": -0.199424
     },
     {
       "id": "wd-q137485573",
@@ -12534,7 +13472,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.522767,
+      "longitude": -0.040048
     },
     {
       "id": "wd-q136703291",
@@ -12558,7 +13498,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5634509,
+      "longitude": -0.1426426
     },
     {
       "id": "wd-q136733565",
@@ -12582,7 +13524,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5615953,
+      "longitude": -0.0998166
     },
     {
       "id": "wd-q131539824",
@@ -12606,7 +13550,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.55241,
+      "longitude": -0.07139
     },
     {
       "id": "wd-q26432008",
@@ -12630,7 +13576,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.555648,
+      "longitude": -0.176887
     },
     {
       "id": "wd-q16707737",
@@ -12654,7 +13602,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.45275,
+      "longitude": -0.10089
     },
     {
       "id": "wd-q136629079",
@@ -12678,7 +13628,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.463534,
+      "longitude": -0.188146
     },
     {
       "id": "wd-q16707717",
@@ -12702,7 +13654,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5438,
+      "longitude": -0.199868
     },
     {
       "id": "wd-q15957066",
@@ -12726,7 +13680,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5566,
+      "longitude": -0.177194
     },
     {
       "id": "wd-q21008686",
@@ -12750,7 +13706,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52915955,
+      "longitude": -0.040718
     },
     {
       "id": "wd-q138448083",
@@ -12774,7 +13732,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5051439,
+      "longitude": -0.0339857
     },
     {
       "id": "wd-q16707778",
@@ -12798,7 +13758,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5586,
+      "longitude": -0.173611
     },
     {
       "id": "wd-q92455427",
@@ -12822,7 +13784,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.566,
+      "longitude": -0.135
     },
     {
       "id": "wd-q88916477",
@@ -12846,7 +13810,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.54516002,
+      "longitude": -0.055170915
     },
     {
       "id": "wd-q18161329",
@@ -12870,7 +13836,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4962,
+      "longitude": -0.220987
     },
     {
       "id": "wd-q136697924",
@@ -12894,7 +13862,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.528853,
+      "longitude": -0.216289
     },
     {
       "id": "wd-q136645270",
@@ -12918,7 +13888,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.545903,
+      "longitude": -0.055701
     },
     {
       "id": "wd-q20876252",
@@ -12942,7 +13914,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5587,
+      "longitude": -0.1756
     },
     {
       "id": "wd-q27085557",
@@ -12966,7 +13940,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.475541,
+      "longitude": -0.046746
     },
     {
       "id": "wd-q16994177",
@@ -12990,7 +13966,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.557879,
+      "longitude": -0.17936
     },
     {
       "id": "wd-q23304816",
@@ -13014,7 +13992,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.558793,
+      "longitude": -0.177554
     },
     {
       "id": "wd-q137274422",
@@ -13038,7 +14018,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.536759,
+      "longitude": -0.043241
     },
     {
       "id": "wd-q21008694",
@@ -13062,7 +14044,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.561013,
+      "longitude": -0.083715
     },
     {
       "id": "wd-q136697913",
@@ -13086,7 +14070,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.528909,
+      "longitude": -0.218345
     },
     {
       "id": "wd-q136733626",
@@ -13110,7 +14096,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.563963,
+      "longitude": -0.092736
     },
     {
       "id": "wd-q123015221",
@@ -13134,7 +14122,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4586,
+      "longitude": -0.1859
     },
     {
       "id": "wd-q27081723",
@@ -13158,7 +14148,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.512255,
+      "longitude": -0.02879
     },
     {
       "id": "wd-q15979572",
@@ -13182,7 +14174,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.493097,
+      "longitude": -0.225073
     },
     {
       "id": "wd-q26318259",
@@ -13206,7 +14200,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.52837737,
+      "longitude": -0.033543044
     },
     {
       "id": "wd-q133806226",
@@ -13230,7 +14226,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.569087,
+      "longitude": -0.141622
     },
     {
       "id": "wd-q136213614",
@@ -13254,7 +14252,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.493124,
+      "longitude": -0.225391
     },
     {
       "id": "wd-q15979561",
@@ -13278,7 +14278,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.492669,
+      "longitude": -0.225867
     },
     {
       "id": "wd-q105235854",
@@ -13302,7 +14304,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.5476,
+      "longitude": -0.05013
     },
     {
       "id": "wd-q26388410",
@@ -13326,7 +14330,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.560987,
+      "longitude": -0.074215
     },
     {
       "id": "wd-q15221812",
@@ -13350,7 +14356,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.47,
+      "longitude": -0.21027778
     },
     {
       "id": "wd-q123059080",
@@ -13374,7 +14382,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.4748,
+      "longitude": -0.0396
     },
     {
       "id": "wd-q26647406",
@@ -13398,7 +14408,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.561702,
+      "longitude": -0.073542
     },
     {
       "id": "wd-q17361842",
@@ -13422,7 +14434,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.44936,
+      "longitude": -0.084679
     },
     {
       "id": "wd-q15979548",
@@ -13446,7 +14460,9 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "latitude": 51.469397,
+      "longitude": -0.210544
     },
     {
       "id": "callooh-callay-shoreditch",

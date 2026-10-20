@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { fetchCollection } from '@/lib/firestore';
 
@@ -21,6 +21,7 @@ const CATEGORY_COLLECTIONS = [
   { collection: 'nightlife', hrefBase: '/nightlife', label: 'Nightlife', icon: '🌙' },
   { collection: 'hotels', hrefBase: '/hotels', label: 'Hotels', icon: '🏨' },
   { collection: 'shopping', hrefBase: '/shopping', label: 'Shopping', icon: '🛍️' },
+  { collection: 'kids', hrefBase: '/kids', label: 'Kids & Family', icon: '👨‍👩‍👧' },
   { collection: 'hiddenGems', hrefBase: '/hidden-gems', label: 'Hidden Gems', icon: '💎' },
 ];
 
@@ -28,35 +29,38 @@ export default function AreasPage() {
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
   const [results, setResults] = useState<Record<string, any[]>>({});
   const [loading, setLoading] = useState(false);
-  const [dataCache, setDataCache] = useState<Record<string, any[]>>({});
+  const [loadFailed, setLoadFailed] = useState(false);
+  const requestId = useRef(0);
 
   const handleSelectArea = async (area: string) => {
+    const currentRequest = ++requestId.current;
     setSelectedArea(area);
     setLoading(true);
-
-    const toFetch = CATEGORY_COLLECTIONS.filter(c => !(c.collection in dataCache));
-    const fetched: Record<string, any[]> = { ...dataCache };
-    if (toFetch.length > 0) {
-      await Promise.all(
-        toFetch.map(async (c) => {
-          const items = await fetchCollection(c.collection);
-          fetched[c.collection] = items || [];
-        })
-      );
-      setDataCache(fetched);
+    setLoadFailed(false);
+    try {
+      const groups = await Promise.all(CATEGORY_COLLECTIONS.map(async c => {
+        // Hidden gems is still a small collection. The larger directories use
+        // indexed, bounded area-prefix queries instead of full downloads.
+        let items: any[];
+        if (c.collection === 'hiddenGems') {
+          items = await fetchCollection(c.collection) || [];
+        } else {
+          const response = await fetch(`/api/directory/${c.collection}?q=${encodeURIComponent(area)}`, { cache: 'no-store' });
+          if (!response.ok) throw new Error('Directory unavailable');
+          items = (await response.json()).items || [];
+        }
+        return [c.collection, items.filter((item: any) =>
+          String(item.area || item.location || '').toLowerCase().includes(area.toLowerCase())).slice(0, 6)] as const;
+      }));
+      if (currentRequest !== requestId.current) return;
+      setResults(Object.fromEntries(groups.filter(([, items]) => items.length > 0)));
+    } catch {
+      if (currentRequest !== requestId.current) return;
+      setLoadFailed(true);
+      setResults({});
+    } finally {
+      if (currentRequest === requestId.current) setLoading(false);
     }
-
-    const grouped: Record<string, any[]> = {};
-    CATEGORY_COLLECTIONS.forEach(c => {
-      const items = (fetched[c.collection] || []).filter((item: any) => {
-        const itemArea = (item.area || item.location || '').toLowerCase();
-        return itemArea.includes(area.toLowerCase());
-      });
-      if (items.length > 0) grouped[c.collection] = items.slice(0, 6);
-    });
-
-    setResults(grouped);
-    setLoading(false);
   };
 
   return (
@@ -97,7 +101,7 @@ export default function AreasPage() {
         ) : (
           <div>
             <button
-              onClick={() => { setSelectedArea(null); setResults({}); }}
+              onClick={() => { requestId.current++; setSelectedArea(null); setResults({}); setLoadFailed(false); setLoading(false); }}
               style={{
                 background: 'rgba(26,26,46,0.08)', border: 'none', color: '#1a1a2e',
                 borderRadius: '50px', padding: '8px 18px', fontFamily: "'DM Sans', sans-serif",
@@ -113,6 +117,10 @@ export default function AreasPage() {
 
             {loading ? (
               <div style={{ textAlign: 'center', padding: '60px', color: 'rgba(26,26,46,0.3)', fontFamily: "'DM Sans', sans-serif" }}>Loading...</div>
+            ) : loadFailed ? (
+              <div role="alert" style={{ textAlign: 'center', padding: '60px', color: '#9b3b3b', fontFamily: "'DM Sans', sans-serif" }}>
+                Listings could not be loaded. <button onClick={() => handleSelectArea(selectedArea)} style={{ color: '#9b762a', textDecoration: 'underline' }}>Try again</button>
+              </div>
             ) : Object.keys(results).length === 0 ? (
               <div style={{ textAlign: 'center', padding: '60px', color: 'rgba(26,26,46,0.4)', fontFamily: "'DM Sans', sans-serif" }}>
                 No listings found for {selectedArea} yet — check back soon as we add more content.
@@ -120,12 +128,15 @@ export default function AreasPage() {
             ) : (
               CATEGORY_COLLECTIONS.filter(c => results[c.collection]).map(cat => (
                 <div key={cat.collection} style={{ marginBottom: '32px' }}>
-                  <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 700, color: '#c9a84c', textTransform: 'uppercase' as const, letterSpacing: '1px', marginBottom: '12px' }}>
-                    {cat.icon} {cat.label}
-                  </h3>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', alignItems: 'center', marginBottom: '12px' }}>
+                    <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', fontWeight: 700, color: '#9b762a', textTransform: 'uppercase' as const, letterSpacing: '1px' }}>
+                      {cat.icon} {cat.label}
+                    </h3>
+                    <Link href={cat.collection === 'hiddenGems' ? cat.hrefBase : `${cat.hrefBase}?search=${encodeURIComponent(selectedArea)}`} style={{ color: '#9b762a', fontWeight: 700, fontSize: '0.8rem' }}>See all →</Link>
+                  </div>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '14px' }}>
                     {results[cat.collection].map((item: any) => (
-                      <Link key={item.id} href={`${cat.hrefBase}/${item.id}`} style={{ textDecoration: 'none' }}>
+                      <Link key={item.id} href={`${cat.hrefBase}/${encodeURIComponent(item.id)}`} style={{ textDecoration: 'none' }}>
                         <div className="bg-white dark:bg-[#1a1a2e]" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.06)', cursor: 'pointer' }}>
                           {item.image && (
                             <div style={{ height: '120px', overflow: 'hidden' }}>

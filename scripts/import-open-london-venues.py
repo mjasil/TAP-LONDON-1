@@ -251,6 +251,7 @@ def make_listing(section, item, photo, osm=None):
     data = {
         "id": f"wd-{qid.lower()}", "name": item["name"], "category": category,
         "area": area, "description": description,
+        "latitude": item["lat"], "longitude": item["lon"],
         "mapsUrl": f"https://www.google.com/maps/search/?api=1&query={location}",
         **photo,
         "sourceName": "Wikidata and OpenStreetMap" if osm else "Wikidata",
