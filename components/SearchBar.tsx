@@ -3,8 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { fetchCollection } from '@/lib/firestore';
-import { listingRoute } from '@/lib/listingRoute';
 
 type Result = {
   id: string;
@@ -14,7 +12,6 @@ type Result = {
   type: string;
   href: string;
   image?: string;
-  score: number;
 };
 
 const SECTION_CONFIG: { collection: string; type: string; hrefBase: string; label: string; color: string }[] = [
@@ -31,105 +28,6 @@ const SECTION_CONFIG: { collection: string; type: string; hrefBase: string; labe
   { collection: 'sports',      type: 'sports',      hrefBase: '/sports',      label: 'Sports',      color: '#5ab0e5' },
 ];
 
-// Maps common search intents/synonyms to a predicate over an indexed item.
-// This is what makes queries like "cheap food", "best hidden gems", "free places" work,
-// not just literal name matching.
-type IntentRule = { keywords: string[]; test: (item: any) => boolean; boost: number };
-
-const INTENT_RULES: IntentRule[] = [
-  { keywords: ['halal'], test: (i) => i.halal === 'halal', boost: 40 },
-  { keywords: ['cheap', 'budget', 'affordable', 'low cost', 'inexpensive'],
-    test: (i) => (i.priceType || '').toLowerCase() === 'free' || (i.priceRangeLevel ?? 9) <= 1, boost: 35 },
-  { keywords: ['free'], test: (i) => (i.priceType || '').toLowerCase() === 'free', boost: 45 },
-  { keywords: ['luxury', 'expensive', 'high end', 'premium', '5 star', 'five star'],
-    test: (i) => (i.priceRangeLevel ?? 0) >= 3 || (i.category || '').toLowerCase().includes('5-star'), boost: 35 },
-  { keywords: ['family', 'kids', 'children'], test: (i) => i.type === 'kids' || i.familyFriendly, boost: 30 },
-  { keywords: ['rooftop'], test: (i) => /rooftop/i.test(i.name + ' ' + i.description + ' ' + i.tags), boost: 30 },
-  { keywords: ['late night', 'late', 'midnight', 'after hours'],
-    test: (i) => /late|midnight|24[- ]?hour/i.test(i.description + ' ' + i.tags), boost: 25 },
-  { keywords: ['hidden gem', 'hidden gems', 'secret', 'unusual', 'off the beaten path'],
-    test: (i) => i.type === 'hidden-gems', boost: 40 },
-  { keywords: ['best', 'top', 'top rated', 'must see', 'must-see'],
-    test: (i) => (i.rating ?? 0) >= 4 || (i.category || '').toLowerCase().includes('top'), boost: 20 },
-  { keywords: ['hotel', 'hotels', 'stay', 'accommodation'], test: (i) => i.type === 'hotels', boost: 25 },
-];
-
-let SEARCH_INDEX: any[] = [];
-let indexLoaded = false;
-let indexLoading: Promise<void> | null = null;
-
-async function buildIndex() {
-  if (indexLoading) return indexLoading;
-  indexLoading = (async () => {
-    const all: any[] = [];
-    await Promise.all(
-      SECTION_CONFIG.map(async (cfg) => {
-        const items = await fetchCollection(cfg.collection);
-        if (!items) return;
-        items.forEach((item: any) => {
-          const priceStr = (item.priceRange || '').toString();
-          all.push({
-            id: item.id,
-            name: item.name,
-            category: item.category || item.section || item.sport || cfg.label,
-            area: item.area || item.location || '',
-            description: item.description || '',
-            cuisine: item.cuisine || '',
-            tags: Array.isArray(item.tags) ? item.tags.join(' ') : '',
-            halal: item.halal === true || item.halal === 'halal' || item.verifiedHalal === true ? 'halal' : '',
-            priceType: item.priceType || '',
-            priceRangeLevel: (priceStr.match(/£/g) || []).length,
-            rating: parseFloat(item.rating) || 0,
-            familyFriendly: !!item.familyFriendly,
-            type: cfg.type,
-            href: listingRoute(cfg.hrefBase, item.id),
-            image: item.image,
-            color: cfg.color,
-            label: cfg.label,
-          });
-        });
-      })
-    );
-    SEARCH_INDEX = all;
-    indexLoaded = true;
-  })();
-  return indexLoading;
-}
-
-function scoreMatch(item: any, query: string): number {
-  const q = query.toLowerCase();
-  const name = (item.name || '').toLowerCase();
-  const haystack = [item.category, item.area, item.description, item.cuisine, item.tags, item.halal, item.priceType]
-    .join(' ')
-    .toLowerCase();
-
-  let score = 0;
-
-  // Direct name matching (still the strongest signal for a literal name search)
-  if (name === q) score += 100;
-  else if (name.startsWith(q)) score += 60;
-  else if (name.includes(q)) score += 35;
-
-  // Word-level matching for multi-word queries ("kids restaurant covent garden")
-  const words = q.split(/\s+/).filter(Boolean);
-  words.forEach(w => {
-    if (name.includes(w)) score += 12;
-    if (haystack.includes(w)) score += 6;
-  });
-
-  // Intent-based matching — lets queries like "cheap food", "best hidden gems",
-  // "free places", "luxury hotels" surface results even when none of those words
-  // appear literally in the item's name/description.
-  for (const rule of INTENT_RULES) {
-    const matchedKeyword = rule.keywords.some(kw => q.includes(kw));
-    if (matchedKeyword && rule.test(item)) {
-      score += rule.boost;
-    }
-  }
-
-  return score;
-}
-
 const TYPE_LABEL_MAP: Record<string, string> = Object.fromEntries(SECTION_CONFIG.map(c => [c.type, c.label]));
 const TYPE_COLOR_MAP: Record<string, string> = Object.fromEntries(SECTION_CONFIG.map(c => [c.type, c.color]));
 
@@ -145,28 +43,28 @@ export default function SearchBar() {
 
   useEffect(() => {
     const q = query.trim();
-    if (q.length < 2) { setResults([]); setOpen(false); return; }
+    if (q.length < 2) { setResults([]); setOpen(false); setLoading(false); return; }
 
-    let cancelled = false;
-    const run = async () => {
-      if (!indexLoaded) {
-        setLoading(true);
-        await buildIndex();
-        if (cancelled) return;
-        setLoading(false);
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      setLoading(true);
+      setOpen(true);
+      try {
+        const response = await fetch(`/api/search?q=${encodeURIComponent(q)}`, { signal: controller.signal });
+        if (!response.ok) throw new Error('Search unavailable');
+        const data = await response.json();
+        if (!controller.signal.aborted) setResults(data.items.slice(0, 8).map((item: any) => ({
+          id: item.id, name: item.name, category: item.category,
+          area: item.area, type: item.section, href: item.href,
+          image: item.image,
+        })));
+      } catch {
+        if (!controller.signal.aborted) setResults([]);
+      } finally {
+        if (!controller.signal.aborted) setLoading(false);
       }
-      const scored = SEARCH_INDEX
-        .map(item => ({ ...item, score: scoreMatch(item, q) }))
-        .filter(item => item.score > 0)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 8);
-      if (!cancelled) {
-        setResults(scored);
-        setOpen(scored.length > 0);
-      }
-    };
-    const timer = setTimeout(run, 180);
-    return () => { cancelled = true; clearTimeout(timer); };
+    }, 250);
+    return () => { clearTimeout(timer); controller.abort(); };
   }, [query]);
 
   useEffect(() => {
