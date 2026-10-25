@@ -163,15 +163,6 @@ export default function PlaceDetailPage() {
           </div>
         )}
 
-        <div className="dark:bg-[#1a1a2e]" style={{ background: "rgba(201,168,76,0.08)", borderRadius: "16px", padding: "20px", marginBottom: "18px", border: "1px solid rgba(201,168,76,0.2)" }}>
-          <h2 className="text-navy dark:text-[#f9f7f2]" style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 700, marginBottom: "12px", marginTop: 0 }}>💡 Visitor Tips</h2>
-          {["Book tickets online in advance to skip the queue", "Visit on weekday mornings for smaller crowds", "Check the official website for seasonal opening changes", "Nearest tube station is usually a short walk away"].map((tip, i) => (
-            <p key={i} className="text-[#555] dark:text-[#bbb]" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.86rem", lineHeight: 1.6, margin: "0 0 6px", display: "flex", gap: "8px" }}>
-              <span style={{ color: "#c9a84c", fontWeight: 700 }}>✓</span> {tip}
-            </p>
-          ))}
-        </div>
-
         {safeExternalUrl(place.websiteUrl) && <a href={safeExternalUrl(place.websiteUrl)!} target="_blank" rel="noopener noreferrer" className="mb-3 flex justify-center rounded-full bg-gold px-5 py-3 font-bold text-navy">Official visitor information ↗</a>}
         {place.mapsUrl && <a href={place.mapsUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", width: "100%", background: "#1a1a2e", color: "#c9a84c", padding: "15px", borderRadius: "50px", fontFamily: "'DM Sans',sans-serif", fontSize: "0.95rem", fontWeight: 700, textDecoration: "none", marginBottom: "12px", boxSizing: "border-box" as const }}>📍 Get Directions on Google Maps</a>}
         <Link href="/places" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", background: "transparent", padding: "13px", borderRadius: "50px", fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem", fontWeight: 600, textDecoration: "none", boxSizing: "border-box" as const, border: "2px solid" }} className="text-navy dark:text-[#f9f7f2] border-navy dark:border-[#f9f7f2]">← Back to All Places</Link>
