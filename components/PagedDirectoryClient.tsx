@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import PlaceCard, { type CardItem } from './PlaceCard';
 import { readSavedPlaces, toggleSavedPlace } from '@/lib/savedPlaces';
@@ -35,7 +35,13 @@ export default function PagedDirectoryClient({ section, mode, tabs, searchPlaceh
   const [loading, setLoading] = useState(false);
   const [moreLoading, setMoreLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [moreError, setMoreError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
   const [savedKeys, setSavedKeys] = useState<string[]>([]);
+  const currentKey = JSON.stringify([section, category, debouncedQuery, filter]);
+  const latestKey = useRef(currentKey);
+  latestKey.current = currentKey;
+  const requestEpoch = useRef(0);
 
   useEffect(() => {
     const refresh = () => setSavedKeys(readSavedPlaces().map(item => item.key));
@@ -52,6 +58,9 @@ export default function PagedDirectoryClient({ section, mode, tabs, searchPlaceh
   }, [query]);
 
   useEffect(() => {
+    requestEpoch.current += 1;
+    setMoreLoading(false);
+    setMoreError(false);
     if (category === 'All' && !debouncedQuery && !filter) {
       setPage(initialPage);
       setError(false);
@@ -62,23 +71,30 @@ export default function PagedDirectoryClient({ section, mode, tabs, searchPlaceh
     setLoading(true);
     setError(false);
     loadPage(section, category, debouncedQuery, filter, '', controller.signal)
-      .then(result => setPage(result))
+      .then(result => { if (!controller.signal.aborted) setPage(result); })
       .catch(() => { if (!controller.signal.aborted) setError(true); })
       .finally(() => { if (!controller.signal.aborted) setLoading(false); });
     return () => controller.abort();
-  }, [section, category, debouncedQuery, filter, initialPage]);
+  }, [section, category, debouncedQuery, filter, initialPage, retryCount]);
 
   async function showMore() {
     if (!page.nextCursor || moreLoading) return;
+    const key = currentKey;
+    const epoch = requestEpoch.current;
+    const cursor = page.nextCursor;
     setMoreLoading(true);
-    setError(false);
+    setMoreError(false);
     try {
-      const result = await loadPage(section, category, debouncedQuery, filter, page.nextCursor);
-      setPage(previous => ({ ...result, items: [...previous.items, ...result.items] }));
+      const result = await loadPage(section, category, debouncedQuery, filter, cursor);
+      if (latestKey.current === key && requestEpoch.current === epoch) {
+        setPage(previous => previous.nextCursor === cursor
+          ? { ...result, items: [...previous.items, ...result.items] }
+          : previous);
+      }
     } catch {
-      setError(true);
+      if (latestKey.current === key && requestEpoch.current === epoch) setMoreError(true);
     } finally {
-      setMoreLoading(false);
+      if (latestKey.current === key && requestEpoch.current === epoch) setMoreLoading(false);
     }
   }
 
@@ -118,15 +134,15 @@ export default function PagedDirectoryClient({ section, mode, tabs, searchPlaceh
 
       <div className="flex flex-wrap items-end justify-between gap-3 border-b border-navy/10 pb-4 dark:border-cream/15" aria-live="polite">
         <div className="flex items-baseline gap-3">
-          <strong className="font-heading text-3xl leading-none text-navy dark:text-cream sm:text-4xl">{page.total.toLocaleString()}</strong>
+          <strong className="font-heading text-3xl leading-none text-navy dark:text-cream sm:text-4xl">{loading || error ? '—' : page.total.toLocaleString()}</strong>
           <span className="text-sm font-bold text-ink/65 dark:text-cream/70">{page.total === 1 ? 'result' : 'results'}</span>
         </div>
         <Link href="/saved" className="inline-flex min-h-11 items-center text-sm font-bold text-gold">View saved places ({savedKeys.length}) →</Link>
       </div>
 
       {query.trim().length === 1 && <p className="text-sm text-ink/60 dark:text-cream/60">Type one more letter to search.</p>}
-      {error && <p role="alert" className="text-sm text-red-700">Listings could not be loaded. Try the category or search again.</p>}
-      {loading ? <p className="py-12 text-center text-sm text-ink/60 dark:text-cream/60">Loading results…</p> : (
+      {error && <p role="alert" className="text-sm text-red-700">Listings could not be loaded. <button type="button" className="font-bold underline" onClick={() => setRetryCount(count => count + 1)}>Retry</button></p>}
+      {loading ? <p className="py-12 text-center text-sm text-ink/60 dark:text-cream/60">Loading results…</p> : error ? null : (
         <>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {page.items.map(item => (
@@ -148,6 +164,7 @@ export default function PagedDirectoryClient({ section, mode, tabs, searchPlaceh
           {page.items.length === 0 && <p className="py-12 text-center text-sm text-ink/60 dark:text-cream/60">No results match this search. Try another name or area.</p>}
           {page.nextCursor && (
             <div className="flex flex-col items-center gap-2 py-4">
+              {moreError && <p role="alert" className="text-sm text-red-700">Could not load more results. Please try again.</p>}
               <p className="text-sm text-ink/60 dark:text-cream/60">Showing {page.items.length.toLocaleString()} of {page.total.toLocaleString()} places</p>
               <button type="button" disabled={moreLoading} onClick={showMore}
                 className="min-h-12 rounded-full bg-navy px-7 text-sm font-bold text-white disabled:opacity-50 dark:bg-gold dark:text-navy">
