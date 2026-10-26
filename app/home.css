@@ -66,7 +66,8 @@
 .tap-home .tap-heading-inline { align-items: end; }
 .tap-home .tap-text-link { display: inline-flex; align-items: center; gap: 10px; color: var(--home-ink); font-size: 14px; font-weight: 700; white-space: nowrap; border-bottom: 1px solid #b58d50; padding-bottom: 6px; }
 .tap-home .tap-text-link:hover { color: #946e38; }
-.tap-home .tap-featured-scroll { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, calc((100% - 36px) / 3)); gap: 18px; overflow-x: auto; scroll-snap-type: x proximity; overscroll-behavior-inline: contain; padding: 2px 2px 20px; scrollbar-width: thin; }
+.tap-home .tap-featured-scroll { display: grid; grid-auto-flow: column; grid-auto-columns: 30%; gap: 18px; overflow-x: auto; scroll-snap-type: x proximity; overscroll-behavior-inline: contain; padding: 2px 2px 20px; scrollbar-width: none; }
+.tap-home .tap-featured-scroll::-webkit-scrollbar { display: none; }
 .tap-home .tap-place-card { display: flex; flex-direction: column; background: #fff; color: var(--home-ink); border: 1px solid #e6e6e2; scroll-snap-align: start; border-radius: 5px; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; }
 .tap-home .tap-place-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(19,35,43,.11); }
 .tap-home .tap-place-image { display: block; position: relative; height: 235px; overflow: hidden; background: #d7dad8; }
