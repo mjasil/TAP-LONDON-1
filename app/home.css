@@ -1,0 +1,183 @@
+/* Homepage only: an editorial layout that leaves the directory pages alone. */
+.tap-home {
+  --home-ink: #192530;
+  --home-paper: #f7f6f2;
+  --home-rule: #dcded9;
+  --home-accent: #b58d50;
+  background: var(--home-paper);
+  color: var(--home-ink);
+  overflow: clip;
+}
+.tap-home .tap-container { width: min(100% - 64px, 1240px); margin-inline: auto; }
+.tap-home a { text-decoration: none; }
+.tap-home a:focus-visible, .tap-home button:focus-visible { outline: 3px solid #d5af6c; outline-offset: 4px; }
+.tap-home .tap-eyebrow { margin: 0 0 16px; font-size: 11px; font-weight: 700; letter-spacing: .19em; text-transform: uppercase; color: #946e38; }
+.tap-home .tap-eyebrow-light { color: #e4c994; display: flex; align-items: center; gap: 12px; }
+.tap-home .tap-eyebrow-line { display: inline-block; width: 28px; height: 1px; background: currentColor; }
+.tap-home h1, .tap-home h2, .tap-home .tap-category strong, .tap-home .tap-place-name {
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: -.035em;
+}
+.tap-home h2 { font-size: clamp(2.15rem, 4vw, 3.8rem); line-height: 1.08; font-weight: 500; margin: 0; }
+.tap-home .tap-section { padding-block: clamp(72px, 8vw, 116px); }
+.tap-home .tap-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 38px; }
+.tap-home .tap-section-heading > p { max-width: 330px; margin: 0 0 5px; line-height: 1.7; font-size: 15px; color: #58636b; }
+
+.tap-home .tap-hero { min-height: min(800px, 86svh); min-height: max(630px, min(800px, 86svh)); position: relative; display: flex; align-items: center; background: #15212b; color: white; }
+.tap-home .tap-hero-image { object-fit: cover; object-position: center 48%; }
+.tap-home .tap-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12, 26, 37, .94) 0%, rgba(12, 26, 37, .81) 32%, rgba(12, 26, 37, .32) 70%, rgba(12, 26, 37, .17) 100%), linear-gradient(0deg, rgba(11,25,36,.48), transparent 32%); }
+.tap-home .tap-hero-inner { position: relative; z-index: 1; padding-block: 78px 92px; }
+.tap-home .tap-hero-copy { max-width: 650px; }
+.tap-home .tap-hero h1 { margin: 0; color: #fff; font-size: clamp(4.8rem, 9.8vw, 9.4rem); font-weight: 500; line-height: .91; letter-spacing: -.062em; }
+.tap-home .tap-hero h1 em, .tap-home .tap-plan h2 em { color: #e2c18b; font-weight: 400; }
+.tap-home .tap-hero-intro { max-width: 490px; margin: 32px 0 28px; font-size: clamp(15px, 1.65vw, 18px); line-height: 1.65; color: #f3f1e9; }
+.tap-home .tap-search { max-width: 580px; margin: 0; }
+.tap-home .tap-search > div { margin-left: 0 !important; }
+.tap-home .tap-search form > div { background: rgba(255,255,255,.13) !important; border-color: rgba(255,255,255,.45) !important; }
+.tap-home .tap-hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; margin-top: 22px; }
+.tap-home .tap-hero-actions > button { min-height: 46px; background: #fff !important; border: 0 !important; box-shadow: none !important; color: #1a2b36 !important; padding: 11px 19px !important; font-family: inherit !important; }
+.tap-home .tap-hero-link { display: inline-flex; align-items: center; gap: 7px; padding-block: 10px; color: #fff; font-size: 14px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,.55); }
+.tap-home .tap-hero-link:hover { color: #e2c18b; border-color: #e2c18b; }
+.tap-home .tap-hero-caption { position: absolute; right: 0; bottom: 48px; display: flex; gap: 15px; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .2em; color: #fff; }
+.tap-home .tap-hero-caption span { font-weight: 400; letter-spacing: .1em; opacity: .8; }
+
+.tap-home .tap-quick-nav { background: #fff; border-bottom: 1px solid var(--home-rule); }
+.tap-home .tap-quick-inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.tap-home .tap-quick-label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: #876d4d; }
+.tap-home .tap-quick-nav a { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; color: var(--home-ink); font-size: 14px; font-weight: 600; }
+.tap-home .tap-quick-nav a:hover { color: #946e38; }
+.tap-home .tap-quick-nav a svg { color: #ab8652; }
+
+.tap-home .tap-discover { background: var(--home-paper); }
+.tap-home .tap-category-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 230px); gap: 16px; }
+.tap-home .tap-category { position: relative; display: block; min-width: 0; overflow: hidden; background: #2b3336; color: #fff; border-radius: 5px; isolation: isolate; }
+.tap-home .tap-category-1 { grid-column: span 2; grid-row: span 2; }
+.tap-home .tap-category-image { object-fit: cover; transition: transform .55s cubic-bezier(.22,.61,.36,1); }
+.tap-home .tap-category:hover .tap-category-image { transform: scale(1.05); }
+.tap-home .tap-category-tint { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,20,24,.82), rgba(10,20,24,.1) 62%, rgba(10,20,24,.22)); }
+.tap-home .tap-category-top { position: absolute; top: 22px; left: 24px; font-size: 10px; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; color: #f5eee1; }
+.tap-home .tap-category-bottom { position: absolute; left: 24px; right: 24px; bottom: 22px; display: flex; align-items: end; justify-content: space-between; gap: 12px; }
+.tap-home .tap-category-bottom strong { display: block; font-weight: 500; font-size: clamp(1.45rem, 2.5vw, 2.25rem); line-height: 1.04; }
+.tap-home .tap-category-1 strong { font-size: clamp(2.2rem, 4vw, 4rem); }
+.tap-home .tap-category-bottom small { display: block; margin-top: 7px; font-size: 12px; line-height: 1.35; color: #f2efe9; }
+.tap-home .tap-category-bottom svg { flex: none; padding: 5px; box-sizing: content-box; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; }
+
+.tap-home .tap-featured { background: #fff; }
+.tap-home .tap-heading-inline { align-items: end; }
+.tap-home .tap-text-link { display: inline-flex; align-items: center; gap: 10px; color: var(--home-ink); font-size: 14px; font-weight: 700; white-space: nowrap; border-bottom: 1px solid #b58d50; padding-bottom: 6px; }
+.tap-home .tap-text-link:hover { color: #946e38; }
+.tap-home .tap-featured-scroll { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, calc((100% - 36px) / 3)); gap: 18px; overflow-x: auto; scroll-snap-type: x proximity; overscroll-behavior-inline: contain; padding: 2px 2px 20px; scrollbar-width: thin; }
+.tap-home .tap-place-card { display: flex; flex-direction: column; background: #fff; color: var(--home-ink); border: 1px solid #e6e6e2; scroll-snap-align: start; border-radius: 5px; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; }
+.tap-home .tap-place-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(19,35,43,.11); }
+.tap-home .tap-place-image { display: block; position: relative; height: 235px; overflow: hidden; background: #d7dad8; }
+.tap-home .tap-place-image img { object-fit: cover; transition: transform .4s ease; }
+.tap-home .tap-place-card:hover .tap-place-image img { transform: scale(1.035); }
+.tap-home .tap-place-content { display: flex; flex: 1; flex-direction: column; padding: 24px; }
+.tap-home .tap-place-area { display: inline-flex; align-items: center; gap: 5px; color: #775e3c; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
+.tap-home .tap-place-name { display: block; margin-top: 12px; font-size: 27px; line-height: 1.1; }
+.tap-home .tap-place-description { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 10px; font-size: 13px; line-height: 1.65; color: #59636a; }
+.tap-home .tap-place-foot { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 22px; font-size: 12px; font-weight: 600; color: #48545b; }
+.tap-home .tap-place-foot svg { flex: none; color: #987748; }
+
+.tap-home .tap-plan { background: #182a34; color: #fff; padding: 0; }
+.tap-home .tap-plan-layout { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: 540px; }
+.tap-home .tap-plan-image { position: relative; min-height: 480px; overflow: hidden; background: #53636c; }
+.tap-home .tap-plan-image img { object-fit: cover; }
+.tap-home .tap-plan-image::after { content: ''; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent,rgba(0,0,0,.6)); }
+.tap-home .tap-plan-image > span { position: absolute; z-index: 1; bottom: 25px; left: 32px; font-family: Georgia,serif; font-style: italic; font-size: 20px; color: #fff; }
+.tap-home .tap-plan-copy { display: flex; flex-direction: column; align-items: start; justify-content: center; padding: 65px clamp(36px, 6vw, 100px); }
+.tap-home .tap-plan h2 { color: #fff; font-size: clamp(2.5rem, 4.6vw, 4.7rem); }
+.tap-home .tap-plan-copy > p:not(.tap-eyebrow) { max-width: 400px; color: #e1e6e3; line-height: 1.7; font-size: 15px; margin: 25px 0 30px; }
+.tap-home .tap-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 22px; min-height: 52px; padding: 14px 20px; color: #192530; background: #e6c895; font-size: 13px; font-weight: 700; }
+.tap-home .tap-button:hover { background: #f5d9a6; }
+.tap-home .tap-plan-secondary { display: inline-flex; align-items: center; gap: 8px; color: #fff; margin-top: 26px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,.6); padding-bottom: 5px; }
+
+.tap-home .tap-more { background: var(--home-paper); }
+.tap-home .tap-heading-icon { color: #aa8b5e; }
+.tap-home .tap-more-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--home-rule); border-left: 1px solid var(--home-rule); }
+.tap-home .tap-more-link { min-height: 165px; display: flex; flex-direction: column; align-items: start; padding: 22px; border-right: 1px solid var(--home-rule); border-bottom: 1px solid var(--home-rule); color: var(--home-ink); background: var(--home-paper); }
+.tap-home .tap-more-link:hover { background: #edece7; }
+.tap-home .tap-more-index { color: #967449; font-size: 10px; font-weight: 700; letter-spacing: .1em; }
+.tap-home .tap-more-text { margin-top: auto; }
+.tap-home .tap-more-text strong { display: block; font-family: Georgia,serif; font-size: 22px; font-weight: 500; }
+.tap-home .tap-more-text small { display: block; margin-top: 5px; color: #60696f; font-size: 11px; }
+.tap-home .tap-more-link > svg { align-self: end; margin-top: -22px; color: #937344; }
+
+.tap-home .tap-quiz { padding: 70px 0; background: #1b2b35; color: #fff; }
+.tap-home .tap-nfc { background: #e9e7de; padding: 43px 0; }
+.tap-home .tap-nfc-inner { display: flex; align-items: center; gap: 24px; }
+.tap-home .tap-nfc-mark { align-self: center; width: 56px; height: 56px; flex: none; display: grid; place-items: center; border: 1px solid #b9aa8e; border-radius: 50%; color: #81663f; }
+.tap-home .tap-nfc .tap-eyebrow { margin-bottom: 5px; }
+.tap-home .tap-nfc h2 { font-size: clamp(1.5rem, 2.3vw, 2rem); }
+.tap-home .tap-nfc p:last-child { margin: 7px 0 0; color: #515b61; font-size: 13px; }
+.tap-home .tap-nfc .tap-text-link { margin-left: auto; }
+
+html.dark .tap-home { --home-ink: #f6f2ea; --home-paper: #131e25; --home-rule: #35444a; color: #f6f2ea; }
+html.dark .tap-home .tap-quick-nav, html.dark .tap-home .tap-featured, html.dark .tap-home .tap-place-card { background: #1b2b34; }
+html.dark .tap-home .tap-section-heading > p, html.dark .tap-home .tap-place-description, html.dark .tap-home .tap-more-text small, html.dark .tap-home .tap-nfc p:last-child { color: #c1c9c8; }
+html.dark .tap-home .tap-place-card { border-color: #35444a; }
+html.dark .tap-home .tap-place-foot { color: #e0e5de; }
+html.dark .tap-home .tap-nfc { background: #26343a; }
+html.dark .tap-home .tap-more-link:hover { background: #26343a; }
+html.dark .tap-home .tap-hero h1, html.dark .tap-home .tap-plan h2 { color: #fff !important; }
+html.dark .tap-home .tap-hero-intro, html.dark .tap-home .tap-plan-copy > p:not(.tap-eyebrow) { color: #e9e9e4 !important; }
+html.dark .tap-home .tap-category strong { color: #fff; }
+
+@media (max-width: 1000px) {
+  .tap-home .tap-category-grid { grid-template-rows: repeat(2, 210px); }
+  .tap-home .tap-more-grid { grid-template-columns: repeat(2, 1fr); }
+  .tap-home .tap-plan-copy { padding-inline: 40px; }
+}
+@media (max-width: 760px) {
+  .tap-home .tap-container { width: min(100% - 36px, 1240px); }
+  .tap-home .tap-hero { min-height: 680px; align-items: end; }
+  .tap-home .tap-hero-image { object-position: 60% center; }
+  .tap-home .tap-hero-shade { background: linear-gradient(0deg, rgba(12,26,37,.97) 0%, rgba(12,26,37,.82) 44%, rgba(12,26,37,.24) 100%); }
+  .tap-home .tap-hero-inner { padding-block: 100px 62px; }
+  .tap-home .tap-hero h1 { font-size: clamp(4.2rem, 13vw, 6.3rem); }
+  .tap-home .tap-hero-intro { margin: 23px 0; }
+  .tap-home .tap-hero-caption { display: none; }
+  .tap-home .tap-quick-inner { justify-content: start; overflow-x: auto; min-height: 65px; scrollbar-width: none; }
+  .tap-home .tap-quick-label { flex: none; }
+  .tap-home .tap-quick-nav a { flex: none; }
+  .tap-home .tap-section-heading { align-items: start; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+  .tap-home .tap-section-heading > p { max-width: 520px; }
+  .tap-home .tap-desktop-break { display: none; }
+  .tap-home .tap-category-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 330px repeat(2, 210px); gap: 10px; }
+  .tap-home .tap-category-1 { grid-column: span 2; grid-row: span 1; }
+  .tap-home .tap-category-top { top: 17px; left: 17px; }
+  .tap-home .tap-category-bottom { left: 17px; right: 17px; bottom: 17px; }
+  .tap-home .tap-category-bottom strong { font-size: clamp(1.35rem, 4vw, 1.9rem); }
+  .tap-home .tap-category-1 strong { font-size: 2.6rem; }
+  .tap-home .tap-category-bottom small { font-size: 11px; }
+  .tap-home .tap-category-bottom svg { width: 17px; height: 17px; padding: 3px; }
+  .tap-home .tap-featured-scroll { grid-auto-columns: minmax(260px, 42vw); }
+  .tap-home .tap-plan-layout { display: block; width: 100%; }
+  .tap-home .tap-plan-image { margin-left: 0; min-height: 350px; }
+  .tap-home .tap-plan-copy { padding: 55px 25px 65px; }
+  .tap-home .tap-nfc-inner { flex-wrap: wrap; }
+  .tap-home .tap-nfc .tap-text-link { margin-left: 80px; }
+}
+@media (max-width: 540px) {
+  .tap-home .tap-section { padding-block: 68px; }
+  .tap-home .tap-hero { min-height: 650px; }
+  .tap-home .tap-hero h1 { font-size: clamp(3.8rem, 14.5vw, 5rem); }
+  .tap-home .tap-hero-actions { gap: 16px; }
+  .tap-home .tap-quick-inner { gap: 22px; }
+  .tap-home .tap-category-grid { grid-template-rows: 280px repeat(2, 180px); }
+  .tap-home .tap-category-bottom small { display: none; }
+  .tap-home .tap-featured-scroll { grid-auto-columns: minmax(240px, 82vw); margin-right: -18px; }
+  .tap-home .tap-place-image { height: 200px; }
+  .tap-home .tap-more-grid { grid-template-columns: repeat(2, 1fr); }
+  .tap-home .tap-more-link { min-height: 145px; padding: 16px; }
+  .tap-home .tap-more-text strong { font-size: 19px; }
+  .tap-home .tap-more-link > svg { width: 16px; margin-top: -19px; }
+  .tap-home .tap-nfc-mark { width: 44px; height: 44px; }
+  .tap-home .tap-nfc-inner { gap: 16px; }
+  .tap-home .tap-nfc-inner > div { flex: 1; min-width: 0; }
+  .tap-home .tap-nfc .tap-text-link { margin-left: 60px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tap-home .tap-category-image, .tap-home .tap-place-image img, .tap-home .tap-place-card { transition: none; }
+  .tap-home .tap-category:hover .tap-category-image, .tap-home .tap-place-card:hover .tap-place-image img { transform: none; }
+}

@@ -1,4 +1,5 @@
 import HomePageClient from '@/components/HomePageClient';
+import './home.css';
 import placesData from '@/data/places.json';
 
 const FEATURED_IDS = ['tower-of-london', 'british-museum', 'covent-garden', 'london-eye', 'hyde-park', 'natural-history-museum'];

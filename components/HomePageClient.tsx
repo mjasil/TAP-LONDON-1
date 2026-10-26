@@ -1,368 +1,169 @@
 'use client';
 
 import Link from 'next/link';
-import NextImage from 'next/image';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { FadeUp, SlideLeft, SlideRight } from '@/components/ScrollAnimation';
+import { ArrowRight, ArrowUpRight, Compass, MapPin, Sparkles } from 'lucide-react';
 import SearchBar from '@/components/SearchBar';
 import NearMe from '@/components/NearMe';
 import LondonQuiz from '@/components/LondonQuiz';
 import { fetchCollection } from '@/lib/firestore';
-type FeaturedPlace = { id: string; name: string; area: string; description: string; entryFee: string; image: string };
 
-const MAIN_CARDS = [
-  { id: 'places',       label: 'Best Places',    sub: 'Attractions, hidden gems & photo spots', href: '/places',       image: 'https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=800',    tag: 'Places' },
-  { id: 'food',         label: 'Food & Drinks',  sub: 'Restaurants, halal food & local eats',   href: '/food',         image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800',   tag: 'Food' },
-  { id: 'shopping',     label: 'Shopping',        sub: 'Luxury streets, markets & boutiques',   href: '/shopping',     image: 'https://images.pexels.com/photos/3965548/pexels-photo-3965548.jpeg?auto=compress&cs=tinysrgb&w=800',   tag: 'Shopping' },
-  { id: 'nightlife',    label: 'Nightlife',       sub: 'Rooftop bars, clubs & live music',      href: '/nightlife',    image: 'https://images.pexels.com/photos/2034851/pexels-photo-2034851.jpeg?auto=compress&cs=tinysrgb&w=800',   tag: 'Nightlife' },
-  { id: 'hotels',       label: 'Hotels',          sub: 'Budget to luxury, find your stay',     href: '/hotels',       image: 'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800',    tag: 'Hotels' },
-  { id: 'transport',    label: 'Transport',       sub: 'Tube, bus, taxi & travel tips',         href: '/transport',    image: 'https://images.pexels.com/photos/5765/london-street-landmark-double-decker.jpg?auto=compress&cs=tinysrgb&w=800', tag: 'Transport' },
-  { id: 'kids',         label: 'Kids & Family',   sub: 'Attractions, parks & family fun',       href: '/kids',         image: 'https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=800',   tag: 'Family' },
-  { id: 'muslim',       label: 'Muslim Guide',    sub: 'Halal food, mosques & prayer rooms',    href: '/muslim',       image: 'https://images.pexels.com/photos/3874832/pexels-photo-3874832.jpeg?auto=compress&cs=tinysrgb&w=800',   tag: 'Guide' },
-  { id: 'emergency',    label: 'Emergency Help',  sub: 'Safety tips, scam alerts & numbers',   href: '/emergency',    image: 'https://images.pexels.com/photos/63901/pexels-photo-63901.jpeg?auto=compress&cs=tinysrgb&w=800',      tag: 'Help' },
+type FeaturedPlace = {
+  id: string; name: string; area: string; description: string; entryFee: string; image: string;
+};
+
+const CATEGORIES = [
+  { id: 'places', label: 'Places to explore', short: 'Places', caption: 'Landmarks, museums & hidden corners', href: '/places', image: 'https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1000' },
+  { id: 'food', label: 'Eat & drink', short: 'Food', caption: 'Find your next London table', href: '/food', image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 'kids', label: 'Family days out', short: 'Kids & Family', caption: 'Big days for little explorers', href: '/kids', image: 'https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 'nightlife', label: 'After dark', short: 'Nightlife', caption: 'Pubs, bars & live music', href: '/nightlife', image: 'https://images.pexels.com/photos/2034851/pexels-photo-2034851.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 'shopping', label: 'Shopping streets', short: 'Shopping', caption: 'Markets, boutiques & more', href: '/shopping', image: 'https://images.pexels.com/photos/3965548/pexels-photo-3965548.jpeg?auto=compress&cs=tinysrgb&w=800' },
 ];
 
-const DISCOVER_CARDS = [
-  { label: 'Offers & Deals',  sub: 'Best London deals right now',     href: '/offers',       number: '01' },
-  { label: 'Sports',          sub: 'Football, cricket, boxing & more', href: '/sports',       number: '02' },
-  { label: 'Hidden Gems',     sub: 'Secret spots only locals know',   href: '/hidden-gems',  number: '03' },
-  { label: 'Trending Now',    sub: 'Popular restaurants & hotspots',  href: '/trending',     number: '04' },
-  { label: 'Guides',          sub: 'Curated themed London lists',     href: '/guides',       number: '05' },
-  { label: 'Happening Today', sub: 'Live events and markets now',     href: '/events',       number: '06' },
+const MORE_LINKS = [
+  { label: 'Hotels', detail: 'Find a place to stay', href: '/hotels' },
+  { label: 'What’s on', detail: 'Events across the city', href: '/events' },
+  { label: 'Hidden gems', detail: 'Go beyond the obvious', href: '/hidden-gems' },
+  { label: 'Transport', detail: 'Get around with ease', href: '/transport' },
+  { label: 'Offers', detail: 'Explore available deals', href: '/offers' },
+  { label: 'Muslim guide', detail: 'Food and useful places', href: '/muslim' },
+  { label: 'Sports', detail: 'Matches and venues', href: '/sports' },
+  { label: 'Emergency help', detail: 'Useful numbers and advice', href: '/emergency' },
 ];
 
-const TABS = ['All', 'Places', 'Food', 'Shopping', 'Nightlife', 'Hotels'];
-const HOW_IT_WORKS = [
-  { title: 'Tap the souvenir', desc: 'Hold your phone near any TAP LONDON NFC product.', step: '01' },
-  { title: 'Open the guide',   desc: 'Your browser opens instantly. No app, no login.',  step: '02' },
-  { title: 'Choose a section', desc: 'Find places, food, shopping, hotels in seconds.',  step: '03' },
-  { title: 'Enjoy London',     desc: 'Real directions, trusted tips, halal guides.',      step: '04' },
-];
 export default function HomePageClient({ heroImage, featuredPlaces }: { heroImage: string; featuredPlaces: FeaturedPlace[] }) {
-  const [activeTab, setActiveTab] = useState('All');
-  const [cards, setCards] = useState(MAIN_CARDS);
+  const [categoryImages, setCategoryImages] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    const loadImages = async () => {
-      const allImages = await fetchCollection('siteImages');
-      const imageMap = new Map((allImages || []).map((doc: any) => [doc.id, doc.url]));
-
-      const updatedCards = MAIN_CARDS.map((card) => {
-        const cardUrl = imageMap.get('card-' + card.id);
-        return cardUrl ? { ...card, image: cardUrl } : card;
-      });
-      setCards(updatedCards);
-    };
-    loadImages();
+    let active = true;
+    fetchCollection('siteImages').then(images => {
+      if (!active || !images) return;
+      const next: Record<string, string> = {};
+      for (const image of images) {
+        if (typeof image.url === 'string' && image.id?.startsWith('card-')) {
+          next[image.id.slice(5)] = image.url;
+        }
+      }
+      setCategoryImages(next);
+    }).catch(() => { /* Built-in category imagery remains available. */ });
+    return () => { active = false; };
   }, []);
 
-  const filtered = cards.filter(c => {
-    if (activeTab === 'All') return true;
-    if (activeTab === 'Hotels') return c.tag === 'Hotels';
-    return c.tag === activeTab;
-  });
-
   return (
-    <main style={{ overflowX: 'hidden', width: '100%' }}>
-
-      {/* HERO */}
-      <section style={{ position: 'relative', minHeight: 'min(690px, 85svh)', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: '#0d0d1a', padding: '80px 0', boxSizing: 'border-box' }}>
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-          <NextImage src={heroImage} alt="London skyline" fill priority unoptimized sizes="100vw" style={{ objectFit: 'cover', objectPosition: 'center 30%' }} />
-        </div>
-        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to bottom, rgba(10,10,24,0.45) 0%, rgba(10,10,24,0.3) 40%, rgba(10,10,24,0.82) 100%)' }} />
-
-        <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: '860px', padding: '0 20px', boxSizing: 'border-box' as const, textAlign: 'center' }}>
-
-          <div
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#f2d283', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '2px', marginBottom: '24px', textTransform: 'uppercase' as const, fontFamily: "'DM Sans', sans-serif" }}>
-            London's Smart Travel Guide
+    <div className="tap-home">
+      <section className="tap-hero" aria-labelledby="tap-hero-title">
+        <Image className="tap-hero-image" src={heroImage} alt="London skyline" fill priority unoptimized sizes="100vw" />
+        <div className="tap-hero-shade" aria-hidden="true" />
+        <div className="tap-container tap-hero-inner">
+          <div className="tap-hero-copy">
+            <p className="tap-eyebrow tap-eyebrow-light"><span className="tap-eyebrow-line" /> The city is yours to discover</p>
+            <h1 id="tap-hero-title">Find your<br /><em>London.</em></h1>
+            <p className="tap-hero-intro">The places, flavours and little discoveries that make a day here yours. Start exploring.</p>
+            <div className="tap-search"><SearchBar /></div>
+            <div className="tap-hero-actions">
+              <NearMe />
+              <Link href="/places" className="tap-hero-link">Explore places <ArrowUpRight size={17} aria-hidden="true" /></Link>
+            </div>
           </div>
-
-          <h1
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(2.8rem, 9vw, 6.2rem)', fontWeight: 700, lineHeight: 1, margin: '0 0 20px', letterSpacing: '-1px' }}>
-            <span style={{ color: '#ffffff' }}>Discover </span>
-            <span style={{ color: '#f2d283' }}>London</span>
-          </h1>
-
-          <p
-            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(0.9rem, 2vw, 1.08rem)', color: 'rgba(255,255,255,0.62)', marginBottom: '36px', lineHeight: 1.6 }}>
-            Find places to visit, good food and practical tips for your day in London.
-          </p>
-
-          <div style={{ marginBottom: '20px', width: '100%' }}>
-            <SearchBar />
-          </div>
-
-          <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '20px' }}>
-            {[{ label: 'Clubs', href: '/nightlife' }, { label: 'Kids Entertainment', href: '/kids' }, { label: 'Rooftop Bar', href: '/nightlife' }, { label: 'Hidden Gems', href: '/hidden-gems' }].map(item => (
-              <Link key={item.label} href={item.href} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: 'rgba(255,255,255,0.55)', textDecoration: 'none', background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '40px', padding: '5px 14px' }}>{item.label}</Link>
-            ))}
-          </div>
-
-          {/* Near Me button */}
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <NearMe />
-          </div>
+          <div className="tap-hero-caption" aria-hidden="true">LONDON <span>51° 30′ N</span></div>
         </div>
       </section>
 
-      {/* Put useful, clickable listings directly after the search. */}
-      <section className="bg-[#f9f7f2] px-5 py-12 dark:bg-[#0d0d1a]" aria-labelledby="featured-places-title">
-        <div className="mx-auto max-w-[1100px]">
-          <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="mb-1 text-xs font-bold uppercase tracking-[0.15em] text-gold">Explore London</p>
-              <h2 id="featured-places-title" className="font-heading text-3xl font-bold text-navy dark:text-cream">Places to start with</h2>
-              <p className="mt-1 text-sm text-ink/70 dark:text-cream/70">A few London favourites, from free museums to famous landmarks.</p>
-            </div>
-            <Link href="/places" className="text-sm font-bold text-gold hover:underline">See all places →</Link>
+      <nav className="tap-quick-nav" aria-label="Popular ways to explore">
+        <div className="tap-container tap-quick-inner">
+          <span className="tap-quick-label">Start with</span>
+          <Link href="/places">Iconic places <ArrowUpRight size={15} /></Link>
+          <Link href="/food">Food & drink <ArrowUpRight size={15} /></Link>
+          <Link href="/kids">With kids <ArrowUpRight size={15} /></Link>
+          <Link href="/nightlife">After dark <ArrowUpRight size={15} /></Link>
+        </div>
+      </nav>
+
+      <section className="tap-section tap-discover" aria-labelledby="tap-discover-title">
+        <div className="tap-container">
+          <div className="tap-section-heading">
+            <div><p className="tap-eyebrow">Explore by interest</p><h2 id="tap-discover-title">What kind of London<br className="tap-desktop-break" /> day are you after?</h2></div>
+            <p>From the first landmark to the last stop of the night, find a place to begin.</p>
           </div>
-          <div className="featured-places-scroll" aria-label="Places to explore">
-            {featuredPlaces.map(place => (
-              <Link key={place.id} href={`/places/${place.id}`} className="featured-place-card group">
-                <div className="relative h-44 overflow-hidden bg-navy">
-                  <NextImage src={place.image} alt={place.name} fill sizes="(max-width: 640px) 78vw, 280px" className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
-                </div>
-                <div className="flex min-h-[155px] flex-col p-4">
-                  <span className="text-xs font-semibold text-ink/60 dark:text-cream/65">{place.area}</span>
-                  <h3 className="mt-1 font-heading text-xl font-bold leading-tight text-navy dark:text-cream">{place.name}</h3>
-                  <p className="mt-2 line-clamp-2 text-sm leading-5 text-ink/70 dark:text-cream/70">{place.description}</p>
-                  <span className="mt-auto pt-3 text-xs font-bold text-gold">{place.entryFee}</span>
-                </div>
+          <div className="tap-category-grid">
+            {CATEGORIES.map((category, index) => (
+              <Link href={category.href} key={category.id} className={`tap-category tap-category-${index + 1}`}>
+                <Image src={categoryImages[category.id] || category.image} alt="" fill sizes={index === 0 ? '(max-width: 760px) 100vw, 55vw' : '(max-width: 760px) 50vw, 28vw'} className="tap-category-image" />
+                <span className="tap-category-tint" aria-hidden="true" />
+                <span className="tap-category-top">{String(index + 1).padStart(2, '0')} / {category.short}</span>
+                <span className="tap-category-bottom"><span><strong>{category.label}</strong><small>{category.caption}</small></span><ArrowUpRight aria-hidden="true" size={22} /></span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* AI ITINERARY BUILDER - entry card */}
-      <section style={{ padding: '64px 20px 48px', width: '100%', boxSizing: 'border-box' as const }}>
-        <Link href="/trip-builder" style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
-          <div style={{
-            maxWidth: '1100px', margin: '0 auto', position: 'relative', overflow: 'hidden',
-            background: '#1a1a2e',
-            borderRadius: '12px', padding: 'clamp(28px, 5vw, 52px)', cursor: 'pointer',
-            border: '1px solid rgba(201,168,76,0.18)',
-          }}>
-            <div className="itinerary-entry-inner" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' as const, gap: '20px' }}>
-              <div className="itinerary-entry-text" style={{ textAlign: 'left' as const }}>
-                <div style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '0.68rem', color: '#c9a84c', letterSpacing: '2.5px', textTransform: 'uppercase' as const,
-                  marginBottom: '16px',
-                }}>Plan your visit</div>
-                <h2 style={{
-                  fontFamily: "'Cormorant Garamond', serif", fontWeight: 700, color: '#fff',
-                  fontSize: 'clamp(1.6rem, 4vw, 2.6rem)', margin: '0 0 10px', lineHeight: 1.1,
-                }}>Build My London Trip</h2>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.92rem', color: 'rgba(255,255,255,0.5)', maxWidth: '440px', margin: '0 auto' }}>
-                  Days, budget, interests, hotel area: get a full day-by-day schedule in seconds.
-                </p>
-              </div>
-              <div style={{
-                  background: '#c9a84c', color: '#1a1a2e', padding: '15px 30px',
-                  borderRadius: '6px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', fontWeight: 700,
-                  whiteSpace: 'nowrap' as const,
-              }}>Plan My Trip →</div>
-            </div>
-            <style>{`
-              @media (max-width: 640px) {
-                .itinerary-entry-inner { flex-direction: column !important; justify-content: center !important; }
-                .itinerary-entry-text { text-align: center !important; }
-                .itinerary-entry-text p { margin-left: auto !important; margin-right: auto !important; }
-              }
-            `}</style>
+      <section className="tap-section tap-featured" aria-labelledby="tap-featured-title">
+        <div className="tap-container">
+          <div className="tap-section-heading tap-heading-inline">
+            <div><p className="tap-eyebrow">A good place to start</p><h2 id="tap-featured-title">The London shortlist</h2></div>
+            <Link href="/places" className="tap-text-link">See all places <ArrowRight size={18} aria-hidden="true" /></Link>
           </div>
-        </Link>
-      </section>
-
-      {/* LONDON QUIZ */}
-      <section style={{ background: '#1a1a2e', padding: '60px 20px', width: '100%', boxSizing: 'border-box' as const, borderTop: '1px solid rgba(201,168,76,0.1)' }}>
-        <LondonQuiz />
-      </section>
-
-      {/* THINGS TO DO IN LONDON — banner leading to Hidden Gems */}
-      <section style={{ padding: '48px 20px 0', width: '100%', boxSizing: 'border-box' as const }} className="bg-[#f9f7f2] dark:bg-[#0d0d1a]">
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <Link href="/hidden-gems" style={{ textDecoration: 'none', display: 'block' }}>
-            <motion.div
-              whileHover={{ scale: 1.01 }}
-              transition={{ duration: 0.25 }}
-              style={{
-                position: 'relative', borderRadius: '22px', overflow: 'hidden',
-                minHeight: '220px', display: 'flex', alignItems: 'center',
-                background: 'linear-gradient(120deg, #1a1a2e 0%, #2d2d4e 60%, #3a2f1a 100%)',
-                padding: '36px 32px', cursor: 'pointer',
-              }}
-            >
-              <div style={{ position: 'absolute', inset: 0, opacity: 0.15, backgroundImage: "url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=60')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
-              <div style={{ position: 'relative', zIndex: 1, maxWidth: '600px' }}>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.68rem', color: '#c9a84c', fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase' as const, marginBottom: '10px' }}>💎 Curated by London Locals</p>
-                <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.6rem, 4.5vw, 2.6rem)', fontWeight: 700, color: '#ffffff', margin: '0 0 12px', lineHeight: 1.15 }}>Things to Do in London: Beyond the Guidebook</h2>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.92rem', color: 'rgba(255,255,255,0.6)', marginBottom: '20px', lineHeight: 1.6 }}>Secret gardens, underrated museums, hidden bars and Instagram spots most tourists never find, the places locals actually love.</p>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(201,168,76,0.15)', border: '1px solid rgba(201,168,76,0.4)', borderRadius: '50px', padding: '10px 22px', color: '#c9a84c', fontFamily: "'DM Sans', sans-serif", fontSize: '0.84rem', fontWeight: 700 }}>
-                  Discover Hidden Gems
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-              </div>
-            </motion.div>
-          </Link>
-
-          <Link href="/events" style={{ textDecoration: 'none', display: 'block', marginTop: '16px' }}>
-            <motion.div
-              whileHover={{ scale: 1.01 }}
-              transition={{ duration: 0.25 }}
-              style={{
-                position: 'relative', borderRadius: '18px', overflow: 'hidden',
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' as const, gap: '16px',
-                background: 'linear-gradient(120deg, #7a2838 0%, #9c3347 100%)',
-                padding: '22px 28px', cursor: 'pointer',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                <span style={{
-                  width: '10px', height: '10px', borderRadius: '50%', background: '#ff5a5a',
-                  boxShadow: '0 0 0 0 rgba(255,90,90,0.7)', animation: 'tap-pulse 1.6s infinite',
-                }} />
-                <div>
-                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.66rem', color: '#ffd3d3', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, marginBottom: '4px' }}>Live Today</div>
-                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.15rem, 3vw, 1.5rem)', fontWeight: 700, color: '#fff' }}>What's Happening in London Right Now</div>
-                </div>
-              </div>
-              <div style={{
-                background: 'rgba(255,255,255,0.15)', color: '#fff', padding: '10px 20px',
-                borderRadius: '10px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', fontWeight: 700,
-                whiteSpace: 'nowrap' as const,
-              }}>See What's On →</div>
-            </motion.div>
-          </Link>
-          <style>{`
-            @keyframes tap-pulse {
-              0% { box-shadow: 0 0 0 0 rgba(255,90,90,0.6); }
-              70% { box-shadow: 0 0 0 8px rgba(255,90,90,0); }
-              100% { box-shadow: 0 0 0 0 rgba(255,90,90,0); }
-            }
-          `}</style>
-        </div>
-      </section>
-
-      {/* DISCOVER MORE — new sections */}
-      <section className="bg-[#f9f7f2] dark:bg-[#0d0d1a]" style={{ padding: '48px 20px 0', width: '100%', boxSizing: 'border-box' as const }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <FadeUp>
-            <div style={{ marginBottom: '20px' }}>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.66rem', color: '#c9a84c', fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase' as const, marginBottom: '6px' }}>Discover More</p>
-              <h2 className="text-navy dark:text-[#f9f7f2]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: 700, margin: 0 }}>More of London</h2>
-            </div>
-          </FadeUp>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '12px', marginBottom: '48px' }}>
-            {DISCOVER_CARDS.map((card, i) => (
-              <motion.div key={card.href} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }}>
-                <Link href={card.href} style={{ textDecoration: 'none', display: 'block' }}>
-                  <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }} className="bg-white dark:bg-[#1a1a2e]"
-                    style={{ borderRadius: '8px', padding: '20px', border: '1px solid rgba(26,26,46,0.12)', cursor: 'pointer', minHeight: '160px' }}>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', letterSpacing: '0.1em', color: '#a58a46', marginBottom: '18px' }}>{card.number}</div>
-                    <div className="text-navy dark:text-[#f9f7f2]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem', fontWeight: 700, marginBottom: '4px' }}>{card.label}</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: '#888' }}>{card.sub}</div>
-                    <div style={{ marginTop: '12px', color: '#a58a46', fontFamily: "'DM Sans', sans-serif", fontSize: '0.76rem', fontWeight: 700 }}>Explore →</div>
-                  </motion.div>
-                </Link>
-              </motion.div>
+          <div className="tap-featured-scroll" aria-label="Featured London places">
+            {featuredPlaces.map(place => (
+              <Link href={`/places/${place.id}`} className="tap-place-card" key={place.id}>
+                <span className="tap-place-image"><Image src={place.image} alt={place.name} fill sizes="(max-width: 600px) 80vw, (max-width: 1000px) 42vw, 30vw" /></span>
+                <span className="tap-place-content">
+                  <span className="tap-place-area"><MapPin size={13} aria-hidden="true" />{place.area}</span>
+                  <span className="tap-place-name">{place.name}</span>
+                  <span className="tap-place-description">{place.description}</span>
+                  <span className="tap-place-foot"><span>{place.entryFee}</span><ArrowUpRight size={19} aria-hidden="true" /></span>
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* MAIN EXPLORE GRID */}
-      <section className="bg-[#f9f7f2] dark:bg-[#0d0d1a]" style={{ padding: '0 20px 88px', width: '100%', boxSizing: 'border-box' as const }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <FadeUp>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '28px' }}>
-              <div>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.66rem', color: '#c9a84c', fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase' as const, marginBottom: '6px' }}>Explore</p>
-                <h2 className="text-navy dark:text-[#f9f7f2]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 700, margin: 0 }}>Everything in London</h2>
-              </div>
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                {TABS.map(tab => (
-                  <button key={tab} onClick={() => setActiveTab(tab)} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.78rem', fontWeight: 600, padding: '8px 18px', borderRadius: '40px', cursor: 'pointer', border: 'none', background: activeTab === tab ? '#c9a84c' : 'transparent', color: activeTab === tab ? '#1a1a2e' : '#888', outline: activeTab === tab ? 'none' : '1px solid rgba(150,150,150,0.25)', transition: 'all 0.2s ease' }}>{tab}</button>
-                ))}
-              </div>
-            </div>
-          </FadeUp>
+      <section className="tap-section tap-plan" aria-labelledby="tap-plan-title">
+        <div className="tap-container tap-plan-layout">
+          <div className="tap-plan-image">
+            <Image src={featuredPlaces.find(place => place.id === 'covent-garden')?.image || heroImage} alt="Covent Garden in London" fill sizes="(max-width: 760px) 100vw, 50vw" />
+            <span>Make room for the unexpected.</span>
+          </div>
+          <div className="tap-plan-copy">
+            <p className="tap-eyebrow tap-eyebrow-light"><span className="tap-eyebrow-line" /> Plan your day</p>
+            <h2 id="tap-plan-title">A city this big.<br /><em>A day that’s yours.</em></h2>
+            <p>Choose the places you want to see and make a plan that fits your time, interests and budget.</p>
+            <Link href="/trip-builder" className="tap-button">Build my London trip <ArrowUpRight size={18} aria-hidden="true" /></Link>
+            <Link href="/hidden-gems" className="tap-plan-secondary">Or explore hidden gems <ArrowRight size={16} aria-hidden="true" /></Link>
+          </div>
+        </div>
+      </section>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '14px' }}>
-            {filtered.map((card, i) => (
-              <motion.div key={card.id} initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
-                <Link href={card.href} style={{ textDecoration: 'none', display: 'block' }}>
-                  <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }} style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '230px', boxShadow: '0 2px 16px rgba(0,0,0,0.1)', cursor: 'pointer' }}>
-                    <NextImage src={card.image} alt={card.label} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: 'cover' }} />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,10,22,0.88) 0%, rgba(10,10,22,0.1) 55%, transparent 100%)' }} />
-                    <div style={{ position: 'absolute', top: '14px', left: '14px', background: 'rgba(201,168,76,0.9)', color: '#1a1a2e', padding: '3px 10px', borderRadius: '40px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.8px', textTransform: 'uppercase' as const }}>{card.tag}</div>
-                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 18px' }}>
-                      <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.3rem', fontWeight: 700, color: '#ffffff', marginBottom: '5px', lineHeight: 1.15 }}>{card.label}</div>
-                      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)' }}>{card.sub}</div>
-                    </div>
-                    <div style={{ position: 'absolute', bottom: '20px', right: '18px', width: '32px', height: '32px', background: 'rgba(201,168,76,0.15)', border: '1px solid rgba(201,168,76,0.3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-                  </motion.div>
-                </Link>
-              </motion.div>
+      <section className="tap-section tap-more" aria-labelledby="tap-more-title">
+        <div className="tap-container">
+          <div className="tap-section-heading tap-heading-inline">
+            <div><p className="tap-eyebrow">Keep exploring</p><h2 id="tap-more-title">More ways into London</h2></div>
+            <Compass className="tap-heading-icon" size={36} strokeWidth={1.3} aria-hidden="true" />
+          </div>
+          <div className="tap-more-grid">
+            {MORE_LINKS.map((item, index) => (
+              <Link href={item.href} key={item.href} className="tap-more-link">
+                <span className="tap-more-index">{String(index + 1).padStart(2, '0')}</span>
+                <span className="tap-more-text"><strong>{item.label}</strong><small>{item.detail}</small></span>
+                <ArrowUpRight size={19} aria-hidden="true" />
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section style={{ background: '#1a1a2e', padding: '88px 20px', width: '100%', boxSizing: 'border-box', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ maxWidth: '1000px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <FadeUp>
-            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.66rem', color: '#c9a84c', fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase' as const, marginBottom: '10px' }}>How it works</p>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.9rem, 4.5vw, 3rem)', color: '#ffffff', fontWeight: 700, margin: 0 }}>A souvenir that opens the city</h2>
-            </div>
-          </FadeUp>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1px', background: 'rgba(201,168,76,0.07)' }}>
-            {HOW_IT_WORKS.map((item, i) => (
-              <motion.div key={item.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.09 }} style={{ background: '#1a1a2e', padding: '40px 24px', textAlign: 'center' }}>
-                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '2.8rem', color: 'rgba(201,168,76,0.1)', fontWeight: 700, lineHeight: 1 }}>{item.step}</div>
-                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem', fontWeight: 700, color: '#c9a84c', margin: '10px 0 10px' }}>{item.title}</div>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.76rem', color: 'rgba(255,255,255,0.44)', lineHeight: 1.7, margin: 0 }}>{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <section className="tap-quiz" aria-label="Personalise your London visit"><div className="tap-container"><LondonQuiz /></div></section>
 
-      {/* ABOUT */}
-      <section className="bg-[#f9f7f2] dark:bg-[#0d0d1a]" style={{ padding: '88px 20px', width: '100%', boxSizing: 'border-box' as const }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '64px', alignItems: 'center' }}>
-          <div>
-            <SlideLeft>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.66rem', color: '#c9a84c', fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase' as const, marginBottom: '12px' }}>About</p>
-              <h2 className="text-navy dark:text-[#f9f7f2]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.8rem, 4vw, 2.9rem)', fontWeight: 700, margin: '0 0 20px', lineHeight: 1.15 }}>Built for every<br />London moment</h2>
-              <div style={{ width: '36px', height: '2px', background: '#c9a84c', marginBottom: '22px', borderRadius: '2px' }} />
-              <p className="text-ink/70 dark:text-[#f9f7f2]/55" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.91rem', lineHeight: 1.85, marginBottom: '32px' }}>TAP LONDON is the daily discovery platform for food, hotels, sports, offers and hidden gems across London. Tap, explore and enjoy, no app needed.</p>
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <Link href="/places" style={{ background: '#1a1a2e', color: '#c9a84c', padding: '13px 28px', borderRadius: '8px', fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: '0.84rem', textDecoration: 'none' }}>Explore London</Link>
-                <Link href="/emergency" className="text-navy dark:text-cream" style={{ background: 'transparent', padding: '13px 28px', borderRadius: '8px', border: '1.5px solid currentColor', fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: '0.84rem', textDecoration: 'none' }}>Emergency Help</Link>
-              </div>
-            </SlideLeft>
-          </div>
-          <SlideRight delay={0.15}>
-            <div style={{ position: 'relative', height: '420px' }}>
-              <motion.div initial={{ opacity: 0, x: 32, rotate: 3 }} whileInView={{ opacity: 1, x: 0, rotate: 3 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.1 }} style={{ position: 'absolute', right: 0, top: 0, width: '73%', height: '285px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 20px 56px rgba(0,0,0,0.16)' }}>
-                <NextImage src="https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=600" alt="London" fill sizes="(max-width: 768px) 50vw, 300px" style={{ objectFit: 'cover' }} />
-              </motion.div>
-              <motion.div initial={{ opacity: 0, x: -24, rotate: -2 }} whileInView={{ opacity: 1, x: 0, rotate: -2 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.22 }} style={{ position: 'absolute', left: 0, bottom: 0, width: '62%', height: '228px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 20px 56px rgba(0,0,0,0.16)', border: '3px solid #f9f7f2' }}>
-                <NextImage src="https://images.pexels.com/photos/672532/pexels-photo-672532.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tower Bridge" fill sizes="(max-width: 768px) 50vw, 300px" style={{ objectFit: 'cover' }} />
-              </motion.div>
-            </div>
-          </SlideRight>
+      <section className="tap-nfc" aria-labelledby="tap-nfc-title">
+        <div className="tap-container tap-nfc-inner">
+          <span className="tap-nfc-mark"><Sparkles size={26} strokeWidth={1.4} aria-hidden="true" /></span>
+          <div><p className="tap-eyebrow">TAP LONDON</p><h2 id="tap-nfc-title">A London guide, ready when you are.</h2><p>Tap your TAP LONDON souvenir to open the guide. No app or account needed.</p></div>
+          <Link href="/places" className="tap-text-link">Explore London <ArrowRight size={18} aria-hidden="true" /></Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
