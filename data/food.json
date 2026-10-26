@@ -3155,6 +3155,35 @@
       "listingStatus": "Listed",
       "partnerConfirmed": false,
       "icon": "☕"
+    },
+    {
+      "id": "wd-q136514395",
+      "name": "Mercato Metropolitano in Elephant and Castle",
+      "category": "Markets",
+      "area": "Elephant & Castle",
+      "description": "Browse independent food traders and international kitchens at Mercato Metropolitano Elephant & Castle.",
+      "latitude": 51.4984914,
+      "longitude": -0.0986583,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.4984914%2C-0.0986583",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Mercato_Metropolitano%2C_Elephant_and_Castle%2C_Southwark%2C_Lond%C3%BDn.jpg/960px-Mercato_Metropolitano%2C_Elephant_and_Castle%2C_Southwark%2C_Lond%C3%BDn.jpg",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Mercato_Metropolitano,_Elephant_and_Castle,_Southwark,_Lond%C3%BDn.jpg",
+      "imageLicense": "CC BY-SA 4.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "imageCredit": "Fry72",
+      "sourceName": "Wikidata",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q136514395",
+      "websiteUrl": "https://mercatometropolitano.com/locations/elephant-and-castle/",
+      "sourceCheckedAt": "2026-10-26",
+      "openingStatusVerified": false,
+      "cuisine": "International food market",
+      "priceRange": "",
+      "halal": false,
+      "verifiedHalal": false,
+      "tags": [
+        "market"
+      ],
+      "listingStatus": "Listed",
+      "partnerConfirmed": false
     }
   ]
 }
