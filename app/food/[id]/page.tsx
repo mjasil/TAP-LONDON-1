@@ -7,6 +7,7 @@ import { fetchDocument } from "@/lib/firestore";
 import ListingStructuredData from '@/components/ListingStructuredData';
 import PhotoCredit from '@/components/PhotoCredit';
 import ListingSource from '@/components/ListingSource';
+import { safeExternalUrl } from '@/lib/nightlifeListing';
 
 function PhotoGallery({ photos, name }: { photos: string[]; name: string }) {
   const [active, setActive] = useState(0);
@@ -78,6 +79,7 @@ export default function FoodDetailPage() {
           <p className="text-[#444] dark:text-[#ccc]" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem", lineHeight: 1.8, margin: 0 }}>{item.description}</p>
           <ListingSource item={item} />
         </div>
+        {safeExternalUrl(item.websiteUrl) && <a href={safeExternalUrl(item.websiteUrl)!} target="_blank" rel="noopener noreferrer" className="mb-3 flex justify-center rounded-full bg-gold px-5 py-3 font-bold text-navy">Official venue information ↗</a>}
         {item.mapsUrl && <a href={item.mapsUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", width: "100%", background: "#1a1a2e", color: "#c9a84c", padding: "15px", borderRadius: "50px", fontFamily: "'DM Sans',sans-serif", fontSize: "0.95rem", fontWeight: 700, textDecoration: "none", marginBottom: "12px", boxSizing: "border-box" as const }}>📍 Get Directions on Google Maps</a>}
         <Link href="/food" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", background: "transparent", padding: "13px", borderRadius: "50px", fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem", fontWeight: 600, textDecoration: "none", boxSizing: "border-box" as const, border: "2px solid" }} className="text-navy dark:text-[#f9f7f2] border-navy dark:border-[#f9f7f2]">← Back to Food</Link>
       </div>
