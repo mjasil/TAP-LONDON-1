@@ -34,6 +34,8 @@
 .tap-home .tap-search { max-width: 580px; margin: 0; }
 .tap-home .tap-search > div { margin-left: 0 !important; }
 .tap-home .tap-search form > div { background: rgba(255,255,255,.13) !important; border-color: rgba(255,255,255,.45) !important; }
+html.dark .tap-home .tap-search input { background: transparent !important; color: #fff !important; }
+html.dark .tap-home .tap-search input::placeholder { color: #d1d5d4 !important; }
 .tap-home .tap-hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; margin-top: 22px; }
 .tap-home .tap-hero-actions > button { min-height: 46px; background: #fff !important; border: 0 !important; box-shadow: none !important; color: #1a2b36 !important; padding: 11px 19px !important; font-family: inherit !important; }
 .tap-home .tap-hero-link { display: inline-flex; align-items: center; gap: 7px; padding-block: 10px; color: #fff; font-size: 14px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,.55); }
