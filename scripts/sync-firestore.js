@@ -126,6 +126,14 @@ async function syncSection(sectionFile) {
       if (sectionFile === 'nightlife') NIGHTLIFE_ADMIN_FIELDS.forEach(f => delete item[f]);
       if (sectionFile === 'events' || sectionFile === 'offers') REVIEW_FIELDS.forEach(f => delete item[f]);
       const existing = existingById.get(id);
+      // A venue photo was corrected after its initial import. Apply only if
+      // the document still has the original image; an admin replacement wins.
+      if (sectionFile === 'nightlife' && id === 'wd-q112961350' &&
+          existing.image === 'https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/13-17_Byward_Street%2C_City_of_London_%28I%29.jpg/960px-13-17_Byward_Street%2C_City_of_London_%28I%29.jpg') {
+        for (const field of ['image', 'imageCredit', 'imageSourceUrl', 'imageLicense', 'imageLicenseUrl']) {
+          item[field] = items[i][field];
+        }
+      }
       // Coordinates corrected by an editor take precedence over source data.
       // The seed backfill fills only listings with no saved pair.
       if (Number.isFinite(Number(existing.latitude)) && Number.isFinite(Number(existing.longitude)) &&
