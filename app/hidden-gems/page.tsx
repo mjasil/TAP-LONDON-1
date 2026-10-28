@@ -7,6 +7,15 @@ import Link from 'next/link';
 
 const CATEGORIES = ['All', 'Hidden Spots', 'Secret Gardens', 'Unique Experiences', 'Hidden Neighbourhoods'];
 
+function GemPhoto({ gem }: { gem: any }) {
+  const [failed, setFailed] = useState(false);
+  useEffect(() => setFailed(false), [gem.image]);
+  if (!gem.image || failed) {
+    return <div role="img" aria-label={`Photo unavailable for ${gem.name}`} style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg,#273441,#566775)', display: 'grid', placeItems: 'center', color: '#fff', fontSize: '0.8rem' }}>Photo unavailable</div>;
+  }
+  return <img src={gem.image} alt={gem.name} loading="lazy" decoding="async" onError={() => setFailed(true)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />;
+}
+
 export default function HiddenGemsPage() {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -62,7 +71,7 @@ export default function HiddenGemsPage() {
             {filtered.map((gem, i) => (
               <div key={gem.id} className="bg-white dark:bg-[#1a1a2e]" style={{ borderRadius: '14px', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid rgba(201,168,76,0.1)' }}>
                 <div style={{ position: 'relative', height: '180px' }}>
-                  <img src={gem.image} alt={gem.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <GemPhoto gem={gem} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%)' }} />
                   {(() => {
                     const feeRaw = (gem.entryFee ?? '').toString().trim().toLowerCase();

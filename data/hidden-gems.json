@@ -270,13 +270,17 @@
       "priceType": "Free",
       "vibe": "Historic, atmospheric, hidden",
       "bestTime": "Evening",
-      "image": "https://images.unsplash.com/photo-2245436?w=1920&q=80",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Ye_Olde_Cheshire_Cheese%2C_Fleet_Street%2C_EC4_-_8032565820.jpg/960px-Ye_Olde_Cheshire_Cheese%2C_Fleet_Street%2C_EC4_-_8032565820.jpg",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Ye+Olde+Cheshire+Cheese+London",
       "tags": [
         "free",
         "historic"
       ],
-      "order": 14
+      "order": 14,
+      "imageCredit": "Ewan-M",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Ye_Olde_Cheshire_Cheese%2C_Fleet_Street%2C_EC4_-_8032565820.jpg",
+      "imageLicense": "CC BY-SA 2.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
     },
     {
       "id": "daunt-books-marylebone",
@@ -344,14 +348,18 @@
       "priceType": "Free",
       "vibe": "Photogenic, quiet, underrated",
       "bestTime": "Early morning for empty streets",
-      "image": "https://images.unsplash.com/photo-1580216238756-c1eddb2f7b95?w=1920&q=80",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Roupell_Street.jpg/960px-Roupell_Street.jpg",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Roupell+Street+London",
       "tags": [
         "free",
         "photography",
         "underrated"
       ],
-      "order": 19
+      "order": 19,
+      "imageCredit": "Stevekeiretsu",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Roupell_Street.jpg",
+      "imageLicense": "CC BY-SA 4.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
     {
       "id": "seven-dials-sundial",
@@ -515,13 +523,17 @@
       "priceType": "Paid",
       "vibe": "Immersive, atmospheric, underrated",
       "bestTime": "Evening candlelit tour",
-      "image": "https://images.unsplash.com/photo-1513519245088-0e12902e9313?w=1920&q=80",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Dennis_Severs'_House%2C_Spitalfields%2C_London_-_geograph.org.uk_-_2355182.jpg/960px-Dennis_Severs'_House%2C_Spitalfields%2C_London_-_geograph.org.uk_-_2355182.jpg",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Denis+Severs+House+London",
       "tags": [
         "unique",
         "underrated"
       ],
-      "order": 28
+      "order": 28,
+      "imageCredit": "Derek Voller",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Dennis_Severs'_House%2C_Spitalfields%2C_London_-_geograph.org.uk_-_2355182.jpg",
+      "imageLicense": "CC BY-SA 2.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
     },
     {
       "id": "eel-pie-island",
@@ -533,14 +545,18 @@
       "priceType": "Free",
       "vibe": "Quirky, artistic, hidden",
       "bestTime": "Open studio weekends (check dates)",
-      "image": "https://images.unsplash.com/photo-1601999209975-77c8e5c6f8b6?w=1920&q=80",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Eel_Pie_Island_-_Twickenham_-_London%2C_UK_-_DSC07206.jpg/960px-Eel_Pie_Island_-_Twickenham_-_London%2C_UK_-_DSC07206.jpg",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Eel+Pie+Island+Twickenham",
       "tags": [
         "free",
         "underrated",
         "unique"
       ],
-      "order": 29
+      "order": 29,
+      "imageCredit": "Daderot",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Eel_Pie_Island_-_Twickenham_-_London%2C_UK_-_DSC07206.jpg",
+      "imageLicense": "CC0 1.0",
+      "imageLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
     },
     {
       "id": "john-sandoe-books",
@@ -645,14 +661,18 @@
       "priceType": "Free",
       "vibe": "Historic, quiet, underrated",
       "bestTime": "Spring for blossom",
-      "image": "https://images.unsplash.com/photo-1580216238756-c1eddb2f7b95?w=1920&q=80",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Woburn_Walk%2C_London_(49255539656).jpg/960px-Woburn_Walk%2C_London_(49255539656).jpg",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Woburn+Walk+London",
       "tags": [
         "free",
         "underrated",
         "photography"
       ],
-      "order": 35
+      "order": 35,
+      "imageCredit": "Richard Ash",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Woburn_Walk%2C_London_(49255539656).jpg",
+      "imageLicense": "CC BY-SA 2.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
     },
     {
       "id": "biscuiteers-notting-hill",
@@ -757,14 +777,18 @@
       "priceType": "Free",
       "vibe": "Colourful, quiet, underrated",
       "bestTime": "Weekday morning",
-      "image": "https://images.unsplash.com/photo-1580216238756-c1eddb2f7b95?w=1920&q=80",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Farm_Place%2C_Notting_Hill.jpg/960px-Farm_Place%2C_Notting_Hill.jpg",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Farm+Place+Notting+Hill+London",
       "tags": [
         "free",
         "photography",
         "underrated"
       ],
-      "order": 41
+      "order": 41,
+      "imageCredit": "Simon from London",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Farm_Place%2C_Notting_Hill.jpg",
+      "imageLicense": "CC BY 2.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by/2.0/"
     }
   ]
 }

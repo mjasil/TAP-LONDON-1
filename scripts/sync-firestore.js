@@ -22,6 +22,16 @@ admin.initializeApp({
 const db = admin.firestore();
 
 const PROTECTED_FIELDS = ['image', 'gallery', 'description', 'imageCredit', 'imageSourceUrl', 'imageLicense', 'imageLicenseUrl'];
+// Correct six broken seed images only when the live listing still points at
+// the original broken Unsplash asset. Admin-selected replacements are safe.
+const HIDDEN_GEM_IMAGE_REPAIRS = {
+  'ye-olde-cheshire-cheese': '/photo-2245436',
+  'roupell-street': '/photo-1580216238756-c1eddb2f7b95',
+  'denis-severs-house': '/photo-1513519245088-0e12902e9313',
+  'eel-pie-island': '/photo-1601999209975-77c8e5c6f8b6',
+  'woburn-walk': '/photo-1580216238756-c1eddb2f7b95',
+  'farm-place-notting-hill': '/photo-1580216238756-c1eddb2f7b95',
+};
 // Nightlife enrichment and partnership details are maintained in admin. The
 // scheduled seed sync must not roll them back on an existing listing.
 const NIGHTLIFE_ADMIN_FIELDS = [
@@ -126,6 +136,13 @@ async function syncSection(sectionFile) {
       if (sectionFile === 'nightlife') NIGHTLIFE_ADMIN_FIELDS.forEach(f => delete item[f]);
       if (sectionFile === 'events' || sectionFile === 'offers') REVIEW_FIELDS.forEach(f => delete item[f]);
       const existing = existingById.get(id);
+      if (sectionFile === 'hidden-gems' &&
+          HIDDEN_GEM_IMAGE_REPAIRS[id] &&
+          new URL(existing.image || 'https://example.invalid').pathname === HIDDEN_GEM_IMAGE_REPAIRS[id]) {
+        for (const field of ['image', 'imageCredit', 'imageSourceUrl', 'imageLicense', 'imageLicenseUrl']) {
+          item[field] = items[i][field];
+        }
+      }
       // A venue photo was corrected after its initial import. Apply only if
       // the document still has the original image; an admin replacement wins.
       if (sectionFile === 'nightlife' && id === 'wd-q112961350' &&
