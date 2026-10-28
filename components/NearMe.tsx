@@ -88,6 +88,16 @@ const AREA_COORDS: Record<string, [number, number]> = {
   'chinatown': [51.5112, -0.1317],
 };
 const AREA_MATCHES = Object.entries(AREA_COORDS).sort((a, b) => b[0].length - a[0].length);
+// These neighbourhoods have Kids listings in the curated directory. Prioritise
+// the closest of them instead of spending requests on empty nearby areas.
+const KIDS_AREAS = new Set([
+  'south kensington', "regent's park", 'hyde park', 'south bank', 'canary wharf',
+  'richmond', 'bethnal green', 'stratford', 'battersea', 'tower hill', 'chelsea',
+  'islington', 'kensington', 'greenwich', 'croydon', 'acton', 'hackney',
+  'hampstead', 'bloomsbury', 'knightsbridge', 'forest hill', 'clerkenwell',
+  'covent garden', 'westminster', 'camden', 'hammersmith', 'lewisham', 'ealing',
+  'chiswick',
+]);
 
 function getAreaCoords(area: string): [number, number] | null {
   if (!area) return null;
@@ -134,6 +144,9 @@ export default function NearMe() {
       const nearbyAreas = Object.entries(AREA_COORDS)
         .map(([area, coords]) => ({ area, km: distKm(pos.lat, pos.lng, coords[0], coords[1]) }))
         .sort((a, b) => a.km - b.km);
+      const searchAreas = collection === 'kids'
+        ? nearbyAreas.filter(({ area }) => KIDS_AREAS.has(area))
+        : nearbyAreas;
       let items: any[];
       if (collection === 'events' || collection === 'hiddenGems') {
         const rows = await fetchCollection(collection);
@@ -154,14 +167,20 @@ export default function NearMe() {
           const successful = responses.filter((result): result is PromiseFulfilledResult<any[]> => result.status === 'fulfilled');
           return { items: successful.flatMap(result => result.value), successCount: successful.length };
         };
-        const first = await loadAreas(nearbyAreas.slice(0, 8));
+        const first = await loadAreas(searchAreas.slice(0, 8));
         items = first.items;
         // Keep searching until the twelve-card panel is full. The former
         // five-result threshold hid real venues in neighbouring areas.
         if (new Set(items.map(item => item.id)).size < 12) {
-          const second = await loadAreas(nearbyAreas.slice(8, 16));
+          const second = await loadAreas(searchAreas.slice(8, 16));
           if (first.successCount + second.successCount === 0) throw new Error('Listings unavailable');
           items.push(...second.items);
+        }
+        if (collection === 'kids' && new Set(items.map(item => item.id)).size < 5) {
+          // Cover the remaining curated Kids areas before returning a sparse
+          // panel; the result still sorts by geographic distance below.
+          const more = await loadAreas(searchAreas.slice(16));
+          items.push(...more.items);
         }
       }
       if (currentRequest !== requestId.current) return;
