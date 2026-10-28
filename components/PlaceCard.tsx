@@ -21,6 +21,7 @@ export type CardItem = {
   icon?: string;
   image?: string;
   imageIsIllustrative?: boolean;
+  imagePosition?: 'lower';
   imageCredit?: string;
   imageLicense?: string;
   halal?: boolean;
@@ -99,6 +100,7 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             loading="lazy"
             onError={() => setImageFailed(true)}
+            style={{ objectPosition: item.imagePosition === 'lower' ? 'center 85%' : 'center' }}
             className="rounded-t-lg object-cover transition duration-500 group-hover:scale-105"
           />
         ) : (

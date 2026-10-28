@@ -15165,7 +15165,8 @@
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "imagePosition": "lower"
     }
   ]
 }

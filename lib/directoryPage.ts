@@ -6,7 +6,7 @@ const REFERENCE_ROOT = `projects/${PROJECT_ID}/databases/(default)/documents`;
 const SECTIONS = new Set(['places', 'food', 'nightlife', 'kids', 'hotels', 'shopping']);
 const CARD_FIELDS = [
   'name', 'category', 'section', 'area', 'location', 'description', 'image',
-  'imageCredit', 'imageLicense', 'imageIsIllustrative', 'mapsUrl', 'openingHours',
+  'imageCredit', 'imageLicense', 'imageIsIllustrative', 'imagePosition', 'mapsUrl', 'openingHours',
   'entryFee', 'priceType', 'priceRange', 'cuisine', 'type', 'icon', 'halal',
   'verifiedHalal', 'mustTry', 'vibe', 'opinion', 'tags', 'nearestStation', 'phone',
   'recommended', 'familyFriendlyBadge', 'listingStatus', 'partnerConfirmed',

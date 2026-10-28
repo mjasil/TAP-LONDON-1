@@ -97,14 +97,10 @@ html.dark .tap-home .tap-search input::placeholder { color: #d1d5d4 !important; 
 
 .tap-home .tap-more { background: var(--home-paper); }
 .tap-home .tap-heading-icon { color: #aa8b5e; }
-.tap-home .tap-more-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--home-rule); border-left: 1px solid var(--home-rule); }
-.tap-home .tap-more-link { min-height: 165px; display: flex; flex-direction: column; align-items: start; padding: 22px; border-right: 1px solid var(--home-rule); border-bottom: 1px solid var(--home-rule); color: var(--home-ink); background: var(--home-paper); }
-.tap-home .tap-more-link:hover { background: #edece7; }
-.tap-home .tap-more-index { color: #967449; font-size: 10px; font-weight: 700; letter-spacing: .1em; }
-.tap-home .tap-more-text { margin-top: auto; }
-.tap-home .tap-more-text strong { display: block; font-family: Georgia,serif; font-size: 22px; font-weight: 500; }
-.tap-home .tap-more-text small { display: block; margin-top: 5px; color: #60696f; font-size: 11px; }
-.tap-home .tap-more-link > svg { align-self: end; margin-top: -22px; color: #937344; }
+.tap-home .tap-more-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 230px); gap: 16px; }
+.tap-home .tap-more-link:first-child { grid-column: span 2; grid-row: span 2; }
+.tap-home .tap-more-link:nth-child(n+6) { grid-column: span 2; }
+.tap-home .tap-more-link:first-child strong { font-size: clamp(2.2rem, 4vw, 4rem); }
 
 .tap-home .tap-quiz { padding: 70px 0; background: #1b2b35; color: #fff; }
 .tap-home .tap-nfc { background: #e9e7de; padding: 43px 0; }
@@ -117,18 +113,17 @@ html.dark .tap-home .tap-search input::placeholder { color: #d1d5d4 !important; 
 
 html.dark .tap-home { --home-ink: #f6f2ea; --home-paper: #131e25; --home-rule: #35444a; color: #f6f2ea; }
 html.dark .tap-home .tap-quick-nav, html.dark .tap-home .tap-featured, html.dark .tap-home .tap-place-card { background: #1b2b34; }
-html.dark .tap-home .tap-section-heading > p, html.dark .tap-home .tap-place-description, html.dark .tap-home .tap-more-text small, html.dark .tap-home .tap-nfc p:last-child { color: #c1c9c8; }
+html.dark .tap-home .tap-section-heading > p, html.dark .tap-home .tap-place-description, html.dark .tap-home .tap-nfc p:last-child { color: #c1c9c8; }
 html.dark .tap-home .tap-place-card { border-color: #35444a; }
 html.dark .tap-home .tap-place-foot { color: #e0e5de; }
 html.dark .tap-home .tap-nfc { background: #26343a; }
-html.dark .tap-home .tap-more-link:hover { background: #26343a; }
 html.dark .tap-home .tap-hero h1, html.dark .tap-home .tap-plan h2 { color: #fff !important; }
 html.dark .tap-home .tap-hero-intro, html.dark .tap-home .tap-plan-copy > p:not(.tap-eyebrow) { color: #e9e9e4 !important; }
 html.dark .tap-home .tap-category strong { color: #fff; }
 
 @media (max-width: 1000px) {
   .tap-home .tap-category-grid { grid-template-rows: repeat(2, 210px); }
-  .tap-home .tap-more-grid { grid-template-columns: repeat(2, 1fr); }
+  .tap-home .tap-more-grid { grid-template-rows: repeat(3, 210px); }
   .tap-home .tap-plan-copy { padding-inline: 40px; }
 }
 @media (max-width: 760px) {
@@ -148,10 +143,14 @@ html.dark .tap-home .tap-category strong { color: #fff; }
   .tap-home .tap-desktop-break { display: none; }
   .tap-home .tap-category-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 330px repeat(2, 210px); gap: 10px; }
   .tap-home .tap-category-1 { grid-column: span 2; grid-row: span 1; }
+  .tap-home .tap-more-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 330px repeat(3, 210px); gap: 10px; }
+  .tap-home .tap-more-link:first-child { grid-row: span 1; }
+  .tap-home .tap-more-link:nth-child(n+6) { grid-column: span 1; }
   .tap-home .tap-category-top { top: 17px; left: 17px; }
   .tap-home .tap-category-bottom { left: 17px; right: 17px; bottom: 17px; }
   .tap-home .tap-category-bottom strong { font-size: clamp(1.35rem, 4vw, 1.9rem); }
   .tap-home .tap-category-1 strong { font-size: 2.6rem; }
+  .tap-home .tap-more-link:first-child strong { font-size: 2.6rem; }
   .tap-home .tap-category-bottom small { font-size: 11px; }
   .tap-home .tap-category-bottom svg { width: 17px; height: 17px; padding: 3px; }
   .tap-home .tap-featured-scroll { grid-auto-columns: minmax(260px, 42vw); }
@@ -171,10 +170,7 @@ html.dark .tap-home .tap-category strong { color: #fff; }
   .tap-home .tap-category-bottom small { display: none; }
   .tap-home .tap-featured-scroll { grid-auto-columns: minmax(240px, 82vw); margin-right: -18px; }
   .tap-home .tap-place-image { height: 200px; }
-  .tap-home .tap-more-grid { grid-template-columns: repeat(2, 1fr); }
-  .tap-home .tap-more-link { min-height: 145px; padding: 16px; }
-  .tap-home .tap-more-text strong { font-size: 19px; }
-  .tap-home .tap-more-link > svg { width: 16px; margin-top: -19px; }
+  .tap-home .tap-more-grid { grid-template-rows: 280px repeat(3, 180px); }
   .tap-home .tap-nfc-mark { width: 44px; height: 44px; }
   .tap-home .tap-nfc-inner { gap: 16px; }
   .tap-home .tap-nfc-inner > div { flex: 1; min-width: 0; }

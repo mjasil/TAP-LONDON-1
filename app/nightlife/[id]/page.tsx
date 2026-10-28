@@ -57,7 +57,7 @@ export default function NightlifeDetailPage() {
   return (
     <main style={{ minHeight: "100vh" }} className="bg-[#f9f7f2] dark:bg-[#0d0d1a]">
       <div style={{ position: "relative", height: "44vh", minHeight: "250px", overflow: "hidden", background: "#1a1a2e" }}>
-        {item.image && <Image src={item.image} alt={item.imageIsIllustrative ? 'Illustrative nightlife scene' : item.name} fill priority sizes="100vw" style={{ objectFit: "cover" }} />}
+        {item.image && <Image src={item.image} alt={item.imageIsIllustrative ? 'Illustrative nightlife scene' : item.name} fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: item.imagePosition === 'lower' ? 'center 85%' : 'center' }} />}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(26,26,46,0.9) 100%)" }} />
         {item.imageIsIllustrative && item.image && (
           <span style={{ position: "absolute", top: "16px", right: "16px", color: "#fff", background: "rgba(26,26,46,0.85)", borderRadius: "20px", padding: "5px 11px", fontSize: "0.72rem" }}>Illustrative photo</span>
