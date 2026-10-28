@@ -75,12 +75,25 @@ const AREA_COORDS: Record<string, [number, number]> = {
   'ealing': [51.5130, -0.3089], 'acton': [51.5086, -0.2694],
   'chiswick': [51.4853, -0.2472], 'hammersmith': [51.4927, -0.2239],
   "shepherd's bush": [51.5042, -0.2275], 'ladbroke grove': [51.5165, -0.2093],
+  'bloomsbury': [51.5194, -0.1269], 'south kensington': [51.4944, -0.1741],
+  'bankside': [51.5066, -0.0980], 'marylebone': [51.5225, -0.1548],
+  'west end': [51.5115, -0.1280], 'charing cross': [51.5074, -0.1278],
+  "st paul's": [51.5138, -0.0984], 'euston': [51.5282, -0.1337],
+  'seven dials': [51.5145, -0.1261], 'fitzrovia': [51.5198, -0.1357],
+  'farringdon': [51.5202, -0.1053], 'brick lane': [51.5232, -0.0718],
+  "regent's park": [51.5313, -0.1569], 'hyde park': [51.5073, -0.1657],
+  'kew': [51.4770, -0.2840], 'battersea': [51.4790, -0.1490],
+  'spitalfields': [51.5190, -0.0750], 'regent street': [51.5115, -0.1380],
+  'docklands': [51.5060, -0.0220], 'borough market': [51.5054, -0.0910],
+  'chinatown': [51.5112, -0.1317],
 };
+const AREA_MATCHES = Object.entries(AREA_COORDS).sort((a, b) => b[0].length - a[0].length);
 
 function getAreaCoords(area: string): [number, number] | null {
   if (!area) return null;
   const lower = area.toLowerCase();
-  for (const [key, coords] of Object.entries(AREA_COORDS)) {
+  // Specific neighbourhoods must win over broad names like Kensington.
+  for (const [key, coords] of AREA_MATCHES) {
     if (lower.includes(key)) return coords;
   }
   return null;
@@ -94,6 +107,10 @@ function distKm(lat1: number, lon1: number, lat2: number, lon2: number) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 }
 
+function isInGreaterLondon(pos: {lat: number; lng: number}) {
+  return pos.lat >= 51.2 && pos.lat <= 51.75 && pos.lng >= -0.6 && pos.lng <= 0.35;
+}
+
 export default function NearMe() {
   const [open, setOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('food');
@@ -105,6 +122,7 @@ export default function NearMe() {
   const [manualArea, setManualArea] = useState('');
   const [eventWindow, setEventWindow] = useState<EventWindow>('today');
   const requestId = useRef(0);
+  const locationRequestId = useRef(0);
 
   const findNearby = useCallback(async (collection: string, pos: {lat:number;lng:number}, approximate = false, window: EventWindow = 'today') => {
     const currentRequest = ++requestId.current;
@@ -125,18 +143,26 @@ export default function NearMe() {
           ? rows.filter(item => isPublishedEvent(item) && occursInWindow(item, start, end))
           : rows;
       } else {
-        const loadAreas = async (areas: typeof nearbyAreas) => (await Promise.all(areas.map(async ({ area }) => {
+        const loadAreas = async (areas: typeof nearbyAreas) => {
+          const responses = await Promise.allSettled(areas.map(async ({ area }) => {
             const response = await fetch(`/api/directory/${collection}?q=${encodeURIComponent(area)}`, { cache: 'no-store' });
             if (!response.ok) throw new Error('Listings unavailable');
             const page = await response.json();
             return (page.items || []).filter((item: any) =>
               String(item.area || item.location || '').toLowerCase().includes(area));
-          }))).flat();
-        items = await loadAreas(nearbyAreas.slice(0, 4));
-        // Thin sections (especially Kids and Shopping) may have no listings
-        // in the four closest neighbourhoods. Expand the area search before
-        // showing an empty state; never invent venues to fill the panel.
-        if (items.length < 5) items.push(...await loadAreas(nearbyAreas.slice(4, 12)));
+          }));
+          const successful = responses.filter((result): result is PromiseFulfilledResult<any[]> => result.status === 'fulfilled');
+          return { items: successful.flatMap(result => result.value), successCount: successful.length };
+        };
+        const first = await loadAreas(nearbyAreas.slice(0, 8));
+        items = first.items;
+        // Keep searching until the twelve-card panel is full. The former
+        // five-result threshold hid real venues in neighbouring areas.
+        if (new Set(items.map(item => item.id)).size < 12) {
+          const second = await loadAreas(nearbyAreas.slice(8, 16));
+          if (first.successCount + second.successCount === 0) throw new Error('Listings unavailable');
+          items.push(...second.items);
+        }
       }
       if (currentRequest !== requestId.current) return;
       const unique = Array.from(new Map(items.map(item => [item.id, item])).values());
@@ -165,6 +191,7 @@ export default function NearMe() {
   const useManualArea = () => {
     const coords = AREA_COORDS[manualArea];
     if (!coords) return;
+    locationRequestId.current++;
     setUserPos({ lat: coords[0], lng: coords[1] });
     setIsApproxLocation(true);
     setErrorMsg('');
@@ -172,6 +199,7 @@ export default function NearMe() {
   };
 
   const requestLocation = useCallback((collection: string) => {
+    const locationRequest = ++locationRequestId.current;
     setActiveCategory(collection);
     setStatus('requesting');
     setErrorMsg('');
@@ -184,12 +212,21 @@ export default function NearMe() {
 
     navigator.geolocation.getCurrentPosition(
       (pos) => {
+        if (locationRequest !== locationRequestId.current) return;
         const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        if (!isInGreaterLondon(p)) {
+          setUserPos(null);
+          setErrorMsg('Near Me currently covers London. Choose a London area below.');
+          setStatus('error');
+          return;
+        }
+        setManualArea('');
         setIsApproxLocation(false);
         setUserPos(p);
         findNearby(collection, p, false, eventWindow);
       },
       (err) => {
+        if (locationRequest !== locationRequestId.current) return;
         if (err.code === 1) {
           setErrorMsg('Location access was denied. Choose a London area below or try again.');
         } else if (err.code === 2) {
@@ -204,6 +241,7 @@ export default function NearMe() {
   }, [findNearby, eventWindow]);
 
   const handleOpen = () => {
+    const locationRequest = ++locationRequestId.current;
     if (!navigator.geolocation) {
       setOpen(true);
       setStatus('error');
@@ -223,14 +261,23 @@ export default function NearMe() {
     // synchronously, fixes this.
     navigator.geolocation.getCurrentPosition(
       (pos) => {
+        if (locationRequest !== locationRequestId.current) return;
         const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
         setOpen(true);
         setActiveCategory('food');
+        if (!isInGreaterLondon(p)) {
+          setUserPos(null);
+          setErrorMsg('Near Me currently covers London. Choose a London area below.');
+          setStatus('error');
+          return;
+        }
+        setManualArea('');
         setIsApproxLocation(false);
         setUserPos(p);
         findNearby('food', p);
       },
       (err) => {
+        if (locationRequest !== locationRequestId.current) return;
         setOpen(true);
         setActiveCategory('food');
         if (err.code === 1) {
@@ -263,15 +310,25 @@ export default function NearMe() {
       setStatus('error');
       return;
     }
+    const locationRequest = ++locationRequestId.current;
     navigator.geolocation.getCurrentPosition(
       (pos) => {
+        if (locationRequest !== locationRequestId.current) return;
         const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
         setActiveCategory(col);
+        if (!isInGreaterLondon(p)) {
+          setUserPos(null);
+          setErrorMsg('Near Me currently covers London. Choose a London area below.');
+          setStatus('error');
+          return;
+        }
+        setManualArea('');
         setIsApproxLocation(false);
         setUserPos(p);
         findNearby(col, p, false, eventWindow);
       },
       () => {
+        if (locationRequest !== locationRequestId.current) return;
         setActiveCategory(col);
         setErrorMsg('Could not get your location. Choose a London area below.');
         setStatus('error');
@@ -304,7 +361,7 @@ export default function NearMe() {
 
   return (
     <div
-      onClick={() => { requestId.current++; setOpen(false); }}
+      onClick={() => { requestId.current++; locationRequestId.current++; setOpen(false); }}
       style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', zIndex: 9998, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}
     >
       <div onClick={e => e.stopPropagation()} style={{ background: '#f9f7f2', borderRadius: '20px 20px 0 0', width: '100%', maxWidth: '620px', maxHeight: '88vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -321,7 +378,7 @@ export default function NearMe() {
               {status === 'idle' && 'Finding your location...'}
             </div>
           </div>
-          <button onClick={() => { requestId.current++; setOpen(false); }} aria-label="Close Near Me" style={{ background: 'rgba(255,255,255,0.12)', border: 'none', color: '#fff', width: '34px', height: '34px', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem' }}>✕</button>
+          <button onClick={() => { requestId.current++; locationRequestId.current++; setOpen(false); }} aria-label="Close Near Me" style={{ background: 'rgba(255,255,255,0.12)', border: 'none', color: '#fff', width: '34px', height: '34px', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem' }}>✕</button>
         </div>
 
         {/* Category tabs */}
