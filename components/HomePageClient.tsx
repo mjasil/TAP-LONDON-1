@@ -145,7 +145,7 @@ export default function HomePageClient({ heroImage, featuredPlaces }: { heroImag
           <div className="tap-more-grid">
             {MORE_LINKS.map((item, index) => (
               <Link href={item.href} key={item.id} className="tap-category tap-more-link">
-                <Image src={categoryImages[item.id] || item.image} alt="" fill sizes={index === 0 ? '(max-width: 760px) 100vw, 55vw' : '(max-width: 760px) 50vw, 28vw'} className="tap-category-image" />
+                <Image src={(item.id !== 'emergency' && categoryImages[item.id]) || item.image} alt="" fill sizes={index === 0 ? '(max-width: 760px) 100vw, 55vw' : '(max-width: 760px) 50vw, 28vw'} className="tap-category-image" />
                 <span className="tap-category-tint" aria-hidden="true" />
                 <span className="tap-category-top">{String(index + 1).padStart(2, '0')} / {item.label}</span>
                 <span className="tap-category-bottom"><span><strong>{item.label}</strong><small>{item.detail}</small></span><ArrowUpRight aria-hidden="true" size={22} /></span>
