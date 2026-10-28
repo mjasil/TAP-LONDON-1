@@ -22,14 +22,13 @@ const CATEGORIES = [
 ];
 
 const MORE_LINKS = [
-  { label: 'Hotels', detail: 'Find a place to stay', href: '/hotels' },
-  { label: 'What’s on', detail: 'Events across the city', href: '/events' },
-  { label: 'Hidden gems', detail: 'Go beyond the obvious', href: '/hidden-gems' },
-  { label: 'Transport', detail: 'Get around with ease', href: '/transport' },
-  { label: 'Offers', detail: 'Explore available deals', href: '/offers' },
-  { label: 'Muslim guide', detail: 'Food and useful places', href: '/muslim' },
-  { label: 'Sports', detail: 'Matches and venues', href: '/sports' },
-  { label: 'Emergency help', detail: 'Useful numbers and advice', href: '/emergency' },
+  { id: 'hotels', label: 'Hotels', detail: 'Find a place to stay', href: '/hotels', image: 'https://images.pexels.com/photos/37020455/pexels-photo-37020455.jpeg?auto=compress&cs=tinysrgb&w=1200' },
+  { id: 'events', label: 'What’s on', detail: 'Events across the city', href: '/events', image: 'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 'hidden-gems', label: 'Hidden gems', detail: 'Go beyond the obvious', href: '/hidden-gems', image: 'https://images.pexels.com/photos/1796735/pexels-photo-1796735.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 'transport', label: 'Transport', detail: 'Get around with ease', href: '/transport', image: 'https://images.pexels.com/photos/1814397/pexels-photo-1814397.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 'offers', label: 'Offers', detail: 'Explore available deals', href: '/offers', image: 'https://images.pexels.com/photos/3965548/pexels-photo-3965548.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { id: 'sports', label: 'Sports', detail: 'Matches and venues', href: '/sports', image: 'https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=1000' },
+  { id: 'emergency', label: 'Emergency help', detail: 'Useful numbers and advice', href: '/emergency', image: 'https://images.pexels.com/photos/5038984/pexels-photo-5038984.jpeg?auto=compress&cs=tinysrgb&w=1000' },
 ];
 
 export default function HomePageClient({ heroImage, featuredPlaces }: { heroImage: string; featuredPlaces: FeaturedPlace[] }) {
@@ -145,10 +144,11 @@ export default function HomePageClient({ heroImage, featuredPlaces }: { heroImag
           </div>
           <div className="tap-more-grid">
             {MORE_LINKS.map((item, index) => (
-              <Link href={item.href} key={item.href} className="tap-more-link">
-                <span className="tap-more-index">{String(index + 1).padStart(2, '0')}</span>
-                <span className="tap-more-text"><strong>{item.label}</strong><small>{item.detail}</small></span>
-                <ArrowUpRight size={19} aria-hidden="true" />
+              <Link href={item.href} key={item.id} className="tap-category tap-more-link">
+                <Image src={categoryImages[item.id] || item.image} alt="" fill sizes={index === 0 ? '(max-width: 760px) 100vw, 55vw' : '(max-width: 760px) 50vw, 28vw'} className="tap-category-image" />
+                <span className="tap-category-tint" aria-hidden="true" />
+                <span className="tap-category-top">{String(index + 1).padStart(2, '0')} / {item.label}</span>
+                <span className="tap-category-bottom"><span><strong>{item.label}</strong><small>{item.detail}</small></span><ArrowUpRight aria-hidden="true" size={22} /></span>
               </Link>
             ))}
           </div>
