@@ -1216,8 +1216,12 @@
       "imageLicense": "CC BY-SA 4.0",
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "section": "Speciality Shops",
-      "location": "107 Charing Cross Road, Soho, WC2H 0DT",
-      "type": "Bookshop"
+      "location": "107 Charing Cross Road, Soho, WC2H 0DT · W1D6DS nearby",
+      "type": "Bookshop",
+      "address": "107 Charing Cross Road, Soho, WC2H 0DT",
+      "area": "W1D 6DS nearby · Soho / Chinatown",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "sister-ray-berwick-street",
@@ -1237,8 +1241,12 @@
       "imageLicense": "CC BY-SA 2.0",
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
       "section": "Speciality Shops",
-      "location": "75 Berwick Street, Soho, W1F 8TG",
-      "type": "Record shop"
+      "location": "75 Berwick Street, Soho, W1F 8TG · W1D6DS nearby",
+      "type": "Record shop",
+      "address": "75 Berwick Street, Soho, W1F 8TG",
+      "area": "W1D 6DS nearby · Soho / Chinatown",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "sounds-of-the-universe-soho",
@@ -1258,8 +1266,12 @@
       "imageLicense": "CC BY-SA 4.0",
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "section": "Speciality Shops",
-      "location": "7 Broadwick Street, Soho, W1F 0DA",
-      "type": "Record shop"
+      "location": "7 Broadwick Street, Soho, W1F 0DA · W1D6DS nearby",
+      "type": "Record shop",
+      "address": "7 Broadwick Street, Soho, W1F 0DA",
+      "area": "W1D 6DS nearby · Soho / Chinatown",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     }
   ]
 }

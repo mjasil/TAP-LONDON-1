@@ -83,9 +83,10 @@ export default function NightlifeDetailPage() {
         </div>
         <div className="bg-white dark:bg-[#1a1a2e]" style={{ borderRadius: "16px", padding: "18px 20px", marginBottom: "18px", border: "1px solid rgba(26,26,46,0.08)", display: "flex", flexDirection: "column", gap: "12px" }}>
           {[
-            { icon: "📍", label: "Location", value: item.area },
+            { icon: "📍", label: "Location", value: item.address || item.area },
             { icon: "🚇", label: "Nearest Tube", value: item.nearestStation },
             { icon: "🕐", label: "Opening Hours", value: item.openingHours },
+            { icon: "☎", label: "Phone", value: item.phone },
             { icon: "📅", label: "Opening Nights", value: item.openingNights },
             { icon: "💷", label: "Entry Fee", value: item.entryFee },
             { icon: "💰", label: "Price Range", value: item.priceRange },

@@ -5794,7 +5794,7 @@
       "id": "rupert-street-soho",
       "name": "Rupert Street",
       "category": "Free Things",
-      "area": "Soho and Chinatown, W1D",
+      "area": "W1D 6DS nearby · Soho and Chinatown, W1D",
       "description": "Walk the short street between Soho and Chinatown, passing pubs, restaurants and the West End theatres nearby.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Rupert%20Street%20Soho%20and%20Chinatown%2C%20W1D",
       "sourceName": "Visit London",
@@ -5813,13 +5813,16 @@
       "icon": "🚶",
       "openingHours": "Public street",
       "latitude": 51.511481,
-      "longitude": -0.132969
+      "longitude": -0.132969,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "prince-charles-cinema",
       "name": "Prince Charles Cinema",
       "category": "Top Attractions",
-      "area": "7 Leicester Place, Leicester Square, WC2H 7BY",
+      "area": "W1D 6DS nearby · 7 Leicester Place, Leicester Square, WC2H 7BY",
       "description": "Independent cinema near Leicester Square showing new releases, repertory films and special screenings. Check the programme for tickets and film age ratings.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Prince%20Charles%20Cinema%207%20Leicester%20Place%2C%20Leicester%20Square%2C%20WC2H%207BY",
       "sourceName": "Official venue or council website",
@@ -5836,13 +5839,17 @@
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "openingHours": "Check official website",
       "entryFee": "Check venue",
-      "priceType": "Paid"
+      "priceType": "Paid",
+      "address": "7 Leicester Place, Leicester Square, WC2H 7BY",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "golden-square-soho",
       "name": "Golden Square",
       "category": "Parks & Gardens",
-      "area": "Golden Square, Soho, London",
+      "area": "W1D 6DS nearby · Golden Square, Soho, London",
       "description": "Small garden square west of Rupert Street, with benches and planting for a break between Soho streets. Check seasonal garden opening times.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Golden%20Square%20Golden%20Square%2C%20Soho%2C%20London",
       "sourceName": "Official venue or council website",
@@ -5859,13 +5866,16 @@
       "imageLicenseUrl": "https://creativecommons.org/licenses/by/2.5",
       "openingHours": "Check official website",
       "entryFee": "Free",
-      "priceType": "Free"
+      "priceType": "Free",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "soho-square-gardens",
       "name": "Soho Square Gardens",
       "category": "Parks & Gardens",
-      "area": "Soho Square, Soho, W1D 3QR",
+      "area": "W1D 6DS nearby · Soho Square, Soho, W1D 3QR",
       "description": "Central Soho garden square with mature trees, benches and a distinctive half-timbered gardener’s hut. Closing times vary with the season.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Soho%20Square%20Gardens%20Soho%20Square%2C%20Soho%2C%20W1D%203QR",
       "sourceName": "Official venue or council website",
@@ -5882,13 +5892,16 @@
       "imageLicenseUrl": "https://creativecommons.org/licenses/by/2.0",
       "openingHours": "Check official website",
       "entryFee": "Free",
-      "priceType": "Free"
+      "priceType": "Free",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "sondheim-theatre-venue",
       "name": "Sondheim Theatre",
       "category": "Top Attractions",
-      "area": "Shaftesbury Avenue, Soho, W1D 6BA",
+      "area": "W1D 6DS nearby · Shaftesbury Avenue, Soho, W1D 6BA",
       "description": "West End theatre on Shaftesbury Avenue, moments from Rupert Street. Visit the theatre website for its current production, access information and tickets.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sondheim%20Theatre%20Shaftesbury%20Avenue%2C%20Soho%2C%20W1D%206BA",
       "sourceName": "Official venue or council website",
@@ -5905,13 +5918,16 @@
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "openingHours": "Check official website",
       "entryFee": "Check venue",
-      "priceType": "Paid"
+      "priceType": "Paid",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "gielgud-theatre-venue",
       "name": "Gielgud Theatre",
       "category": "Top Attractions",
-      "area": "Shaftesbury Avenue, Soho, W1D 6AR",
+      "area": "W1D 6DS nearby · Shaftesbury Avenue, Soho, W1D 6AR",
       "description": "Historic West End theatre near Piccadilly Circus and Rupert Street. Check the official programme and accessibility information before booking.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Gielgud%20Theatre%20Shaftesbury%20Avenue%2C%20Soho%2C%20W1D%206AR",
       "sourceName": "Official venue or council website",
@@ -5928,13 +5944,16 @@
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
       "openingHours": "Check official website",
       "entryFee": "Check venue",
-      "priceType": "Paid"
+      "priceType": "Paid",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "chinatown-gate-wardour",
       "name": "Chinatown Gate, Wardour Street",
       "category": "Photo Spots",
-      "area": "Wardour Street, Chinatown, London",
+      "area": "W1D 6DS nearby · Wardour Street, Chinatown, London",
       "description": "Ornate Chinese gateway at the southern entrance to Wardour Street, close to Rupert Street. Explore the surrounding lantern-lined streets and restaurants.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Chinatown%20Gate%2C%20Wardour%20Street%20Wardour%20Street%2C%20Chinatown%2C%20London",
       "sourceName": "Local destination directory",
@@ -5951,7 +5970,10 @@
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "openingHours": "Check official website",
       "entryFee": "Free",
-      "priceType": "Free"
+      "priceType": "Free",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     }
   ]
 }
