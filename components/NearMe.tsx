@@ -121,6 +121,57 @@ function isInGreaterLondon(pos: {lat: number; lng: number}) {
   return pos.lat >= 51.2 && pos.lat <= 51.75 && pos.lng >= -0.6 && pos.lng <= 0.35;
 }
 
+function nearMeImage(image: string): string {
+  try {
+    const url = new URL(image);
+    if (url.hostname === 'res.cloudinary.com' && url.pathname.includes('/image/upload/')) {
+      return image.replace('/image/upload/', '/image/upload/c_fill,w_160,h_160/');
+    }
+    if (url.hostname === 'images.unsplash.com') {
+      url.searchParams.set('w', '160');
+      url.searchParams.set('h', '160');
+      url.searchParams.set('fit', 'crop');
+      return url.toString();
+    }
+    if (url.hostname === 'images.pexels.com') {
+      url.searchParams.set('w', '160');
+      url.searchParams.set('h', '160');
+      url.searchParams.set('auto', 'compress');
+      return url.toString();
+    }
+  } catch { /* An admin URL can still be used unchanged. */ }
+  return image;
+}
+
+function NearMeThumbnail({ item, collection }: { item: any; collection: string }) {
+  const [failed, setFailed] = useState(false);
+  const image = collection === 'events' && item.imageRightsConfirmed !== true ? '' : item.image;
+  return <div style={{ width: '60px', height: '60px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0, background: '#e8e7e2' }}>
+    {image && !failed ? <img src={nearMeImage(image)} alt={item.name} width={160} height={160}
+      loading="lazy" decoding="async" onError={() => setFailed(true)}
+      style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      : <span aria-label={`Photo unavailable for ${item.name}`} style={{ display: 'grid', placeItems: 'center', height: '100%', color: '#777', fontSize: '1.3rem' }}>📍</span>}
+  </div>;
+}
+
+function getMobilePosition(onSuccess: PositionCallback, onError: PositionErrorCallback, isCurrent: () => boolean) {
+  // A recent Wi-Fi/cellular fix is often available when a fresh GPS fix is
+  // not. Retry with GPS only after a timeout or unavailable-position error.
+  navigator.geolocation.getCurrentPosition(onSuccess, error => {
+    if (!isCurrent()) return;
+    if (error.code === 1) {
+      onError(error);
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(onSuccess, onError,
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 120000 });
+  }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 120000 });
+}
+
+function isApproximatePosition(position: GeolocationPosition) {
+  return position.coords.accuracy > 500 || Date.now() - position.timestamp > 60000;
+}
+
 export default function NearMe() {
   const [open, setOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('food');
@@ -219,17 +270,15 @@ export default function NearMe() {
 
   const requestLocation = useCallback((collection: string) => {
     const locationRequest = ++locationRequestId.current;
-    setActiveCategory(collection);
-    setStatus('requesting');
-    setErrorMsg('');
 
     if (!navigator.geolocation) {
+      setActiveCategory(collection);
       setErrorMsg('Location is not supported on this device.');
       setStatus('error');
       return;
     }
 
-    navigator.geolocation.getCurrentPosition(
+    getMobilePosition(
       (pos) => {
         if (locationRequest !== locationRequestId.current) return;
         const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
@@ -240,14 +289,15 @@ export default function NearMe() {
           return;
         }
         setManualArea('');
-        setIsApproxLocation(false);
+        const approximate = isApproximatePosition(pos);
+        setIsApproxLocation(approximate);
         setUserPos(p);
-        findNearby(collection, p, false, eventWindow);
+        findNearby(collection, p, approximate, eventWindow);
       },
       (err) => {
         if (locationRequest !== locationRequestId.current) return;
         if (err.code === 1) {
-          setErrorMsg('Location access was denied. Choose a London area below or try again.');
+          setErrorMsg('Location is blocked. Allow it for this site, or choose a London area below.');
         } else if (err.code === 2) {
           setErrorMsg('Could not detect your location. Please try again.');
         } else {
@@ -255,8 +305,12 @@ export default function NearMe() {
         }
         setStatus('error');
       },
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 60000 }
+      () => locationRequest === locationRequestId.current
     );
+    requestId.current++;
+    setActiveCategory(collection);
+    setStatus('requesting');
+    setErrorMsg('');
   }, [findNearby, eventWindow]);
 
   const handleOpen = () => {
@@ -268,17 +322,8 @@ export default function NearMe() {
       return;
     }
 
-    // FIX: getCurrentPosition must be the very first thing that runs in this
-    // click handler, with ZERO state updates (setOpen/setStatus/etc.) before it.
-    // The previous version called setOpen/setStatus/setActiveCategory BEFORE
-    // getCurrentPosition, which schedules a React re-render in between the
-    // click event and the geolocation call. On strict mobile browsers (notably
-    // Chrome/Safari on iOS and some Android WebViews), that broken timing can
-    // cause the browser to no longer treat the call as coming from a trusted
-    // user gesture, which can silently produce PERMISSION_DENIED even when the
-    // site already has location permission granted. Calling it truly first,
-    // synchronously, fixes this.
-    navigator.geolocation.getCurrentPosition(
+    // Request location synchronously from the tap before updating the panel.
+    getMobilePosition(
       (pos) => {
         if (locationRequest !== locationRequestId.current) return;
         const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
@@ -291,26 +336,28 @@ export default function NearMe() {
           return;
         }
         setManualArea('');
-        setIsApproxLocation(false);
+        const approximate = isApproximatePosition(pos);
+        setIsApproxLocation(approximate);
         setUserPos(p);
-        findNearby('food', p);
+        findNearby('food', p, approximate);
       },
       (err) => {
         if (locationRequest !== locationRequestId.current) return;
         setOpen(true);
         setActiveCategory('food');
         if (err.code === 1) {
-          setErrorMsg('Location access was denied. Choose a London area below.');
+          setErrorMsg('Location is blocked. Allow it for this site, or choose a London area below.');
         } else {
           setErrorMsg('Could not get your location. Choose a London area below or try again.');
         }
         setStatus('error');
       },
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 }
+      () => locationRequest === locationRequestId.current
     );
     // Show the panel immediately in a loading state while the browser's
     // permission prompt / GPS lookup is in progress, without delaying the
     // getCurrentPosition call itself.
+    requestId.current++;
     setOpen(true);
     setStatus('requesting');
   };
@@ -321,8 +368,7 @@ export default function NearMe() {
       findNearby(col, userPos, isApproxLocation, eventWindow);
       return;
     }
-    // No position yet - same fix as handleOpen: call getCurrentPosition first,
-    // before any state updates, to keep the trusted user-gesture chain intact.
+    // Request location from the category tap before updating the panel.
     if (!navigator.geolocation) {
       setActiveCategory(col);
       setErrorMsg('Location is not supported on this device.');
@@ -330,7 +376,7 @@ export default function NearMe() {
       return;
     }
     const locationRequest = ++locationRequestId.current;
-    navigator.geolocation.getCurrentPosition(
+    getMobilePosition(
       (pos) => {
         if (locationRequest !== locationRequestId.current) return;
         const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
@@ -342,18 +388,22 @@ export default function NearMe() {
           return;
         }
         setManualArea('');
-        setIsApproxLocation(false);
+        const approximate = isApproximatePosition(pos);
+        setIsApproxLocation(approximate);
         setUserPos(p);
-        findNearby(col, p, false, eventWindow);
+        findNearby(col, p, approximate, eventWindow);
       },
-      () => {
+      (err) => {
         if (locationRequest !== locationRequestId.current) return;
         setActiveCategory(col);
-        setErrorMsg('Could not get your location. Choose a London area below.');
+        setErrorMsg(err.code === 1
+          ? 'Location is blocked. Allow it for this site, or choose a London area below.'
+          : 'Could not get your location. Choose a London area below.');
         setStatus('error');
       },
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 }
+      () => locationRequest === locationRequestId.current
     );
+    requestId.current++;
     setActiveCategory(col);
     setStatus('requesting');
   };
@@ -383,16 +433,16 @@ export default function NearMe() {
       onClick={() => { requestId.current++; locationRequestId.current++; setOpen(false); }}
       style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', zIndex: 9998, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}
     >
-      <div onClick={e => e.stopPropagation()} style={{ background: '#f9f7f2', borderRadius: '20px 20px 0 0', width: '100%', maxWidth: '620px', maxHeight: '88vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: '#f9f7f2', borderRadius: '20px 20px 0 0', width: '100%', maxWidth: '620px', maxHeight: '88vh', paddingBottom: 'env(safe-area-inset-bottom, 0px)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
         {/* Header */}
         <div style={{ background: '#1a1a2e', padding: '18px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
           <div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.4rem', fontWeight: 700, color: '#fff' }}>📍 Near Me</div>
             <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: 'rgba(255,255,255,0.45)', marginTop: '2px' }}>
-              {status === 'requesting' && 'Allow location access to continue...'}
+              {status === 'requesting' && 'Finding your location...'}
               {status === 'loading' && 'Finding nearest places...'}
-              {status === 'done' && userPos && (isApproxLocation ? `Showing areas around ${manualArea} (approximate)` : 'London listings ordered by area')}
+              {status === 'done' && userPos && (isApproxLocation ? `Showing areas around ${manualArea || 'your approximate location'} (approximate)` : 'London listings ordered by proximity')}
               {status === 'error' && 'Location error'}
               {status === 'idle' && 'Finding your location...'}
             </div>
@@ -440,9 +490,9 @@ export default function NearMe() {
           {status === 'requesting' && (
             <div style={{ textAlign: 'center', padding: '48px 20px', fontFamily: "'DM Sans', sans-serif" }}>
               <div style={{ fontSize: '3rem', marginBottom: '16px' }}>📍</div>
-              <div style={{ fontSize: '1rem', fontWeight: 700, color: '#1a1a2e', marginBottom: '8px' }}>Allow Location Access</div>
+              <div style={{ fontSize: '1rem', fontWeight: 700, color: '#1a1a2e', marginBottom: '8px' }}>Finding your location</div>
               <div style={{ fontSize: '0.82rem', color: '#888', lineHeight: 1.6, maxWidth: '280px', margin: '0 auto' }}>
-                A permission dialog should appear. Tap <strong>"Allow"</strong> to find places near you.
+                If your browser asks, tap <strong>"Allow"</strong>. You can choose a London area above at any time.
               </div>
             </div>
           )}
@@ -482,9 +532,7 @@ export default function NearMe() {
               {results.map((item: any) => (
                 <Link key={item.id} href={`/${DETAIL_PATHS[activeCategory]}/${encodeURIComponent(item.id)}`}
                   style={{ textDecoration: 'none', display: 'flex', gap: '12px', background: '#fff', borderRadius: '14px', overflow: 'hidden', boxShadow: '0 2px 10px rgba(0,0,0,0.07)', border: '1px solid rgba(201,168,76,0.12)', padding: '10px', alignItems: 'center' }}>
-                  <div style={{ width: '60px', height: '60px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0, background: '#eee' }}>
-                    {item.image && <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
-                  </div>
+                  <NearMeThumbnail key={`${activeCategory}:${item.id}:${item.image || ''}`} item={item} collection={activeCategory} />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.05rem', fontWeight: 700, color: '#1a1a2e' }}>{item.name}</div>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.7rem', color: '#888', marginTop: '2px' }}>📍 {item.area || item.location}</div>
