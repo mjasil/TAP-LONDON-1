@@ -39,6 +39,7 @@ function eventDates(window: EventWindow): [string, string] {
 }
 
 const AREA_COORDS: Record<string, [number, number]> = {
+  'w1d 6ds': [51.512221, -0.133410],
   'soho': [51.5130, -0.1310], 'covent garden': [51.5117, -0.1240],
   'mayfair': [51.5100, -0.1470], 'westminster': [51.4994, -0.1248],
   'shoreditch': [51.5237, -0.0779], 'camden': [51.5392, -0.1426],
@@ -91,6 +92,7 @@ const AREA_MATCHES = Object.entries(AREA_COORDS).sort((a, b) => b[0].length - a[
 // These neighbourhoods have Kids listings in the curated directory. Prioritise
 // the closest of them instead of spending requests on empty nearby areas.
 const KIDS_AREAS = new Set([
+  'w1d 6ds', 'soho', 'chinatown', 'piccadilly', 'west end',
   'south kensington', "regent's park", 'hyde park', 'south bank', 'canary wharf',
   'richmond', 'bethnal green', 'stratford', 'battersea', 'tower hill', 'chelsea',
   'islington', 'kensington', 'greenwich', 'croydon', 'acton', 'hackney',
@@ -209,11 +211,14 @@ export default function NearMe() {
       } else {
         const loadAreas = async (areas: typeof nearbyAreas) => {
           const responses = await Promise.allSettled(areas.map(async ({ area }) => {
-            const response = await fetch(`/api/directory/${collection}?q=${encodeURIComponent(area)}`, { cache: 'no-store' });
+            // A postcode pin represents the surrounding streets, whose real
+            // venue postcodes differ from the pin's exact postcode.
+            const query = area === 'w1d 6ds' ? 'w1d' : area;
+            const response = await fetch(`/api/directory/${collection}?q=${encodeURIComponent(query)}`, { cache: 'no-store' });
             if (!response.ok) throw new Error('Listings unavailable');
             const page = await response.json();
             return (page.items || []).filter((item: any) =>
-              String(item.area || item.location || '').toLowerCase().includes(area));
+              String(item.area || item.location || '').toLowerCase().includes(query));
           }));
           const successful = responses.filter((result): result is PromiseFulfilledResult<any[]> => result.status === 'fulfilled');
           return { items: successful.flatMap(result => result.value), successCount: successful.length };
@@ -477,7 +482,7 @@ export default function NearMe() {
           <select id="near-me-area" value={manualArea} onChange={e => setManualArea(e.target.value)}
             style={{ minWidth: 0, flex: 1, padding: '8px', borderRadius: '8px', border: '1px solid #ddd', color: '#1a1a2e', background: '#fff' }}>
             <option value="">London area</option>
-            {Object.keys(AREA_COORDS).sort().map(area => <option key={area} value={area}>{area.replace(/\b\w/g, c => c.toUpperCase())}</option>)}
+            {Object.keys(AREA_COORDS).sort().map(area => <option key={area} value={area}>{area === 'w1d 6ds' ? 'W1D 6DS · Soho / Chinatown' : area.replace(/\b\w/g, c => c.toUpperCase())}</option>)}
           </select>
           <button type="button" disabled={!manualArea} onClick={useManualArea}
             style={{ padding: '9px 12px', border: 0, borderRadius: '8px', background: '#1a1a2e', color: '#c9a84c', fontWeight: 700, opacity: manualArea ? 1 : 0.5 }}>Show</button>

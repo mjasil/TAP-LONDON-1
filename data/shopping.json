@@ -1176,6 +1176,27 @@
       "officialUrl": "https://markethalls.co.uk/venue/victoria/",
       "image": "https://images.pexels.com/photos/2641886/pexels-photo-2641886.jpeg?auto=compress&cs=tinysrgb&w=1920",
       "order": 52
+    },
+    {
+      "id": "house-of-minalima-soho",
+      "name": "House of MinaLima",
+      "section": "Speciality Shops",
+      "type": "Design gallery and shop",
+      "location": "Soho, 157 Wardour Street, W1F 8WQ",
+      "description": "Graphic design gallery and shop with illustrated books and film-inspired prints on Wardour Street.",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=House+of+MinaLima+157+Wardour+Street+London",
+      "websiteUrl": "https://minalima.com/visit-us/",
+      "sourceName": "Official venue website",
+      "sourceUrl": "https://minalima.com/visit-us/",
+      "sourceCheckedAt": "2026-10-29",
+      "listingStatus": "Listed",
+      "partnerConfirmed": false,
+      "openingStatusVerified": true,
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/157_Wardour_Street%2C_London%2C_The_House_of_Minalima_2023.jpg/960px-157_Wardour_Street%2C_London%2C_The_House_of_Minalima_2023.jpg",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:157_Wardour_Street%2C_London%2C_The_House_of_Minalima_2023.jpg",
+      "imageCredit": "Jim Linwood",
+      "imageLicense": "CC BY 2.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by/2.0/"
     }
   ]
 }
