@@ -4223,6 +4223,30 @@
       "ageRange": "All ages",
       "latitude": 51.510575,
       "longitude": -0.130894
+    },
+    {
+      "id": "foyles-childrens-books-soho",
+      "name": "Foyles Children’s Department",
+      "category": "Activities",
+      "area": "107 Charing Cross Road, Soho, WC2H 0DT",
+      "description": "Browse children’s books and games at the Foyles flagship with the family. This is a bookshop visit; check the separate events programme for any organised activities.",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Foyles%20Children%E2%80%99s%20Department%20107%20Charing%20Cross%20Road%2C%20Soho%2C%20WC2H%200DT",
+      "sourceName": "Official venue or council website",
+      "sourceUrl": "https://www.foyles.co.uk/shops/shops-london-charing-cross",
+      "websiteUrl": "https://www.foyles.co.uk/shops/shops-london-charing-cross",
+      "sourceCheckedAt": "2026-10-29",
+      "listingStatus": "Listed",
+      "partnerConfirmed": false,
+      "openingStatusVerified": true,
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Foyles_on_Charing_Cross_Road%2C_London_%28December_2023%29_04.jpg/960px-Foyles_on_Charing_Cross_Road%2C_London_%28December_2023%29_04.jpg",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Foyles_on_Charing_Cross_Road,_London_(December_2023)_04.jpg",
+      "imageCredit": "DiscoA340",
+      "imageLicense": "CC BY-SA 4.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "openingHours": "Check shop opening times",
+      "entryFee": "Free browsing; purchases extra",
+      "priceType": "Free",
+      "ageRange": "All ages with adult supervision"
     }
   ]
 }
