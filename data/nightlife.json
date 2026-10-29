@@ -1390,7 +1390,7 @@
       "id": "wd-q108940306",
       "name": "The Chandos",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Chandos is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5096%2C-0.1267",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/The_Chandos%2C_Covent_Garden_-_geograph.org.uk_-_2004763.jpg/960px-The_Chandos%2C_Covent_Garden_-_geograph.org.uk_-_2004763.jpg",
@@ -1410,13 +1410,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5096,
-      "longitude": -0.1267
+      "longitude": -0.1267,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q18389799",
       "name": "The Harp",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Harp is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5096%2C-0.126062",
       "image": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Harp%2C_Covent_Garden%2C_WC2_%282913857439%29.jpg",
@@ -1436,7 +1439,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5096,
-      "longitude": -0.126062
+      "longitude": -0.126062,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136695724",
@@ -1494,7 +1500,7 @@
       "id": "wd-q88966234",
       "name": "The Moon Under Water",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Moon Under Water is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.510358403%2C-0.129432678",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Moon_Under_Water%2C_Leicester_Square%2C_WC2.jpg/960px-Moon_Under_Water%2C_Leicester_Square%2C_WC2.jpg",
@@ -1514,13 +1520,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.510358403,
-      "longitude": -0.129432678
+      "longitude": -0.129432678,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136695187",
       "name": "Tom Cribb",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "Tom Cribb is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5095922%2C-0.1317508",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Tom_Cribb_pub_2025-07-30.jpg/960px-Tom_Cribb_pub_2025-07-30.jpg",
@@ -1540,13 +1549,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5095922,
-      "longitude": -0.1317508
+      "longitude": -0.1317508,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136705238",
       "name": "The Bear & Staff",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Bear & Staff is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.510849%2C-0.128663",
       "image": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Bear_and_Staff%2C_Leicester_Square%2C_WC2_%282740056850%29.jpg",
@@ -1566,13 +1578,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.510849,
-      "longitude": -0.128663
+      "longitude": -0.128663,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q15991477",
       "name": "The Salisbury",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Salisbury is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.510911%2C-0.127253",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Salisbury%2C_Covent_Garden%2C_WC2_%282913856903%29.jpg/960px-Salisbury%2C_Covent_Garden%2C_WC2_%282913856903%29.jpg",
@@ -1592,13 +1607,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.510911,
-      "longitude": -0.127253
+      "longitude": -0.127253,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q18393967",
       "name": "The White Swan",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The White Swan is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.511073%2C-0.125619",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/ONeills%2C_Covent_Garden%2C_WC2_%283614084206%29.jpg/960px-ONeills%2C_Covent_Garden%2C_WC2_%283614084206%29.jpg",
@@ -1618,7 +1636,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.511073,
-      "longitude": -0.125619
+      "longitude": -0.125619,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q11667202",
@@ -1702,7 +1723,7 @@
       "id": "wd-q137262441",
       "name": "The Porcupine",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Porcupine is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.511784%2C-0.128129",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/The_Porcupine%2C_Covent_Garden_-_geograph.org.uk_-_3953118.jpg/960px-The_Porcupine%2C_Covent_Garden_-_geograph.org.uk_-_3953118.jpg",
@@ -1722,13 +1743,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.511784,
-      "longitude": -0.128129
+      "longitude": -0.128129,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q18353351",
       "name": "Lamb and Flag",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "Lamb and Flag is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.511734%2C-0.125686",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Lamb_and_Flag%2C_Covent_Garden%2C_WC2_%283578392482%29.jpg/960px-Lamb_and_Flag%2C_Covent_Garden%2C_WC2_%283578392482%29.jpg",
@@ -1748,7 +1772,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.511734,
-      "longitude": -0.125686
+      "longitude": -0.125686,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q15991728",
@@ -1780,7 +1807,7 @@
       "id": "wd-q5244433",
       "name": "De Hems",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "De Hems is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.512%2C-0.1313",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/De_Hems_exterior.jpg/960px-De_Hems_exterior.jpg",
@@ -1800,13 +1827,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.512,
-      "longitude": -0.1313
+      "longitude": -0.1313,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136703533",
       "name": "St James Tavern",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "St James Tavern is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.510901%2C-0.134116",
       "image": "https://upload.wikimedia.org/wikipedia/commons/0/0d/St_James%27s_Tavern%2C_Shaftesbury_Avenue_-_geograph.org.uk_-_5658406.jpg",
@@ -1826,7 +1856,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.510901,
-      "longitude": -0.134116
+      "longitude": -0.134116,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q137771226",
@@ -1858,7 +1891,7 @@
       "id": "wd-q17747095",
       "name": "Red Lion",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "Red Lion is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.50829937%2C-0.13646485",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Red_Lion%2C_St_Jamess%2C_SW1_%283400213792%29.jpg/960px-Red_Lion%2C_St_Jamess%2C_SW1_%283400213792%29.jpg",
@@ -1878,13 +1911,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.50829937,
-      "longitude": -0.13646485
+      "longitude": -0.13646485,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136703529",
       "name": "The Lyric",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Lyric is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.511308%2C-0.134365",
       "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/The_Lyric_-_geograph.org.uk_-_7834766.jpg",
@@ -1904,13 +1940,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.511308,
-      "longitude": -0.134365
+      "longitude": -0.134365,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136703536",
       "name": "The Queens Head",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Queens Head is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.510812%2C-0.135358",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Queen%27s_Head%2C_Soho%2C_2025-10-01.jpg/960px-Queen%27s_Head%2C_Soho%2C_2025-10-01.jpg",
@@ -1930,13 +1969,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.510812,
-      "longitude": -0.135358
+      "longitude": -0.135358,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q132258632",
       "name": "Brewdog",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "Brewdog is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5133%2C-0.1287",
       "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/Marquis_of_Granby._Covent_Garden_-_geograph.org.uk_-_1121389.jpg",
@@ -1956,7 +1998,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5133,
-      "longitude": -0.1287
+      "longitude": -0.1287,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q23301494",
@@ -1988,7 +2033,7 @@
       "id": "wd-q28401980",
       "name": "Two Brewers",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "Two Brewers is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.51336%2C-0.12722",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Two_Brewers%2C_Monmouth_Street%2C_Covent_Garden_03.jpg/960px-Two_Brewers%2C_Monmouth_Street%2C_Covent_Garden_03.jpg",
@@ -2008,13 +2053,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.51336,
-      "longitude": -0.12722
+      "longitude": -0.12722,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q5137601",
       "name": "Coach and Horses",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "Coach and Horses is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5132%2C-0.130222",
       "image": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Soho_coach_and_horses_1.jpg",
@@ -2034,13 +2082,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5132,
-      "longitude": -0.130222
+      "longitude": -0.130222,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q5157187",
       "name": "Comptons of Soho",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "Comptons of Soho is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5126%2C-0.1326",
       "image": "https://upload.wikimedia.org/wikipedia/commons/0/09/Comptons-Of-Soho.jpg",
@@ -2060,7 +2111,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5126,
-      "longitude": -0.1326
+      "longitude": -0.1326,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q27080748",
@@ -2118,7 +2172,7 @@
       "id": "wd-q4683676",
       "name": "Admiral Duncan",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "Admiral Duncan is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5129%2C-0.1324",
       "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/AdmiralDuncan.jpg",
@@ -2138,13 +2192,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5129,
-      "longitude": -0.1324
+      "longitude": -0.1324,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136159807",
       "name": "The Three Greyhounds",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Three Greyhounds is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5134435%2C-0.1303052",
       "image": "https://upload.wikimedia.org/wikipedia/commons/e/e6/The_Three_Greyhounds%2C_Greek_Street_-_geograph.org.uk_-_5657943.jpg",
@@ -2164,13 +2221,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5134435,
-      "longitude": -0.1303052
+      "longitude": -0.1303052,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q124360651",
       "name": "The Cambridge",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Cambridge is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5136%2C-0.1295",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/%27The_Cambridge%27_on_Cambridge_Circus_London.jpg/960px-%27The_Cambridge%27_on_Cambridge_Circus_London.jpg",
@@ -2190,7 +2250,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5136,
-      "longitude": -0.1295
+      "longitude": -0.1295,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q27084775",
@@ -2248,7 +2311,7 @@
       "id": "wd-q136634318",
       "name": "The Crown",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Crown is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5111757%2C-0.1363142",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Crown%2C_Soho%2C_W1.jpg/960px-Crown%2C_Soho%2C_W1.jpg",
@@ -2268,7 +2331,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5111757,
-      "longitude": -0.1363142
+      "longitude": -0.1363142,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136700480",
@@ -2300,7 +2366,7 @@
       "id": "wd-q27084354",
       "name": "The Crown",
       "category": "Pubs",
-      "area": "Camden",
+      "area": "W1D 6DS nearby · Camden",
       "description": "The Crown is a pub in Camden. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.513955%2C-0.126887",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/The_Crown%2C_Covent_Garden.JPG/960px-The_Crown%2C_Covent_Garden.JPG",
@@ -2320,13 +2386,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.513955,
-      "longitude": -0.126887
+      "longitude": -0.126887,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q27082196",
       "name": "2 Old Compton Street",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "2 Old Compton Street is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.513872%2C-0.129722",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Coach_and_Horses%2C_Soho%2C_W1.jpg/960px-Coach_and_Horses%2C_Soho%2C_W1.jpg",
@@ -2346,13 +2415,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.513872,
-      "longitude": -0.129722
+      "longitude": -0.129722,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136703543",
       "name": "The Glassblower",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Glassblower is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.510615%2C-0.137058",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Glassblower%2C_Soho%2C_W1.jpg/960px-Glassblower%2C_Soho%2C_W1.jpg",
@@ -2372,7 +2444,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.510615,
-      "longitude": -0.137058
+      "longitude": -0.137058,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136721350",
@@ -2482,7 +2557,7 @@
       "id": "wd-q121745465",
       "name": "The Crown and Two Chairmen",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Crown and Two Chairmen is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.51386%2C-0.132421",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/The_Crown_%5E_Two_Chairmen%2C_Soho_-_geograph.org.uk_-_3542516.jpg/960px-The_Crown_%5E_Two_Chairmen%2C_Soho_-_geograph.org.uk_-_3542516.jpg",
@@ -2502,13 +2577,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.51386,
-      "longitude": -0.132421
+      "longitude": -0.132421,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q15978971",
       "name": "Dog and Duck",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "Dog and Duck is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.513998%2C-0.132022",
       "image": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Dog_and_Duck%2C_Soho%2C_W1_%282534053077%29.jpg",
@@ -2528,7 +2606,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.513998,
-      "longitude": -0.132022
+      "longitude": -0.132022,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q27080797",
@@ -2586,7 +2667,7 @@
       "id": "wd-q18162102",
       "name": "Sun and 13 Cantons",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "Sun and 13 Cantons is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5127%2C-0.136603",
       "image": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Sun_and_13_Cantons%2C_Soho%2C_W1_%282711828596%29.jpg",
@@ -2606,13 +2687,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5127,
-      "longitude": -0.136603
+      "longitude": -0.136603,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q113728208",
       "name": "The Ship",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Ship is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.514%2C-0.134305555",
       "image": "https://upload.wikimedia.org/wikipedia/commons/d/dd/The_Ship%2C_Wardour_Street_%28geograph_5722092%29.jpg",
@@ -2620,25 +2704,30 @@
       "imageLicense": "CC BY-SA 2.0",
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
       "imageCredit": "Stephen Richards",
-      "sourceName": "Wikidata and OpenStreetMap",
-      "sourceUrl": "https://www.wikidata.org/wiki/Q113728208",
+      "sourceName": "Official venue website",
+      "sourceUrl": "https://www.shipsoho.co.uk/",
       "websiteUrl": "",
-      "sourceCheckedAt": "2026-10-09",
+      "sourceCheckedAt": "2026-10-29",
       "openingStatusVerified": false,
       "osmUrl": "https://www.openstreetmap.org/node/14178896047",
-      "openingHours": "Check with venue",
+      "openingHours": "Mon-Fri 12:00-23:00; Sat 11:00-23:30; Sun 12:00-22:30",
       "entryFee": "Check with venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.514,
-      "longitude": -0.134305555
+      "longitude": -0.134305555,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address",
+      "address": "116 Wardour Street, Soho, W1F 0TT",
+      "phone": "020 7437 8446"
     },
     {
       "id": "wd-q136705143",
       "name": "The Blue Posts",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Blue Posts is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.513837%2C-0.134979",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Broadwick_Street.JPG/960px-Broadwick_Street.JPG",
@@ -2658,13 +2747,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.513837,
-      "longitude": -0.134979
+      "longitude": -0.134979,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136705165",
       "name": "The Old Coffee House",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Old Coffee House is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.51259%2C-0.137394",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/The_Old_Coffee_House%2C_Soho_-_geograph.org.uk_-_4777247.jpg/960px-The_Old_Coffee_House%2C_Soho_-_geograph.org.uk_-_4777247.jpg",
@@ -2684,13 +2776,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.51259,
-      "longitude": -0.137394
+      "longitude": -0.137394,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q123244004",
       "name": "John Snow",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "John Snow is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.513194444%2C-0.136666666",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/John_Snow%2C_Soho%2C_W1_%283696013128%29.jpg/960px-John_Snow%2C_Soho%2C_W1_%283696013128%29.jpg",
@@ -2710,13 +2805,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.513194444,
-      "longitude": -0.136666666
+      "longitude": -0.136666666,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q117706199",
       "name": "The Angel, St Giles High Street",
       "category": "Pubs",
-      "area": "Camden",
+      "area": "W1D 6DS nearby · Camden",
       "description": "The Angel, St Giles High Street is a pub in Camden. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5155%2C-0.12784",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Angel%2C_Covent_Garden%2C_WC2_%287115354407%29.jpg/960px-Angel%2C_Covent_Garden%2C_WC2_%287115354407%29.jpg",
@@ -2736,7 +2834,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5155,
-      "longitude": -0.12784
+      "longitude": -0.12784,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q136645236",
@@ -2768,7 +2869,7 @@
       "id": "wd-q116921180",
       "name": "The Toucan",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Toucan is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.515117%2C-0.133183",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Toucan%2C_Soho%2C_W1_%282377487697%29.jpg/960px-Toucan%2C_Soho%2C_W1_%282377487697%29.jpg",
@@ -2788,13 +2889,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.515117,
-      "longitude": -0.133183
+      "longitude": -0.133183,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q132258731",
       "name": "The Shaston Arms",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Shaston Arms is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.51336%2C-0.138206",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Shaston_Arms%2C_Soho%2C_W1_%282711827908%29.jpg/960px-Shaston_Arms%2C_Soho%2C_W1_%282711827908%29.jpg",
@@ -2814,13 +2918,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.51336,
-      "longitude": -0.138206
+      "longitude": -0.138206,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q27087335",
       "name": "The George",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The George is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.51494%2C-0.135318",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/The_George_%2824048851731%29.jpg/960px-The_George_%2824048851731%29.jpg",
@@ -2840,13 +2947,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.51494,
-      "longitude": -0.135318
+      "longitude": -0.135318,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q137188804",
       "name": "White Horse",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "White Horse is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.513393%2C-0.138662",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/White_Horse%2C_16_Newburgh_Street_2025-08-27.jpg/960px-White_Horse%2C_16_Newburgh_Street_2025-08-27.jpg",
@@ -2866,13 +2976,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.513393,
-      "longitude": -0.138662
+      "longitude": -0.138662,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q16707773",
       "name": "The Flying Horse",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Flying Horse is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5166%2C-0.130808",
       "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Tottenham%2C_Fitzrovia%2C_W1_%282711844676%29.jpg",
@@ -2892,7 +3005,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5166,
-      "longitude": -0.130808
+      "longitude": -0.130808,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q27083517",
@@ -2950,7 +3066,7 @@
       "id": "wd-q7761650",
       "name": "The Roxy",
       "category": "Clubs",
-      "area": "London",
+      "area": "W1D 6DS nearby · London",
       "description": "The Roxy is a club in London. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.5165%2C-0.1331",
       "image": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Roxy%2C_Fitzrovia%2C_W1_%282534879930%29.jpg",
@@ -2970,13 +3086,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.5165,
-      "longitude": -0.1331
+      "longitude": -0.1331,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q26314557",
       "name": "The Clachan",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Clachan is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.51353109%2C-0.140248911",
       "image": "https://upload.wikimedia.org/wikipedia/commons/6/68/Clachan%2C_Soho%2C_W1_%282534068983%29.jpg",
@@ -2996,13 +3115,16 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.51353109,
-      "longitude": -0.140248911
+      "longitude": -0.140248911,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q27083993",
       "name": "Green Man Public House",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "Green Man Public House is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.515563%2C-0.136757",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Green_Man%2C_Soho%2C_W1_%282534865794%29.jpg/960px-Green_Man%2C_Soho%2C_W1_%282534865794%29.jpg",
@@ -3022,7 +3144,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.515563,
-      "longitude": -0.136757
+      "longitude": -0.136757,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q27087707",
@@ -3288,7 +3413,7 @@
       "id": "wd-q27083432",
       "name": "The Champion Public House",
       "category": "Pubs",
-      "area": "Westminster",
+      "area": "W1D 6DS nearby · Westminster",
       "description": "The Champion Public House is a pub in Westminster. Check current visiting details before you go.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=51.516875%2C-0.137325",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/The_Champion_-_Fitzrovia.jpg/960px-The_Champion_-_Fitzrovia.jpg",
@@ -3308,7 +3433,10 @@
       "partnerConfirmed": false,
       "contactStatus": "Not contacted",
       "latitude": 51.516875,
-      "longitude": -0.137325
+      "longitude": -0.137325,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "wd-q7497944",
@@ -15172,7 +15300,7 @@
       "id": "rupert-street-bar-soho",
       "name": "Rupert Street Bar",
       "category": "Bars",
-      "area": "Soho, W1D 6DR",
+      "area": "W1D 6DS nearby · Soho, W1D 6DR",
       "description": "LGBTQ+ bar at 50 Rupert Street with cocktails and live entertainment.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Rupert%20Street%20Bar%20Soho%2C%20W1D%206DR",
       "sourceName": "Official venue website",
@@ -15189,13 +15317,16 @@
       "websiteUrl": "https://www.rupert-street.com/",
       "contactStatus": "Not contacted",
       "latitude": 51.511939,
-      "longitude": -0.133467
+      "longitude": -0.133467,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "waxy-oconnors-rupert-street",
       "name": "Waxy O'Connor's",
       "category": "Pubs",
-      "area": "Soho, W1D 6DD",
+      "area": "W1D 6DS nearby · Soho, W1D 6DD",
       "description": "Multi-level Irish pub at 14–16 Rupert Street, with several bars and live music.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Waxy%20O%27Connor%27s%20Soho%2C%20W1D%206DD",
       "sourceName": "Official venue website",
@@ -15212,13 +15343,16 @@
       "websiteUrl": "https://waxyoconnorslondon.co.uk/",
       "contactStatus": "Not contacted",
       "latitude": 51.510582,
-      "longitude": -0.132189
+      "longitude": -0.132189,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "the-blue-posts-rupert-street",
       "name": "The Blue Posts (Rupert Street)",
       "category": "Pubs",
-      "area": "Chinatown, W1D 6DJ",
+      "area": "W1D 6DS nearby · Chinatown, W1D 6DJ",
       "description": "A Rupert Street pub at number 28; the building also houses the Mulwray wine bar and Evelyn’s Table.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The%20Blue%20Posts%20%28Rupert%20Street%29%20Chinatown%2C%20W1D%206DJ",
       "sourceName": "Official venue website",
@@ -15235,7 +15369,10 @@
       "websiteUrl": "https://www.theblueposts.co.uk/",
       "contactStatus": "Not contacted",
       "latitude": 51.511159,
-      "longitude": -0.132715
+      "longitude": -0.132715,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "klub-ku-bar-chinatown",
@@ -15265,7 +15402,7 @@
       "id": "waxys-little-sister-wardour",
       "name": "Waxy’s Little Sister",
       "category": "Pubs",
-      "area": "20 Wardour Street, Chinatown, W1D 6QG",
+      "area": "W1D 6DS nearby · 20 Wardour Street, Chinatown, W1D 6QG",
       "description": "Two-floor Irish pub on Wardour Street with sofas, fireplaces and a smaller setting than nearby Waxy O’Connor’s.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Waxy%E2%80%99s%20Little%20Sister%2020%20Wardour%20Street%2C%20Chinatown%2C%20W1D%206QG",
       "sourceName": "Official venue or council website",
@@ -15282,13 +15419,17 @@
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "openingHours": "Check official website",
       "entryFee": "Check venue",
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "address": "20 Wardour Street, Chinatown, W1D 6QG",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "friendly-society-soho",
       "name": "Friendly Society",
       "category": "Bars",
-      "area": "79 Wardour Street, Soho, W1D 6QB",
+      "area": "W1D 6DS nearby · 79 Wardour Street, Soho, W1D 6QB",
       "description": "LGBTQ+ basement bar off Wardour Street with colourful décor and cocktails. Check current opening times with the venue.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Friendly%20Society%2079%20Wardour%20Street%2C%20Soho%2C%20W1D%206QB",
       "sourceName": "CAMRA",
@@ -15305,13 +15446,17 @@
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
       "openingHours": "Check official website",
       "entryFee": "Check venue",
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "address": "79 Wardour Street, Soho, W1D 6QB",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "freedom-bar-soho",
       "name": "Freedom Bar Soho",
       "category": "Clubs",
-      "area": "66 Wardour Street, Soho, W1F 0TA",
+      "area": "W1D 6DS nearby · 66 Wardour Street, Soho, W1F 0TA",
       "description": "Wardour Street cocktail bar and basement club hosting cabaret and late-night dancing. Check the official programme for admission and event details.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Freedom%20Bar%20Soho%2066%20Wardour%20Street%2C%20Soho%2C%20W1F%200TA",
       "sourceName": "Official venue or council website",
@@ -15328,7 +15473,39 @@
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "openingHours": "Check official website",
       "entryFee": "Check venue",
-      "contactStatus": "Not contacted"
+      "contactStatus": "Not contacted",
+      "address": "66 Wardour Street, Soho, W1F 0TA",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
+    },
+    {
+      "id": "leicester-arms-glasshouse",
+      "name": "Leicester Arms",
+      "category": "Pubs",
+      "area": "W1D 6DS nearby · 44 Glasshouse Street, Soho / Piccadilly, W1B 5DP",
+      "address": "44 Glasshouse Street, Soho / Piccadilly, W1B 5DP",
+      "description": "Traditional corner pub close to Piccadilly Circus, serving pub food and drinks with live sports shown.",
+      "phone": "020 7734 7641",
+      "openingHours": "Mon-Thu 11:00-23:00; Fri-Sat 11:00-00:00; Sun 11:00-22:30",
+      "sourceName": "Official venue website",
+      "sourceUrl": "https://www.greeneking.co.uk/pubs/greater-london/leicester-arms/find-us",
+      "websiteUrl": "https://www.greeneking.co.uk/pubs/greater-london/leicester-arms/find-us",
+      "sourceCheckedAt": "2026-10-29",
+      "openingStatusVerified": true,
+      "listingStatus": "Listed",
+      "partnerConfirmed": false,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Leicester%20Arms%2044%20Glasshouse%20Street%2C%20Soho%20/%20Piccadilly%2C%20W1B%205DP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Leicester_Arms%2C_Glasshouse_Street_-_geograph.org.uk_-_5659594.jpg",
+      "imageCredit": "Stephen Richards",
+      "imageLicense": "CC BY-SA 2.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Leicester_Arms,_Glasshouse_Street_-_geograph.org.uk_-_5659594.jpg",
+      "entryFee": "Check venue",
+      "contactStatus": "Not contacted",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     }
   ]
 }

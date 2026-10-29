@@ -2332,7 +2332,7 @@
       "id": "w-london-leicester-square",
       "name": "W London",
       "category": "5-star",
-      "area": "Chinatown, W1D 6QF",
+      "area": "W1D 6DS nearby · Chinatown, W1D 6QF",
       "description": "A contemporary hotel overlooking Chinatown and Leicester Square, close to Soho restaurants and West End theatres.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=W%20London%20Chinatown%2C%20W1D%206QF",
       "sourceName": "Official venue website",
@@ -2350,13 +2350,16 @@
       "nearestStation": "Leicester Square",
       "familyFriendly": false,
       "latitude": 51.510759,
-      "longitude": -0.13132
+      "longitude": -0.13132,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "hazlitts-soho",
       "name": "Hazlitt’s",
       "category": "Boutique",
-      "area": "6 Frith Street, Soho, W1D 3JA",
+      "area": "W1D 6DS nearby · 6 Frith Street, Soho, W1D 3JA",
       "description": "Characterful hotel in historic Soho townhouses on Frith Street, close to restaurants and West End theatres. Check the hotel for room availability and rates.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Hazlitt%E2%80%99s%206%20Frith%20Street%2C%20Soho%2C%20W1D%203JA",
       "sourceName": "Official venue or council website",
@@ -2373,13 +2376,17 @@
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
       "priceRange": "Check hotel",
       "nearestStation": "Leicester Square",
-      "amenities": []
+      "amenities": [],
+      "address": "6 Frith Street, Soho, W1D 3JA",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "dean-street-townhouse",
       "name": "Dean Street Townhouse",
       "category": "Boutique",
-      "area": "69-71 Dean Street, Soho, W1D 3SE",
+      "area": "W1D 6DS nearby · 69-71 Dean Street, Soho, W1D 3SE",
       "description": "Soho townhouse hotel with 39 bedrooms and an all-day British restaurant. Check the hotel directly for availability and booking details.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Dean%20Street%20Townhouse%2069-71%20Dean%20Street%2C%20Soho%2C%20W1D%203SE",
       "sourceName": "Official venue or council website",
@@ -2396,7 +2403,11 @@
       "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
       "priceRange": "Check hotel",
       "nearestStation": "Leicester Square",
-      "amenities": []
+      "amenities": [],
+      "address": "69-71 Dean Street, Soho, W1D 3SE",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     }
   ]
 }

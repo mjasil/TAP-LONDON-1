@@ -4178,7 +4178,7 @@
       "id": "lego-store-leicester-square",
       "name": "LEGO Store Leicester Square",
       "category": "Activities",
-      "area": "Leicester Square, W1D 6AP",
+      "area": "W1D 6DS nearby · Leicester Square, W1D 6AP",
       "description": "A London LEGO store at 3 Swiss Court with models and displays to browse with children.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=LEGO%20Store%20Leicester%20Square%20Leicester%20Square%2C%20W1D%206AP",
       "sourceName": "Official venue website",
@@ -4197,13 +4197,16 @@
       "entryFee": "Free to browse; purchases cost extra",
       "ageRange": "All ages",
       "latitude": 51.510681,
-      "longitude": -0.130792
+      "longitude": -0.130792,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "mms-world-leicester-square",
       "name": "M&M'S London",
       "category": "Activities",
-      "area": "Leicester Square, W1D 6AP",
+      "area": "W1D 6DS nearby · Leicester Square, W1D 6AP",
       "description": "Colourful four-floor chocolate and merchandise store at 1 Swiss Court, next to Leicester Square.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=M%26M%27S%20London%20Leicester%20Square%2C%20W1D%206AP",
       "sourceName": "Official venue website",
@@ -4222,13 +4225,16 @@
       "entryFee": "Free to browse; purchases cost extra",
       "ageRange": "All ages",
       "latitude": 51.510575,
-      "longitude": -0.130894
+      "longitude": -0.130894,
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     },
     {
       "id": "foyles-childrens-books-soho",
       "name": "Foyles Children’s Department",
       "category": "Activities",
-      "area": "107 Charing Cross Road, Soho, WC2H 0DT",
+      "area": "W1D 6DS nearby · 107 Charing Cross Road, Soho, WC2H 0DT",
       "description": "Browse children’s books and games at the Foyles flagship with the family. This is a bookshop visit; check the separate events programme for any organised activities.",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Foyles%20Children%E2%80%99s%20Department%20107%20Charing%20Cross%20Road%2C%20Soho%2C%20WC2H%200DT",
       "sourceName": "Official venue or council website",
@@ -4246,7 +4252,11 @@
       "openingHours": "Check shop opening times",
       "entryFee": "Free browsing; purchases extra",
       "priceType": "Free",
-      "ageRange": "All ages with adult supervision"
+      "ageRange": "All ages with adult supervision",
+      "address": "107 Charing Cross Road, Soho, WC2H 0DT",
+      "location": "W1D6DS nearby",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
     }
   ]
 }
