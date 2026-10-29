@@ -5789,6 +5789,31 @@
       "priceType": "Check venue",
       "listingStatus": "Listed",
       "partnerConfirmed": false
+    },
+    {
+      "id": "rupert-street-soho",
+      "name": "Rupert Street",
+      "category": "Free Things",
+      "area": "Soho and Chinatown, W1D",
+      "description": "Walk the short street between Soho and Chinatown, passing pubs, restaurants and the West End theatres nearby.",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Rupert%20Street%20Soho%20and%20Chinatown%2C%20W1D",
+      "sourceName": "Visit London",
+      "sourceUrl": "https://www.visitlondon.com/things-to-do/london-areas/soho",
+      "sourceCheckedAt": "2026-10-29",
+      "listingStatus": "Listed",
+      "partnerConfirmed": false,
+      "openingStatusVerified": true,
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Rupert_Street_-_17_May_2026.jpg/960px-Rupert_Street_-_17_May_2026.jpg",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Rupert_Street_-_17_May_2026.jpg",
+      "imageCredit": "Aethonatic",
+      "imageLicense": "CC0 1.0",
+      "imageLicenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "priceType": "Free",
+      "entryFee": "Free to walk",
+      "icon": "🚶",
+      "openingHours": "Public street",
+      "latitude": 51.511481,
+      "longitude": -0.132969
     }
   ]
 }

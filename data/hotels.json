@@ -2327,6 +2327,30 @@
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The+Pilot+Greenwich",
       "priceType": "Paid",
       "order": 112
+    },
+    {
+      "id": "w-london-leicester-square",
+      "name": "W London",
+      "category": "5-star",
+      "area": "Chinatown, W1D 6QF",
+      "description": "A contemporary hotel overlooking Chinatown and Leicester Square, close to Soho restaurants and West End theatres.",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=W%20London%20Chinatown%2C%20W1D%206QF",
+      "sourceName": "Official venue website",
+      "sourceUrl": "https://www.marriott.com/en-us/hotels/lonhw-w-london/overview/",
+      "sourceCheckedAt": "2026-10-29",
+      "listingStatus": "Listed",
+      "partnerConfirmed": false,
+      "openingStatusVerified": true,
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/London_-_W_London_Leicester_Square.jpg/960px-London_-_W_London_Leicester_Square.jpg",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:London_-_W_London_Leicester_Square.jpg",
+      "imageCredit": "Fred Romero",
+      "imageLicense": "CC BY 2.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "websiteUrl": "https://www.marriott.com/en-us/hotels/lonhw-w-london/overview/",
+      "nearestStation": "Leicester Square",
+      "familyFriendly": false,
+      "latitude": 51.510759,
+      "longitude": -0.13132
     }
   ]
 }
