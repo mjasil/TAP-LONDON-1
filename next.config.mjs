@@ -7,6 +7,7 @@ const nextConfig = {
       { protocol: "https", hostname: "thumb.wikimedia.org" },
       { protocol: "https", hostname: "logo.clearbit.com" },
       { protocol: "https", hostname: "res.cloudinary.com" },
+      { protocol: "https", hostname: "a.storyblok.com" },
       { protocol: "https", hostname: "*.cloudinary.com" },
     ],
     // Next.js caches each optimized image variant by (source URL + sizes
