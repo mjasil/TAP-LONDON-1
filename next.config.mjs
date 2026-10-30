@@ -11,6 +11,9 @@ const nextConfig = {
       { protocol: "https", hostname: "www.marylebonevillage.com", pathname: "/images/**" },
       { protocol: "https", hostname: "www.datocms-assets.com", pathname: "/151033/**" },
       { protocol: "https", hostname: "www.datocms-assets.com", pathname: "/151036/**" },
+      { protocol: "https", hostname: "fitzroviaquarter.co.uk", pathname: "/wp-content/uploads/**" },
+      { protocol: "https", hostname: "www.oxfordstreet.co.uk", pathname: "/wp-content/uploads/**" },
+      { protocol: "https", hostname: "cdn.prod.website-files.com", pathname: "/6a6073abb0d3add097009502/**" },
       { protocol: "https", hostname: "*.cloudinary.com" },
     ],
     // Next.js caches each optimized image variant by (source URL + sizes
