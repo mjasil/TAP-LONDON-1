@@ -10,6 +10,7 @@ const nextConfig = {
       { protocol: "https", hostname: "a.storyblok.com" },
       { protocol: "https", hostname: "www.marylebonevillage.com", pathname: "/images/**" },
       { protocol: "https", hostname: "www.datocms-assets.com", pathname: "/151033/**" },
+      { protocol: "https", hostname: "www.datocms-assets.com", pathname: "/151036/**" },
       { protocol: "https", hostname: "*.cloudinary.com" },
     ],
     // Next.js caches each optimized image variant by (source URL + sizes
