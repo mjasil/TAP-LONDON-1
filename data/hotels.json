@@ -2438,6 +2438,40 @@
       "amenities": [
         "Restaurant and bar"
       ]
+    },
+    {
+      "id": "soho-courthouse-hotel",
+      "name": "Courthouse Hotel",
+      "area": "W1D 6DS nearby · 19-21 Great Marlborough Street, London, W1F 7HL",
+      "address": "19-21 Great Marlborough Street, London, W1F 7HL",
+      "location": "W1D6DS nearby",
+      "description": "Hotel in a former magistrates’ court on Great Marlborough Street, with restaurants, a bar and spa facilities.",
+      "openingHours": "Check official website",
+      "websiteUrl": "https://www.courthouse-hotel.com/",
+      "sourceName": "This Is Soho — Shaftesbury Capital",
+      "sourceUrl": "https://www.thisissoho.co.uk/brands/courthouse-hotel/",
+      "sourceCheckedAt": "2026-10-30",
+      "openingStatusVerified": false,
+      "listingStatus": "Listed",
+      "partnerConfirmed": false,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Courthouse%20Hotel%2019-21%20Great%20Marlborough%20Street%2C%20London%2C%20W1F%207HL",
+      "image": "https://res.cloudinary.com/danqs6geb/image/upload/c_fill,w_768,h_576,g_center/c_limit,w_768/f_auto/q_auto/v1735315172/Courthouse-Hotel-Outside_t3nwhh",
+      "imageSourceUrl": "https://www.thisissoho.co.uk/brands/courthouse-hotel/",
+      "imageCredit": "Courthouse Hotel / This Is Soho",
+      "imageRightsConfirmed": false,
+      "imageRightsStatus": "Source-published promotional image; no open licence asserted",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Soho / Carnaby venue address from the neighbourhood directory",
+      "phone": "020 7297 5555",
+      "category": "5-star",
+      "priceRange": "Check hotel",
+      "amenities": [
+        "Restaurants",
+        "Bar",
+        "Spa"
+      ],
+      "officialWebsiteCheckedAt": "2026-10-30",
+      "officialWebsiteResponse": 200
     }
   ]
 }
