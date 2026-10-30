@@ -2408,6 +2408,36 @@
       "location": "W1D6DS nearby",
       "nearbyReferencePostcode": "W1D 6DS",
       "proximitySource": "Existing venue coordinates within 600m or reviewed Soho/Chinatown address"
+    },
+    {
+      "id": "kettners-soho-romilly",
+      "name": "Kettner’s",
+      "area": "W1D 6DS nearby · 29 Romilly Street, Soho, W1D 5AL",
+      "address": "29 Romilly Street, Soho, W1D 5AL",
+      "description": "Boutique hotel in a historic Soho townhouse with 33 bedrooms and an on-site restaurant and bar. Check room availability and rates directly with the hotel.",
+      "openingHours": "Check hotel for check-in and reception hours",
+      "sourceName": "This Is Soho",
+      "sourceUrl": "https://www.thisissoho.co.uk/brands/kettner-s/",
+      "websiteUrl": "https://www.thisissoho.co.uk/brands/kettner-s/",
+      "sourceCheckedAt": "2026-10-30",
+      "openingStatusVerified": true,
+      "listingStatus": "Listed",
+      "partnerConfirmed": false,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kettner%E2%80%99s%2029%20Romilly%20Street%2C%20Soho%2C%20W1D%205AL",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Kettner%27s%2C_Romilly_Street%2C_Soho%2C_July_2022.jpg/960px-Kettner%27s%2C_Romilly_Street%2C_Soho%2C_July_2022.jpg",
+      "imageCredit": "No Swan So Fine",
+      "imageLicense": "CC BY-SA 4.0",
+      "imageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Kettner%27s,_Romilly_Street,_Soho,_July_2022.jpg",
+      "nearbyReferencePostcode": "W1D 6DS",
+      "proximitySource": "Reviewed Soho, Chinatown or adjoining West End address",
+      "phone": "020 7734 5650",
+      "category": "Boutique",
+      "location": "W1D6DS nearby",
+      "priceRange": "Check hotel",
+      "amenities": [
+        "Restaurant and bar"
+      ]
     }
   ]
 }
