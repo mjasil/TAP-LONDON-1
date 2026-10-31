@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.near-me-panel { height: min(760px, 88vh); max-height: 88vh; }
+@supports (height: 100dvh) {
+  .near-me-panel { height: min(760px, 88dvh); max-height: 88dvh; }
+}
+
 :root {
   color-scheme: light;
   --navy: #1a1a2e;

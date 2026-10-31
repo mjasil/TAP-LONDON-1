@@ -1,6 +1,9 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { requestMobilePosition } from '@/lib/mobileLocation';
+import { loadNearbyArea, withNearbyDeadline } from '@/lib/nearbyRequest';
 import Link from 'next/link';
 import { fetchCollection } from '@/lib/firestore';
 import { addCalendarDays, londonToday, occursInWindow } from '@/lib/eventDates';
@@ -87,6 +90,7 @@ const AREA_COORDS: Record<string, [number, number]> = {
   'spitalfields': [51.5190, -0.0750], 'regent street': [51.5115, -0.1380],
   'docklands': [51.5060, -0.0220], 'borough market': [51.5054, -0.0910],
   'chinatown': [51.5112, -0.1317],
+  'st james': [51.5078, -0.1375],
 };
 const AREA_MATCHES = Object.entries(AREA_COORDS).sort((a, b) => b[0].length - a[0].length);
 // These neighbourhoods have Kids listings in the curated directory. Prioritise
@@ -156,20 +160,6 @@ function NearMeThumbnail({ item, collection }: { item: any; collection: string }
   </div>;
 }
 
-function getMobilePosition(onSuccess: PositionCallback, onError: PositionErrorCallback, isCurrent: () => boolean) {
-  // A recent Wi-Fi/cellular fix is often available when a fresh GPS fix is
-  // not. Retry with GPS only after a timeout or unavailable-position error.
-  navigator.geolocation.getCurrentPosition(onSuccess, error => {
-    if (!isCurrent()) return;
-    if (error.code === 1) {
-      onError(error);
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(onSuccess, onError,
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 120000 });
-  }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 120000 });
-}
-
 function isApproximatePosition(position: GeolocationPosition) {
   return position.coords.accuracy > 500 || Date.now() - position.timestamp > 60000;
 }
@@ -180,16 +170,59 @@ export default function NearMe() {
   const [status, setStatus] = useState<'idle'|'requesting'|'loading'|'done'|'error'>('idle');
   const [results, setResults] = useState<any[]>([]);
   const [errorMsg, setErrorMsg] = useState('');
+  const [locationBlocked, setLocationBlocked] = useState(false);
   const [userPos, setUserPos] = useState<{lat:number;lng:number}|null>(null);
   const [isApproxLocation, setIsApproxLocation] = useState(false);
   const [manualArea, setManualArea] = useState('');
   const [eventWindow, setEventWindow] = useState<EventWindow>('today');
   const requestId = useRef(0);
   const locationRequestId = useRef(0);
+  const cancelLocation = useRef<() => void>(() => {});
+  const listingsController = useRef<AbortController | null>(null);
+  const closeButton = useRef<HTMLButtonElement>(null);
+  const openButton = useRef<HTMLButtonElement>(null);
+  const closePanel = useCallback(() => {
+    requestId.current++;
+    locationRequestId.current++;
+    cancelLocation.current();
+    listingsController.current?.abort();
+    setOpen(false);
+  }, []);
+
+  useEffect(() => () => {
+    locationRequestId.current++;
+    requestId.current++;
+    cancelLocation.current();
+    listingsController.current?.abort();
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    // Render above the homepage's clipped/stacked containers and keep the
+    // background still while the sheet itself scrolls on iOS and Android.
+    const y = window.scrollY;
+    const body = document.body;
+    const previous = { position: body.style.position, top: body.style.top, width: body.style.width, overflow: body.style.overflow };
+    Object.assign(body.style, { position: 'fixed', top: `-${y}px`, width: '100%', overflow: 'hidden' });
+    closeButton.current?.focus({ preventScroll: true });
+    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') closePanel(); };
+    document.addEventListener('keydown', escape);
+    return () => {
+      Object.assign(body.style, previous);
+      window.scrollTo(0, y);
+      document.removeEventListener('keydown', escape);
+      openButton.current?.focus({ preventScroll: true });
+    };
+  }, [open, closePanel]);
 
   const findNearby = useCallback(async (collection: string, pos: {lat:number;lng:number}, approximate = false, window: EventWindow = 'today') => {
     const currentRequest = ++requestId.current;
+    listingsController.current?.abort();
+    const controller = new AbortController();
+    listingsController.current = controller;
     setStatus('loading');
+    setErrorMsg('');
+    setLocationBlocked(false);
     setResults([]);
     try {
       // Directory pages are bounded. Do not download hundreds of venue records
@@ -202,7 +235,7 @@ export default function NearMe() {
         : nearbyAreas;
       let items: any[];
       if (collection === 'events' || collection === 'hiddenGems') {
-        const rows = await fetchCollection(collection);
+        const rows = await withNearbyDeadline(fetchCollection(collection));
         if (!rows) throw new Error('Listings unavailable');
         const [start, end] = eventDates(window);
         items = collection === 'events'
@@ -214,22 +247,24 @@ export default function NearMe() {
             // A postcode pin represents the surrounding streets, whose real
             // venue postcodes differ from the pin's exact postcode.
             const query = area === 'w1d 6ds' ? 'w1d' : area;
-            const response = await fetch(`/api/directory/${collection}?q=${encodeURIComponent(query)}`, { cache: 'no-store' });
-            if (!response.ok) throw new Error('Listings unavailable');
-            const page = await response.json();
-            return (page.items || []).filter((item: any) =>
-              String(item.area || item.location || '').toLowerCase().includes(query));
+            const rows = await loadNearbyArea(collection, query, controller.signal);
+            return rows.filter((item: any) => {
+              const areaName = String(item.area || item.location || '').toLowerCase().replace(/[’']/g, '');
+              return areaName.includes(query);
+            });
           }));
           const successful = responses.filter((result): result is PromiseFulfilledResult<any[]> => result.status === 'fulfilled');
           return { items: successful.flatMap(result => result.value), successCount: successful.length };
         };
         const first = await loadAreas(searchAreas.slice(0, 8));
+        if (controller.signal.aborted) return;
         items = first.items;
         // Keep searching until the twelve-card panel is full. The former
         // five-result threshold hid real venues in neighbouring areas.
         if (new Set(items.map(item => item.id)).size < 12) {
           const second = await loadAreas(searchAreas.slice(8, 16));
           if (first.successCount + second.successCount === 0) throw new Error('Listings unavailable');
+          if (controller.signal.aborted) return;
           items.push(...second.items);
         }
         if (collection === 'kids' && new Set(items.map(item => item.id)).size < 5) {
@@ -239,7 +274,7 @@ export default function NearMe() {
           items.push(...more.items);
         }
       }
-      if (currentRequest !== requestId.current) return;
+      if (currentRequest !== requestId.current || controller.signal.aborted) return;
       const unique = Array.from(new Map(items.map(item => [item.id, item])).values());
       const withDist = unique.map((item: any) => {
         const latitude = Number(item.latitude ?? item.lat);
@@ -257,7 +292,7 @@ export default function NearMe() {
       setResults(matched.slice(0, 12));
       setStatus('done');
     } catch {
-      if (currentRequest !== requestId.current) return;
+      if (currentRequest !== requestId.current || controller.signal.aborted) return;
       setErrorMsg('Could not load places. Please try again.');
       setStatus('error');
     }
@@ -267,154 +302,72 @@ export default function NearMe() {
     const coords = AREA_COORDS[manualArea];
     if (!coords) return;
     locationRequestId.current++;
+    cancelLocation.current();
     setUserPos({ lat: coords[0], lng: coords[1] });
     setIsApproxLocation(true);
     setErrorMsg('');
     findNearby(activeCategory, { lat: coords[0], lng: coords[1] }, true, eventWindow);
   };
 
-  const requestLocation = useCallback((collection: string) => {
-    const locationRequest = ++locationRequestId.current;
-
-    if (!navigator.geolocation) {
-      setActiveCategory(collection);
-      setErrorMsg('Location is not supported on this device.');
-      setStatus('error');
-      return;
-    }
-
-    getMobilePosition(
-      (pos) => {
-        if (locationRequest !== locationRequestId.current) return;
-        const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-        if (!isInGreaterLondon(p)) {
-          setUserPos(null);
-          setErrorMsg('Near Me currently covers London. Choose a London area below.');
-          setStatus('error');
-          return;
-        }
-        setManualArea('');
-        const approximate = isApproximatePosition(pos);
-        setIsApproxLocation(approximate);
-        setUserPos(p);
-        findNearby(collection, p, approximate, eventWindow);
-      },
-      (err) => {
-        if (locationRequest !== locationRequestId.current) return;
-        if (err.code === 1) {
-          setErrorMsg('Location is blocked. Allow it for this site, or choose a London area below.');
-        } else if (err.code === 2) {
-          setErrorMsg('Could not detect your location. Please try again.');
-        } else {
-          setErrorMsg('Location request timed out. Please try again.');
-        }
-        setStatus('error');
-      },
-      () => locationRequest === locationRequestId.current
-    );
+  const requestLocation = useCallback((collection: string, window: EventWindow = eventWindow) => {
+    cancelLocation.current();
+    listingsController.current?.abort();
     requestId.current++;
+    const locationRequest = ++locationRequestId.current;
+    // Set state first so a synchronous failure cannot be overwritten with
+    // 'requesting'. Keep the native permission call in the original tap.
+    setOpen(true);
     setActiveCategory(collection);
     setStatus('requesting');
     setErrorMsg('');
-  }, [findNearby, eventWindow]);
+    setLocationBlocked(false);
+    let geolocation: Geolocation | undefined;
+    try { geolocation = navigator.geolocation; } catch { /* Restricted webview. */ }
+    cancelLocation.current = requestMobilePosition(geolocation,
+      position => {
+        if (locationRequest !== locationRequestId.current) return;
+        const pos = { lat: position.coords.latitude, lng: position.coords.longitude };
+        if (!isInGreaterLondon(pos)) {
+          setUserPos(null);
+          setErrorMsg('Near Me currently covers London. Choose a London area below.');
+          setStatus('error');
+          return;
+        }
+        setManualArea('');
+        const approximate = isApproximatePosition(position);
+        setIsApproxLocation(approximate);
+        setUserPos(pos);
+        findNearby(collection, pos, approximate, window);
+      },
+      error => {
+        if (locationRequest !== locationRequestId.current) return;
+        setLocationBlocked(error.code === 1);
+        setErrorMsg(error.code === 1
+          ? 'Location is blocked. Allow location for this website, or choose a London area above.'
+          : 'Your browser could not find your location. Choose a London area above, or try again.');
+        setStatus('error');
+      },
+      () => locationRequest === locationRequestId.current,
+    );
+  }, [eventWindow, findNearby]);
 
   const handleOpen = () => {
-    const locationRequest = ++locationRequestId.current;
-    if (!navigator.geolocation) {
-      setOpen(true);
-      setStatus('error');
-      setErrorMsg('Location is not supported on this device.');
-      return;
-    }
-
-    // Request location synchronously from the tap before updating the panel.
-    getMobilePosition(
-      (pos) => {
-        if (locationRequest !== locationRequestId.current) return;
-        const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-        setOpen(true);
-        setActiveCategory('food');
-        if (!isInGreaterLondon(p)) {
-          setUserPos(null);
-          setErrorMsg('Near Me currently covers London. Choose a London area below.');
-          setStatus('error');
-          return;
-        }
-        setManualArea('');
-        const approximate = isApproximatePosition(pos);
-        setIsApproxLocation(approximate);
-        setUserPos(p);
-        findNearby('food', p, approximate);
-      },
-      (err) => {
-        if (locationRequest !== locationRequestId.current) return;
-        setOpen(true);
-        setActiveCategory('food');
-        if (err.code === 1) {
-          setErrorMsg('Location is blocked. Allow it for this site, or choose a London area below.');
-        } else {
-          setErrorMsg('Could not get your location. Choose a London area below or try again.');
-        }
-        setStatus('error');
-      },
-      () => locationRequest === locationRequestId.current
-    );
-    // Show the panel immediately in a loading state while the browser's
-    // permission prompt / GPS lookup is in progress, without delaying the
-    // getCurrentPosition call itself.
-    requestId.current++;
-    setOpen(true);
-    setStatus('requesting');
+    setEventWindow('today');
+    requestLocation('food', 'today');
   };
 
-  const handleCategoryChange = (col: string) => {
-    if (userPos) {
-      setActiveCategory(col);
-      findNearby(col, userPos, isApproxLocation, eventWindow);
-      return;
-    }
-    // Request location from the category tap before updating the panel.
-    if (!navigator.geolocation) {
-      setActiveCategory(col);
-      setErrorMsg('Location is not supported on this device.');
-      setStatus('error');
-      return;
-    }
-    const locationRequest = ++locationRequestId.current;
-    getMobilePosition(
-      (pos) => {
-        if (locationRequest !== locationRequestId.current) return;
-        const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-        setActiveCategory(col);
-        if (!isInGreaterLondon(p)) {
-          setUserPos(null);
-          setErrorMsg('Near Me currently covers London. Choose a London area below.');
-          setStatus('error');
-          return;
-        }
-        setManualArea('');
-        const approximate = isApproximatePosition(pos);
-        setIsApproxLocation(approximate);
-        setUserPos(p);
-        findNearby(col, p, approximate, eventWindow);
-      },
-      (err) => {
-        if (locationRequest !== locationRequestId.current) return;
-        setActiveCategory(col);
-        setErrorMsg(err.code === 1
-          ? 'Location is blocked. Allow it for this site, or choose a London area below.'
-          : 'Could not get your location. Choose a London area below.');
-        setStatus('error');
-      },
-      () => locationRequest === locationRequestId.current
-    );
-    requestId.current++;
-    setActiveCategory(col);
-    setStatus('requesting');
+  const handleCategoryChange = (collection: string) => {
+    if (!userPos) { requestLocation(collection); return; }
+    locationRequestId.current++;
+    cancelLocation.current();
+    setActiveCategory(collection);
+    findNearby(collection, userPos, isApproxLocation, eventWindow);
   };
 
   if (!open) return (
     <button
+      ref={openButton}
+      type="button"
       onClick={handleOpen}
       style={{
         display: 'flex', alignItems: 'center', gap: '8px',
@@ -433,12 +386,12 @@ export default function NearMe() {
     </button>
   );
 
-  return (
+  return createPortal(
     <div
-      onClick={() => { requestId.current++; locationRequestId.current++; setOpen(false); }}
+      onClick={closePanel}
       style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', zIndex: 9998, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}
     >
-      <div onClick={e => e.stopPropagation()} style={{ background: '#f9f7f2', borderRadius: '20px 20px 0 0', width: '100%', maxWidth: '620px', maxHeight: '88vh', paddingBottom: 'env(safe-area-inset-bottom, 0px)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div className="near-me-panel" role="dialog" aria-modal="true" aria-label="Near Me" onClick={e => e.stopPropagation()} style={{ background: '#f9f7f2', borderRadius: '20px 20px 0 0', width: '100%', maxWidth: '620px', paddingBottom: 'env(safe-area-inset-bottom, 0px)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
         {/* Header */}
         <div style={{ background: '#1a1a2e', padding: '18px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
@@ -448,11 +401,11 @@ export default function NearMe() {
               {status === 'requesting' && 'Finding your location...'}
               {status === 'loading' && 'Finding nearest places...'}
               {status === 'done' && userPos && (isApproxLocation ? `Showing areas around ${manualArea || 'your approximate location'} (approximate)` : 'London listings ordered by proximity')}
-              {status === 'error' && 'Location error'}
+              {status === 'error' && (locationBlocked ? 'Location permission needed' : 'Choose an area or try again')}
               {status === 'idle' && 'Finding your location...'}
             </div>
           </div>
-          <button onClick={() => { requestId.current++; locationRequestId.current++; setOpen(false); }} aria-label="Close Near Me" style={{ background: 'rgba(255,255,255,0.12)', border: 'none', color: '#fff', width: '34px', height: '34px', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem' }}>✕</button>
+          <button ref={closeButton} type="button" onClick={closePanel} aria-label="Close Near Me" style={{ background: 'rgba(255,255,255,0.12)', border: 'none', color: '#fff', width: '34px', height: '34px', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem' }}>✕</button>
         </div>
 
         {/* Category tabs */}
@@ -489,7 +442,7 @@ export default function NearMe() {
         </div>
 
         {/* Content */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
+        <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch', padding: '16px' }}>
 
           {/* Requesting permission */}
           {status === 'requesting' && (
@@ -514,13 +467,16 @@ export default function NearMe() {
           {status === 'error' && (
             <div style={{ textAlign: 'center', padding: '40px 20px', fontFamily: "'DM Sans', sans-serif" }}>
               <div style={{ fontSize: '2.5rem', marginBottom: '14px' }}>📍</div>
-              <div style={{ color: '#e55', marginBottom: '12px', fontSize: '0.88rem', fontWeight: 600 }}>{errorMsg}</div>
+              <div role="alert" style={{ color: '#b83d3d', marginBottom: '12px', fontSize: '0.88rem', fontWeight: 600 }}>{errorMsg}</div>
               <button onClick={() => requestLocation(activeCategory)} style={{ background: '#1a1a2e', color: '#c9a84c', border: 'none', borderRadius: '10px', padding: '12px 24px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.84rem', fontWeight: 700, cursor: 'pointer' }}>
-                Try Again
+                {locationBlocked ? 'I’ve allowed location — retry' : 'Try Again'}
               </button>
-              <div style={{ marginTop: '16px', fontSize: '0.74rem', color: '#aaa', lineHeight: 1.6 }}>
-                If denied, go to your browser settings → Site Settings → Location → Allow for this site
-              </div>
+              {locationBlocked && <details style={{ marginTop: '20px', fontSize: '0.8rem', color: '#555', lineHeight: 1.7, textAlign: 'left' }}>
+                <summary style={{ cursor: 'pointer', fontWeight: 700, color: '#1a1a2e' }}>How to allow location on your phone</summary>
+                <p><strong>iPhone / Safari:</strong> In iPhone Settings → Privacy &amp; Security → Location Services, allow Safari Websites while using the app. In Safari’s website settings, allow Location for this site, then return here and retry.</p>
+                <p><strong>Android / Chrome:</strong> Allow location for Chrome in your phone settings. In Chrome → Settings → Site settings → Location, allow this website, then return here and retry.</p>
+                <p>If you opened the link inside another app, open it in Safari or Chrome. You can also choose a London area above without sharing your location.</p>
+              </details>}
             </div>
           )}
 
@@ -553,6 +509,7 @@ export default function NearMe() {
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
