@@ -183,7 +183,7 @@ export default function Navbar() {
     <>
       <div id="google_translate_element" style={{ display: "none" }} />
 
-      <header className="sticky top-0 z-50 border-b border-white/35 bg-cream/95 shadow-sm backdrop-blur-sm dark:bg-[#0d0d1a]/97 dark:border-white/10" style={{ transform: "translateZ(0)", willChange: "transform" }}>
+      <header className="tap-glass-nav sticky top-0 z-50 border-b border-white/35 bg-cream/95 shadow-sm backdrop-blur-sm dark:bg-[#0d0d1a]/97 dark:border-white/10" style={{ transform: "translateZ(0)", willChange: "transform" }}>
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           <Link href="/" className="group flex min-h-12 items-center gap-3" onClick={() => setOpen(false)}>
             <img src="/logo.jpg" alt="TAP LONDON" style={{ height: "44px", width: "44px", borderRadius: "10px", objectFit: "cover" }} />
@@ -213,7 +213,7 @@ export default function Navbar() {
                 <span style={{ fontSize: "0.5rem", opacity: 0.5 }}>{langOpen ? "▲" : "▼"}</span>
               </button>
               {langOpen && (
-                <div className="absolute right-0 top-[calc(100%+6px)] z-[9999] min-w-[160px] rounded-2xl border border-navy/10 dark:border-gold/20 bg-white dark:bg-[#1a1a2e] shadow-xl overflow-hidden" style={{ maxHeight: "280px", overflowY: "auto" }}>
+                <div className="tap-glass-menu absolute right-0 top-[calc(100%+6px)] z-[9999] min-w-[160px] rounded-2xl border border-navy/10 dark:border-gold/20 bg-white dark:bg-[#1a1a2e] shadow-xl overflow-hidden" style={{ maxHeight: "280px", overflowY: "auto" }}>
                   {LANGUAGES.map((lang) => (
                     <button key={lang.code} onClick={() => selectLang(lang)} className={`flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm border-b border-navy/5 dark:border-white/5 hover:bg-gold/10 transition ${currentLang.code === lang.code ? "text-[#c9a84c] font-bold" : "text-navy dark:text-cream"}`}>
                       <span style={{ fontSize: "1rem" }}>{lang.flag}</span>
@@ -236,7 +236,7 @@ export default function Navbar() {
         </nav>
 
         {open && (
-          <div className="border-t border-navy/10 dark:border-white/10 bg-cream dark:bg-[#0d0d1a] px-3 pb-4 pt-2">
+          <div className="tap-glass-menu border-t border-navy/10 dark:border-white/10 bg-cream dark:bg-[#0d0d1a] px-3 pb-4 pt-2">
             <div className="mx-auto max-w-7xl">
               {weather && (
                 <div className="flex items-center gap-2 px-2 py-1.5 text-[0.7rem] font-semibold text-navy/50 dark:text-cream/40">

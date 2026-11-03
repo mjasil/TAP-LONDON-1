@@ -500,3 +500,25 @@ html.dark [style*="height:200px"] img {
           cursor: pointer; white-space: nowrap;
         }
         .nova-quick-btn:hover { background: rgba(201,168,76,0.2); }
+
+/* Frosted surfaces: solid bases remain usable without backdrop-filter. */
+.tap-glass-nav { box-shadow: 0 8px 32px rgba(19, 29, 42, .07), inset 0 -1px 0 rgba(255,255,255,.45); }
+.tap-glass-card { border-radius: 20px; border-color: rgba(181,141,80,.22); background: linear-gradient(145deg, #fff, #f7f5ef); box-shadow: inset 0 1px 0 #fff, 0 8px 28px rgba(26,26,46,.06); }
+.tap-glass-badge { background: #faf8f2; border: 1px solid rgba(255,255,255,.65); box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+.near-me-panel { border: 1px solid rgba(255,255,255,.45); box-shadow: 0 -16px 70px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.6); }
+html.dark .tap-glass-card { background: linear-gradient(145deg, #25283b, #191c2c) !important; border-color: rgba(226,193,139,.24); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 10px 32px rgba(0,0,0,.18); }
+html.dark .tap-glass-badge { background: #25283b; color: #f4dfb9 !important; border-color: rgba(226,193,139,.3); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .tap-glass-nav { background: rgba(249,247,242,.82); -webkit-backdrop-filter: blur(22px) saturate(145%); backdrop-filter: blur(22px) saturate(145%); }
+  html.dark header.tap-glass-nav { background: rgba(13,16,28,.82) !important; }
+  .tap-glass-menu { background: rgba(249,247,242,.94); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
+  html.dark .tap-glass-menu { background: rgba(19,23,37,.96) !important; }
+  .tap-glass-badge { background: rgba(255,255,255,.82); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  html.dark .tap-glass-badge { background: rgba(25,29,45,.82); }
+  .near-me-panel { background: rgba(249,247,242,.95) !important; -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px); }
+  html.dark .near-me-panel { background: rgba(18,21,34,.96) !important; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .tap-glass-nav, .tap-glass-menu, .tap-glass-badge, .near-me-panel { -webkit-backdrop-filter: none; backdrop-filter: none; background: #f9f7f2 !important; }
+  html.dark header.tap-glass-nav, html.dark .tap-glass-menu, html.dark .tap-glass-badge, html.dark .near-me-panel { background: #171b2b !important; }
+}

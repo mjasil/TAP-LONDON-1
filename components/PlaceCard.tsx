@@ -89,7 +89,7 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       whileHover={{ y: -5 }}
-      className="group flex h-full flex-col overflow-hidden rounded-lg border border-navy/10 bg-white shadow-sm transition hover:border-gold hover:shadow-lift dark:border-gold/20 dark:bg-navy/80"
+      className="tap-glass-card group flex h-full flex-col overflow-hidden rounded-lg border border-navy/10 bg-white shadow-sm transition hover:border-gold hover:shadow-lift dark:border-gold/20 dark:bg-navy/80"
     >
       <div className="relative h-[200px] overflow-hidden rounded-t-lg bg-navy">
         {item.image && !imageFailed ? (
@@ -119,7 +119,7 @@ export default function PlaceCard({ item, mode = "place" }: PlaceCardProps) {
           </span>
         )}
 
-        <div className="absolute left-4 top-4 rounded-full bg-white/92 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-navy shadow-sm dark:bg-navy dark:text-gold dark:border dark:border-gold/30">
+        <div className="tap-glass-badge absolute left-4 top-4 rounded-full bg-white/92 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-navy shadow-sm dark:bg-navy dark:text-gold dark:border dark:border-gold/30">
           {category}
         </div>
 
