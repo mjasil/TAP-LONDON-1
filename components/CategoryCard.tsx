@@ -31,7 +31,7 @@ export default function CategoryCard({ href, label, description, icon }: Categor
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
     >
-      <Link href={href} className="group flex h-full min-h-44 flex-col justify-between rounded-lg border border-navy/10 bg-white p-5 shadow-sm transition hover:border-gold hover:shadow-lift">
+      <Link href={href} className="tap-glass-card group flex h-full min-h-44 flex-col justify-between rounded-lg border border-navy/10 bg-white p-5 shadow-sm transition hover:border-gold hover:shadow-lift">
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-navy text-gold">
           <Icon aria-hidden="true" size={22} />
         </span>
