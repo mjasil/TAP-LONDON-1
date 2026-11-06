@@ -2,6 +2,7 @@
 const nextConfig = {
   images: {
     remotePatterns: [
+      { protocol: "https", hostname: "www.belgraviavillage.com", pathname: "/sites/belgravialdn.com/files/**" },
       { protocol: "https", hostname: "www.kingsroad.co.uk", pathname: "/wp-content/uploads/**" },
       { protocol: "https", hostname: "images.pexels.com" },
       { protocol: "https", hostname: "upload.wikimedia.org" },
